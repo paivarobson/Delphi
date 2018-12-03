@@ -4,7 +4,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, Menus, DB, DBClient, StdCtrls;
+  Dialogs, Menus, DB, DBClient, StdCtrls, Grids, DBGrids, WideStrings, SqlExpr,
+  FMTBcd;
 
 type
   TfrmCadastroEscola = class(TForm)
@@ -40,11 +41,26 @@ type
     lblEscolaDataCadastro: TLabel;
     edtEscolaEndBairro: TEdit;
     lblEscolaEndBairro: TLabel;
+    dbgrdEscola: TDBGrid;
+    dsEscola: TDataSource;
+    lblEscolaTitulo: TLabel;
+    btnEscolaCadastrar: TButton;
+    btnEscolaAlterar: TButton;
+    btnEscolaExcluir: TButton;
+    btnEscolaImprimiir: TButton;
+    conexaoBDEscola: TSQLConnection;
+    SQLQuery1: TSQLQuery;
+    ConnectionBroker1: TConnectionBroker;
+    procedure btnEscolaCadastrarClick(Sender: TObject);
+    procedure btnEscolaAlterarClick(Sender: TObject);
+    procedure btnEscolaExcluirClick(Sender: TObject);
+
   private
     { Private declarations }
   public
     { Public declarations }
-    procedure EscolaInsert;
+    procedure EscolaDados;
+    procedure LimparCampos;    
   end;
 
 var
@@ -54,16 +70,50 @@ implementation
 
 {$R *.dfm}
 
-procedure TfrmCadastroEscola.EscolaInsert;
+procedure TfrmCadastroEscola.btnEscolaAlterarClick(Sender: TObject);
+begin
+  cdsTemp.Edit;
+  EscolaDados;
+  end;
+
+procedure TfrmCadastroEscola.btnEscolaCadastrarClick(Sender: TObject);
 begin
   cdsTemp.Append;
+  EscolaDados;
+end;
+
+procedure TfrmCadastroEscola.btnEscolaExcluirClick(Sender: TObject);
+begin
+  cdsTemp.Delete;
+end;
+
+procedure TfrmCadastroEscola.EscolaDados;
+begin
   cdsTemp.FieldByName('ESCCOD').AsInteger := StrToInt(edtEscolaCodigo.Text);
-  cdsTemp.FieldByName('ESCNOME').AsString := edtEscolaCodigo.Text;
+  cdsTemp.FieldByName('ESCNOME').AsString := edtEscolaNome.Text;
   cdsTemp.FieldByName('ESCDATACAD').AsDateTime := StrToDateTime(edtEscolaDataCadastro.Text);
   cdsTemp.FieldByName('ESCENDRUA').AsString := edtEscolaEndRua.Text;
   cdsTemp.FieldByName('ESCENDNUM').AsInteger := StrToInt(edtEscolaEndNumero.Text);
   cdsTemp.FieldByName('ESCENDCOMP').AsString := edtEscolaEndComplemento.Text;
-  cdsTemp.FieldByName('ESCENDBAIRRO').AsString := edtEscolaEnd.Text;
+  cdsTemp.FieldByName('ESCENDBAIRRO').AsString := edtEscolaEndBairro.Text;
+  cdsTemp.FieldByName('ESCENDCIDADE').AsString := edtEscolaEndCidade.Text;
+  cdsTemp.FieldByName('ESCENDCEP').AsString := edtEscolaEndCep.Text;
+  cdsTemp.Post;
+
+  ShowMessage('Cadastro realizado com sucesso!');
+end;
+
+procedure TfrmCadastroEscola.LimparCampos;
+begin
+  edtEscolaCodigo.Clear;
+  edtEscolaNome.Clear;
+  edtEscolaEndRua.Clear;
+  edtEscolaEndNumero.Clear;
+  edtEscolaEndComplemento.Clear;
+  edtEscolaEndCidade.Clear;
+  edtEscolaEndCep.Clear;
+  edtEscolaDataCadastro.Clear;
+  edtEscolaEndBairro.Clear;
 end;
 
 end.

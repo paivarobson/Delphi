@@ -294,7 +294,7 @@ object frmCadastroEscola: TfrmCadastroEscola
     end
   end
   object dsEscola: TDataSource
-    DataSet = SQLTable1
+    DataSet = sqlqryescola
     Left = 320
     Top = 173
   end
@@ -332,7 +332,6 @@ object frmCadastroEscola: TfrmCadastroEscola
     Top = 184
   end
   object SQLTable1: TSQLTable
-    Active = True
     MaxBlobSize = -1
     SQLConnection = conexaoBDEscola
     TableName = 'ESCOLA'

@@ -4,8 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, Menus, DB, DBClient, StdCtrls, Grids, DBGrids, WideStrings, SqlExpr,
-  FMTBcd;
+  Dialogs, Menus, DB, DBClient, StdCtrls, Grids, DBGrids;
 
 type
   TfrmCadastroEscola = class(TForm)
@@ -13,6 +12,16 @@ type
     Cadastros1: TMenuItem;
     Cadastros2: TMenuItem;
     Escola1: TMenuItem;
+    cdsTemp: TClientDataSet;
+    cdsTempESCCOD: TIntegerField;
+    cdsTempESCNOME: TStringField;
+    cdsTempESCDATACAD: TDateTimeField;
+    cdsTempESCENDRUA: TStringField;
+    cdsTempESCENDNUM: TIntegerField;
+    cdsTempESCENDCOMP: TStringField;
+    cdsTempESCENDBAIRRO: TStringField;
+    cdsTempESCENDCIDADE: TStringField;
+    cdsTempESCENDCEP: TStringField;
     edtEscolaCodigo: TEdit;
     edtEscolaNome: TEdit;
     edtEscolaEndRua: TEdit;
@@ -38,9 +47,6 @@ type
     btnEscolaAlterar: TButton;
     btnEscolaExcluir: TButton;
     btnEscolaImprimiir: TButton;
-    conexaoBDEscola: TSQLConnection;
-    sqlqryescola: TSQLQuery;
-    SQLTable1: TSQLTable;
     procedure btnEscolaCadastrarClick(Sender: TObject);
     procedure btnEscolaAlterarClick(Sender: TObject);
     procedure btnEscolaExcluirClick(Sender: TObject);
@@ -89,8 +95,6 @@ begin
   cdsTemp.FieldByName('ESCENDCIDADE').AsString := edtEscolaEndCidade.Text;
   cdsTemp.FieldByName('ESCENDCEP').AsString := edtEscolaEndCep.Text;
   cdsTemp.Post;
-
-  ShowMessage('Cadastro realizado com sucesso!');
 end;
 
 procedure TfrmCadastroEscola.LimparCampos;
