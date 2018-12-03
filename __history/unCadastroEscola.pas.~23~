@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, Menus, DB, DBClient, StdCtrls, Grids, DBGrids;
+  Dialogs, Menus, DB, DBClient, StdCtrls;
 
 type
   TfrmCadastroEscola = class(TForm)
@@ -36,12 +36,6 @@ type
     lblEscolaEndComplemento: TLabel;
     lblEscolaEndCidade: TLabel;
     lblEscolaendCep: TLabel;
-    edtEscolaDataCadastro: TEdit;
-    lblEscolaDataCadastro: TLabel;
-    edtEscolaEndBairro: TEdit;
-    lblEscolaEndBairro: TLabel;
-    dbgrdEscola: TDBGrid;
-    dsEscola: TDataSource;
   private
     { Private declarations }
   public
@@ -61,14 +55,7 @@ begin
   cdsTemp.Append;
   cdsTemp.FieldByName('ESCCOD').AsInteger := StrToInt(edtEscolaCodigo.Text);
   cdsTemp.FieldByName('ESCNOME').AsString := edtEscolaCodigo.Text;
-  cdsTemp.FieldByName('ESCDATACAD').AsDateTime := StrToDateTime(edtEscolaDataCadastro.Text);
-  cdsTemp.FieldByName('ESCENDRUA').AsString := edtEscolaEndRua.Text;
-  cdsTemp.FieldByName('ESCENDNUM').AsInteger := StrToInt(edtEscolaEndNumero.Text);
-  cdsTemp.FieldByName('ESCENDCOMP').AsString := edtEscolaEndComplemento.Text;
-  cdsTemp.FieldByName('ESCENDBAIRRO').AsString := edtEscolaEndBairro.Text;
-  cdsTemp.FieldByName('ESCENDCIDADE').AsString := edtEscolaEndCidade.Text;
-  cdsTemp.FieldByName('ESCENDCEP').AsString := edtEscolaEndCep.Text;
-  cdsTemp.Post;
+  cdsTemp.FieldByName('ESCDATACAD').AsDateTime := StrToDateTime(edtEscolaCodigo.Text);
 end;
 
 end.

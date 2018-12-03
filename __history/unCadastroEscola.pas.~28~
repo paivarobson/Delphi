@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, Menus, DB, DBClient, StdCtrls, Grids, DBGrids;
+  Dialogs, Menus, DB, DBClient, StdCtrls;
 
 type
   TfrmCadastroEscola = class(TForm)
@@ -40,8 +40,6 @@ type
     lblEscolaDataCadastro: TLabel;
     edtEscolaEndBairro: TEdit;
     lblEscolaEndBairro: TLabel;
-    dbgrdEscola: TDBGrid;
-    dsEscola: TDataSource;
   private
     { Private declarations }
   public
@@ -66,9 +64,6 @@ begin
   cdsTemp.FieldByName('ESCENDNUM').AsInteger := StrToInt(edtEscolaEndNumero.Text);
   cdsTemp.FieldByName('ESCENDCOMP').AsString := edtEscolaEndComplemento.Text;
   cdsTemp.FieldByName('ESCENDBAIRRO').AsString := edtEscolaEndBairro.Text;
-  cdsTemp.FieldByName('ESCENDCIDADE').AsString := edtEscolaEndCidade.Text;
-  cdsTemp.FieldByName('ESCENDCEP').AsString := edtEscolaEndCep.Text;
-  cdsTemp.Post;
 end;
 
 end.

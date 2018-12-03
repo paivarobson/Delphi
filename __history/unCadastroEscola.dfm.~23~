@@ -10,16 +10,16 @@ object frmCadastroEscola: TfrmCadastroEscola
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  Menu = cliente
+  Menu = menuBarCadastro
   OldCreateOrder = False
   PixelsPerInch = 96
   TextHeight = 13
   object lblEscolaCodigo: TLabel
     Left = 40
     Top = 25
-    Width = 33
+    Width = 37
     Height = 13
-    Caption = 'C'#243'digo'
+    Caption = 'C'#243'digo:'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -30,16 +30,51 @@ object frmCadastroEscola: TfrmCadastroEscola
   object lblEscolaNome: TLabel
     Left = 143
     Top = 25
-    Width = 75
+    Width = 79
     Height = 13
-    Caption = 'Nome da Escola'
+    Caption = 'Nome da Escola:'
   end
   object lblEscolaEndRua: TLabel
     Left = 40
-    Top = 92
-    Width = 77
+    Top = 64
+    Width = 23
     Height = 13
-    Caption = 'lblEscolaEndRua'
+    Caption = 'Rua:'
+  end
+  object lblEscolaEndNumero: TLabel
+    Left = 464
+    Top = 64
+    Width = 41
+    Height = 13
+    Caption = 'N'#250'mero:'
+  end
+  object lblEscolaEndComplemento: TLabel
+    Left = 40
+    Top = 104
+    Width = 69
+    Height = 13
+    Caption = 'Complemento:'
+  end
+  object lblEscolaEndCidade: TLabel
+    Left = 271
+    Top = 104
+    Width = 37
+    Height = 13
+    Caption = 'Cidade:'
+  end
+  object lblEscolaendCep: TLabel
+    Left = 464
+    Top = 106
+    Width = 23
+    Height = 13
+    Caption = 'CEP:'
+  end
+  object lblEscolaDataCadastro: TLabel
+    Left = 464
+    Top = 146
+    Width = 85
+    Height = 13
+    Caption = 'Data de Cadastro'
   end
   object edtEscolaCodigo: TEdit
     Left = 40
@@ -59,7 +94,7 @@ object frmCadastroEscola: TfrmCadastroEscola
   end
   object edtEscolaEndRua: TEdit
     Left = 40
-    Top = 107
+    Top = 79
     Width = 418
     Height = 21
     TabOrder = 2
@@ -67,7 +102,7 @@ object frmCadastroEscola: TfrmCadastroEscola
   end
   object edtEscolaEndNumero: TEdit
     Left = 464
-    Top = 107
+    Top = 79
     Width = 113
     Height = 21
     TabOrder = 3
@@ -75,7 +110,7 @@ object frmCadastroEscola: TfrmCadastroEscola
   end
   object edtEscolaEndComplemento: TEdit
     Left = 40
-    Top = 134
+    Top = 119
     Width = 225
     Height = 21
     TabOrder = 4
@@ -83,7 +118,7 @@ object frmCadastroEscola: TfrmCadastroEscola
   end
   object edtEscolaEndCidade: TEdit
     Left = 271
-    Top = 134
+    Top = 119
     Width = 187
     Height = 21
     TabOrder = 5
@@ -91,13 +126,21 @@ object frmCadastroEscola: TfrmCadastroEscola
   end
   object edtEscolaEndCep: TEdit
     Left = 464
-    Top = 134
+    Top = 119
     Width = 113
     Height = 21
     TabOrder = 6
     Text = 'edtEscolaEndCep'
   end
-  object cliente: TMainMenu
+  object edtEscolaDataCadastro: TEdit
+    Left = 464
+    Top = 160
+    Width = 113
+    Height = 21
+    TabOrder = 7
+    Text = 'edtEscolaEndCep'
+  end
+  object menuBarCadastro: TMainMenu
     Left = 448
     Top = 320
     object Cadastros1: TMenuItem

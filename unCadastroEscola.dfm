@@ -2,8 +2,8 @@ object frmCadastroEscola: TfrmCadastroEscola
   Left = 0
   Top = 0
   Caption = 'Cadastro de Escola'
-  ClientHeight = 355
-  ClientWidth = 635
+  ClientHeight = 526
+  ClientWidth = 616
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -56,18 +56,32 @@ object frmCadastroEscola: TfrmCadastroEscola
     Caption = 'Complemento:'
   end
   object lblEscolaEndCidade: TLabel
-    Left = 271
+    Left = 391
     Top = 104
     Width = 37
     Height = 13
     Caption = 'Cidade:'
   end
   object lblEscolaendCep: TLabel
-    Left = 464
-    Top = 106
+    Left = 40
+    Top = 146
     Width = 23
     Height = 13
     Caption = 'CEP:'
+  end
+  object lblEscolaDataCadastro: TLabel
+    Left = 464
+    Top = 146
+    Width = 89
+    Height = 13
+    Caption = 'Data de Cadastro:'
+  end
+  object lblEscolaEndBairro: TLabel
+    Left = 271
+    Top = 104
+    Width = 32
+    Height = 13
+    Caption = 'Bairro:'
   end
   object edtEscolaCodigo: TEdit
     Left = 40
@@ -110,7 +124,7 @@ object frmCadastroEscola: TfrmCadastroEscola
     Text = 'edtEscolaEndComplemento'
   end
   object edtEscolaEndCidade: TEdit
-    Left = 271
+    Left = 391
     Top = 119
     Width = 187
     Height = 21
@@ -118,16 +132,98 @@ object frmCadastroEscola: TfrmCadastroEscola
     Text = 'edtEscolaEndCidade'
   end
   object edtEscolaEndCep: TEdit
-    Left = 464
-    Top = 119
+    Left = 40
+    Top = 160
     Width = 113
     Height = 21
     TabOrder = 6
     Text = 'edtEscolaEndCep'
   end
+  object edtEscolaDataCadastro: TEdit
+    Left = 464
+    Top = 160
+    Width = 113
+    Height = 21
+    TabOrder = 7
+    Text = 'edtEscolaEndCep'
+  end
+  object edtEscolaEndBairro: TEdit
+    Left = 271
+    Top = 119
+    Width = 113
+    Height = 21
+    TabOrder = 8
+    Text = 'edtEscolaEndCep'
+  end
+  object dbgrdEscola: TDBGrid
+    Left = 40
+    Top = 232
+    Width = 538
+    Height = 265
+    DataSource = dsEscola
+    TabOrder = 9
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'C'#243'digo'
+        Width = 40
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Escola'
+        Width = 300
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Rua'
+        Width = 200
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'N'#250'mero'
+        Width = 40
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Complemento'
+        Width = 80
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Bairro'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Cidade'
+        Width = 80
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'CEP'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Data de cadastro'
+        Width = 90
+        Visible = True
+      end>
+  end
   object menuBarCadastro: TMainMenu
-    Left = 448
-    Top = 320
+    Left = 240
+    Top = 192
     object Cadastros1: TMenuItem
       Caption = 'Arquivo'
       object Cadastros2: TMenuItem
@@ -142,8 +238,8 @@ object frmCadastroEscola: TfrmCadastroEscola
     Active = True
     Aggregates = <>
     Params = <>
-    Left = 496
-    Top = 320
+    Left = 280
+    Top = 192
     Data = {
       070100009619E0BD010000001800000009000000000003000000070106455343
       434F440400010000000000074553434E4F4D4501004900000001000557494454
@@ -187,5 +283,10 @@ object frmCadastroEscola: TfrmCadastroEscola
       FieldName = 'ESCENDCEP'
       Size = 10
     end
+  end
+  object dsEscola: TDataSource
+    DataSet = cdsTemp
+    Left = 328
+    Top = 192
   end
 end
