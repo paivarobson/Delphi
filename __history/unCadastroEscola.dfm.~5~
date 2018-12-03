@@ -19,18 +19,6 @@ object frmCadastroEscola: TfrmCadastroEscola
     Params = <>
     Left = 488
     Top = 320
-    object intgrfldTempESCCOD: TIntegerField
-      FieldName = 'ESCCOD'
-    end
-    object strngfldTempESCNOME: TStringField
-      FieldName = 'ESCNOME'
-    end
-    object dtmfldTempESCDATACAD: TDateTimeField
-      FieldName = 'ESCDATACAD'
-    end
-    object strngfldTempESCEND: TStringField
-      FieldName = 'ESCEND'
-    end
   end
   object mMenu: TMainMenu
     Left = 448

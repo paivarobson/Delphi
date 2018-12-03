@@ -13,10 +13,6 @@ type
     Cadastros1: TMenuItem;
     Cadastros2: TMenuItem;
     Escola1: TMenuItem;
-    intgrfldTempESCCOD: TIntegerField;
-    strngfldTempESCNOME: TStringField;
-    dtmfldTempESCDATACAD: TDateTimeField;
-    strngfldTempESCEND: TStringField;
   private
     { Private declarations }
   public

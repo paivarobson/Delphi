@@ -19,18 +19,6 @@ object frmCadastroEscola: TfrmCadastroEscola
     Params = <>
     Left = 488
     Top = 320
-    object intgrfldTempESCCOD: TIntegerField
-      FieldName = 'ESCCOD'
-    end
-    object strngfldTempESCNOME: TStringField
-      FieldName = 'ESCNOME'
-    end
-    object dtmfldTempESCDATACAD: TDateTimeField
-      FieldName = 'ESCDATACAD'
-    end
-    object strngfldTempESCEND: TStringField
-      FieldName = 'ESCEND'
-    end
   end
   object mMenu: TMainMenu
     Left = 448
@@ -38,7 +26,7 @@ object frmCadastroEscola: TfrmCadastroEscola
     object Cadastros1: TMenuItem
       Caption = 'Arquivo'
       object Cadastros2: TMenuItem
-        Caption = 'Cadastro'
+        Caption = 'Cadastros'
         object Escola1: TMenuItem
           Caption = 'Escola'
         end

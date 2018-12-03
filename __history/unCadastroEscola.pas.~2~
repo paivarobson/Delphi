@@ -4,19 +4,10 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, Menus, DB, DBClient;
+  Dialogs;
 
 type
   TfrmCadastroEscola = class(TForm)
-    cdsTemp: TClientDataSet;
-    mMenu: TMainMenu;
-    Cadastros1: TMenuItem;
-    Cadastros2: TMenuItem;
-    Escola1: TMenuItem;
-    intgrfldTempESCCOD: TIntegerField;
-    strngfldTempESCNOME: TStringField;
-    dtmfldTempESCDATACAD: TDateTimeField;
-    strngfldTempESCEND: TStringField;
   private
     { Private declarations }
   public
