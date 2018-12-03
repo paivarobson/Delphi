@@ -8,7 +8,7 @@ uses
 
 type
   TfrmCadastroEscola = class(TForm)
-    menuBarCadastro: TMainMenu;
+    cliente: TMainMenu;
     Cadastros1: TMenuItem;
     Cadastros2: TMenuItem;
     Escola1: TMenuItem;
@@ -34,8 +34,6 @@ type
     lblEscolaEndRua: TLabel;
     lblEscolaEndNumero: TLabel;
     lblEscolaEndComplemento: TLabel;
-    lblEscolaEndCidade: TLabel;
-    lblEscolaendCep: TLabel;
   private
     { Private declarations }
   public

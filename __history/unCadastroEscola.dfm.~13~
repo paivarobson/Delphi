@@ -14,6 +14,33 @@ object frmCadastroEscola: TfrmCadastroEscola
   OldCreateOrder = False
   PixelsPerInch = 96
   TextHeight = 13
+  object lblEscolaCodigo: TLabel
+    Left = 40
+    Top = 25
+    Width = 33
+    Height = 13
+    Caption = 'C'#243'digo'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object lblEscolaNome: TLabel
+    Left = 143
+    Top = 25
+    Width = 75
+    Height = 13
+    Caption = 'Nome da Escola'
+  end
+  object lblEscolaEndRua: TLabel
+    Left = 40
+    Top = 92
+    Width = 77
+    Height = 13
+    Caption = 'lblEscolaEndRua'
+  end
   object edtEscolaCodigo: TEdit
     Left = 40
     Top = 40
@@ -32,7 +59,7 @@ object frmCadastroEscola: TfrmCadastroEscola
   end
   object edtEscolaEndRua: TEdit
     Left = 40
-    Top = 67
+    Top = 107
     Width = 418
     Height = 21
     TabOrder = 2
@@ -40,7 +67,7 @@ object frmCadastroEscola: TfrmCadastroEscola
   end
   object edtEscolaEndNumero: TEdit
     Left = 464
-    Top = 67
+    Top = 107
     Width = 113
     Height = 21
     TabOrder = 3
@@ -48,7 +75,7 @@ object frmCadastroEscola: TfrmCadastroEscola
   end
   object edtEscolaEndComplemento: TEdit
     Left = 40
-    Top = 94
+    Top = 134
     Width = 225
     Height = 21
     TabOrder = 4
@@ -56,16 +83,16 @@ object frmCadastroEscola: TfrmCadastroEscola
   end
   object edtEscolaEndCidade: TEdit
     Left = 271
-    Top = 94
-    Width = 121
+    Top = 134
+    Width = 187
     Height = 21
     TabOrder = 5
     Text = 'edtEscolaEndCidade'
   end
   object edtEscolaEndCep: TEdit
-    Left = 552
-    Top = 280
-    Width = 121
+    Left = 464
+    Top = 134
+    Width = 113
     Height = 21
     TabOrder = 6
     Text = 'edtEscolaEndCep'

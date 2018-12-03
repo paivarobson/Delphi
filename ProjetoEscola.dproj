@@ -80,6 +80,34 @@
       
       
       
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
       <Excluded_Packages Name="$(BDS)\bin\dcloffice2k100.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
       <Excluded_Packages Name="$(BDS)\bin\dclofficexp100.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
     </Excluded_Packages>
@@ -100,6 +128,34 @@
     <Source>
       <Source Name="MainSource">ProjetoEscola.dpr</Source>
     </Source>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     <DebugEnvironmentVariables>
@@ -151,7 +207,8 @@
       <DebugSysEnvironmentVariables Name="USERPROFILE">'C:\Users\Joserobson'</DebugSysEnvironmentVariables>
       <DebugSysEnvironmentVariables Name="windir">'C:\Windows'</DebugSysEnvironmentVariables>
     </DebugSysEnvironmentVariables>
-  </Delphi.Personality> </BorlandProject></BorlandProject>
+  </Delphi.Personality>   <ModelSupport>True</ModelSupport>
+</BorlandProject></BorlandProject>
   </ProjectExtensions>
   <Import Project="$(MSBuildBinPath)\Borland.Delphi.Targets" />
   <ItemGroup>
@@ -161,5 +218,6 @@
     <DCCReference Include="unCadastroEscola.pas">
       <Form>frmCadastroEscola</Form>
     </DCCReference>
+    <None Include="ModelSupport_ProjetoEscola\default.txaPackage" />
   </ItemGroup>
 </Project>
