@@ -57,15 +57,15 @@ object frmCadastroEscola: TfrmCadastroEscola
   object edtEscolaEndCidade: TEdit
     Left = 271
     Top = 94
-    Width = 187
+    Width = 121
     Height = 21
     TabOrder = 5
     Text = 'edtEscolaEndCidade'
   end
   object edtEscolaEndCep: TEdit
-    Left = 464
-    Top = 94
-    Width = 113
+    Left = 552
+    Top = 280
+    Width = 121
     Height = 21
     TabOrder = 6
     Text = 'edtEscolaEndCep'

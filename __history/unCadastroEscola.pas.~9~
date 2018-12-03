@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, Menus, DB, DBClient, StdCtrls;
+  Dialogs, Menus, DB, DBClient;
 
 type
   TfrmCadastroEscola = class(TForm)
@@ -22,13 +22,6 @@ type
     cdsTempESCENDBAIRRO: TStringField;
     cdsTempESCENDCIDADE: TStringField;
     cdsTempESCENDCEP: TStringField;
-    edtEscolaCodigo: TEdit;
-    edtEscolaNome: TEdit;
-    edtEscolaEndRua: TEdit;
-    edtEscolaEndNumero: TEdit;
-    edtEscolaEndComplemento: TEdit;
-    edtEscolaEndCidade: TEdit;
-    edtEscolaEndCep: TEdit;
   private
     { Private declarations }
   public
