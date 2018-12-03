@@ -15,13 +15,14 @@ type
     cdsTemp: TClientDataSet;
     cdsTempESCCOD: TIntegerField;
     cdsTempESCNOME: TStringField;
-    cdsTempESCDATACAD: TDateTimeField;
-    cdsTempESCENDRUA: TStringField;
-    cdsTempESCENDNUM: TIntegerField;
-    cdsTempESCENDCOMP: TStringField;
-    cdsTempESCENDBAIRRO: TStringField;
-    cdsTempESCENDCIDADE: TStringField;
-    cdsTempESCENDCEP: TStringField;
+//    ESCDATACAD:
+//    ESCENDRUA:
+//    ESCENDNUM:
+//    ESCENDCOMP:
+//    ESCENDBAIRRO:
+//    ESCENDCIDADE:
+//    ESCENDCEP:
+
   private
     { Private declarations }
   public

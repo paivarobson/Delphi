@@ -14,14 +14,6 @@ type
     Escola1: TMenuItem;
     cdsTemp: TClientDataSet;
     cdsTempESCCOD: TIntegerField;
-    cdsTempESCNOME: TStringField;
-    cdsTempESCDATACAD: TDateTimeField;
-    cdsTempESCENDRUA: TStringField;
-    cdsTempESCENDNUM: TIntegerField;
-    cdsTempESCENDCOMP: TStringField;
-    cdsTempESCENDBAIRRO: TStringField;
-    cdsTempESCENDCIDADE: TStringField;
-    cdsTempESCENDCEP: TStringField;
   private
     { Private declarations }
   public

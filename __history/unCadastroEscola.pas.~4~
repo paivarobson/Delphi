@@ -8,20 +8,15 @@ uses
 
 type
   TfrmCadastroEscola = class(TForm)
-    cliente: TMainMenu;
+    cdsTemp: TClientDataSet;
+    mMenu: TMainMenu;
     Cadastros1: TMenuItem;
     Cadastros2: TMenuItem;
     Escola1: TMenuItem;
-    cdsTemp: TClientDataSet;
-    cdsTempESCCOD: TIntegerField;
-    cdsTempESCNOME: TStringField;
-    cdsTempESCDATACAD: TDateTimeField;
-    cdsTempESCENDRUA: TStringField;
-    cdsTempESCENDNUM: TIntegerField;
-    cdsTempESCENDCOMP: TStringField;
-    cdsTempESCENDBAIRRO: TStringField;
-    cdsTempESCENDCIDADE: TStringField;
-    cdsTempESCENDCEP: TStringField;
+    intgrfldTempESCCOD: TIntegerField;
+    strngfldTempESCNOME: TStringField;
+    dtmfldTempESCDATACAD: TDateTimeField;
+    strngfldTempESCEND: TStringField;
   private
     { Private declarations }
   public
