@@ -294,14 +294,15 @@ object frmCadastroEscola: TfrmCadastroEscola
     end
   end
   object dsEscola: TDataSource
-    DataSet = SQLTable1
-    Left = 320
+    DataSet = ClientDataSet1
+    Left = 312
     Top = 173
   end
   object conexaoBDEscola: TSQLConnection
     ConnectionName = 'MSSQLConnection'
     DriverName = 'MSSQL'
     GetDriverFunc = 'getSQLDriverMSSQL'
+    KeepConnection = False
     LibraryName = 'dbxmss30.dll'
     LoginPrompt = False
     Params.Strings = (
@@ -319,24 +320,53 @@ object frmCadastroEscola: TfrmCadastroEscola
       'Prepare SQL=False')
     VendorLib = 'oledb'
     Connected = True
-    Left = 357
+    Left = 389
     Top = 173
   end
-  object sqlqryescola: TSQLQuery
-    MaxBlobSize = -1
-    Params = <>
-    SQL.Strings = (
-      'select * from escola')
-    SQLConnection = conexaoBDEscola
-    Left = 416
-    Top = 184
+  object DataSetProvider1: TDataSetProvider
+    Left = 448
+    Top = 192
   end
-  object SQLTable1: TSQLTable
+  object ClientDataSet1: TClientDataSet
     Active = True
-    MaxBlobSize = -1
-    SQLConnection = conexaoBDEscola
-    TableName = 'ESCOLA'
-    Left = 456
-    Top = 208
+    Aggregates = <>
+    CommandText = 'select * from escola'
+    Params = <>
+    ProviderName = 'DataSetProvider1'
+    Left = 184
+    Top = 176
+    object ClientDataSet1ESCCOD: TIntegerField
+      FieldName = 'ESCCOD'
+    end
+    object ClientDataSet1ESCNOME: TStringField
+      FieldName = 'ESCNOME'
+      Size = 100
+    end
+    object ClientDataSet1ESCDATACAD: TDateTimeField
+      FieldName = 'ESCDATACAD'
+    end
+    object ClientDataSet1ESCENDRUA: TStringField
+      FieldName = 'ESCENDRUA'
+      Size = 100
+    end
+    object ClientDataSet1ESCENDNUM: TIntegerField
+      FieldName = 'ESCENDNUM'
+    end
+    object ClientDataSet1ESCENDCOMP: TStringField
+      FieldName = 'ESCENDCOMP'
+      Size = 30
+    end
+    object ClientDataSet1ESCENDBAIRRO: TStringField
+      FieldName = 'ESCENDBAIRRO'
+      Size = 50
+    end
+    object ClientDataSet1ESCENDCIDADE: TStringField
+      FieldName = 'ESCENDCIDADE'
+      Size = 50
+    end
+    object ClientDataSet1ESCENDCEP: TStringField
+      FieldName = 'ESCENDCEP'
+      Size = 10
+    end
   end
 end

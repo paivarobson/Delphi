@@ -293,59 +293,138 @@ object frmCadastroEscola: TfrmCadastroEscola
       end
     end
   end
-  object cdsTemp: TClientDataSet
-    Active = True
-    Aggregates = <>
-    Params = <>
-    Left = 288
+  object dsEscola: TDataSource
+    Left = 312
     Top = 173
-    Data = {
-      070100009619E0BD010000001800000009000000000003000000070106455343
-      434F440400010000000000074553434E4F4D4501004900000001000557494454
-      480200020064000A45534344415441434144080008000000000009455343454E
-      44525541010049000000010005574944544802000200640009455343454E444E
-      554D04000100000000000A455343454E44434F4D500100490000000100055749
-      445448020002001E000C455343454E4442414952524F01004900000001000557
-      494454480200020032000C455343454E44434944414445010049000000010005
-      574944544802000200320009455343454E444345500100490000000100055749
-      445448020002000A000000}
-    object cdsTempESCCOD: TIntegerField
+  end
+  object conexaoBDEscola: TSQLConnection
+    ConnectionName = 'MSSQLConnection'
+    DriverName = 'MSSQL'
+    GetDriverFunc = 'getSQLDriverMSSQL'
+    KeepConnection = False
+    LibraryName = 'dbxmss30.dll'
+    LoginPrompt = False
+    Params.Strings = (
+      'SchemaOverride=sa.dbo'
+      'DriverName=MSSQL'
+      'HostName=NCDEV28'
+      'DataBase=ESCOLA'
+      'User_Name=sa'
+      'Password=fcm123'
+      'BlobSize=-1'
+      'ErrorResourceFile='
+      'LocaleCode=0000'
+      'MSSQL TransIsolation=ReadCommited'
+      'OS Authentication=False'
+      'Prepare SQL=False')
+    VendorLib = 'oledb'
+    Connected = True
+    Left = 389
+    Top = 173
+  end
+  object sqlqryEscola: TSQLQuery
+    DataSource = dsEscola
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'ESCCOD'
+        ParamType = ptUnknown
+        Value = 0
+      end
+      item
+        DataType = ftString
+        Name = 'ESCNOME'
+        ParamType = ptUnknown
+        Size = 100
+        Value = ''
+      end
+      item
+        DataType = ftDateTime
+        Name = 'ESCDATACAD'
+        ParamType = ptUnknown
+        Value = 0d
+      end
+      item
+        DataType = ftString
+        Name = 'ESCENDRUA'
+        ParamType = ptUnknown
+        Size = 100
+        Value = ''
+      end
+      item
+        DataType = ftInteger
+        Name = 'ESCENDNUM'
+        ParamType = ptUnknown
+        Value = 0
+      end
+      item
+        DataType = ftInteger
+        Name = 'ESCENDCOMP'
+        ParamType = ptUnknown
+        Size = 30
+      end
+      item
+        DataType = ftString
+        Name = 'ESCENDBAIRRO'
+        ParamType = ptUnknown
+        Size = 50
+        Value = ''
+      end
+      item
+        DataType = ftString
+        Name = 'ESCENDCIDADE'
+        ParamType = ptUnknown
+        Size = 50
+        Value = ''
+      end
+      item
+        DataType = ftString
+        Name = 'ESCENDCEP'
+        ParamType = ptUnknown
+        Size = 10
+        Value = ''
+      end>
+    SQLConnection = conexaoBDEscola
+    Left = 352
+    Top = 173
+    object ESCCOD: TIntegerField
       FieldName = 'ESCCOD'
     end
-    object cdsTempESCNOME: TStringField
+    object ESCNOME: TStringField
       FieldName = 'ESCNOME'
       Size = 100
     end
-    object cdsTempESCDATACAD: TDateTimeField
+    object ESCDATACAD: TDateTimeField
       FieldName = 'ESCDATACAD'
     end
-    object cdsTempESCENDRUA: TStringField
+    object ESCENDRUA: TStringField
       FieldName = 'ESCENDRUA'
       Size = 100
     end
-    object cdsTempESCENDNUM: TIntegerField
+    object ESCENDNUM: TIntegerField
       FieldName = 'ESCENDNUM'
     end
-    object cdsTempESCENDCOMP: TStringField
+    object ESCENDCOMP: TStringField
       FieldName = 'ESCENDCOMP'
       Size = 30
     end
-    object cdsTempESCENDBAIRRO: TStringField
+    object ESCENDBAIRRO: TStringField
       FieldName = 'ESCENDBAIRRO'
       Size = 50
     end
-    object cdsTempESCENDCIDADE: TStringField
+    object ESCENDCIDADE: TStringField
       FieldName = 'ESCENDCIDADE'
       Size = 50
     end
-    object cdsTempESCENDCEP: TStringField
+    object ESCENDCEP: TStringField
       FieldName = 'ESCENDCEP'
       Size = 10
     end
   end
-  object dsEscola: TDataSource
-    DataSet = cdsTemp
-    Left = 320
-    Top = 173
+  object DataSetProvider1: TDataSetProvider
+    DataSet = sqlqryEscola
+    Left = 448
+    Top = 192
   end
 end
