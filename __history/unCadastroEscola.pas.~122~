@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, Menus, DB, DBClient, StdCtrls, Grids, DBGrids, WideStrings, SqlExpr,
-  FMTBcd;
+  FMTBcd, Provider, DBTables, SimpleDS, ComCtrls;
 
 type
   TfrmCadastroEscola = class(TForm)
@@ -27,7 +27,6 @@ type
     lblEscolaEndComplemento: TLabel;
     lblEscolaEndCidade: TLabel;
     lblEscolaendCep: TLabel;
-    edtEscolaDataCadastro: TEdit;
     lblEscolaDataCadastro: TLabel;
     edtEscolaEndBairro: TEdit;
     lblEscolaEndBairro: TLabel;
@@ -38,27 +37,18 @@ type
     btnEscolaAlterar: TButton;
     btnEscolaExcluir: TButton;
     btnEscolaImprimiir: TButton;
-    conexaoBDEscola: TSQLConnection;
-    sqlqryEscola: TSQLQuery;
-    ESCCOD: TIntegerField;
-    ESCNOME: TStringField;
-    ESCDATACAD: TDateTimeField;
-    ESCENDRUA: TStringField;
-    ESCENDNUM: TIntegerField;
-    ESCENDCOMP: TStringField;
-    ESCENDBAIRRO: TStringField;
-    ESCENDCIDADE: TStringField;
-    ESCENDCEP: TStringField;
+    qryEscola: TSQLQuery;
+    dtpEscolaDataCadastro: TDateTimePicker;
+    btnEscolaGravar: TButton;
     procedure btnEscolaCadastrarClick(Sender: TObject);
-    procedure btnEscolaAlterarClick(Sender: TObject);
-    procedure btnEscolaExcluirClick(Sender: TObject);
 
   private
     { Private declarations }
   public
     { Public declarations }
-    procedure EscolaDados;
+    procedure HabilitarComponentesDados;
     procedure LimparCampos;
+    procedure GravarDados;
   end;
 
 var
@@ -68,39 +58,39 @@ implementation
 
 {$R *.dfm}
 
-procedure TfrmCadastroEscola.btnEscolaAlterarClick(Sender: TObject);
-begin
-  sqlqryEscola.Edit;
-  EscolaDados;
-  end;
-
 procedure TfrmCadastroEscola.btnEscolaCadastrarClick(Sender: TObject);
 begin
-  EscolaDados;
+  HabilitarComponentesDados;
 end;
 
-procedure TfrmCadastroEscola.btnEscolaExcluirClick(Sender: TObject);
+procedure TfrmCadastroEscola.GravarDados;
 begin
-  sqlqryEscola.Delete;
+  qryEscola.Open;
+  qryEscola.Append;
+  qryEscola.FieldByName('ESCCOD').AsInteger := StrToInt(edtEscolaCodigo.Text);
+  qryEscola.FieldByName('ESCNOME').AsString := edtEscolaNome.Text;
+  qryEscola.FieldByName('ESCDATACAD').AsDateTime := StrToDateTime(dtpEscolaDataCadastro.Text);
+  qryEscola.FieldByName('ESCENDRUA').AsString := edtEscolaEndRua.Text;
+  qryEscola.FieldByName('ESCENDNUM').AsInteger := StrToInt(edtEscolaEndNumero.Text);
+  qryEscola.FieldByName('ESCENDCOMP').AsString := edtEscolaEndComplemento.Text;
+  qryEscola.FieldByName('ESCENDBAIRRO').AsString := edtEscolaEndBairro.Text;
+  qryEscola.FieldByName('ESCENDCIDADE').AsString := edtEscolaEndCidade.Text;
+  qryEscola.FieldByName('ESCENDCEP').AsString := edtEscolaEndCep.Text;
+  qryEscola.Post;
+  qryEscola.Close;
 end;
 
-procedure TfrmCadastroEscola.EscolaDados;
+procedure TfrmCadastroEscola.HabilitarComponentesDados;
 begin
-  sqlqryEscola.Open;
-  sqlqryEscola.Insert;
-//  sqlqryEscola.FieldByName('ESCCOD').AsInteger := StrToInt(edtEscolaCodigo.Text);
-  sqlqryEscola.FieldByName('ESCNOME').AsString := edtEscolaNome.Text;
-  sqlqryEscola.FieldByName('ESCDATACAD').AsDateTime := StrToDateTime(edtEscolaDataCadastro.Text);
-//  sqlqryEscola.FieldByName('ESCENDRUA').AsString := edtEscolaEndRua.Text;
-//  sqlqryEscola.FieldByName('ESCENDNUM').AsInteger := StrToInt(edtEscolaEndNumero.Text);
-//  sqlqryEscola.FieldByName('ESCENDCOMP').AsString := edtEscolaEndComplemento.Text;
-//  sqlqryEscola.FieldByName('ESCENDBAIRRO').AsString := edtEscolaEndBairro.Text;
-//  sqlqryEscola.FieldByName('ESCENDCIDADE').AsString := edtEscolaEndCidade.Text;
-//  sqlqryEscola.FieldByName('ESCENDCEP').AsString := edtEscolaEndCep.Text;  Z
-//  sqlqryEscola.Post;
-  sqlqryEscola.Close;
-
-  ShowMessage('Cadastro realizado com sucesso!');
+  edtEscolaNome.Enabled := True;
+  dtpEscolaDataCadastro.Enabled := True;  
+  edtEscolaEndRua.Enabled := True;
+  edtEscolaEndNumero.Enabled := True;
+  edtEscolaEndComplemento.Enabled := True;
+  edtEscolaEndCidade.Enabled := True;
+  edtEscolaEndCep.Enabled := True;
+  edtEscolaEndBairro.Enabled := True;
+  edtEscolaNome.SetFocus;
 end;
 
 procedure TfrmCadastroEscola.LimparCampos;
@@ -112,7 +102,6 @@ begin
   edtEscolaEndComplemento.Clear;
   edtEscolaEndCidade.Clear;
   edtEscolaEndCep.Clear;
-  edtEscolaDataCadastro.Clear;
   edtEscolaEndBairro.Clear;
 end;
 

@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, Menus, DB, DBClient, StdCtrls, Grids, DBGrids, WideStrings, SqlExpr,
-  FMTBcd, Provider, DBTables, SimpleDS, ComCtrls, unDados;
+  FMTBcd, Provider, DBTables, SimpleDS, ComCtrls;
 
 type
   TfrmCadastroEscola = class(TForm)
@@ -69,7 +69,7 @@ begin
   qryEscola.Append;
   qryEscola.FieldByName('ESCCOD').AsInteger := StrToInt(edtEscolaCodigo.Text);
   qryEscola.FieldByName('ESCNOME').AsString := edtEscolaNome.Text;
-  qryEscola.FieldByName('ESCDATACAD').AsDateTime := StrToDateTime(dtpEscolaDataCadastro.Text);
+  qryEscola.FieldByName('ESCDATACAD').AsDateTime := StrToDateTime(edtEscolaDataCadastro.Text);
   qryEscola.FieldByName('ESCENDRUA').AsString := edtEscolaEndRua.Text;
   qryEscola.FieldByName('ESCENDNUM').AsInteger := StrToInt(edtEscolaEndNumero.Text);
   qryEscola.FieldByName('ESCENDCOMP').AsString := edtEscolaEndComplemento.Text;

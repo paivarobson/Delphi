@@ -1,9 +1,10 @@
 object frmCadastroEscola: TfrmCadastroEscola
   Left = 0
   Top = 0
+  ActiveControl = btnEscolaCadastrar
   Caption = 'Cadastro de Escola'
-  ClientHeight = 560
-  ClientWidth = 646
+  ClientHeight = 550
+  ClientWidth = 590
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -16,8 +17,8 @@ object frmCadastroEscola: TfrmCadastroEscola
   PixelsPerInch = 96
   TextHeight = 13
   object lblEscolaCodigo: TLabel
-    Left = 40
-    Top = 46
+    Left = 11
+    Top = 38
     Width = 37
     Height = 13
     Caption = 'C'#243'digo:'
@@ -29,64 +30,64 @@ object frmCadastroEscola: TfrmCadastroEscola
     ParentFont = False
   end
   object lblEscolaNome: TLabel
-    Left = 143
-    Top = 46
+    Left = 114
+    Top = 38
     Width = 79
     Height = 13
     Caption = 'Nome da Escola:'
   end
   object lblEscolaEndRua: TLabel
-    Left = 40
-    Top = 85
+    Left = 179
+    Top = 77
     Width = 23
     Height = 13
     Caption = 'Rua:'
   end
   object lblEscolaEndNumero: TLabel
-    Left = 464
-    Top = 85
+    Left = 435
+    Top = 77
     Width = 41
     Height = 13
     Caption = 'N'#250'mero:'
   end
   object lblEscolaEndComplemento: TLabel
-    Left = 40
-    Top = 125
+    Left = 11
+    Top = 117
     Width = 69
     Height = 13
     Caption = 'Complemento:'
   end
   object lblEscolaEndCidade: TLabel
-    Left = 440
-    Top = 125
+    Left = 411
+    Top = 117
     Width = 37
     Height = 13
     Caption = 'Cidade:'
   end
   object lblEscolaendCep: TLabel
-    Left = 40
-    Top = 167
+    Left = 11
+    Top = 77
     Width = 23
     Height = 13
     Caption = 'CEP:'
   end
   object lblEscolaDataCadastro: TLabel
-    Left = 496
-    Top = 167
+    Left = 467
+    Top = 36
     Width = 89
     Height = 13
     Caption = 'Data de Cadastro:'
   end
   object lblEscolaEndBairro: TLabel
-    Left = 271
-    Top = 125
+    Left = 242
+    Top = 117
     Width = 32
     Height = 13
     Caption = 'Bairro:'
   end
   object lblEscolaTitulo: TLabel
-    Left = 184
-    Top = 7
+    Left = 155
+    Top = -1
     Width = 224
     Height = 33
     Caption = 'Cadastro de Escola'
@@ -98,83 +99,74 @@ object frmCadastroEscola: TfrmCadastroEscola
     ParentFont = False
   end
   object edtEscolaCodigo: TEdit
-    Left = 40
-    Top = 61
+    Left = 11
+    Top = 53
     Width = 97
     Height = 21
     Enabled = False
     TabOrder = 0
-    Text = '0'
   end
   object edtEscolaNome: TEdit
-    Left = 143
-    Top = 61
-    Width = 466
+    Left = 114
+    Top = 53
+    Width = 347
     Height = 21
+    Enabled = False
     TabOrder = 1
-    Text = 'edtEscolaNome'
   end
   object edtEscolaEndRua: TEdit
-    Left = 40
-    Top = 100
-    Width = 418
+    Left = 130
+    Top = 92
+    Width = 299
     Height = 21
-    TabOrder = 2
-    Text = 'edtEscolaEndRua'
+    Enabled = False
+    TabOrder = 3
   end
   object edtEscolaEndNumero: TEdit
-    Left = 464
-    Top = 100
+    Left = 435
+    Top = 92
     Width = 145
     Height = 21
-    TabOrder = 3
-    Text = '0'
+    Enabled = False
+    TabOrder = 4
   end
   object edtEscolaEndComplemento: TEdit
-    Left = 40
-    Top = 140
+    Left = 11
+    Top = 132
     Width = 225
     Height = 21
-    TabOrder = 4
-    Text = 'edtEscolaEndComplemento'
+    Enabled = False
+    TabOrder = 5
   end
   object edtEscolaEndCidade: TEdit
-    Left = 440
-    Top = 140
+    Left = 411
+    Top = 132
     Width = 169
     Height = 21
-    TabOrder = 5
-    Text = 'edtEscolaEndCidade'
+    Enabled = False
+    TabOrder = 6
   end
   object edtEscolaEndCep: TEdit
-    Left = 40
-    Top = 181
+    Left = 11
+    Top = 92
     Width = 113
     Height = 21
-    TabOrder = 6
-    Text = 'edtEscolaEndCep'
-  end
-  object edtEscolaDataCadastro: TEdit
-    Left = 496
-    Top = 181
-    Width = 113
-    Height = 21
-    TabOrder = 7
-    Text = '03/12/18'
+    Enabled = False
+    TabOrder = 2
   end
   object edtEscolaEndBairro: TEdit
-    Left = 271
-    Top = 140
+    Left = 242
+    Top = 132
     Width = 163
     Height = 21
+    Enabled = False
     TabOrder = 8
-    Text = 'edtEscolaEndCep'
   end
   object dbgrdEscola: TDBGrid
-    Left = 40
-    Top = 253
+    Left = 11
+    Top = 208
     Width = 569
-    Height = 265
+    Height = 329
     DataSource = dsEscola
     TabOrder = 9
     TitleFont.Charset = DEFAULT_CHARSET
@@ -186,6 +178,7 @@ object frmCadastroEscola: TfrmCadastroEscola
       item
         Expanded = False
         FieldName = 'ESCOD'
+        ReadOnly = True
         Title.Caption = 'C'#243'digo'
         Width = 40
         Visible = True
@@ -246,8 +239,8 @@ object frmCadastroEscola: TfrmCadastroEscola
       end>
   end
   object btnEscolaCadastrar: TButton
-    Left = 143
-    Top = 222
+    Left = 185
+    Top = 174
     Width = 75
     Height = 25
     Caption = 'Cadastrar'
@@ -255,34 +248,50 @@ object frmCadastroEscola: TfrmCadastroEscola
     OnClick = btnEscolaCadastrarClick
   end
   object btnEscolaAlterar: TButton
-    Left = 223
-    Top = 222
+    Left = 345
+    Top = 174
     Width = 75
     Height = 25
     Caption = 'Alterar'
     TabOrder = 11
-    OnClick = btnEscolaAlterarClick
   end
   object btnEscolaExcluir: TButton
-    Left = 304
-    Top = 222
+    Left = 426
+    Top = 174
     Width = 75
     Height = 25
     Caption = 'Excluir'
     TabOrder = 12
-    OnClick = btnEscolaExcluirClick
   end
   object btnEscolaImprimiir: TButton
-    Left = 534
-    Top = 222
+    Left = 505
+    Top = 174
     Width = 75
     Height = 25
     Caption = 'Imprimir'
     TabOrder = 13
   end
+  object edtEscolaDataCadastro: TDateTimePicker
+    Left = 467
+    Top = 53
+    Width = 113
+    Height = 21
+    Date = 43439.569073310190000000
+    Time = 43439.569073310190000000
+    Enabled = False
+    TabOrder = 7
+  end
+  object btnEscolaGravar: TButton
+    Left = 265
+    Top = 174
+    Width = 75
+    Height = 25
+    Caption = 'Gravar'
+    TabOrder = 14
+  end
   object menuBarCadastro: TMainMenu
-    Left = 248
-    Top = 173
+    Left = 411
+    Top = 5
     object Cadastros1: TMenuItem
       Caption = 'Arquivo'
       object Cadastros2: TMenuItem
@@ -294,133 +303,13 @@ object frmCadastroEscola: TfrmCadastroEscola
     end
   end
   object dsEscola: TDataSource
-    Left = 312
-    Top = 173
+    DataSet = qryEscola
+    Left = 443
+    Top = 65525
   end
-  object conexaoBDEscola: TSQLConnection
-    ConnectionName = 'MSSQLConnection'
-    DriverName = 'MSSQL'
-    GetDriverFunc = 'getSQLDriverMSSQL'
-    KeepConnection = False
-    LibraryName = 'dbxmss30.dll'
-    LoadParamsOnConnect = True
-    LoginPrompt = False
-    Params.Strings = (
-      'SchemaOverride=sa.dbo'
-      'DriverName=MSSQL'
-      'HostName=NCDEV28'
-      'DataBase=ESCOLA'
-      'User_Name=sa'
-      'Password=fcm123'
-      'BlobSize=-1'
-      'ErrorResourceFile='
-      'LocaleCode=0000'
-      'MSSQL TransIsolation=ReadCommited'
-      'OS Authentication=False'
-      'Prepare SQL=False')
-    VendorLib = 'oledb'
-    Connected = True
-    Left = 389
-    Top = 173
-  end
-  object sqlqryEscola: TSQLQuery
-    DataSource = dsEscola
-    MaxBlobSize = -1
-    Params = <
-      item
-        DataType = ftInteger
-        Name = 'ESCCOD'
-        ParamType = ptUnknown
-        Value = 0
-      end
-      item
-        DataType = ftString
-        Name = 'ESCNOME'
-        ParamType = ptUnknown
-        Size = 100
-        Value = ''
-      end
-      item
-        DataType = ftDateTime
-        Name = 'ESCDATACAD'
-        ParamType = ptUnknown
-        Value = 0d
-      end
-      item
-        DataType = ftString
-        Name = 'ESCENDRUA'
-        ParamType = ptUnknown
-        Size = 100
-        Value = ''
-      end
-      item
-        DataType = ftInteger
-        Name = 'ESCENDNUM'
-        ParamType = ptUnknown
-        Value = 0
-      end
-      item
-        DataType = ftInteger
-        Name = 'ESCENDCOMP'
-        ParamType = ptUnknown
-        Size = 30
-      end
-      item
-        DataType = ftString
-        Name = 'ESCENDBAIRRO'
-        ParamType = ptUnknown
-        Size = 50
-        Value = ''
-      end
-      item
-        DataType = ftString
-        Name = 'ESCENDCIDADE'
-        ParamType = ptUnknown
-        Size = 50
-        Value = ''
-      end
-      item
-        DataType = ftString
-        Name = 'ESCENDCEP'
-        ParamType = ptUnknown
-        Size = 10
-        Value = ''
-      end>
-    SQLConnection = conexaoBDEscola
-    Left = 352
-    Top = 173
-    object ESCCOD: TIntegerField
-      FieldName = 'ESCCOD'
-    end
-    object ESCNOME: TStringField
-      FieldName = 'ESCNOME'
-      Size = 100
-    end
-    object ESCDATACAD: TDateTimeField
-      FieldName = 'ESCDATACAD'
-    end
-    object ESCENDRUA: TStringField
-      FieldName = 'ESCENDRUA'
-      Size = 100
-    end
-    object ESCENDNUM: TIntegerField
-      FieldName = 'ESCENDNUM'
-    end
-    object ESCENDCOMP: TStringField
-      FieldName = 'ESCENDCOMP'
-      Size = 30
-    end
-    object ESCENDBAIRRO: TStringField
-      FieldName = 'ESCENDBAIRRO'
-      Size = 50
-    end
-    object ESCENDCIDADE: TStringField
-      FieldName = 'ESCENDCIDADE'
-      Size = 50
-    end
-    object ESCENDCEP: TStringField
-      FieldName = 'ESCENDCEP'
-      Size = 10
-    end
+  object qryEscola: TSQLQuery
+    Params = <>
+    Left = 499
+    Top = 65528
   end
 end

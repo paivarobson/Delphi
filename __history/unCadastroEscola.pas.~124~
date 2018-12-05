@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, Menus, DB, DBClient, StdCtrls, Grids, DBGrids, WideStrings, SqlExpr,
-  FMTBcd, Provider, DBTables, SimpleDS, ComCtrls, unDados;
+  FMTBcd, Provider, DBTables, SimpleDS, ComCtrls;
 
 type
   TfrmCadastroEscola = class(TForm)
