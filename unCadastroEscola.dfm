@@ -37,7 +37,7 @@ object frmCadastroEscola: TfrmCadastroEscola
     Caption = 'Nome da Escola:'
   end
   object lblEscolaEndRua: TLabel
-    Left = 179
+    Left = 130
     Top = 77
     Width = 23
     Height = 13
@@ -288,6 +288,7 @@ object frmCadastroEscola: TfrmCadastroEscola
     Height = 25
     Caption = 'Gravar'
     TabOrder = 14
+    OnClick = btnEscolaGravarClick
   end
   object menuBarCadastro: TMainMenu
     Left = 411
@@ -303,15 +304,7 @@ object frmCadastroEscola: TfrmCadastroEscola
     end
   end
   object dsEscola: TDataSource
-    DataSet = qryEscola
-    Left = 443
-    Top = 5
-  end
-  object qryEscola: TSQLQuery
-    MaxBlobSize = -1
-    Params = <>
-    SQLConnection = fmdados.conexaoBDEscola
-    Left = 475
-    Top = 8
+    Left = 235
+    Top = 261
   end
 end

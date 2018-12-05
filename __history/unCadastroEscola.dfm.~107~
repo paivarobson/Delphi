@@ -271,7 +271,7 @@ object frmCadastroEscola: TfrmCadastroEscola
     Caption = 'Imprimir'
     TabOrder = 13
   end
-  object edtEscolaDataCadastro: TDateTimePicker
+  object dtpEscolaDataCadastro: TDateTimePicker
     Left = 467
     Top = 53
     Width = 113
@@ -305,11 +305,13 @@ object frmCadastroEscola: TfrmCadastroEscola
   object dsEscola: TDataSource
     DataSet = qryEscola
     Left = 443
-    Top = 65525
+    Top = 5
   end
   object qryEscola: TSQLQuery
+    MaxBlobSize = -1
     Params = <>
-    Left = 499
-    Top = 65528
+    SQLConnection = fmdados.conexaoBDEscola
+    Left = 475
+    Top = 8
   end
 end

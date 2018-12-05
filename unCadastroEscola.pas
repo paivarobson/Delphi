@@ -5,7 +5,8 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, Menus, DB, DBClient, StdCtrls, Grids, DBGrids, WideStrings, SqlExpr,
-  FMTBcd, Provider, DBTables, SimpleDS, ComCtrls, unDados;
+  FMTBcd, Provider, DBTables, SimpleDS, ComCtrls, unDados,
+  unCadastroEscolaController;
 
 type
   TfrmCadastroEscola = class(TForm)
@@ -37,18 +38,20 @@ type
     btnEscolaAlterar: TButton;
     btnEscolaExcluir: TButton;
     btnEscolaImprimiir: TButton;
-    qryEscola: TSQLQuery;
     dtpEscolaDataCadastro: TDateTimePicker;
     btnEscolaGravar: TButton;
     procedure btnEscolaCadastrarClick(Sender: TObject);
+    procedure btnEscolaGravarClick(Sender: TObject);
 
   private
     { Private declarations }
   public
     { Public declarations }
+    FController: TCadastroEscolaController;
     procedure HabilitarComponentesDados;
     procedure LimparCampos;
-    procedure GravarDados;
+    procedure AfterConstruction; override;
+    destructor Destroy; override;
   end;
 
 var
@@ -58,26 +61,38 @@ implementation
 
 {$R *.dfm}
 
+procedure TfrmCadastroEscola.AfterConstruction;
+begin
+  inherited;
+  FController := TCadastroEscolaController.Create;
+end;
+
 procedure TfrmCadastroEscola.btnEscolaCadastrarClick(Sender: TObject);
 begin
   HabilitarComponentesDados;
+  LimparCampos;
 end;
 
-procedure TfrmCadastroEscola.GravarDados;
+procedure TfrmCadastroEscola.btnEscolaGravarClick(Sender: TObject);
+var
+  DadosEscola: TDadosEscola;
 begin
-  qryEscola.Open;
-  qryEscola.Append;
-  qryEscola.FieldByName('ESCCOD').AsInteger := StrToInt(edtEscolaCodigo.Text);
-  qryEscola.FieldByName('ESCNOME').AsString := edtEscolaNome.Text;
-  qryEscola.FieldByName('ESCDATACAD').AsDateTime := StrToDateTime(dtpEscolaDataCadastro.Text);
-  qryEscola.FieldByName('ESCENDRUA').AsString := edtEscolaEndRua.Text;
-  qryEscola.FieldByName('ESCENDNUM').AsInteger := StrToInt(edtEscolaEndNumero.Text);
-  qryEscola.FieldByName('ESCENDCOMP').AsString := edtEscolaEndComplemento.Text;
-  qryEscola.FieldByName('ESCENDBAIRRO').AsString := edtEscolaEndBairro.Text;
-  qryEscola.FieldByName('ESCENDCIDADE').AsString := edtEscolaEndCidade.Text;
-  qryEscola.FieldByName('ESCENDCEP').AsString := edtEscolaEndCep.Text;
-  qryEscola.Post;
-  qryEscola.Close;
+  DadosEscola.Nome := edtEscolaNome.Text;
+  DadosEscola.DataCadastro := dtpEscolaDataCadastro.DateTime;
+  DadosEscola.CEP := edtEscolaEndCep.Text;
+  DadosEscola.Rua := edtEscolaEndRua.Text;
+  DadosEscola.Numero := StrToIntDef(edtEscolaEndNumero.Text, 0);
+  DadosEscola.Complemento := edtEscolaEndComplemento.Text;
+  DadosEscola.Bairro := edtEscolaEndBairro.Text;
+  DadosEscola.Cidade := edtEscolaEndCidade.Text;
+
+  edtEscolaCodigo.Text := FController.Gravar(DadosEscola);
+end;
+
+destructor TfrmCadastroEscola.Destroy;
+begin
+  FreeAndNil(FController);
+  inherited;
 end;
 
 procedure TfrmCadastroEscola.HabilitarComponentesDados;

@@ -3,8 +3,7 @@ program ProjetoEscola;
 uses
   Forms,
   unCadastroEscola in 'unCadastroEscola.pas' {frmCadastroEscola},
-  unDados in 'unDados.pas' {fmdados: TDataModule},
-  unCadastroEscolaController in 'unCadastroEscolaController.pas';
+  unDados in 'unDados.pas' {fmdados: TDataModule};
 
 {$R *.res}
 

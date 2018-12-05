@@ -10,5 +10,6 @@
     <Transaction>2018/12/03 11:43:26.238.dproj,C:\DESENVOLVIMENTO\PROJETOS\ProjetoEscola.dproj=C:\DESENVOLVIMENTO\PROJETOS\escola\ProjetoEscola.dproj</Transaction>
     <Transaction>2018/12/05 13:33:42.616.pas,C:\DESENVOLVIMENTO\PROJETOS\escola\Unit1.pas=C:\DESENVOLVIMENTO\PROJETOS\escola\unDados.pas</Transaction>
     <Transaction>2018/12/05 13:33:42.616.dfm,C:\DESENVOLVIMENTO\PROJETOS\escola\Unit1.dfm=C:\DESENVOLVIMENTO\PROJETOS\escola\unDados.dfm</Transaction>
+    <Transaction>2018/12/05 14:45:24.343.pas,C:\DESENVOLVIMENTO\PROJETOS\escola\Unit1.pas=C:\DESENVOLVIMENTO\PROJETOS\escola\unCadastroEscolaController.pas</Transaction>
   </Transactions>
 </BorlandProject>

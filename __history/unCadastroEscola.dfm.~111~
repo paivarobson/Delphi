@@ -37,7 +37,7 @@ object frmCadastroEscola: TfrmCadastroEscola
     Caption = 'Nome da Escola:'
   end
   object lblEscolaEndRua: TLabel
-    Left = 179
+    Left = 130
     Top = 77
     Width = 23
     Height = 13
@@ -239,15 +239,16 @@ object frmCadastroEscola: TfrmCadastroEscola
       end>
   end
   object btnEscolaCadastrar: TButton
-    Left = 262
+    Left = 185
     Top = 174
     Width = 75
     Height = 25
     Caption = 'Cadastrar'
     TabOrder = 10
+    OnClick = btnEscolaCadastrarClick
   end
   object btnEscolaAlterar: TButton
-    Left = 343
+    Left = 345
     Top = 174
     Width = 75
     Height = 25
@@ -255,7 +256,7 @@ object frmCadastroEscola: TfrmCadastroEscola
     TabOrder = 11
   end
   object btnEscolaExcluir: TButton
-    Left = 424
+    Left = 426
     Top = 174
     Width = 75
     Height = 25
@@ -270,7 +271,7 @@ object frmCadastroEscola: TfrmCadastroEscola
     Caption = 'Imprimir'
     TabOrder = 13
   end
-  object edtEscolaDataCadastro: TDateTimePicker
+  object dtpEscolaDataCadastro: TDateTimePicker
     Left = 467
     Top = 53
     Width = 113
@@ -279,6 +280,15 @@ object frmCadastroEscola: TfrmCadastroEscola
     Time = 43439.569073310190000000
     Enabled = False
     TabOrder = 7
+  end
+  object btnEscolaGravar: TButton
+    Left = 265
+    Top = 174
+    Width = 75
+    Height = 25
+    Caption = 'Gravar'
+    TabOrder = 14
+    OnClick = btnEscolaGravarClick
   end
   object menuBarCadastro: TMainMenu
     Left = 411
@@ -296,11 +306,12 @@ object frmCadastroEscola: TfrmCadastroEscola
   object dsEscola: TDataSource
     DataSet = qryEscola
     Left = 443
-    Top = 65525
+    Top = 5
   end
   object qryEscola: TSQLQuery
+    MaxBlobSize = -1
     Params = <>
-    Left = 499
-    Top = 65528
+    Left = 475
+    Top = 8
   end
 end
