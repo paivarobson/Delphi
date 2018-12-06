@@ -8,6 +8,7 @@ object fmdados: Tfmdados
     ConnectionName = 'MSSQLConnection'
     DriverName = 'MSSQL'
     GetDriverFunc = 'getSQLDriverMSSQL'
+    KeepConnection = False
     LibraryName = 'dbxmss30.dll'
     LoginPrompt = False
     Params.Strings = (

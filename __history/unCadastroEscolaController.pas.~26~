@@ -55,7 +55,7 @@ begin
         '       ,ESCENDCEP) ' +
         ' VALUES ' +
         '       (''%s'', ''%s'', ''%s'', %d, ''%s'', ''%s'', ''%s'', ''%s'') ',
-        [ADadosEscola.Nome, ADadosEscola.DataCadastro,
+        [ADadosEscola.Nome, FormatDateTime('YYYY/MM/DD HH:MM:SS', ADadosEscola.DataCadastro),
          ADadosEscola.Rua, ADadosEscola.Numero, ADadosEscola.Complemento, ADadosEscola.Bairro,
          ADadosEscola.Cidade, ADadosEscola.CEP]));
     if FQuery.ExecSQL(True) = 1 then

@@ -7,10 +7,10 @@ uses DB, DBClient, SqlExpr, Windows, Dialogs, SysUtils, DateUtils;
 type
   TDadosEscola = record
     Nome: string;
-    DataCadastro: string;
+    DataCadastro: TDateTime;
     CEP: string;
     Rua: string;
-    Numero: string;
+    Numero: Integer;
     Complemento: string;
     Bairro: string;
     Cidade: string;
@@ -19,7 +19,7 @@ type
   TCadastroEscolaController = class
   public
     function Gravar(ADadosEscola: TDadosEscola): string;
-    procedure CarregarEscola(const AFontesDados: TSQLQuery);
+    procedure CarregarEscola(var AFontesDados: TSQLQuery);
   end;
 
 implementation
@@ -28,11 +28,12 @@ uses
   unDados;
 
 { TCadastroEscolaController }
-procedure TCadastroEscolaController.CarregarEscola(const AFontesDados: TSQLQuery);
+procedure TCadastroEscolaController.CarregarEscola(var AFontesDados: TSQLQuery);
 begin
   AFontesDados.SQLConnection := fmdados.conexaoBDEscola;
   AFontesDados.SQL.Clear;
   AFontesDados.SQL.Add('select * from escola');
+  AFontesDados.Open;
 end;
 
 function TCadastroEscolaController.Gravar(ADadosEscola: TDadosEscola): string;
@@ -55,7 +56,7 @@ begin
         '       ,ESCENDCEP) ' +
         ' VALUES ' +
         '       (''%s'', ''%s'', ''%s'', %d, ''%s'', ''%s'', ''%s'', ''%s'') ',
-        [ADadosEscola.Nome, ADadosEscola.DataCadastro,
+        [ADadosEscola.Nome, FormatDateTime('YYYY/MM/DD HH:MM:SS', ADadosEscola.DataCadastro),
          ADadosEscola.Rua, ADadosEscola.Numero, ADadosEscola.Complemento, ADadosEscola.Bairro,
          ADadosEscola.Cidade, ADadosEscola.CEP]));
     if FQuery.ExecSQL(True) = 1 then

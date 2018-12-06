@@ -6,7 +6,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, Menus, DB, DBClient, StdCtrls, Grids, DBGrids, WideStrings, SqlExpr,
   FMTBcd, Provider, DBTables, SimpleDS, ComCtrls, unDados,
-  unCadastroEscolaController, xmldom, Xmlxform;
+  unCadastroEscolaController, xmldom, Xmlxform, UnCadEscola;
 
 type
   TfrmCadastroEscola = class(TForm)
@@ -42,10 +42,11 @@ type
     btnEscolaImprimiir: TButton;
     dtpEscolaDataCadastro: TDateTimePicker;
     btnEscolaGravar: TButton;
-    XMLTransform1: TXMLTransform;
     SQLQuery1: TSQLQuery;
+    XMLTransform1: TXMLTransform;
     procedure btnEscolaCadastrarClick(Sender: TObject);
     procedure btnEscolaGravarClick(Sender: TObject);
+    procedure btnEscolaImprimiirClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -82,16 +83,21 @@ var
   DadosEscola: TDadosEscola;
 begin
   DadosEscola.Nome := edtEscolaNome.Text;
-//  DadosEscola.DataCadastro := dtpEscolaDataCadastro.Text;
+  DadosEscola.DataCadastro := dtpEscolaDataCadastro.DateTime;
   DadosEscola.CEP := edtEscolaEndCep.Text;
   DadosEscola.Rua := edtEscolaEndRua.Text;
-  DadosEscola.Numero := edtEscolaEndNumero.Text;
+  DadosEscola.Numero := StrToIntDef(edtEscolaEndNumero.Text, 0);
   DadosEscola.Complemento := edtEscolaEndComplemento.Text;
   DadosEscola.Bairro := edtEscolaEndBairro.Text;
   DadosEscola.Cidade := edtEscolaEndCidade.Text;
   edtEscolaCodigo.Text := FController.Gravar(DadosEscola);
   FController.CarregarEscola(SQLQuery1);
   SQLQuery1.Open;
+end;
+
+procedure TfrmCadastroEscola.btnEscolaImprimiirClick(Sender: TObject);
+begin
+  For
 end;
 
 destructor TfrmCadastroEscola.Destroy;

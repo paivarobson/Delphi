@@ -305,17 +305,18 @@ object frmCadastroEscola: TfrmCadastroEscola
   end
   object dsEscola: TDataSource
     AutoEdit = False
+    DataSet = SQLQuery1
     Left = 448
     Top = 5
-  end
-  object XMLTransform1: TXMLTransform
-    Left = 520
-    Top = 6
   end
   object SQLQuery1: TSQLQuery
     MaxBlobSize = -1
     Params = <>
     Left = 484
     Top = 4
+  end
+  object XMLTransform1: TXMLTransform
+    Left = 520
+    Top = 6
   end
 end

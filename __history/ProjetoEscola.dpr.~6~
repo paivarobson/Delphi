@@ -5,7 +5,7 @@ uses
   unCadastroEscola in 'unCadastroEscola.pas' {frmCadastroEscola},
   unDados in 'unDados.pas' {fmdados: TDataModule},
   unCadastroEscolaController in 'unCadastroEscolaController.pas',
-  UnCadEscola in 'UnCadEscola.pas' {frmCadEscola};
+  UnCadEscola in 'UnCadEscola.pas' {Form1};
 
 {$R *.res}
 
@@ -13,7 +13,7 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(Tfmdados, fmdados);
-  Application.CreateForm(TfrmCadEscola, frmCadEscola);
+  Application.CreateForm(TForm1, Form1);
   Application.CreateForm(TfrmCadastroEscola, frmCadastroEscola);
   Application.Run;
 end.

@@ -8,6 +8,7 @@ object fmdados: Tfmdados
     ConnectionName = 'MSSQLConnection'
     DriverName = 'MSSQL'
     GetDriverFunc = 'getSQLDriverMSSQL'
+    KeepConnection = False
     LibraryName = 'dbxmss30.dll'
     LoginPrompt = False
     Params.Strings = (
@@ -24,7 +25,6 @@ object fmdados: Tfmdados
       'OS Authentication=False'
       'Prepare SQL=False')
     VendorLib = 'oledb'
-    Connected = True
     Left = 125
     Top = 37
   end
