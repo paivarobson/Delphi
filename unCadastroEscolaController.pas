@@ -6,6 +6,7 @@ uses DB, DBClient, SqlExpr, Windows, Dialogs, SysUtils, DateUtils;
 
 type
   TDadosEscola = record
+    Codigo: Integer;
     Nome: string;
     DataCadastro: string;
     CEP: string;
@@ -54,7 +55,7 @@ begin
         '       ,ESCENDCIDADE ' +
         '       ,ESCENDCEP) ' +
         ' VALUES ' +
-        '       (''%s'', ''%s'', ''%s'', %d, ''%s'', ''%s'', ''%s'', ''%s'') ',
+        '       (%d, ''%s'', ''%s'', ''%s'', %s, ''%s'', ''%s'', ''%s'', ''%s'') ',
         [ADadosEscola.Nome, ADadosEscola.DataCadastro,
          ADadosEscola.Rua, ADadosEscola.Numero, ADadosEscola.Complemento, ADadosEscola.Bairro,
          ADadosEscola.Cidade, ADadosEscola.CEP]));

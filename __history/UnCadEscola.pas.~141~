@@ -35,7 +35,7 @@ type
     btnEscolaGravar: TButton;
     btnEscolaAlterar: TButton;
     btnEscolaExcluir: TButton;
-    btnEscolaImprimir: TButton;
+    btnEscolaImprimiir: TButton;
     ADOTableEscola: TADOTable;
     ADOTableEscolaESCCOD: TIntegerField;
     ADOTableEscolaESCNOME: TStringField;
@@ -77,7 +77,7 @@ begin
   HabilitarComponentesDados;
   LimparCampos;
   btnEscolaExcluir.Enabled := False;
-  btnEscolaImprimir.Enabled := False;
+  btnEscolaImprimiir.Enabled := False;  
   ADOTableEscola.Append;
 end;
 
@@ -85,8 +85,8 @@ procedure TfrmCadEscola.btnEscolaAlterarClick(Sender: TObject);
 begin
   ADOTableEscola.Edit;
   HabilitarComponentesDados;
-  btnEscolaExcluir.Enabled := False;
-  btnEscolaImprimir.Enabled := False;
+  btnEscolaLimpar.Enabled := False;
+  btnEscolaCancelar.Enabled := False;
 end;
 
 procedure TfrmCadEscola.btnEscolaCancelarClick(Sender: TObject);
@@ -96,14 +96,13 @@ begin
   btnEscolaCancelar.Enabled := False;
   btnEscolaLimpar.Enabled := False;
   btnEscolaGravar.Enabled := False;
-  btnEscolaImprimir.Enabled := True;
+  btnEscolaImprimiir.Enabled := True;
   btnEscolaExcluir.Enabled := True;
 end;
 
 procedure TfrmCadEscola.btnEscolaExcluirClick(Sender: TObject);
 begin
   ADOTableEscola.Delete;
-  ShowMessage('Excluído com sucesso!');
 end;
 
 procedure TfrmCadEscola.btnEscolaGravarClick(Sender: TObject);
@@ -120,9 +119,6 @@ begin
   DadosEscola.Cidade := DBEditEscolaEndCidade.Text;
   ADOTableEscola.Post;
   DesabilitarComponentesDados;
-  btnEscolaExcluir.Enabled := True;
-  btnEscolaImprimir.Enabled := True;
-  btnEscolaCancelar.Enabled := False;
   LimparCampos;
   ShowMessage('Gravado com sucesso!');
 end;
@@ -140,7 +136,7 @@ begin
   btnEscolaAlterar.Enabled := True;
   btnEscolaCancelar.Enabled := False;
   btnEscolaExcluir.Enabled := False;
-  btnEscolaImprimir.Enabled := False;
+  btnEscolaImprimiir.Enabled := False;
   DBEditEscolaCod.Enabled := False;
   DBEditEscolaNome.Enabled := False;
   DBEditEscolaDataCadastro.Enabled := False;

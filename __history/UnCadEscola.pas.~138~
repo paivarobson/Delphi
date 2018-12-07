@@ -7,32 +7,12 @@ uses
   Dialogs, WideStrings, FMTBcd, cxGraphics, cxControls, cxLookAndFeels,
   cxLookAndFeelPainters, cxContainer, cxEdit, cxDBEdit, cxTextEdit, cxMaskEdit,
   cxSpinEdit, StdCtrls, DB, SqlExpr, Grids, DBGrids, Provider, DBClient, unCadastroEscola,
-  ExtCtrls, DBCtrls, unDados, unCadastroEscolaController;
+  ExtCtrls, DBCtrls, unDados, unCadastroEscolaController, ADODB;
 
 type
   TfrmCadEscola = class(TForm)
-    dSetEscola: TSQLDataSet;
-    dsProviderEscola: TDataSetProvider;
-    cDSEscola: TClientDataSet;
-    dSetEscolaESCCOD: TIntegerField;
-    dSetEscolaESCNOME: TStringField;
-    dSetEscolaESCDATACAD: TStringField;
-    dSetEscolaESCENDRUA: TStringField;
-    dSetEscolaESCENDCOMP: TStringField;
-    dSetEscolaESCENDBAIRRO: TStringField;
-    dSetEscolaESCENDCIDADE: TStringField;
-    dSetEscolaESCENDCEP: TStringField;
-    cDSEscolaESCCOD: TIntegerField;
-    cDSEscolaESCNOME: TStringField;
-    cDSEscolaESCDATACAD: TStringField;
-    cDSEscolaESCENDRUA: TStringField;
-    cDSEscolaESCENDCOMP: TStringField;
-    cDSEscolaESCENDBAIRRO: TStringField;
-    cDSEscolaESCENDCIDADE: TStringField;
-    cDSEscolaESCENDCEP: TStringField;
     dsEscola: TDataSource;
     lblEscolaCodigo: TLabel;
-    DBSpinEditEscolaCod: TcxDBSpinEdit;
     lblEscolaNome: TLabel;
     DBEditEscolaNome: TcxDBTextEdit;
     lblEscolaDataCadastro: TLabel;
@@ -48,20 +28,36 @@ type
     DBEditEscolaEndCidade: TcxDBTextEdit;
     lblEscolaendCep: TLabel;
     DBEditEscolaEndCep: TcxDBTextEdit;
-    DBGrid1: TDBGrid;
+    DBGridListaEscola: TDBGrid;
     DBEditEscolaEndNumero: TcxDBTextEdit;
-    cDSEscolaESCENDNUM: TStringField;
-    dSetEscolaESCENDNUM: TStringField;
     lblEscolaFrmTitulo: TLabel;
-    btnEscolaCadastrar: TButton;
+    btnEscolaNovoCadastro: TButton;
     btnEscolaGravar: TButton;
     btnEscolaAlterar: TButton;
     btnEscolaExcluir: TButton;
     btnEscolaImprimiir: TButton;
+    ADOTableEscola: TADOTable;
+    ADOTableEscolaESCCOD: TIntegerField;
+    ADOTableEscolaESCNOME: TStringField;
+    ADOTableEscolaESCDATACAD: TStringField;
+    ADOTableEscolaESCENDRUA: TStringField;
+    ADOTableEscolaESCENDNUM: TStringField;
+    ADOTableEscolaESCENDCOMP: TStringField;
+    ADOTableEscolaESCENDBAIRRO: TStringField;
+    ADOTableEscolaESCENDCIDADE: TStringField;
+    ADOTableEscolaESCENDCEP: TStringField;
+    btnEscolaCancelar: TButton;
+    btnEscolaLimpar: TButton;
+    DBEditEscolaCod: TcxDBTextEdit;
     procedure HabilitarComponentesDados;
     procedure LimparCampos;
-    procedure btnEscolaCadastrarClick(Sender: TObject);
+    procedure btnEscolaNovoCadastroClick(Sender: TObject);
     procedure btnEscolaGravarClick(Sender: TObject);
+    procedure btnEscolaCancelarClick(Sender: TObject);
+    procedure DesabilitarComponentesDados;
+    procedure btnEscolaLimparClick(Sender: TObject);
+    procedure btnEscolaExcluirClick(Sender: TObject);
+    procedure btnEscolaAlterarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -76,10 +72,37 @@ implementation
 
 {$R *.dfm}
 
-procedure TfrmCadEscola.btnEscolaCadastrarClick(Sender: TObject);
+procedure TfrmCadEscola.btnEscolaNovoCadastroClick(Sender: TObject);
 begin
   HabilitarComponentesDados;
   LimparCampos;
+  btnEscolaExcluir.Enabled := False;
+  btnEscolaImprimiir.Enabled := False;  
+  ADOTableEscola.Append;
+end;
+
+procedure TfrmCadEscola.btnEscolaAlterarClick(Sender: TObject);
+begin
+  ADOTableEscola.Edit;
+  HabilitarComponentesDados;
+  btnEscolaExcluir.Enabled := False;
+  btnEscolaImprimiir.Enabled := False;
+end;
+
+procedure TfrmCadEscola.btnEscolaCancelarClick(Sender: TObject);
+begin
+  ADOTableEscola.Cancel;
+  DesabilitarComponentesDados;
+  btnEscolaCancelar.Enabled := False;
+  btnEscolaLimpar.Enabled := False;
+  btnEscolaGravar.Enabled := False;
+  btnEscolaImprimiir.Enabled := True;
+  btnEscolaExcluir.Enabled := True;
+end;
+
+procedure TfrmCadEscola.btnEscolaExcluirClick(Sender: TObject);
+begin
+  ADOTableEscola.Delete;
 end;
 
 procedure TfrmCadEscola.btnEscolaGravarClick(Sender: TObject);
@@ -94,14 +117,40 @@ begin
   DadosEscola.Complemento := DBEditEscolaEndComplemento.Text;
   DadosEscola.Bairro := DBEditEscolaEndBairro.Text;
   DadosEscola.Cidade := DBEditEscolaEndCidade.Text;
-  DBSpinEditEscolaCodigo.Text := FController.Gravar(DadosEscola);
-  FController.CarregarEscola(SQLQuery1);
-  SQLQuery1.Open;
+  ADOTableEscola.Post;
+  DesabilitarComponentesDados;
+  LimparCampos;
+  ShowMessage('Gravado com sucesso!');
+end;
+
+procedure TfrmCadEscola.btnEscolaLimparClick(Sender: TObject);
+begin
+  LimparCampos;
+end;
+
+procedure TfrmCadEscola.DesabilitarComponentesDados;
+begin
+  btnEscolaNovoCadastro.Enabled := True;
+  btnEscolaGravar.Enabled := False;
+  btnEscolaLimpar.Enabled := False;
+  btnEscolaAlterar.Enabled := True;
+  DBEditEscolaCod.Enabled := False;
+  DBEditEscolaNome.Enabled := False;
+  DBEditEscolaDataCadastro.Enabled := False;
+  DBEditEscolaEndRua.Enabled := False;
+  DBEditEscolaEndNumero.Enabled := False;
+  DBEditEscolaEndComplemento.Enabled := False;
+  DBEditEscolaEndCidade.Enabled := False;
+  DBEditEscolaEndCep.Enabled := False;
+  DBEditEscolaEndBairro.Enabled := False;
 end;
 
 procedure TfrmCadEscola.HabilitarComponentesDados;
 begin
-  DBSpinEditEscolaCod.Enabled := True;
+  btnEscolaNovoCadastro.Enabled := False;
+  btnEscolaGravar.Enabled := True;
+  btnEscolaLimpar.Enabled := True;
+  btnEscolaAlterar.Enabled := False;    
   DBEditEscolaNome.Enabled := True;
   DBEditEscolaDataCadastro.Enabled := True;
   DBEditEscolaEndRua.Enabled := True;
@@ -115,8 +164,9 @@ end;
 
 procedure TfrmCadEscola.LimparCampos;
 begin
-  DBSpinEditEscolaCod.Clear;
+  DBEditEscolaCod.Clear;
   DBEditEscolaNome.Clear;
+  DBEditEscolaDataCadastro.Clear;
   DBEditEscolaEndRua.Clear;
   DBEditEscolaEndNumero.Clear;
   DBEditEscolaEndComplemento.Clear;

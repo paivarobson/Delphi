@@ -6,11 +6,12 @@ uses DB, DBClient, SqlExpr, Windows, Dialogs, SysUtils, DateUtils;
 
 type
   TDadosEscola = record
+    Codigo: Integer;
     Nome: string;
-    DataCadastro: TDateTime;
+    DataCadastro: string;
     CEP: string;
     Rua: string;
-    Numero: Integer;
+    Numero: string;
     Complemento: string;
     Bairro: string;
     Cidade: string;
@@ -19,7 +20,7 @@ type
   TCadastroEscolaController = class
   public
     function Gravar(ADadosEscola: TDadosEscola): string;
-    procedure CarregarEscola(var AFontesDados: TSQLQuery);
+    procedure CarregarEscola(const AFontesDados: TSQLQuery);
   end;
 
 implementation
@@ -28,12 +29,11 @@ uses
   unDados;
 
 { TCadastroEscolaController }
-procedure TCadastroEscolaController.CarregarEscola(var AFontesDados: TSQLQuery);
+procedure TCadastroEscolaController.CarregarEscola(const AFontesDados: TSQLQuery);
 begin
   AFontesDados.SQLConnection := fmdados.conexaoBDEscola;
   AFontesDados.SQL.Clear;
   AFontesDados.SQL.Add('select * from escola');
-  AFontesDados.ExecSQL();
 end;
 
 function TCadastroEscolaController.Gravar(ADadosEscola: TDadosEscola): string;
@@ -46,7 +46,8 @@ begin
     FQuery.SQL.Clear;
     FQuery.SQL.Add(Format(
         'INSERT INTO ESCOLA ' +
-        '       (ESCNOME ' +
+        '       (ESCCOD ' +
+        '       ,ESCNOME ' +
         '       ,ESCDATACAD ' +
         '       ,ESCENDRUA ' +
         '       ,ESCENDNUM ' +
@@ -55,8 +56,8 @@ begin
         '       ,ESCENDCIDADE ' +
         '       ,ESCENDCEP) ' +
         ' VALUES ' +
-        '       (''%s'', ''%s'', ''%s'', %d, ''%s'', ''%s'', ''%s'', ''%s'') ',
-        [ADadosEscola.Nome, FormatDateTime('YYYY/MM/DD HH:MM:SS', ADadosEscola.DataCadastro),
+        '       (%d, ''%s'', ''%s'', ''%s'', %s, ''%s'', ''%s'', ''%s'', ''%s'') ',
+        [ADadosEscola.Codigo, ADadosEscola.Nome, ADadosEscola.DataCadastro,
          ADadosEscola.Rua, ADadosEscola.Numero, ADadosEscola.Complemento, ADadosEscola.Bairro,
          ADadosEscola.Cidade, ADadosEscola.CEP]));
     if FQuery.ExecSQL(True) = 1 then

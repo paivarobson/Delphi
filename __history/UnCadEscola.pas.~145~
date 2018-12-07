@@ -103,7 +103,6 @@ end;
 procedure TfrmCadEscola.btnEscolaExcluirClick(Sender: TObject);
 begin
   ADOTableEscola.Delete;
-  ShowMessage('Excluído com sucesso!');
 end;
 
 procedure TfrmCadEscola.btnEscolaGravarClick(Sender: TObject);
