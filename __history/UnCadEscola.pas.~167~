@@ -6,8 +6,8 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, WideStrings, FMTBcd, cxGraphics, cxControls, cxLookAndFeels,
   cxLookAndFeelPainters, cxContainer, cxEdit, cxDBEdit, cxTextEdit, cxMaskEdit,
-  cxSpinEdit, StdCtrls, DB, SqlExpr, Grids, DBGrids, Provider, DBClient, unCadastroEscola,
-  ExtCtrls, DBCtrls, unDados, unCadastroEscolaController, ADODB, RelEscola;
+  cxSpinEdit, StdCtrls, DB, SqlExpr, Grids, DBGrids, Provider, DBClient,
+  ExtCtrls, DBCtrls, unDados, unCadastroEscolaController, ADODB;
 
 type
   TfrmCadEscola = class(TForm)
@@ -61,6 +61,7 @@ type
     procedure btnEscolaExcluirClick(Sender: TObject);
     procedure btnEscolaAlterarClick(Sender: TObject);
     procedure btnEscolaBuscarClick(Sender: TObject);
+    procedure btnEscolaImprimirClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -72,6 +73,9 @@ var
   frmCadEscola: TfrmCadEscola;
 
 implementation
+
+uses
+  unRelEscola;
 
 {$R *.dfm}
 
@@ -133,6 +137,12 @@ begin
   btnEscolaCancelar.Enabled := False;
   LimparCampos;
   ShowMessage('Gravado com sucesso!');
+end;
+
+procedure TfrmCadEscola.btnEscolaImprimirClick(Sender: TObject);
+begin
+  frmRelEscola := TfrmRelEscola.Create(Application);
+  frmRelEscola.RLReportEscola.Preview();
 end;
 
 procedure TfrmCadEscola.btnEscolaLimparClick(Sender: TObject);

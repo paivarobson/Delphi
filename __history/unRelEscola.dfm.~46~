@@ -2,8 +2,8 @@ object frmRelEscola: TfrmRelEscola
   Left = 0
   Top = 0
   Caption = 'Listagem Escola'
-  ClientHeight = 540
-  ClientWidth = 796
+  ClientHeight = 462
+  ClientWidth = 930
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,7 +14,7 @@ object frmRelEscola: TfrmRelEscola
   PixelsPerInch = 96
   TextHeight = 13
   object RLReportEscola: TRLReport
-    Left = 0
+    Left = -6
     Top = 8
     Width = 794
     Height = 1123
@@ -38,10 +38,11 @@ object frmRelEscola: TfrmRelEscola
       Font.Style = []
       ParentFont = False
       object rlblRelEscolaTitulo: TRLLabel
-        Left = 3
-        Top = 3
+        Left = 0
+        Top = 0
         Width = 173
         Height = 24
+        Align = faLeftTop
         Caption = 'Listagem Escola'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
@@ -49,14 +50,6 @@ object frmRelEscola: TfrmRelEscola
         Font.Name = 'Arial'
         Font.Style = [fsBold]
         ParentFont = False
-      end
-      object RLSystemInfo1: TRLSystemInfo
-        Left = 341
-        Top = 0
-        Width = 36
-        Height = 16
-        Align = faCenterTop
-        Info = itTitle
       end
       object RLSystemInfo2: TRLSystemInfo
         Left = 600
@@ -83,50 +76,145 @@ object frmRelEscola: TfrmRelEscola
       object rlblRelEscolaCod: TRLLabel
         Left = 3
         Top = 6
-        Width = 49
+        Width = 30
         Height = 16
+        AutoSize = False
         Caption = 'C'#243'digo'
       end
       object rlblRelEscolaNome: TRLLabel
-        Left = 58
+        Left = 39
         Top = 6
-        Width = 175
+        Width = 122
         Height = 16
         Caption = 'Escola'
+      end
+      object rlblRelEscolaDataCadastro: TRLLabel
+        Left = 163
+        Top = 6
+        Width = 70
+        Height = 16
+        Caption = 'Dt. Cadastro'
+      end
+      object rlblRelEscolaRua: TRLLabel
+        Left = 239
+        Top = 6
+        Width = 102
+        Height = 16
+        Caption = 'Rua'
+      end
+      object rlblRelEscolaNumero: TRLLabel
+        Left = 343
+        Top = 6
+        Width = 40
+        Height = 16
+        Caption = 'N'#186
+      end
+      object rlblRelEscolaComplemento: TRLLabel
+        Left = 389
+        Top = 6
+        Width = 69
+        Height = 16
+        Caption = 'Complem.'
+      end
+      object rlblRelEscolaBairro: TRLLabel
+        Left = 464
+        Top = 6
+        Width = 73
+        Height = 16
+        Caption = 'Bairro'
+      end
+      object rlblRelEscolaCidade: TRLLabel
+        Left = 559
+        Top = 6
+        Width = 90
+        Height = 16
+        Caption = 'Cidade'
+      end
+      object rlblRelEscolaCEP: TRLLabel
+        Left = 655
+        Top = 6
+        Width = 60
+        Height = 16
+        Caption = 'CEP'
       end
     end
     object RLBand3: TRLBand
       Left = 38
       Top = 121
       Width = 718
-      Height = 40
+      Height = 24
       object rldbtxtEscolaNome: TRLDBText
-        Left = 58
-        Top = 6
-        Width = 175
+        Left = 39
+        Top = 0
+        Width = 122
         Height = 16
-        AutoSize = False
+        Align = faTopOnly
         DataField = 'ESCNOME'
         DataSource = frmCadEscola.dsEscola
         Transparent = False
       end
       object rldbtxtEscolaCod: TRLDBText
         Left = 3
-        Top = 6
-        Width = 49
+        Top = 0
+        Width = 30
         Height = 16
-        AutoSize = False
+        Align = faTopOnly
         DataField = 'ESCCOD'
         DataSource = frmCadEscola.dsEscola
         Transparent = False
       end
+      object RLDBText1: TRLDBText
+        Left = 163
+        Top = 0
+        Width = 70
+        Height = 16
+      end
+      object RLDBText2: TRLDBText
+        Left = 239
+        Top = 0
+        Width = 102
+        Height = 16
+      end
+      object RLDBText3: TRLDBText
+        Left = 343
+        Top = 0
+        Width = 40
+        Height = 16
+      end
+      object RLDBText4: TRLDBText
+        Left = 389
+        Top = 0
+        Width = 69
+        Height = 16
+      end
+      object RLDBText5: TRLDBText
+        Left = 464
+        Top = 0
+        Width = 70
+        Height = 16
+      end
     end
     object RLBand4: TRLBand
       Left = 38
-      Top = 161
+      Top = 145
       Width = 718
       Height = 40
       BandType = btFooter
+      object RLSystemInfo3: TRLSystemInfo
+        Left = 471
+        Top = 0
+        Width = 163
+        Height = 16
+        Text = 'Relat'#243'rio gerado em: '
+      end
+      object RLSystemInfo4: TRLSystemInfo
+        Left = 679
+        Top = 0
+        Width = 39
+        Height = 16
+        Align = faRightTop
+        Info = itHour
+      end
     end
   end
 end

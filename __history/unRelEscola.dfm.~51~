@@ -1,7 +1,7 @@
 object frmRelEscola: TfrmRelEscola
   Left = 0
   Top = 0
-  Caption = 's'
+  Caption = 'Listagem Escola'
   ClientHeight = 462
   ClientWidth = 930
   Color = clBtnFace
@@ -168,56 +168,42 @@ object frmRelEscola: TfrmRelEscola
         Top = 0
         Width = 70
         Height = 16
-        DataField = 'ESCDATACAD'
-        DataSource = frmCadEscola.dsEscola
       end
       object RLDBText2: TRLDBText
         Left = 239
         Top = 0
         Width = 102
         Height = 16
-        DataField = 'ESCENDRUA'
-        DataSource = frmCadEscola.dsEscola
       end
       object RLDBText3: TRLDBText
         Left = 343
         Top = 0
         Width = 40
         Height = 16
-        DataField = 'ESCENDNUM'
-        DataSource = frmCadEscola.dsEscola
       end
       object RLDBText4: TRLDBText
         Left = 389
         Top = 0
         Width = 69
         Height = 16
-        DataField = 'ESCENDCOMP'
-        DataSource = frmCadEscola.dsEscola
       end
       object RLDBText5: TRLDBText
         Left = 464
         Top = 0
         Width = 89
         Height = 16
-        DataField = 'ESCENDBAIRRO'
-        DataSource = frmCadEscola.dsEscola
       end
       object RLDBText6: TRLDBText
         Left = 559
         Top = 0
         Width = 90
         Height = 16
-        DataField = 'ESCENDCIDADE'
-        DataSource = frmCadEscola.dsEscola
       end
       object RLDBText7: TRLDBText
         Left = 655
-        Top = 2
-        Width = 60
+        Top = 0
+        Width = 66
         Height = 16
-        DataField = 'ESCENDCEP'
-        DataSource = frmCadEscola.dsEscola
       end
     end
     object RLBand4: TRLBand

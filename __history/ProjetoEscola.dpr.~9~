@@ -6,7 +6,7 @@ uses
   unDados in 'unDados.pas' {fmdados: TDataModule},
   unCadastroEscolaController in 'unCadastroEscolaController.pas',
   UnCadEscola in 'UnCadEscola.pas' {frmCadEscola},
-  unRelEscola in 'unRelEscola.pas';
+  RelEscola in 'RelEscola.pas' {frmRelEscola};
 
 {$R *.res}
 
@@ -15,6 +15,7 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(Tfmdados, fmdados);
   Application.CreateForm(TfrmCadEscola, frmCadEscola);
+  Application.CreateForm(TfrmCadastroEscola, frmCadastroEscola);
   Application.CreateForm(TfrmRelEscola, frmRelEscola);
   Application.Run;
 end.

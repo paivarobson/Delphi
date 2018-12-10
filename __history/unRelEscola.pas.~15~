@@ -9,12 +9,18 @@ uses
 type
   TfrmRelEscola = class(TForm)
     RLReportEscola: TRLReport;
+    RLBand1: TRLBand;
     rlblRelEscolaTitulo: TRLLabel;
+    RLBand2: TRLBand;
     rlblRelEscolaCod: TRLLabel;
     rlblRelEscolaNome: TRLLabel;
-    rlbndEscola: TRLBand;
-    rldbtxtEscolaCod: TRLDBText;
+    RLBand3: TRLBand;
     rldbtxtEscolaNome: TRLDBText;
+    rldbtxtEscolaCod: TRLDBText;
+    RLBand4: TRLBand;
+    RLSystemInfo2: TRLSystemInfo;
+    RLSystemInfo3: TRLSystemInfo;
+    RLSystemInfo4: TRLSystemInfo;
   private
     { Private declarations }
   public

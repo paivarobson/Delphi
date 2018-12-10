@@ -29,12 +29,6 @@ type
     rlblRelEscolaBairro: TRLLabel;
     rlblRelEscolaCidade: TRLLabel;
     rlblRelEscolaCEP: TRLLabel;
-    RLDBText2: TRLDBText;
-    RLDBText3: TRLDBText;
-    RLDBText4: TRLDBText;
-    RLDBText5: TRLDBText;
-    RLDBText6: TRLDBText;
-    RLDBText7: TRLDBText;
   private
     { Private declarations }
   public

@@ -166,7 +166,7 @@ object frmRelEscola: TfrmRelEscola
       object RLDBText1: TRLDBText
         Left = 163
         Top = 0
-        Width = 70
+        Width = 92
         Height = 16
         DataField = 'ESCDATACAD'
         DataSource = frmCadEscola.dsEscola
@@ -174,7 +174,7 @@ object frmRelEscola: TfrmRelEscola
       object RLDBText2: TRLDBText
         Left = 239
         Top = 0
-        Width = 102
+        Width = 85
         Height = 16
         DataField = 'ESCENDRUA'
         DataSource = frmCadEscola.dsEscola
@@ -182,7 +182,7 @@ object frmRelEscola: TfrmRelEscola
       object RLDBText3: TRLDBText
         Left = 343
         Top = 0
-        Width = 40
+        Width = 87
         Height = 16
         DataField = 'ESCENDNUM'
         DataSource = frmCadEscola.dsEscola
@@ -190,7 +190,7 @@ object frmRelEscola: TfrmRelEscola
       object RLDBText4: TRLDBText
         Left = 389
         Top = 0
-        Width = 69
+        Width = 97
         Height = 16
         DataField = 'ESCENDCOMP'
         DataSource = frmCadEscola.dsEscola
@@ -198,7 +198,7 @@ object frmRelEscola: TfrmRelEscola
       object RLDBText5: TRLDBText
         Left = 464
         Top = 0
-        Width = 89
+        Width = 107
         Height = 16
         DataField = 'ESCENDBAIRRO'
         DataSource = frmCadEscola.dsEscola
@@ -206,17 +206,16 @@ object frmRelEscola: TfrmRelEscola
       object RLDBText6: TRLDBText
         Left = 559
         Top = 0
-        Width = 90
+        Width = 106
         Height = 16
         DataField = 'ESCENDCIDADE'
         DataSource = frmCadEscola.dsEscola
       end
       object RLDBText7: TRLDBText
         Left = 655
-        Top = 2
-        Width = 60
+        Top = 0
+        Width = 70
         Height = 16
-        DataField = 'ESCENDCEP'
         DataSource = frmCadEscola.dsEscola
       end
     end

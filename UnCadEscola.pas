@@ -142,7 +142,7 @@ end;
 procedure TfrmCadEscola.btnEscolaImprimirClick(Sender: TObject);
 begin
   frmRelEscola := TfrmRelEscola.Create(Application);
-  frmCadEscola.ShowModal;
+  frmRelEscola.RLReportEscola.Preview();
 end;
 
 procedure TfrmCadEscola.btnEscolaLimparClick(Sender: TObject);

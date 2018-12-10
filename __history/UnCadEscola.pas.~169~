@@ -6,8 +6,8 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, WideStrings, FMTBcd, cxGraphics, cxControls, cxLookAndFeels,
   cxLookAndFeelPainters, cxContainer, cxEdit, cxDBEdit, cxTextEdit, cxMaskEdit,
-  cxSpinEdit, StdCtrls, DB, SqlExpr, Grids, DBGrids, Provider, DBClient, unCadastroEscola,
-  ExtCtrls, DBCtrls, unDados, unCadastroEscolaController, ADODB, RelEscola;
+  cxSpinEdit, StdCtrls, DB, SqlExpr, Grids, DBGrids, Provider, DBClient,
+  ExtCtrls, DBCtrls, unDados, unCadastroEscolaController, ADODB;
 
 type
   TfrmCadEscola = class(TForm)
@@ -74,6 +74,9 @@ var
 
 implementation
 
+uses
+  unRelEscola;
+
 {$R *.dfm}
 
 procedure TfrmCadEscola.btnEscolaNovoCadastroClick(Sender: TObject);
@@ -138,7 +141,8 @@ end;
 
 procedure TfrmCadEscola.btnEscolaImprimirClick(Sender: TObject);
 begin
-  RelEscola := RelEscola.Create(Application)
+  frmRelEscola := TfrmRelEscola.Create(Application);
+  frmRelEscola.RLReportEscola.Preview();
 end;
 
 procedure TfrmCadEscola.btnEscolaLimparClick(Sender: TObject);

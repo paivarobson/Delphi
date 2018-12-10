@@ -9,13 +9,26 @@ uses
 type
   TfrmRelEscola = class(TForm)
     RLReportEscola: TRLReport;
-    rldbtxtEscolaNome: TRLDBText;
-    rldbtxtEscolaCod: TRLDBText;
     RLBand1: TRLBand;
     rlblRelEscolaTitulo: TRLLabel;
     RLBand2: TRLBand;
     rlblRelEscolaCod: TRLLabel;
     rlblRelEscolaNome: TRLLabel;
+    RLBand3: TRLBand;
+    rldbtxtEscolaNome: TRLDBText;
+    rldbtxtEscolaCod: TRLDBText;
+    RLBand4: TRLBand;
+    RLSystemInfo2: TRLSystemInfo;
+    RLSystemInfo3: TRLSystemInfo;
+    RLSystemInfo4: TRLSystemInfo;
+    rlblRelEscolaDataCadastro: TRLLabel;
+    RLDBText1: TRLDBText;
+    rlblRelEscolaRua: TRLLabel;
+    rlblRelEscolaNumero: TRLLabel;
+    rlblRelEscolaComplemento: TRLLabel;
+    rlblRelEscolaBairro: TRLLabel;
+    rlblRelEscolaCidade: TRLLabel;
+    rlblRelEscolaCEP: TRLLabel;
   private
     { Private declarations }
   public
