@@ -1,0 +1,64 @@
+object frmRelEscola: TfrmRelEscola
+  Left = 0
+  Top = 0
+  Caption = 'Listagem Escola'
+  ClientHeight = 540
+  ClientWidth = 796
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object RLReportEscola: TRLReport
+    Left = 18
+    Top = 8
+    Width = 794
+    Height = 1123
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -13
+    Font.Name = 'Arial'
+    Font.Style = []
+    object rldbtxtEscolaCod: TRLDBText
+      Left = 38
+      Top = 102
+      Width = 57
+      Height = 16
+    end
+    object rldbtxtEscolaNome: TRLDBText
+      Left = 105
+      Top = 102
+      Width = 191
+      Height = 16
+    end
+    object rlblRelEscolaNome: TRLLabel
+      Left = 101
+      Top = 75
+      Width = 195
+      Height = 16
+    end
+    object rlblRelEscolaCod: TRLLabel
+      Left = 41
+      Top = 75
+      Width = 54
+      Height = 16
+    end
+    object rlblRelEscolaTitulo: TRLLabel
+      Left = 41
+      Top = 41
+      Width = 161
+      Height = 24
+      Caption = 'Listagem Escola'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = -21
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
+    end
+  end
+end

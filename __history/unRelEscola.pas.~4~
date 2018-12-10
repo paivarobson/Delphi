@@ -1,0 +1,29 @@
+unit unRelEscola;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, RLReport, UnCadEscola;
+
+type
+  TfrmRelEscola = class(TForm)
+    RLReportEscola: TRLReport;
+    rlblRelEscolaTitulo: TRLLabel;
+    rlblRelEscolaCod: TRLLabel;
+    rlblRelEscolaNome: TRLLabel;
+    rlbndEscola: TRLBand;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmRelEscola: TfrmRelEscola;
+
+implementation
+
+{$R *.dfm}
+
+end.

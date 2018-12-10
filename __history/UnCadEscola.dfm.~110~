@@ -326,7 +326,7 @@ object frmCadEscola: TfrmCadEscola
     Left = 92
     Top = 195
     Width = 263
-    Height = 21
+    Height = 25
     TabOrder = 17
   end
   object btnEscolaBuscar: TButton
