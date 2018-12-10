@@ -85,7 +85,7 @@ uses
 
 procedure TfrmCadEscola.btnEscolaNovoCadastroClick(Sender: TObject);
 begin
-    ADOTableEscola.Open;
+  ADOTableEscola.Open;
   ADOTableEscola.Append;
   HabilitarComponentesDados;
   LimparCampos;
@@ -93,6 +93,7 @@ begin
   btnEscolaImprimir.Enabled := False;
   btnEscolaBuscar.Enabled := False;
   edtEscolaBuscarCodigo.Enabled := False;
+  dtPEscolaBuscarData.Enabled := False;
 
 end;
 
@@ -121,6 +122,7 @@ begin
   DesabilitarComponentesDados;
   btnEscolaBuscar.Enabled := True;
   edtEscolaBuscarCodigo.Enabled := True;
+  dtpEscolaBuscarData.Enabled := True;
   btnEscolaImprimir.Enabled := True;
   btnEscolaExcluir.Enabled := True;
 end;
@@ -150,6 +152,7 @@ begin
   btnEscolaCancelar.Enabled := False;
   btnEscolaBuscar.Enabled := True;
   edtEscolaBuscarCodigo.Enabled := True;
+  dtpEscolaBuscarData.Enabled := True;
   LimparCampos;
   ShowMessage('Gravado com sucesso!');
 end;

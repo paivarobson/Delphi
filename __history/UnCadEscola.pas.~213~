@@ -66,11 +66,6 @@ type
     procedure btnEscolaAlterarClick(Sender: TObject);
     procedure btnEscolaBuscarClick(Sender: TObject);
     procedure btnEscolaImprimirClick(Sender: TObject);
-    procedure edtEscolaBuscarCodigoMouseActivate(Sender: TObject;
-      Button: TMouseButton; Shift: TShiftState; X, Y, HitTest: Integer;
-      var MouseActivate: TMouseActivate);
-    procedure dtpEscolaBuscarDataMouseEnter(Sender: TObject);
-    procedure dtpEscolaBuscarDataChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -90,7 +85,7 @@ uses
 
 procedure TfrmCadEscola.btnEscolaNovoCadastroClick(Sender: TObject);
 begin
-    ADOTableEscola.Open;
+  ADOTableEscola.Open;
   ADOTableEscola.Append;
   HabilitarComponentesDados;
   LimparCampos;
@@ -98,6 +93,7 @@ begin
   btnEscolaImprimir.Enabled := False;
   btnEscolaBuscar.Enabled := False;
   edtEscolaBuscarCodigo.Enabled := False;
+  dtPEscolaBuscarData.Enabled := False;
 
 end;
 
@@ -114,8 +110,10 @@ end;
 procedure TfrmCadEscola.btnEscolaBuscarClick(Sender: TObject);
 begin
   ADOTableEscola.Open;
-   
-  ADOTableEscola.Locate('ESCCOD', edtEscolaBuscarCodigo.Text, [LopartialKey]);
+  if edtEscolaBuscarCodigo.Text <> '' then
+    ADOTableEscola.Locate('ESCCOD', edtEscolaBuscarCodigo.Text, [LopartialKey])
+  else
+    ADOTableEscola.Locate('ESCDATACAD', FormatDateTime('DD/MM/YYYY', dtpEscolaBuscarData.Date), [LopartialKey])
 end;
 
 procedure TfrmCadEscola.btnEscolaCancelarClick(Sender: TObject);
@@ -189,26 +187,6 @@ begin
   DBEditEscolaEndCidade.Enabled := False;
   DBEditEscolaEndCep.Enabled := False;
   DBEditEscolaEndBairro.Enabled := False;
-end;
-
-procedure TfrmCadEscola.dtpEscolaBuscarDataChange(Sender: TObject);
-begin
-  dtpEscolaBuscarData.Enabled := False;
-  edtEscolaBuscarCodigo.Enabled := True;
-end;
-
-procedure TfrmCadEscola.dtpEscolaBuscarDataMouseEnter(Sender: TObject);
-begin
-  dtpEscolaBuscarData.Enabled := False;
-  edtEscolaBuscarCodigo.Enabled := True;
-end;
-
-procedure TfrmCadEscola.edtEscolaBuscarCodigoMouseActivate(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y, HitTest: Integer;
-  var MouseActivate: TMouseActivate);
-begin
-  dtpEscolaBuscarData.Enabled := False;
-  edtEscolaBuscarCodigo.Enabled := True;
 end;
 
 procedure TfrmCadEscola.HabilitarComponentesDados;
