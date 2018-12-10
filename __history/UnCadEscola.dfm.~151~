@@ -96,13 +96,13 @@ object frmCadEscola: TfrmCadEscola
     Font.Style = []
     ParentFont = False
   end
-  object Label1: TLabel
-    Left = 592
-    Top = 56
-    Width = 67
+  object lblEscolaDataCad: TLabel
+    Left = 600
+    Top = 64
+    Width = 74
     Height = 13
-    Caption = 'ESCDATACAD'
-    FocusControl = DBEditEscolaDataCadastro
+    Caption = 'ESCADATACAD'
+    FocusControl = cxDBDateEditEscolaDataCadastro
   end
   object DBEditEscolaNome: TcxDBTextEdit
     Left = 98
@@ -371,12 +371,11 @@ object frmCadEscola: TfrmCadEscola
     Time = 43444.631400567130000000
     TabOrder = 2
   end
-  object DBEditEscolaDataCadastro: TcxDBTextEdit
-    Left = 485
-    Top = 113
-    DataBinding.DataField = 'ESCDATACAD'
+  object cxDBDateEditEscolaDataCadastro: TcxDBDateEdit
+    Left = 600
+    Top = 80
+    DataBinding.DataField = 'ESCADATACAD'
     DataBinding.DataSource = dsEscola
-    Enabled = False
     TabOrder = 22
     Width = 121
   end
@@ -386,7 +385,6 @@ object frmCadEscola: TfrmCadEscola
     Top = 16
   end
   object ADOTableEscola: TADOTable
-    Active = True
     ConnectionString = 
       'Provider=SQLOLEDB.1;Password=fcm123;Persist Security Info=True;U' +
       'ser ID=sa;Initial Catalog=ESCOLA;Data Source=NCDEV28'
@@ -401,9 +399,8 @@ object frmCadEscola: TfrmCadEscola
       FieldName = 'ESCNOME'
       Size = 100
     end
-    object ADOTableEscolaESCDATACAD: TStringField
-      FieldName = 'ESCDATACAD'
-      Size = 50
+    object ADOTableEscolaESCADATACAD: TDateField
+      FieldName = 'ESCADATACAD'
     end
     object ADOTableEscolaESCENDRUA: TStringField
       FieldName = 'ESCENDRUA'

@@ -31,9 +31,9 @@ uses
 { TCadastroEscolaController }
 procedure TCadastroEscolaController.CarregarEscola(const AFontesDados: TSQLQuery);
 begin
-//  AFontesDados.SQLConnection := fmdados.conexaoBDEscola;
-//  AFontesDados.SQL.Clear;
-//  AFontesDados.SQL.Add('select * from escola');
+  AFontesDados.SQLConnection := fmdados.conexaoBDEscola;
+  AFontesDados.SQL.Clear;
+  AFontesDados.SQL.Add('select * from escola');
 end;
 
 function TCadastroEscolaController.Gravar(ADadosEscola: TDadosEscola): string;

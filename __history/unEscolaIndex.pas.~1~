@@ -1,0 +1,29 @@
+unit Unit1;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, Menus;
+
+type
+  TfrmEscolaIndex = class(TForm)
+    lblEscolaBoasVindas: TLabel;
+    mmEscola: TMainMenu;
+    Arquivo1: TMenuItem;
+    Cadastro1: TMenuItem;
+    escola1: TMenuItem;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmEscolaIndex: TfrmEscolaIndex;
+
+implementation
+
+{$R *.dfm}
+
+end.

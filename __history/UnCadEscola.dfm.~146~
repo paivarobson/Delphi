@@ -96,14 +96,6 @@ object frmCadEscola: TfrmCadEscola
     Font.Style = []
     ParentFont = False
   end
-  object Label1: TLabel
-    Left = 592
-    Top = 56
-    Width = 67
-    Height = 13
-    Caption = 'ESCDATACAD'
-    FocusControl = DBEditEscolaDataCadastro
-  end
   object DBEditEscolaNome: TcxDBTextEdit
     Left = 98
     Top = 113
@@ -371,14 +363,15 @@ object frmCadEscola: TfrmCadEscola
     Time = 43444.631400567130000000
     TabOrder = 2
   end
-  object DBEditEscolaDataCadastro: TcxDBTextEdit
+  object jvDBEscolaDataCadastro: TJvDBDateEdit
     Left = 485
     Top = 113
-    DataBinding.DataField = 'ESCDATACAD'
-    DataBinding.DataSource = dsEscola
+    Width = 119
+    Height = 21
+    DataField = 'ESCDATACAD'
+    DataSource = dsEscola
     Enabled = False
     TabOrder = 22
-    Width = 121
   end
   object dsEscola: TDataSource
     DataSet = ADOTableEscola

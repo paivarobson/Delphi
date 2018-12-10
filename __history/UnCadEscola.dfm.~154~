@@ -102,7 +102,7 @@ object frmCadEscola: TfrmCadEscola
     Width = 67
     Height = 13
     Caption = 'ESCDATACAD'
-    FocusControl = DBEditEscolaDataCadastro
+    FocusControl = cxDBTextEdit1
   end
   object DBEditEscolaNome: TcxDBTextEdit
     Left = 98
@@ -371,12 +371,11 @@ object frmCadEscola: TfrmCadEscola
     Time = 43444.631400567130000000
     TabOrder = 2
   end
-  object DBEditEscolaDataCadastro: TcxDBTextEdit
+  object cxDBTextEdit1: TcxDBTextEdit
     Left = 485
     Top = 113
     DataBinding.DataField = 'ESCDATACAD'
     DataBinding.DataSource = dsEscola
-    Enabled = False
     TabOrder = 22
     Width = 121
   end

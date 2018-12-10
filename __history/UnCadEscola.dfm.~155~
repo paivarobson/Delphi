@@ -376,7 +376,6 @@ object frmCadEscola: TfrmCadEscola
     Top = 113
     DataBinding.DataField = 'ESCDATACAD'
     DataBinding.DataSource = dsEscola
-    Enabled = False
     TabOrder = 22
     Width = 121
   end

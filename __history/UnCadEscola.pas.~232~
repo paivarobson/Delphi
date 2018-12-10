@@ -54,9 +54,8 @@ type
     rbImpressora: TRadioButton;
     btnEscolaImprimir: TButton;
     dtpEscolaBuscarData: TDateTimePicker;
-    ADOTableEscolaESCDATACAD: TStringField;
-    Label1: TLabel;
-    DBEditEscolaDataCadastro: TcxDBTextEdit;
+    ADOTableEscolaESCADATACAD: TDateField;
+    cxDBDateEditEscolaDataCadastro: TcxDBDateEdit;
     procedure HabilitarComponentesDados;
     procedure LimparCampos;
     procedure btnEscolaNovoCadastroClick(Sender: TObject);
@@ -139,7 +138,7 @@ var
   DadosEscola: TDadosEscola;
 begin
   DadosEscola.Nome := DBEditEscolaNome.Text;
-  DadosEscola.DataCadastro := DBEditEscolaDataCadastro.Text;
+  DadosEscola.DataCadastro := cxDBDateEditEscolaDataCadastro.Text;
   DadosEscola.CEP := DBEditEscolaEndCep.Text;
   DadosEscola.Rua := DBEditEscolaEndRua.Text;
   DadosEscola.Numero := DBEditEscolaEndNumero.Text;
@@ -183,7 +182,7 @@ begin
   btnEscolaImprimir.Enabled := False;
   DBEditEscolaCod.Enabled := False;
   DBEditEscolaNome.Enabled := False;
-  DBEditEscolaDataCadastro.Enabled := False;
+  cxDBDateEditEscolaDataCadastro.Enabled := False;
   DBEditEscolaEndRua.Enabled := False;
   DBEditEscolaEndNumero.Enabled := False;
   DBEditEscolaEndComplemento.Enabled := False;
@@ -200,7 +199,7 @@ begin
   btnEscolaAlterar.Enabled := False;
   btnEscolaCancelar.Enabled := True;    
   DBEditEscolaNome.Enabled := True;
-  DBEditEscolaDataCadastro.Enabled := True;
+  cxDBDateEditEscolaDataCadastro.Enabled := True;
   DBEditEscolaEndRua.Enabled := True;
   DBEditEscolaEndNumero.Enabled := True;
   DBEditEscolaEndComplemento.Enabled := True;
@@ -214,7 +213,7 @@ procedure TfrmCadEscola.LimparCampos;
 begin
   DBEditEscolaCod.Clear;
   DBEditEscolaNome.Clear;
-  DBEditEscolaDataCadastro.Clear;
+  cxDBDateEditEscolaDataCadastro.Clear;
   DBEditEscolaEndRua.Clear;
   DBEditEscolaEndNumero.Clear;
   DBEditEscolaEndComplemento.Clear;

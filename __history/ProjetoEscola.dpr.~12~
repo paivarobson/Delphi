@@ -2,11 +2,11 @@ program ProjetoEscola;
 
 uses
   Forms,
+  unCadastroEscola in 'unCadastroEscola.pas' {frmCadastroEscola},
   unDados in 'unDados.pas' {fmdados: TDataModule},
   unCadastroEscolaController in 'unCadastroEscolaController.pas',
   UnCadEscola in 'UnCadEscola.pas' {frmCadEscola},
-  unRelEscola in 'unRelEscola.pas',
-  unEscolaIndex in 'unEscolaIndex.pas' {frmEscolaIndex};
+  unRelEscola in 'unRelEscola.pas';
 
 {$R *.res}
 
@@ -16,6 +16,5 @@ begin
   Application.CreateForm(Tfmdados, fmdados);
   Application.CreateForm(TfrmCadEscola, frmCadEscola);
   Application.CreateForm(TfrmRelEscola, frmRelEscola);
-  Application.CreateForm(TfrmEscolaIndex, frmEscolaIndex);
   Application.Run;
 end.
