@@ -6,8 +6,8 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, WideStrings, FMTBcd, cxGraphics, cxControls, cxLookAndFeels,
   cxLookAndFeelPainters, cxContainer, cxEdit, cxDBEdit, cxTextEdit, cxMaskEdit,
-  cxSpinEdit, StdCtrls, DB, SqlExpr, Grids, DBGrids, Provider, DBClient, unCadastroEscola,
-  ExtCtrls, DBCtrls, unDados, unCadastroEscolaController, ADODB, unRelEscola;
+  cxSpinEdit, StdCtrls, DB, SqlExpr, Grids, DBGrids, Provider, DBClient,
+  ExtCtrls, DBCtrls, unDados, unCadastroEscolaController, ADODB, ComCtrls;
 
 type
   TfrmCadEscola = class(TForm)
@@ -35,7 +35,6 @@ type
     btnEscolaGravar: TButton;
     btnEscolaAlterar: TButton;
     btnEscolaExcluir: TButton;
-    btnEscolaImprimir: TButton;
     ADOTableEscola: TADOTable;
     ADOTableEscolaESCCOD: TIntegerField;
     ADOTableEscolaESCNOME: TStringField;
@@ -49,8 +48,13 @@ type
     btnEscolaCancelar: TButton;
     btnEscolaLimpar: TButton;
     DBEditEscolaCod: TcxDBTextEdit;
-    edtEscolaBuscar: TEdit;
+    edtEscolaBuscarCodigo: TEdit;
     btnEscolaBuscar: TButton;
+    rgImpressao: TRadioGroup;
+    rbTela: TRadioButton;
+    rbImpressora: TRadioButton;
+    btnEscolaImprimir: TButton;
+    dtpEscolaBuscarData: TDateTimePicker;
     procedure HabilitarComponentesDados;
     procedure LimparCampos;
     procedure btnEscolaNovoCadastroClick(Sender: TObject);
@@ -61,6 +65,11 @@ type
     procedure btnEscolaExcluirClick(Sender: TObject);
     procedure btnEscolaAlterarClick(Sender: TObject);
     procedure btnEscolaBuscarClick(Sender: TObject);
+    procedure btnEscolaImprimirClick(Sender: TObject);
+    procedure edtEscolaBuscarCodigoMouseActivate(Sender: TObject;
+      Button: TMouseButton; Shift: TShiftState; X, Y, HitTest: Integer;
+      var MouseActivate: TMouseActivate);
+    procedure dtpEscolaBuscarDataChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -73,15 +82,22 @@ var
 
 implementation
 
+uses
+  unRelEscola;
+
 {$R *.dfm}
 
 procedure TfrmCadEscola.btnEscolaNovoCadastroClick(Sender: TObject);
 begin
+    ADOTableEscola.Open;
+  ADOTableEscola.Append;
   HabilitarComponentesDados;
   LimparCampos;
   btnEscolaExcluir.Enabled := False;
   btnEscolaImprimir.Enabled := False;
-  ADOTableEscola.Append;
+  btnEscolaBuscar.Enabled := False;
+  edtEscolaBuscarCodigo.Enabled := False;
+
 end;
 
 procedure TfrmCadEscola.btnEscolaAlterarClick(Sender: TObject);
@@ -90,20 +106,23 @@ begin
   HabilitarComponentesDados;
   btnEscolaExcluir.Enabled := False;
   btnEscolaImprimir.Enabled := False;
+  btnEscolaBuscar.Enabled := False;
+  edtEscolaBuscarCodigo.Enabled := False;
 end;
 
 procedure TfrmCadEscola.btnEscolaBuscarClick(Sender: TObject);
 begin
-  ADOTableEscola.Locate('ESCNOME', edtEscolaBuscar.Text, [LopartialKey]);
+  ADOTableEscola.Open;
+   
+  ADOTableEscola.Locate('ESCCOD', edtEscolaBuscarCodigo.Text, [LopartialKey]);
 end;
 
 procedure TfrmCadEscola.btnEscolaCancelarClick(Sender: TObject);
 begin
   ADOTableEscola.Cancel;
   DesabilitarComponentesDados;
-  btnEscolaCancelar.Enabled := False;
-  btnEscolaLimpar.Enabled := False;
-  btnEscolaGravar.Enabled := False;
+  btnEscolaBuscar.Enabled := True;
+  edtEscolaBuscarCodigo.Enabled := True;
   btnEscolaImprimir.Enabled := True;
   btnEscolaExcluir.Enabled := True;
 end;
@@ -131,8 +150,19 @@ begin
   btnEscolaExcluir.Enabled := True;
   btnEscolaImprimir.Enabled := True;
   btnEscolaCancelar.Enabled := False;
+  btnEscolaBuscar.Enabled := True;
+  edtEscolaBuscarCodigo.Enabled := True;
   LimparCampos;
   ShowMessage('Gravado com sucesso!');
+end;
+
+procedure TfrmCadEscola.btnEscolaImprimirClick(Sender: TObject);
+begin
+  frmRelEscola := TfrmRelEscola.Create(Application);
+  if rbTela.Checked then
+    frmRelEscola.RLReportEscola.Preview()
+  else
+    frmRelEscola.RLReportEscola.Print
 end;
 
 procedure TfrmCadEscola.btnEscolaLimparClick(Sender: TObject);
@@ -158,6 +188,20 @@ begin
   DBEditEscolaEndCidade.Enabled := False;
   DBEditEscolaEndCep.Enabled := False;
   DBEditEscolaEndBairro.Enabled := False;
+end;
+
+procedure TfrmCadEscola.dtpEscolaBuscarDataChange(Sender: TObject);
+begin
+  dtpEscolaBuscarData.Enabled := False;
+  edtEscolaBuscarCodigo.Enabled := True;
+end;
+
+procedure TfrmCadEscola.edtEscolaBuscarCodigoMouseActivate(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y, HitTest: Integer;
+  var MouseActivate: TMouseActivate);
+begin
+  dtpEscolaBuscarData.Enabled := False;
+  edtEscolaBuscarCodigo.Enabled := True;
 end;
 
 procedure TfrmCadEscola.HabilitarComponentesDados;

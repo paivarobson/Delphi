@@ -7,7 +7,7 @@ uses
   Dialogs, WideStrings, FMTBcd, cxGraphics, cxControls, cxLookAndFeels,
   cxLookAndFeelPainters, cxContainer, cxEdit, cxDBEdit, cxTextEdit, cxMaskEdit,
   cxSpinEdit, StdCtrls, DB, SqlExpr, Grids, DBGrids, Provider, DBClient,
-  ExtCtrls, DBCtrls, unDados, unCadastroEscolaController, ADODB;
+  ExtCtrls, DBCtrls, unDados, unCadastroEscolaController, ADODB, ComCtrls;
 
 type
   TfrmCadEscola = class(TForm)
@@ -35,7 +35,6 @@ type
     btnEscolaGravar: TButton;
     btnEscolaAlterar: TButton;
     btnEscolaExcluir: TButton;
-    btnEscolaImprimir: TButton;
     ADOTableEscola: TADOTable;
     ADOTableEscolaESCCOD: TIntegerField;
     ADOTableEscolaESCNOME: TStringField;
@@ -49,8 +48,13 @@ type
     btnEscolaCancelar: TButton;
     btnEscolaLimpar: TButton;
     DBEditEscolaCod: TcxDBTextEdit;
-    edtEscolaBuscar: TEdit;
+    edtEscolaBuscarCodigo: TEdit;
     btnEscolaBuscar: TButton;
+    rgImpressao: TRadioGroup;
+    rbTela: TRadioButton;
+    rbImpressora: TRadioButton;
+    btnEscolaImprimir: TButton;
+    dtpEscolaBuscarData: TDateTimePicker;
     procedure HabilitarComponentesDados;
     procedure LimparCampos;
     procedure btnEscolaNovoCadastroClick(Sender: TObject);
@@ -81,11 +85,15 @@ uses
 
 procedure TfrmCadEscola.btnEscolaNovoCadastroClick(Sender: TObject);
 begin
+    ADOTableEscola.Open;
+  ADOTableEscola.Append;
   HabilitarComponentesDados;
   LimparCampos;
   btnEscolaExcluir.Enabled := False;
   btnEscolaImprimir.Enabled := False;
-  ADOTableEscola.Append;
+  btnEscolaBuscar.Enabled := False;
+  edtEscolaBuscarCodigo.Enabled := False;
+
 end;
 
 procedure TfrmCadEscola.btnEscolaAlterarClick(Sender: TObject);
@@ -94,20 +102,25 @@ begin
   HabilitarComponentesDados;
   btnEscolaExcluir.Enabled := False;
   btnEscolaImprimir.Enabled := False;
+  btnEscolaBuscar.Enabled := False;
+  edtEscolaBuscarCodigo.Enabled := False;
 end;
 
 procedure TfrmCadEscola.btnEscolaBuscarClick(Sender: TObject);
 begin
-  ADOTableEscola.Locate('ESCNOME', edtEscolaBuscar.Text, [LopartialKey]);
+  ADOTableEscola.Open;
+  if edtEscolaBuscarCodigo.Text <> '' then
+    ADOTableEscola.Locate('ESCCOD', edtEscolaBuscarCodigo.Text, [LopartialKey])
+  else
+    ADOTableEscola.Locate('ESCDATACAD', dtpEscolaBuscarData.DateFormat, [LopartialKey])
 end;
 
 procedure TfrmCadEscola.btnEscolaCancelarClick(Sender: TObject);
 begin
   ADOTableEscola.Cancel;
   DesabilitarComponentesDados;
-  btnEscolaCancelar.Enabled := False;
-  btnEscolaLimpar.Enabled := False;
-  btnEscolaGravar.Enabled := False;
+  btnEscolaBuscar.Enabled := True;
+  edtEscolaBuscarCodigo.Enabled := True;
   btnEscolaImprimir.Enabled := True;
   btnEscolaExcluir.Enabled := True;
 end;
@@ -135,6 +148,8 @@ begin
   btnEscolaExcluir.Enabled := True;
   btnEscolaImprimir.Enabled := True;
   btnEscolaCancelar.Enabled := False;
+  btnEscolaBuscar.Enabled := True;
+  edtEscolaBuscarCodigo.Enabled := True;
   LimparCampos;
   ShowMessage('Gravado com sucesso!');
 end;
@@ -142,7 +157,10 @@ end;
 procedure TfrmCadEscola.btnEscolaImprimirClick(Sender: TObject);
 begin
   frmRelEscola := TfrmRelEscola.Create(Application);
-  frmCadEscola.ShowModal;
+  if rbTela.Checked then
+    frmRelEscola.RLReportEscola.Preview()
+  else
+    frmRelEscola.RLReportEscola.Print
 end;
 
 procedure TfrmCadEscola.btnEscolaLimparClick(Sender: TObject);
