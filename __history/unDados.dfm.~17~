@@ -44,42 +44,6 @@ object fmdados: Tfmdados
     SQLConnection = conexaoBDEscola
     Left = 216
     Top = 32
-    object SQLDataSet1ESCCOD: TIntegerField
-      AutoGenerateValue = arAutoInc
-      FieldName = 'ESCCOD'
-    end
-    object SQLDataSet1ESCNOME: TStringField
-      FieldName = 'ESCNOME'
-      Size = 100
-    end
-    object SQLDataSet1ESCDATACAD: TStringField
-      FieldName = 'ESCDATACAD'
-      Size = 8
-    end
-    object SQLDataSet1ESCENDRUA: TStringField
-      FieldName = 'ESCENDRUA'
-      Size = 100
-    end
-    object SQLDataSet1ESCENDNUM: TStringField
-      FieldName = 'ESCENDNUM'
-      Size = 10
-    end
-    object SQLDataSet1ESCENDCOMP: TStringField
-      FieldName = 'ESCENDCOMP'
-      Size = 30
-    end
-    object SQLDataSet1ESCENDBAIRRO: TStringField
-      FieldName = 'ESCENDBAIRRO'
-      Size = 50
-    end
-    object SQLDataSet1ESCENDCIDADE: TStringField
-      FieldName = 'ESCENDCIDADE'
-      Size = 50
-    end
-    object SQLDataSet1ESCENDCEP: TStringField
-      FieldName = 'ESCENDCEP'
-      Size = 8
-    end
   end
   object ClientDataSet1: TClientDataSet
     Active = True
@@ -88,10 +52,6 @@ object fmdados: Tfmdados
     ProviderName = 'DataSetProvider1'
     Left = 72
     Top = 88
-    object ClientDataSet1ESCCOD: TIntegerField
-      AutoGenerateValue = arAutoInc
-      FieldName = 'ESCCOD'
-    end
     object ClientDataSet1ESCNOME: TStringField
       FieldName = 'ESCNOME'
       Size = 100
@@ -123,6 +83,11 @@ object fmdados: Tfmdados
     object ClientDataSet1ESCENDCEP: TStringField
       FieldName = 'ESCENDCEP'
       Size = 8
+    end
+    object ClientDataSet1ESCCOD: TIntegerField
+      FieldName = 'ESCCOD'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
     end
   end
 end

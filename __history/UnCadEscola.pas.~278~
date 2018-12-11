@@ -91,7 +91,6 @@ end;
 procedure TfrmCadEscola.btnEscolaAlterarClick(Sender: TObject);
 begin
   fmdados.ClientDataSet1.Edit;
-  fmdados.ClientDataSet1.ApplyUpdates(0);
   HabilitarComponentesDados;
   btnEscolaExcluir.Enabled := False;
   btnEscolaImprimir.Enabled := False;

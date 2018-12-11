@@ -35,7 +35,6 @@ object fmdados: Tfmdados
   end
   object SQLDataSet1: TSQLDataSet
     SchemaName = 'dbo'
-    Active = True
     CommandText = 'ESCOLA'
     CommandType = ctTable
     DbxCommandType = 'Dbx.Table'
@@ -82,7 +81,6 @@ object fmdados: Tfmdados
     end
   end
   object ClientDataSet1: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'DataSetProvider1'

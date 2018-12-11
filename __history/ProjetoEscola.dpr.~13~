@@ -13,9 +13,9 @@ uses
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TfrmEscolaIndex, frmEscolaIndex);
   Application.CreateForm(Tfmdados, fmdados);
   Application.CreateForm(TfrmCadEscola, frmCadEscola);
   Application.CreateForm(TfrmRelEscola, frmRelEscola);
+  Application.CreateForm(TfrmEscolaIndex, frmEscolaIndex);
   Application.Run;
 end.

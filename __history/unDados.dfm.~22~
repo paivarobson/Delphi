@@ -35,7 +35,6 @@ object fmdados: Tfmdados
   end
   object SQLDataSet1: TSQLDataSet
     SchemaName = 'dbo'
-    Active = True
     CommandText = 'ESCOLA'
     CommandType = ctTable
     DbxCommandType = 'Dbx.Table'
@@ -47,6 +46,7 @@ object fmdados: Tfmdados
     object SQLDataSet1ESCCOD: TIntegerField
       AutoGenerateValue = arAutoInc
       FieldName = 'ESCCOD'
+      ReadOnly = True
     end
     object SQLDataSet1ESCNOME: TStringField
       FieldName = 'ESCNOME'
@@ -91,6 +91,7 @@ object fmdados: Tfmdados
     object ClientDataSet1ESCCOD: TIntegerField
       AutoGenerateValue = arAutoInc
       FieldName = 'ESCCOD'
+      ReadOnly = True
     end
     object ClientDataSet1ESCNOME: TStringField
       FieldName = 'ESCNOME'

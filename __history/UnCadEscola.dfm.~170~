@@ -297,7 +297,6 @@ object frmCadEscola: TfrmCadEscola
     Left = 35
     Top = 113
     DataBinding.DataField = 'ESCCOD'
-    DataBinding.DataSource = dsEscola
     Enabled = False
     ParentFont = False
     TabOrder = 3

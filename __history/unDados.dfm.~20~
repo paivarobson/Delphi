@@ -45,8 +45,8 @@ object fmdados: Tfmdados
     Left = 216
     Top = 32
     object SQLDataSet1ESCCOD: TIntegerField
-      AutoGenerateValue = arAutoInc
       FieldName = 'ESCCOD'
+      ReadOnly = True
     end
     object SQLDataSet1ESCNOME: TStringField
       FieldName = 'ESCNOME'
@@ -89,8 +89,8 @@ object fmdados: Tfmdados
     Left = 72
     Top = 88
     object ClientDataSet1ESCCOD: TIntegerField
-      AutoGenerateValue = arAutoInc
       FieldName = 'ESCCOD'
+      ReadOnly = True
     end
     object ClientDataSet1ESCNOME: TStringField
       FieldName = 'ESCNOME'

@@ -377,4 +377,62 @@ object frmCadEscola: TfrmCadEscola
     Left = 568
     Top = 16
   end
+  object ADOTableEscola: TADOTable
+    Active = True
+    ConnectionString = 
+      'Provider=SQLOLEDB.1;Password=fcm123;Persist Security Info=True;U' +
+      'ser ID=sa;Initial Catalog=ESCOLA;Data Source=NCDEV28'
+    CursorType = ctStatic
+    TableName = 'ESCOLA'
+    Left = 536
+    Top = 16
+    object ADOTableEscolaESCCOD: TIntegerField
+      FieldName = 'ESCCOD'
+    end
+    object ADOTableEscolaESCNOME: TStringField
+      FieldName = 'ESCNOME'
+      Size = 100
+    end
+    object ADOTableEscolaESCDATACAD: TStringField
+      FieldName = 'ESCDATACAD'
+      EditMask = '00/00/0000;0;_'
+      Size = 50
+    end
+    object ADOTableEscolaESCENDRUA: TStringField
+      FieldName = 'ESCENDRUA'
+      Size = 100
+    end
+    object ADOTableEscolaESCENDNUM: TStringField
+      FieldName = 'ESCENDNUM'
+      Size = 10
+    end
+    object ADOTableEscolaESCENDCOMP: TStringField
+      FieldName = 'ESCENDCOMP'
+      Size = 30
+    end
+    object ADOTableEscolaESCENDBAIRRO: TStringField
+      FieldName = 'ESCENDBAIRRO'
+      Size = 50
+    end
+    object ADOTableEscolaESCENDCIDADE: TStringField
+      FieldName = 'ESCENDCIDADE'
+      Size = 50
+    end
+    object ADOTableEscolaESCENDCEP: TStringField
+      FieldName = 'ESCENDCEP'
+      EditMask = '00000-000;1;_'
+      Size = 10
+    end
+  end
+  object SQLQuery1: TSQLQuery
+    Active = True
+    DataSource = dsEscola
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      'select * from escola')
+    SQLConnection = fmdados.conexaoBDEscola
+    Left = 400
+    Top = 72
+  end
 end

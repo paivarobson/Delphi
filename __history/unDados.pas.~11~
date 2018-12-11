@@ -19,16 +19,6 @@ type
     ClientDataSet1ESCENDBAIRRO: TStringField;
     ClientDataSet1ESCENDCIDADE: TStringField;
     ClientDataSet1ESCENDCEP: TStringField;
-    SQLDataSet1ESCNOME: TStringField;
-    SQLDataSet1ESCDATACAD: TStringField;
-    SQLDataSet1ESCENDRUA: TStringField;
-    SQLDataSet1ESCENDNUM: TStringField;
-    SQLDataSet1ESCENDCOMP: TStringField;
-    SQLDataSet1ESCENDBAIRRO: TStringField;
-    SQLDataSet1ESCENDCIDADE: TStringField;
-    SQLDataSet1ESCENDCEP: TStringField;
-    SQLDataSet1ESCCOD: TIntegerField;
-    ClientDataSet1ESCCOD: TIntegerField;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private

@@ -91,7 +91,6 @@ end;
 procedure TfrmCadEscola.btnEscolaAlterarClick(Sender: TObject);
 begin
   fmdados.ClientDataSet1.Edit;
-  fmdados.ClientDataSet1.ApplyUpdates(0);
   HabilitarComponentesDados;
   btnEscolaExcluir.Enabled := False;
   btnEscolaImprimir.Enabled := False;
@@ -139,7 +138,6 @@ begin
   DadosEscola.Bairro := DBEditEscolaEndBairro.Text;
   DadosEscola.Cidade := DBEditEscolaEndCidade.Text;
   fmdados.ClientDataSet1.Post;
-  fmdados.ClientDataSet1.ApplyUpdates(0);
   DesabilitarComponentesDados;
   btnEscolaExcluir.Enabled := True;
   btnEscolaImprimir.Enabled := True;
@@ -148,6 +146,8 @@ begin
   edtEscolaBuscarCodigo.Enabled := True;
   dtpEscolaBuscarData.Enabled := True;
   LimparCampos;
+  FreeAndNil(DadosEscola);
+  fmdados.ClientDataSet1.ApplyUpdates(0);
 
   ShowMessage('Gravado com sucesso!');
 end;
@@ -193,6 +193,7 @@ begin
   btnEscolaLimpar.Enabled := True;
   btnEscolaAlterar.Enabled := False;
   btnEscolaCancelar.Enabled := True;
+  //DBEditEscolaCod.Enabled := True;
   DBEditEscolaNome.Enabled := True;
   DBEditEscolaDataCadastro.Enabled := True;
   DBEditEscolaEndRua.Enabled := True;
