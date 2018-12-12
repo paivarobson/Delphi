@@ -1,11 +1,9 @@
 object frmCadEscola: TfrmCadEscola
   Left = 0
   Top = 0
-  BorderIcons = [biSystemMenu, biMinimize]
-  BorderStyle = bsSingle
   Caption = 'Cadastro de Escola'
-  ClientHeight = 494
-  ClientWidth = 747
+  ClientHeight = 481
+  ClientWidth = 801
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -155,11 +153,10 @@ object frmCadEscola: TfrmCadEscola
     Width = 110
   end
   object DBGridListaEscola: TDBGrid
-    Left = 0
-    Top = 293
-    Width = 747
-    Height = 201
-    Align = alBottom
+    Left = 10
+    Top = 280
+    Width = 783
+    Height = 177
     DataSource = fmdados.dsEscola
     ReadOnly = True
     TabOrder = 22

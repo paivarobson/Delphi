@@ -25,7 +25,7 @@ object fmdados: Tfmdados
       'Prepare SQL=False')
     VendorLib = 'oledb'
     Connected = True
-    Left = 21
+    Left = 29
     Top = 13
   end
   object dspEscola: TDataSetProvider
@@ -34,57 +34,18 @@ object fmdados: Tfmdados
     Top = 16
   end
   object ClientDataSet1: TClientDataSet
-    Active = True
     Aggregates = <>
     DisableStringTrim = True
     Params = <>
-    ProviderName = 'dspEscola'
+    ProviderName = 'DataSetProvider1'
     Left = 96
     Top = 64
-    object ClientDataSet1ESCCOD: TIntegerField
-      FieldName = 'ESCCOD'
-      Required = True
-    end
-    object ClientDataSet1ESCNOME: TStringField
-      FieldName = 'ESCNOME'
-      Size = 100
-    end
-    object ClientDataSet1ESCDATACAD: TStringField
-      FieldName = 'ESCDATACAD'
-      Size = 8
-    end
-    object ClientDataSet1ESCENDRUA: TStringField
-      FieldName = 'ESCENDRUA'
-      Size = 100
-    end
-    object ClientDataSet1ESCENDNUM: TStringField
-      FieldName = 'ESCENDNUM'
-      Size = 10
-    end
-    object ClientDataSet1ESCENDCOMP: TStringField
-      FieldName = 'ESCENDCOMP'
-      Size = 30
-    end
-    object ClientDataSet1ESCENDBAIRRO: TStringField
-      FieldName = 'ESCENDBAIRRO'
-      Size = 50
-    end
-    object ClientDataSet1ESCENDCIDADE: TStringField
-      FieldName = 'ESCENDCIDADE'
-      Size = 50
-    end
-    object ClientDataSet1ESCENDCEP: TStringField
-      FieldName = 'ESCENDCEP'
-      Size = 8
-    end
   end
   object dsEscola: TDataSource
-    DataSet = ClientDataSet1
     Left = 32
     Top = 64
   end
   object tbEscola: TSQLQuery
-    Active = True
     DataSource = dsEscola
     MaxBlobSize = -1
     Params = <>
@@ -129,16 +90,5 @@ object fmdados: Tfmdados
       FieldName = 'ESCENDCEP'
       Size = 8
     end
-  end
-  object tbAux: TSQLQuery
-    Active = True
-    DataSource = dsEscola
-    MaxBlobSize = -1
-    Params = <>
-    SQL.Strings = (
-      'select * from ESCOLA')
-    SQLConnection = conexaoBDEscola
-    Left = 160
-    Top = 64
   end
 end

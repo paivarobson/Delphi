@@ -8,10 +8,10 @@ uses
 type
   Tfmdados = class(TDataModule)
     conexaoBDEscola: TSQLConnection;
-    dspEscola: TDataSetProvider;
+    DataSetProvider1: TDataSetProvider;
     ClientDataSet1: TClientDataSet;
     dsEscola: TDataSource;
-    tbEscola: TSQLQuery;
+    tbEscola: TSQLTable;
     tbEscolaESCCOD: TIntegerField;
     tbEscolaESCNOME: TStringField;
     tbEscolaESCDATACAD: TStringField;
@@ -30,7 +30,6 @@ type
     ClientDataSet1ESCENDBAIRRO: TStringField;
     ClientDataSet1ESCENDCIDADE: TStringField;
     ClientDataSet1ESCENDCEP: TStringField;
-    tbAux: TSQLQuery;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private

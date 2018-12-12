@@ -25,23 +25,23 @@ object fmdados: Tfmdados
       'Prepare SQL=False')
     VendorLib = 'oledb'
     Connected = True
-    Left = 21
+    Left = 293
     Top = 13
   end
-  object dspEscola: TDataSetProvider
+  object DataSetProvider1: TDataSetProvider
     DataSet = tbEscola
-    Left = 96
-    Top = 16
+    Left = 176
+    Top = 8
   end
   object ClientDataSet1: TClientDataSet
-    Active = True
     Aggregates = <>
     DisableStringTrim = True
     Params = <>
-    ProviderName = 'dspEscola'
-    Left = 96
-    Top = 64
+    ProviderName = 'DataSetProvider1'
+    Left = 40
+    Top = 8
     object ClientDataSet1ESCCOD: TIntegerField
+      AutoGenerateValue = arAutoInc
       FieldName = 'ESCCOD'
       Required = True
     end
@@ -80,20 +80,17 @@ object fmdados: Tfmdados
   end
   object dsEscola: TDataSource
     DataSet = ClientDataSet1
-    Left = 32
-    Top = 64
+    Left = 88
+    Top = 8
   end
-  object tbEscola: TSQLQuery
-    Active = True
-    DataSource = dsEscola
+  object tbEscola: TSQLTable
     MaxBlobSize = -1
-    Params = <>
-    SQL.Strings = (
-      'select * from ESCOLA')
     SQLConnection = conexaoBDEscola
-    Left = 160
-    Top = 16
+    TableName = 'ESCOLA'
+    Left = 80
+    Top = 56
     object tbEscolaESCCOD: TIntegerField
+      AutoGenerateValue = arAutoInc
       FieldName = 'ESCCOD'
       Required = True
     end
@@ -129,16 +126,5 @@ object fmdados: Tfmdados
       FieldName = 'ESCENDCEP'
       Size = 8
     end
-  end
-  object tbAux: TSQLQuery
-    Active = True
-    DataSource = dsEscola
-    MaxBlobSize = -1
-    Params = <>
-    SQL.Strings = (
-      'select * from ESCOLA')
-    SQLConnection = conexaoBDEscola
-    Left = 160
-    Top = 64
   end
 end

@@ -32,12 +32,8 @@ uses
 
 procedure TfrmEscolaIndex.escola1Click(Sender: TObject);
 begin
-  Application.CreateForm(TfrmCadEscola, frmCadEscola);
-  try
-    frmCadEscola.ShowModal;
-  finally
-    frmCadEscola.Release;
-  end;
+  frmCadEscola := TfrmCadEscola.Create(Application);
+  frmCadEscola.ShowModal;
 end;
 
 end.

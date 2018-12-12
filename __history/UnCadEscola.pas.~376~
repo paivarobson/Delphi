@@ -130,8 +130,8 @@ end;
 
 procedure TfrmCadEscola.btnEscolaExcluirClick(Sender: TObject);
 begin
-  //BOTÃO EXCLUIR E ALTERAR NÃO GRAVANDO NO BD
   fmdados.ClientDataSet1.Delete;
+  fmdados.ClientDataSet1.Post;
   ShowMessage('Excluído com sucesso!');
 end;
 

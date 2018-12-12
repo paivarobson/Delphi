@@ -55,7 +55,6 @@ type
     procedure btnEscolaBuscarClick(Sender: TObject);
     procedure btnEscolaImprimirClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -101,6 +100,7 @@ end;
 procedure TfrmCadEscola.btnEscolaAlterarClick(Sender: TObject);
 begin
   fmdados.ClientDataSet1.Edit;
+  fmdados.ClientDataSet1.ApplyUpdates(0);
   HabilitarComponentesDados;
   btnEscolaExcluir.Enabled := False;
   btnEscolaImprimir.Enabled := False;
@@ -130,8 +130,8 @@ end;
 
 procedure TfrmCadEscola.btnEscolaExcluirClick(Sender: TObject);
 begin
-  //BOTÃO EXCLUIR E ALTERAR NÃO GRAVANDO NO BD
   fmdados.ClientDataSet1.Delete;
+  fmdados.ClientDataSet1.ApplyUpdates(0);
   ShowMessage('Excluído com sucesso!');
 end;
 
@@ -189,11 +189,6 @@ begin
   DBEditEscolaEndCidade.Enabled := False;
   DBEditEscolaEndCep.Enabled := False;
   DBEditEscolaEndBairro.Enabled := False;
-end;
-
-procedure TfrmCadEscola.FormClose(Sender: TObject; var Action: TCloseAction);
-begin
-  fmdados.ClientDataSet1.Close;
 end;
 
 procedure TfrmCadEscola.FormShow(Sender: TObject);

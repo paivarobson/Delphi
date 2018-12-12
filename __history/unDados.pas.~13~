@@ -8,20 +8,9 @@ uses
 type
   Tfmdados = class(TDataModule)
     conexaoBDEscola: TSQLConnection;
-    dspEscola: TDataSetProvider;
+    DataSetProvider1: TDataSetProvider;
+    SQLDataSet1: TSQLDataSet;
     ClientDataSet1: TClientDataSet;
-    dsEscola: TDataSource;
-    tbEscola: TSQLQuery;
-    tbEscolaESCCOD: TIntegerField;
-    tbEscolaESCNOME: TStringField;
-    tbEscolaESCDATACAD: TStringField;
-    tbEscolaESCENDRUA: TStringField;
-    tbEscolaESCENDNUM: TStringField;
-    tbEscolaESCENDCOMP: TStringField;
-    tbEscolaESCENDBAIRRO: TStringField;
-    tbEscolaESCENDCIDADE: TStringField;
-    tbEscolaESCENDCEP: TStringField;
-    ClientDataSet1ESCCOD: TIntegerField;
     ClientDataSet1ESCNOME: TStringField;
     ClientDataSet1ESCDATACAD: TStringField;
     ClientDataSet1ESCENDRUA: TStringField;
@@ -30,7 +19,16 @@ type
     ClientDataSet1ESCENDBAIRRO: TStringField;
     ClientDataSet1ESCENDCIDADE: TStringField;
     ClientDataSet1ESCENDCEP: TStringField;
-    tbAux: TSQLQuery;
+    SQLDataSet1ESCNOME: TStringField;
+    SQLDataSet1ESCDATACAD: TStringField;
+    SQLDataSet1ESCENDRUA: TStringField;
+    SQLDataSet1ESCENDNUM: TStringField;
+    SQLDataSet1ESCENDCOMP: TStringField;
+    SQLDataSet1ESCENDBAIRRO: TStringField;
+    SQLDataSet1ESCENDCIDADE: TStringField;
+    SQLDataSet1ESCENDCEP: TStringField;
+    SQLDataSet1ESCCOD: TIntegerField;
+    ClientDataSet1ESCCOD: TIntegerField;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private

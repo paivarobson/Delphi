@@ -1,7 +1,7 @@
 object frmEscolaIndex: TfrmEscolaIndex
   Left = 0
   Top = 0
-  Caption = 'Boas-vindas'
+  Caption = 'Escola'
   ClientHeight = 334
   ClientWidth = 687
   Color = clBtnFace

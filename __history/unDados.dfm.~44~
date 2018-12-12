@@ -25,7 +25,7 @@ object fmdados: Tfmdados
       'Prepare SQL=False')
     VendorLib = 'oledb'
     Connected = True
-    Left = 21
+    Left = 29
     Top = 13
   end
   object dspEscola: TDataSetProvider
@@ -34,7 +34,6 @@ object fmdados: Tfmdados
     Top = 16
   end
   object ClientDataSet1: TClientDataSet
-    Active = True
     Aggregates = <>
     DisableStringTrim = True
     Params = <>

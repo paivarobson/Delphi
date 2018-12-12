@@ -21,7 +21,7 @@ type
   public
 //    function Gravar(ADadosEscola: TDadosEscola): string;
     procedure CarregarEscola(const AFontesDados: TSQLQuery);
-    function DevolverUltimoCodigo: Integer;
+    function DevolverUltimoCodigo: String;
   end;
 
 implementation
@@ -77,13 +77,11 @@ end;
 //
 //end;
 
-function TCadastroEscolaController.DevolverUltimoCodigo: Integer;
+function TCadastroEscolaController.DevolverUltimoCodigo: String;
 begin
-  fmdados.tbAux.Close;
-  fmdados.tbAux.SQL.Clear;
-  fmdados.tbAux.SQL.Text := 'SELECT MAX(ESCCOD) + 1 FROM ESCOLA';
-  fmdados.tbAux.Open;
-  Result := fmdados.tbAux.Fields[0].AsInteger;
+  fmdados.cdsAuxiliar.CommandText := 'SELECT MAX(ESCCOD) + 1 FROM ESCOLA';
+  fmdados.cdsAuxiliar.Open;
+  Result := 
 end;
 
 end.

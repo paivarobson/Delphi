@@ -1,11 +1,9 @@
 object frmCadEscola: TfrmCadEscola
   Left = 0
   Top = 0
-  BorderIcons = [biSystemMenu, biMinimize]
-  BorderStyle = bsSingle
   Caption = 'Cadastro de Escola'
-  ClientHeight = 494
-  ClientWidth = 747
+  ClientHeight = 481
+  ClientWidth = 801
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -104,7 +102,7 @@ object frmCadEscola: TfrmCadEscola
     Left = 98
     Top = 113
     DataBinding.DataField = 'ESCNOME'
-    DataBinding.DataSource = fmdados.dsEscola
+    DataBinding.DataSource = dsEscola
     Enabled = False
     TabOrder = 4
     Width = 381
@@ -113,7 +111,7 @@ object frmCadEscola: TfrmCadEscola
     Left = 151
     Top = 158
     DataBinding.DataField = 'ESCENDRUA'
-    DataBinding.DataSource = fmdados.dsEscola
+    DataBinding.DataSource = dsEscola
     Enabled = False
     TabOrder = 7
     Width = 384
@@ -122,7 +120,7 @@ object frmCadEscola: TfrmCadEscola
     Left = 35
     Top = 201
     DataBinding.DataField = 'ESCENDCOMP'
-    DataBinding.DataSource = fmdados.dsEscola
+    DataBinding.DataSource = dsEscola
     Enabled = False
     TabOrder = 9
     Width = 225
@@ -131,7 +129,7 @@ object frmCadEscola: TfrmCadEscola
     Left = 266
     Top = 201
     DataBinding.DataField = 'ESCENDBAIRRO'
-    DataBinding.DataSource = fmdados.dsEscola
+    DataBinding.DataSource = dsEscola
     Enabled = False
     TabOrder = 10
     Width = 187
@@ -140,7 +138,7 @@ object frmCadEscola: TfrmCadEscola
     Left = 459
     Top = 201
     DataBinding.DataField = 'ESCENDCIDADE'
-    DataBinding.DataSource = fmdados.dsEscola
+    DataBinding.DataSource = dsEscola
     Enabled = False
     TabOrder = 11
     Width = 147
@@ -149,18 +147,17 @@ object frmCadEscola: TfrmCadEscola
     Left = 35
     Top = 158
     DataBinding.DataField = 'ESCENDCEP'
-    DataBinding.DataSource = fmdados.dsEscola
+    DataBinding.DataSource = dsEscola
     Enabled = False
     TabOrder = 6
     Width = 110
   end
   object DBGridListaEscola: TDBGrid
-    Left = 0
-    Top = 293
-    Width = 747
-    Height = 201
-    Align = alBottom
-    DataSource = fmdados.dsEscola
+    Left = 8
+    Top = 288
+    Width = 783
+    Height = 177
+    DataSource = dsEscola
     ReadOnly = True
     TabOrder = 22
     TitleFont.Charset = DEFAULT_CHARSET
@@ -187,7 +184,7 @@ object frmCadEscola: TfrmCadEscola
         Expanded = False
         FieldName = 'ESCDATACAD'
         Title.Caption = 'Data de cadastro'
-        Width = 92
+        Width = 93
         Visible = True
       end
       item
@@ -236,7 +233,7 @@ object frmCadEscola: TfrmCadEscola
     Left = 541
     Top = 158
     DataBinding.DataField = 'ESCENDNUM'
-    DataBinding.DataSource = fmdados.dsEscola
+    DataBinding.DataSource = dsEscola
     Enabled = False
     TabOrder = 8
     Width = 65
@@ -302,7 +299,7 @@ object frmCadEscola: TfrmCadEscola
     Left = 35
     Top = 113
     DataBinding.DataField = 'ESCCOD'
-    DataBinding.DataSource = fmdados.dsEscola
+    DataBinding.DataSource = dsEscola
     Enabled = False
     ParentFont = False
     TabOrder = 3
@@ -372,9 +369,14 @@ object frmCadEscola: TfrmCadEscola
     Left = 485
     Top = 113
     DataBinding.DataField = 'ESCDATACAD'
-    DataBinding.DataSource = fmdados.dsEscola
+    DataBinding.DataSource = dsEscola
     Enabled = False
     TabOrder = 5
     Width = 121
+  end
+  object dsEscola: TDataSource
+    DataSet = fmdados.ClientDataSet1
+    Left = 568
+    Top = 16
   end
 end

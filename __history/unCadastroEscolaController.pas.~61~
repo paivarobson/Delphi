@@ -79,11 +79,9 @@ end;
 
 function TCadastroEscolaController.DevolverUltimoCodigo: Integer;
 begin
-  fmdados.tbAux.Close;
-  fmdados.tbAux.SQL.Clear;
-  fmdados.tbAux.SQL.Text := 'SELECT MAX(ESCCOD) + 1 FROM ESCOLA';
-  fmdados.tbAux.Open;
-  Result := fmdados.tbAux.Fields[0].AsInteger;
+  fmdados.cdsAuxiliar.CommandText := 'SELECT MAX(ESCCOD) + 1 FROM ESCOLA';
+  fmdados.cdsAuxiliar.Open;
+  Result := fmdados.cdsAuxiliar.Fields[0].AsInteger;
 end;
 
 end.
