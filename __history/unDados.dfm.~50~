@@ -24,6 +24,7 @@ object fmdados: Tfmdados
       'OS Authentication=False'
       'Prepare SQL=False')
     VendorLib = 'oledb'
+    Connected = True
     Left = 45
     Top = 13
   end
@@ -83,6 +84,7 @@ object fmdados: Tfmdados
     Top = 72
   end
   object tbEscola: TSQLQuery
+    Active = True
     DataSource = dsEscola
     MaxBlobSize = -1
     Params = <>

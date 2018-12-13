@@ -90,7 +90,7 @@ object frmRelEscola: TfrmRelEscola
       object rlblRelEscolaNome: TRLLabel
         Left = 39
         Top = 6
-        Width = 118
+        Width = 38
         Height = 14
         Caption = 'Escola'
         Font.Charset = DEFAULT_CHARSET
@@ -123,19 +123,19 @@ object frmRelEscola: TfrmRelEscola
       object rlblRelEscolaNumero: TRLLabel
         Left = 343
         Top = 6
-        Width = 18
+        Width = 14
         Height = 14
         Caption = 'N'#186
       end
       object rlblRelEscolaComplemento: TRLLabel
-        Left = 367
+        Left = 389
         Top = 6
-        Width = 67
+        Width = 60
         Height = 14
         Caption = 'Complem.'
       end
       object rlblRelEscolaBairro: TRLLabel
-        Left = 471
+        Left = 464
         Top = 6
         Width = 36
         Height = 14
@@ -160,11 +160,11 @@ object frmRelEscola: TfrmRelEscola
       Left = 38
       Top = 121
       Width = 718
-      Height = 28
+      Height = 24
       object rldbtxtEscolaNome: TRLDBText
         Left = 39
         Top = 0
-        Width = 118
+        Width = 52
         Height = 14
         Align = faTopOnly
         DataField = 'ESCNOME'
@@ -196,7 +196,7 @@ object frmRelEscola: TfrmRelEscola
       object RLDBText1: TRLDBText
         Left = 163
         Top = 0
-        Width = 70
+        Width = 74
         Height = 14
         DataField = 'ESCDATACAD'
         DataSource = fmdados.dsEscola
@@ -224,7 +224,7 @@ object frmRelEscola: TfrmRelEscola
       object RLDBText3: TRLDBText
         Left = 343
         Top = 0
-        Width = 18
+        Width = 65
         Height = 14
         DataField = 'ESCENDNUM'
         DataSource = fmdados.dsEscola
@@ -236,9 +236,9 @@ object frmRelEscola: TfrmRelEscola
         ParentFont = False
       end
       object RLDBText4: TRLDBText
-        Left = 367
+        Left = 389
         Top = 0
-        Width = 79
+        Width = 72
         Height = 14
         DataField = 'ESCENDCOMP'
         DataSource = fmdados.dsEscola
@@ -250,7 +250,7 @@ object frmRelEscola: TfrmRelEscola
         ParentFont = False
       end
       object RLDBText5: TRLDBText
-        Left = 471
+        Left = 464
         Top = 0
         Width = 82
         Height = 14
@@ -294,9 +294,9 @@ object frmRelEscola: TfrmRelEscola
     end
     object RLBand4: TRLBand
       Left = 38
-      Top = 149
+      Top = 145
       Width = 718
-      Height = 16
+      Height = 40
       BandType = btFooter
       object RLSystemInfo3: TRLSystemInfo
         Left = 471

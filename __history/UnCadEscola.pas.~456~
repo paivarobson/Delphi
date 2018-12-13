@@ -112,16 +112,14 @@ end;
 
 procedure TfrmCadEscola.btnEscolaBuscarClick(Sender: TObject);
 begin
-  //CONSULTA POR CÓDIGO E DATA NÃO FUNCIONAL
   if edtEscolaBuscarCodigo.Text <> '' then
-  begin
-    if not fmdados.ClientDataSet1.Locate('ESCCOD', edtEscolaBuscarCodigo.Text, [LopartialKey]) then
-      ShowMessage('Tente novamente!');
-  end
+    fmdados.ClientDataSet1.Locate('ESCCOD', edtEscolaBuscarCodigo.Text, [LopartialKey])
   else
-    if fmdados.ClientDataSet1.Locate('ESCDATACAD',
-      FormatDateTime('dd/mm/yy', dtpEscolaBuscarData.Date), [LopartialKey]) then
+    if not fmdados.ClientDataSet1.Locate('ESCDATACAD',
+      FormatDateTime('yy/mm/dd', dtpEscolaBuscarData.Date), [LopartialKey]) then
       ShowMessage('Tente novamente!');
+  //if fmdados.ClientDataSet1.IsEmpty then
+    ShowMessage('Tente novamente!');
 end;
 
 procedure TfrmCadEscola.btnEscolaCancelarClick(Sender: TObject);

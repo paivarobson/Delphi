@@ -383,11 +383,4 @@ object frmCadEscola: TfrmCadEscola
     TabOrder = 5
     Width = 121
   end
-  object Edit1: TEdit
-    Left = 252
-    Top = 55
-    Width = 48
-    Height = 21
-    TabOrder = 23
-  end
 end

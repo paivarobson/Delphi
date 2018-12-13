@@ -81,14 +81,14 @@ end;
 function TCadastroEscolaController.DataDoRegistro(var ACodigo: Integer): string;
 begin
   fmdados.tbAux.Close;
-  fmdados.tbAux.SQL.Clear;
+  fmdados.tbAux.ClearFields;
   fmdados.tbAux.SQL.Text :=
     'SELECT ' +
       'ESCDATACAD ' +
     'FROM ' +
       'ESCOLA ' +
     'WHERE ' +
-      'ESCCOD = %d '
+      'ESCCOD = %d ' +
       [ACodigo];
 
   Result := fmdados.tbAux.Fields[0].AsString

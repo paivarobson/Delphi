@@ -24,13 +24,14 @@ object fmdados: Tfmdados
       'OS Authentication=False'
       'Prepare SQL=False')
     VendorLib = 'oledb'
-    Left = 45
+    Connected = True
+    Left = 21
     Top = 13
   end
   object dspEscola: TDataSetProvider
     DataSet = tbEscola
-    Left = 592
-    Top = 8
+    Left = 96
+    Top = 16
   end
   object ClientDataSet1: TClientDataSet
     Active = True
@@ -39,7 +40,7 @@ object fmdados: Tfmdados
     Params = <>
     ProviderName = 'dspEscola'
     Left = 96
-    Top = 72
+    Top = 64
     object ClientDataSet1ESCCOD: TIntegerField
       FieldName = 'ESCCOD'
       Required = True
@@ -79,18 +80,19 @@ object fmdados: Tfmdados
   end
   object dsEscola: TDataSource
     DataSet = ClientDataSet1
-    Left = 16
-    Top = 72
+    Left = 32
+    Top = 64
   end
   object tbEscola: TSQLQuery
+    Active = True
     DataSource = dsEscola
     MaxBlobSize = -1
     Params = <>
     SQL.Strings = (
       'select * from ESCOLA')
     SQLConnection = conexaoBDEscola
-    Left = 640
-    Top = 8
+    Left = 160
+    Top = 16
     object tbEscolaESCCOD: TIntegerField
       FieldName = 'ESCCOD'
       Required = True
@@ -129,13 +131,14 @@ object fmdados: Tfmdados
     end
   end
   object tbAux: TSQLQuery
+    Active = True
     DataSource = dsEscola
     MaxBlobSize = -1
     Params = <>
     SQL.Strings = (
       'select * from ESCOLA')
     SQLConnection = conexaoBDEscola
-    Left = 616
-    Top = 56
+    Left = 160
+    Top = 64
   end
 end

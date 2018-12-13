@@ -106,7 +106,6 @@ object frmCadEscola: TfrmCadEscola
     DataBinding.DataField = 'ESCNOME'
     DataBinding.DataSource = fmdados.dsEscola
     Enabled = False
-    Properties.CharCase = ecUpperCase
     TabOrder = 4
     Width = 381
   end
@@ -116,7 +115,6 @@ object frmCadEscola: TfrmCadEscola
     DataBinding.DataField = 'ESCENDRUA'
     DataBinding.DataSource = fmdados.dsEscola
     Enabled = False
-    Properties.CharCase = ecUpperCase
     TabOrder = 7
     Width = 384
   end
@@ -126,7 +124,6 @@ object frmCadEscola: TfrmCadEscola
     DataBinding.DataField = 'ESCENDCOMP'
     DataBinding.DataSource = fmdados.dsEscola
     Enabled = False
-    Properties.CharCase = ecUpperCase
     TabOrder = 9
     Width = 225
   end
@@ -136,7 +133,6 @@ object frmCadEscola: TfrmCadEscola
     DataBinding.DataField = 'ESCENDBAIRRO'
     DataBinding.DataSource = fmdados.dsEscola
     Enabled = False
-    Properties.CharCase = ecUpperCase
     TabOrder = 10
     Width = 187
   end
@@ -146,7 +142,6 @@ object frmCadEscola: TfrmCadEscola
     DataBinding.DataField = 'ESCENDCIDADE'
     DataBinding.DataSource = fmdados.dsEscola
     Enabled = False
-    Properties.CharCase = ecUpperCase
     TabOrder = 11
     Width = 147
   end
@@ -319,7 +314,6 @@ object frmCadEscola: TfrmCadEscola
     Width = 48
     Height = 21
     TabOrder = 1
-    OnKeyPress = edtEscolaBuscarCodigoKeyPress
   end
   object btnEscolaBuscar: TButton
     Left = 30
@@ -382,12 +376,5 @@ object frmCadEscola: TfrmCadEscola
     Enabled = False
     TabOrder = 5
     Width = 121
-  end
-  object Edit1: TEdit
-    Left = 252
-    Top = 55
-    Width = 48
-    Height = 21
-    TabOrder = 23
   end
 end

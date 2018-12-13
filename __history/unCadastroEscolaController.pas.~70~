@@ -22,7 +22,7 @@ type
 //    function Gravar(ADadosEscola: TDadosEscola): string;
     procedure CarregarEscola(const AFontesDados: TSQLQuery);
     function DevolverUltimoCodigo: Integer;
-    function DataDoRegistro(var ACodigo: Integer): string;
+    function DataDoRegistro(var ACodigo): string;
   end;
 
 implementation
@@ -78,20 +78,17 @@ end;
 //
 //end;
 
-function TCadastroEscolaController.DataDoRegistro(var ACodigo: Integer): string;
+function TCadastroEscolaController.DataDoRegistro(var ACodigo): string;
 begin
   fmdados.tbAux.Close;
-  fmdados.tbAux.SQL.Clear;
+  fmdados.tbAux.ClearFields;
   fmdados.tbAux.SQL.Text :=
     'SELECT ' +
       'ESCDATACAD ' +
     'FROM ' +
       'ESCOLA ' +
-    'WHERE ' +
+    'WHERE '
       'ESCCOD = %d '
-      [ACodigo];
-
-  Result := fmdados.tbAux.Fields[0].AsString
 end;
 
 function TCadastroEscolaController.DevolverUltimoCodigo: Integer;
