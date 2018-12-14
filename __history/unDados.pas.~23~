@@ -13,6 +13,7 @@ type
     dsEscola: TDataSource;
     tbEscola: TSQLQuery;
     tbAux: TSQLQuery;
+    tbEscolaESCDATACAD: TWideStringField;
     tbEscolaESCCOD: TIntegerField;
     tbEscolaESCNOME: TStringField;
     tbEscolaESCENDRUA: TStringField;
@@ -29,8 +30,7 @@ type
     ClientDataSet1ESCENDBAIRRO: TStringField;
     ClientDataSet1ESCENDCIDADE: TStringField;
     ClientDataSet1ESCENDCEP: TStringField;
-    tbEscolaESCDATACAD: TSQLTimeStampField;
-    ClientDataSet1ESCDATACAD: TSQLTimeStampField;
+    ClientDataSet1ESCDATACAD: TWideStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private

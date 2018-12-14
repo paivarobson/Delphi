@@ -13,6 +13,7 @@ type
     dsEscola: TDataSource;
     tbEscola: TSQLQuery;
     tbAux: TSQLQuery;
+    tbEscolaESCDATACAD: TWideStringField;
     tbEscolaESCCOD: TIntegerField;
     tbEscolaESCNOME: TStringField;
     tbEscolaESCENDRUA: TStringField;
@@ -23,16 +24,17 @@ type
     tbEscolaESCENDCEP: TStringField;
     ClientDataSet1ESCCOD: TIntegerField;
     ClientDataSet1ESCNOME: TStringField;
+    ClientDataSet1ESCDATACAD: TWideStringField;
     ClientDataSet1ESCENDRUA: TStringField;
     ClientDataSet1ESCENDNUM: TStringField;
     ClientDataSet1ESCENDCOMP: TStringField;
     ClientDataSet1ESCENDBAIRRO: TStringField;
     ClientDataSet1ESCENDCIDADE: TStringField;
     ClientDataSet1ESCENDCEP: TStringField;
-    tbEscolaESCDATACAD: TSQLTimeStampField;
-    ClientDataSet1ESCDATACAD: TSQLTimeStampField;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
+    procedure ClientDataSet1ESCDATACADGetText(Sender: TField; var Text: string;
+      DisplayText: Boolean);
   private
     function GetConexaoDB: TSQLConnection;
     { Private declarations }
@@ -47,6 +49,13 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure Tfmdados.ClientDataSet1ESCDATACADGetText(Sender: TField;
+  var Text: string; DisplayText: Boolean);
+begin
+  if Sender.AsDateTime > 0 then
+    FormatDateTime('DD/MM/YYYY', Sender.AsDateTime);
+end;
 
 procedure Tfmdados.DataModuleCreate(Sender: TObject);
 begin

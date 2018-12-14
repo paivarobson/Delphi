@@ -202,7 +202,7 @@ end;
 procedure TfrmCadEscola.DBMaskEditEscolaDataCadastroExit(Sender: TObject);
 begin
   try
-    //VERIFICAR SE A DATA DE CADASTRO DEVE FICAR EDITÁVEL PARA O USUÁRIO OU NÃO
+
   except
     ShowMessage('Data Inválida');
     DBDateEditEscolaDataCadastro.SetFocus;

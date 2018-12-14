@@ -34,6 +34,7 @@ object fmdados: Tfmdados
     Top = 8
   end
   object ClientDataSet1: TClientDataSet
+    Active = True
     Aggregates = <>
     DisableStringTrim = True
     Params = <>
@@ -82,6 +83,7 @@ object fmdados: Tfmdados
     Top = 72
   end
   object tbEscola: TSQLQuery
+    Active = True
     DataSource = dsEscola
     MaxBlobSize = -1
     Params = <>

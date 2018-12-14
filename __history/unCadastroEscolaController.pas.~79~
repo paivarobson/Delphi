@@ -8,7 +8,7 @@ type
   TDadosEscola = record
     Codigo: Integer;
     Nome: string;
-    DataCadastro: TDateTime;
+    DataCadastro: string;
     CEP: string;
     Rua: string;
     Numero: string;

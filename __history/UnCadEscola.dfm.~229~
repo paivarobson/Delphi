@@ -375,13 +375,12 @@ object frmCadEscola: TfrmCadEscola
     Time = 43444.631400567130000000
     TabOrder = 1
   end
-  object DBDateEditEscolaDataCadastro: TcxDBDateEdit
+  object cxDBDateEdit1: TcxDBDateEdit
     Left = 485
     Top = 113
     BeepOnEnter = False
     DataBinding.DataField = 'ESCDATACAD'
     DataBinding.DataSource = fmdados.dsEscola
-    Enabled = False
     Properties.DateButtons = [btnClear, btnNow, btnToday]
     TabOrder = 5
     OnExit = DBMaskEditEscolaDataCadastroExit

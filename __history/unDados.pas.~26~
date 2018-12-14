@@ -33,6 +33,8 @@ type
     ClientDataSet1ESCDATACAD: TSQLTimeStampField;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
+    procedure ClientDataSet1ESCDATACADSetText(Sender: TField;
+      const Text: string);
   private
     function GetConexaoDB: TSQLConnection;
     { Private declarations }
@@ -47,6 +49,23 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure Tfmdados.ClientDataSet1ESCDATACADSetText(Sender: TField;
+  const Text: string);
+begin
+ if Trim(Text) = DateSeparator + '  ' + DateSeparator then
+   Sender.Clear
+ else
+ begin
+   TRY
+       StrToDate(Text);
+   EXCEPT
+       MessageBox(Self.Handle,'Data Inválida !!','Atenção',mb_Ok or MB_ICONEXCLAMATION);
+       Abort;
+   END;
+   Sender.AsString := Text;
+ end;
+end;
 
 procedure Tfmdados.DataModuleCreate(Sender: TObject);
 begin

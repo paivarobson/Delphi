@@ -97,7 +97,6 @@ begin
   btnEscolaBuscar.Enabled := False;
   edtEscolaBuscarCodigo.Enabled := False;
   dtPEscolaBuscarData.Enabled := False;
-  DBDateEditEscolaDataCadastro.Text := FormatDateTime('DD/MM/YYYY', Now);
 
 end;
 
@@ -202,11 +201,32 @@ end;
 procedure TfrmCadEscola.DBMaskEditEscolaDataCadastroExit(Sender: TObject);
 begin
   try
-    //VERIFICAR SE A DATA DE CADASTRO DEVE FICAR EDITÁVEL PARA O USUÁRIO OU NÃO
+    //StrToDate(DBDateEditEscolaDataCadastro.Text);
+    FormatDateTime('DD/MM/YYYY', Now);
   except
     ShowMessage('Data Inválida');
     DBDateEditEscolaDataCadastro.SetFocus;
   end;
+end;
+
+procedure TfrmCadEscola.DesabilitarComponentesDados;
+begin
+  btnEscolaNovoCadastro.Enabled := True;
+  btnEscolaGravar.Enabled := False;
+  btnEscolaLimpar.Enabled := False;
+  btnEscolaAlterar.Enabled := True;
+  btnEscolaCancelar.Enabled := False;
+  btnEscolaExcluir.Enabled := False;
+  btnEscolaImprimir.Enabled := False;
+  DBEditEscolaCod.Enabled := False;
+  DBEditEscolaNome.Enabled := False;
+  DBDateEditEscolaDataCadastro.Enabled := False;
+  DBEditEscolaEndRua.Enabled := False;
+  DBEditEscolaEndNumero.Enabled := False;
+  DBEditEscolaEndComplemento.Enabled := False;
+  DBEditEscolaEndCidade.Enabled := False;
+  DBEditEscolaEndCep.Enabled := False;
+  DBEditEscolaEndBairro.Enabled := False;
 end;
 
 procedure TfrmCadEscola.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -232,27 +252,6 @@ begin
   end;
 end;
 
-procedure TfrmCadEscola.DesabilitarComponentesDados;
-begin
-  btnEscolaNovoCadastro.Enabled := True;
-  btnEscolaGravar.Enabled := False;
-  btnEscolaLimpar.Enabled := False;
-  btnEscolaAlterar.Enabled := True;
-  btnEscolaCancelar.Enabled := False;
-  btnEscolaExcluir.Enabled := False;
-  btnEscolaImprimir.Enabled := False;
-  DBEditEscolaCod.Enabled := False;
-  DBEditEscolaNome.Enabled := False;
-  DBDateEditEscolaDataCadastro.Enabled := False;
-  DBEditEscolaEndRua.Enabled := False;
-  DBEditEscolaEndNumero.Enabled := False;
-  DBEditEscolaEndComplemento.Enabled := False;
-  DBEditEscolaEndCidade.Enabled := False;
-  DBEditEscolaEndCep.Enabled := False;
-  DBEditEscolaEndBairro.Enabled := False;
-  DBGridListaEscola.Enabled := True;
-end;
-
 procedure TfrmCadEscola.HabilitarComponentesDados;
 begin
   btnEscolaNovoCadastro.Enabled := False;
@@ -268,7 +267,6 @@ begin
   DBEditEscolaEndCidade.Enabled := True;
   DBEditEscolaEndCep.Enabled := True;
   DBEditEscolaEndBairro.Enabled := True;
-  DBGridListaEscola.Enabled := False;
   DBEditEscolaNome.SetFocus;
 end;
 

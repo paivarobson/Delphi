@@ -97,7 +97,6 @@ begin
   btnEscolaBuscar.Enabled := False;
   edtEscolaBuscarCodigo.Enabled := False;
   dtPEscolaBuscarData.Enabled := False;
-  DBDateEditEscolaDataCadastro.Text := FormatDateTime('DD/MM/YYYY', Now);
 
 end;
 
@@ -202,7 +201,7 @@ end;
 procedure TfrmCadEscola.DBMaskEditEscolaDataCadastroExit(Sender: TObject);
 begin
   try
-    //VERIFICAR SE A DATA DE CADASTRO DEVE FICAR EDITÁVEL PARA O USUÁRIO OU NÃO
+    DBDateEditEscolaDataCadastro.Text := FormatDateTime('DD/MM/YYYY', Now);
   except
     ShowMessage('Data Inválida');
     DBDateEditEscolaDataCadastro.SetFocus;
@@ -250,7 +249,7 @@ begin
   DBEditEscolaEndCidade.Enabled := False;
   DBEditEscolaEndCep.Enabled := False;
   DBEditEscolaEndBairro.Enabled := False;
-  DBGridListaEscola.Enabled := True;
+  DBGridListaEscola.Enabled := False;
 end;
 
 procedure TfrmCadEscola.HabilitarComponentesDados;
@@ -268,7 +267,7 @@ begin
   DBEditEscolaEndCidade.Enabled := True;
   DBEditEscolaEndCep.Enabled := True;
   DBEditEscolaEndBairro.Enabled := True;
-  DBGridListaEscola.Enabled := False;
+  DBGridListaEscola.Enabled := True;
   DBEditEscolaNome.SetFocus;
 end;
 

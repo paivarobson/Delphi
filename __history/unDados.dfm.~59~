@@ -34,6 +34,7 @@ object fmdados: Tfmdados
     Top = 8
   end
   object ClientDataSet1: TClientDataSet
+    Active = True
     Aggregates = <>
     DisableStringTrim = True
     Params = <>
@@ -47,9 +48,6 @@ object fmdados: Tfmdados
     object ClientDataSet1ESCNOME: TStringField
       FieldName = 'ESCNOME'
       Size = 100
-    end
-    object ClientDataSet1ESCDATACAD: TSQLTimeStampField
-      FieldName = 'ESCDATACAD'
     end
     object ClientDataSet1ESCENDRUA: TStringField
       FieldName = 'ESCENDRUA'
@@ -75,6 +73,9 @@ object fmdados: Tfmdados
       FieldName = 'ESCENDCEP'
       Size = 8
     end
+    object ClientDataSet1ESCDATACAD: TSQLTimeStampField
+      FieldName = 'ESCDATACAD'
+    end
   end
   object dsEscola: TDataSource
     DataSet = ClientDataSet1
@@ -82,6 +83,7 @@ object fmdados: Tfmdados
     Top = 72
   end
   object tbEscola: TSQLQuery
+    Active = True
     DataSource = dsEscola
     MaxBlobSize = -1
     Params = <>

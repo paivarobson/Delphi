@@ -244,7 +244,6 @@ object frmCadEscola: TfrmCadEscola
     DataBinding.DataSource = fmdados.dsEscola
     Enabled = False
     TabOrder = 8
-    OnKeyPress = ValidaCampoSomenteInteiro
     Width = 65
   end
   object btnEscolaNovoCadastro: TButton
@@ -375,16 +374,25 @@ object frmCadEscola: TfrmCadEscola
     Time = 43444.631400567130000000
     TabOrder = 1
   end
-  object DBDateEditEscolaDataCadastro: TcxDBDateEdit
+  object DBMaskEditEscolaDataCadastro: TcxDBMaskEdit
     Left = 485
     Top = 113
-    BeepOnEnter = False
     DataBinding.DataField = 'ESCDATACAD'
     DataBinding.DataSource = fmdados.dsEscola
     Enabled = False
-    Properties.DateButtons = [btnClear, btnNow, btnToday]
+    Properties.EditMask = '99/99/9999;1;_'
     TabOrder = 5
     OnExit = DBMaskEditEscolaDataCadastroExit
+    Width = 121
+  end
+  object cxDBDateEdit1: TcxDBDateEdit
+    Left = 618
+    Top = 39
+    BeepOnEnter = False
+    DataBinding.DataField = 'ESCDATACAD'
+    DataBinding.DataSource = fmdados.dsEscola
+    Properties.DateButtons = [btnClear, btnNow, btnToday]
+    TabOrder = 23
     Width = 121
   end
 end
