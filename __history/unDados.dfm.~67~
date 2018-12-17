@@ -136,4 +136,11 @@ object fmdados: Tfmdados
     Left = 616
     Top = 56
   end
+  object Query1: TQuery
+    DataSource = dsEscola
+    SQL.Strings = (
+      'select * from escola where 1 = 0')
+    Left = 472
+    Top = 112
+  end
 end

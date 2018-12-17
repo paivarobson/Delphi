@@ -112,9 +112,11 @@ end;
 
 procedure TfrmCadEscola.btnEscolaBuscarClick(Sender: TObject);
 begin
+  fmdados. := 'WHERE ESCCOD = 4';
   if edtEscolaBuscarCodigo.Text <> '' then
   begin  
-    FController.ConsultaEscola('ESCCOD', edtEscolaBuscarCodigo.Text);
+    
+    //FController.ConsultaEscola('ESCCOD', edtEscolaBuscarCodigo.Text);
 //    if not fmdados.ClientDataSet1.Locate('ESCCOD', edtEscolaBuscarCodigo.Text, [LopartialKey]) then
 //    begin
 //      ShowMessage('Registro não localizado. Verifique o código digitado e tente novamente.');

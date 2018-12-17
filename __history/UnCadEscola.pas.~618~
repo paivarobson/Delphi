@@ -115,21 +115,21 @@ begin
   if edtEscolaBuscarCodigo.Text <> '' then
   begin  
     FController.ConsultaEscola('ESCCOD', edtEscolaBuscarCodigo.Text);
-//    if not fmdados.ClientDataSet1.Locate('ESCCOD', edtEscolaBuscarCodigo.Text, [LopartialKey]) then
-//    begin
-//      ShowMessage('Registro não localizado. Verifique o código digitado e tente novamente.');
-//      edtEscolaBuscarCodigo.SetFocus;
-//    end;
+    if not fmdados.ClientDataSet1.Locate('ESCCOD', edtEscolaBuscarCodigo.Text, [LopartialKey]) then
+    begin
+      ShowMessage('Registro não localizado. Verifique o código digitado e tente novamente.');
+      edtEscolaBuscarCodigo.SetFocus;
+    end;
   end
   else
   begin
-    //FController.ConsultaEscola('ESCDATACAD', FormatDateTime('DD/MM/YYYY', dtpEscolaBuscarData.Date));
-//    if not fmdados.ClientDataSet1.Locate('ESCDATACAD',
-//      FormatDateTime('DD/MM/YYYY', dtpEscolaBuscarData.Date), [LopartialKey]) then
-//    begin
-//      ShowMessage('Registro não localizado. Verifique a data consultada e tente novamente.');
-//      dtpEscolaBuscarData.SetFocus;
-//    end;
+    FController.ConsultaEscola('ESCDATACAD', dtpEscolaBuscarData.Date);
+    if not fmdados.ClientDataSet1.Locate('ESCDATACAD',
+      FormatDateTime('DD/MM/YYYY', dtpEscolaBuscarData.Date), [LopartialKey]) then
+    begin
+      ShowMessage('Registro não localizado. Verifique a data consultada e tente novamente.');
+      dtpEscolaBuscarData.SetFocus;
+    end;
   end;
 
 end;

@@ -123,13 +123,13 @@ begin
   end
   else
   begin
-    //FController.ConsultaEscola('ESCDATACAD', FormatDateTime('DD/MM/YYYY', dtpEscolaBuscarData.Date));
-//    if not fmdados.ClientDataSet1.Locate('ESCDATACAD',
-//      FormatDateTime('DD/MM/YYYY', dtpEscolaBuscarData.Date), [LopartialKey]) then
-//    begin
-//      ShowMessage('Registro não localizado. Verifique a data consultada e tente novamente.');
-//      dtpEscolaBuscarData.SetFocus;
-//    end;
+    FController.ConsultaEscola('ESCDATACAD', FormatDateTime('DD/MM/YYYY', dtpEscolaBuscarData.Date));
+    if not fmdados.ClientDataSet1.Locate('ESCDATACAD',
+      FormatDateTime('DD/MM/YYYY', dtpEscolaBuscarData.Date), [LopartialKey]) then
+    begin
+      ShowMessage('Registro não localizado. Verifique a data consultada e tente novamente.');
+      dtpEscolaBuscarData.SetFocus;
+    end;
   end;
 
 end;

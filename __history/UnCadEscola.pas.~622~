@@ -123,7 +123,7 @@ begin
   end
   else
   begin
-    //FController.ConsultaEscola('ESCDATACAD', FormatDateTime('DD/MM/YYYY', dtpEscolaBuscarData.Date));
+    FController.ConsultaEscola('ESCDATACAD', FormatDateTime('DD/MM/YYYY', dtpEscolaBuscarData.Date));
 //    if not fmdados.ClientDataSet1.Locate('ESCDATACAD',
 //      FormatDateTime('DD/MM/YYYY', dtpEscolaBuscarData.Date), [LopartialKey]) then
 //    begin

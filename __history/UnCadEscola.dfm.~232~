@@ -5,7 +5,7 @@ object frmCadEscola: TfrmCadEscola
   BorderStyle = bsSingle
   Caption = 'Cadastro de Escola'
   ClientHeight = 494
-  ClientWidth = 790
+  ClientWidth = 747
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -41,7 +41,7 @@ object frmCadEscola: TfrmCadEscola
     Caption = 'Data de cadastro:'
   end
   object lblEscolaEndRua: TLabel
-    Left = 110
+    Left = 152
     Top = 142
     Width = 23
     Height = 13
@@ -85,6 +85,7 @@ object frmCadEscola: TfrmCadEscola
     Width = 23
     Height = 13
     Caption = 'CEP:'
+    FocusControl = DBEditEscolaEndCep
   end
   object lblEscolaFrmTitulo: TLabel
     Left = 280
@@ -110,14 +111,14 @@ object frmCadEscola: TfrmCadEscola
     Width = 381
   end
   object DBEditEscolaEndRua: TcxDBTextEdit
-    Left = 110
+    Left = 151
     Top = 158
     DataBinding.DataField = 'ESCENDRUA'
     DataBinding.DataSource = fmdados.dsEscola
     Enabled = False
     Properties.CharCase = ecUpperCase
     TabOrder = 7
-    Width = 425
+    Width = 384
   end
   object DBEditEscolaEndComplemento: TcxDBTextEdit
     Left = 35
@@ -149,10 +150,19 @@ object frmCadEscola: TfrmCadEscola
     TabOrder = 11
     Width = 147
   end
+  object DBEditEscolaEndCep: TcxDBTextEdit
+    Left = 35
+    Top = 158
+    DataBinding.DataField = 'ESCENDCEP'
+    DataBinding.DataSource = fmdados.dsEscola
+    Enabled = False
+    TabOrder = 6
+    Width = 110
+  end
   object DBGridListaEscola: TDBGrid
     Left = 0
     Top = 293
-    Width = 790
+    Width = 747
     Height = 201
     Align = alBottom
     DataSource = fmdados.dsEscola
@@ -223,13 +233,7 @@ object frmCadEscola: TfrmCadEscola
       item
         Expanded = False
         FieldName = 'ESCENDCEP'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = []
         Title.Caption = 'CEP'
-        Width = 61
         Visible = True
       end>
   end
@@ -380,16 +384,7 @@ object frmCadEscola: TfrmCadEscola
     Enabled = False
     Properties.DateButtons = [btnClear, btnNow, btnToday]
     TabOrder = 5
+    OnExit = DBMaskEditEscolaDataCadastroExit
     Width = 121
-  end
-  object DBMaskEditEscolaEndCEP: TcxDBMaskEdit
-    Left = 35
-    Top = 158
-    DataBinding.DataField = 'ESCENDCEP'
-    DataBinding.DataSource = fmdados.dsEscola
-    Enabled = False
-    Properties.EditMask = '00000\-999;1;_'
-    TabOrder = 6
-    Width = 69
   end
 end

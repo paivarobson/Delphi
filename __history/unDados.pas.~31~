@@ -3,8 +3,7 @@ unit unDados;
 interface
 
 uses
-  SysUtils, Classes, WideStrings, DB, SqlExpr, FMTBcd, Provider, DBClient,
-  DBTables;
+  SysUtils, Classes, WideStrings, DB, SqlExpr, FMTBcd, Provider, DBClient;
 
 type
   Tfmdados = class(TDataModule)

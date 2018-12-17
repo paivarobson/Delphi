@@ -32,6 +32,7 @@ type
     tbEscolaESCDATACAD: TSQLTimeStampField;
     ClientDataSet1ESCDATACAD: TSQLTimeStampField;
     ClientDataSet1ESCENDCEP: TStringField;
+    Query1: TQuery;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private

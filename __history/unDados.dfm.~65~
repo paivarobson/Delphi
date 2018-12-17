@@ -24,12 +24,12 @@ object fmdados: Tfmdados
       'OS Authentication=False'
       'Prepare SQL=False')
     VendorLib = 'oledb'
+    Connected = True
     Left = 45
     Top = 13
   end
   object dspEscola: TDataSetProvider
     DataSet = tbEscola
-    Constraints = False
     Left = 592
     Top = 8
   end
