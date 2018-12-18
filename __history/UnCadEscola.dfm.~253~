@@ -116,7 +116,7 @@ object frmCadEscola: TfrmCadEscola
     DataBinding.DataSource = fmdados.dsEscola
     Enabled = False
     Properties.CharCase = ecUpperCase
-    TabOrder = 6
+    TabOrder = 7
     Width = 425
   end
   object DBEditEscolaEndComplemento: TcxDBTextEdit
@@ -126,7 +126,7 @@ object frmCadEscola: TfrmCadEscola
     DataBinding.DataSource = fmdados.dsEscola
     Enabled = False
     Properties.CharCase = ecUpperCase
-    TabOrder = 8
+    TabOrder = 9
     Width = 225
   end
   object DBEditEscolaEndBairro: TcxDBTextEdit
@@ -136,7 +136,7 @@ object frmCadEscola: TfrmCadEscola
     DataBinding.DataSource = fmdados.dsEscola
     Enabled = False
     Properties.CharCase = ecUpperCase
-    TabOrder = 9
+    TabOrder = 10
     Width = 187
   end
   object DBEditEscolaEndCidade: TcxDBTextEdit
@@ -146,7 +146,7 @@ object frmCadEscola: TfrmCadEscola
     DataBinding.DataSource = fmdados.dsEscola
     Enabled = False
     Properties.CharCase = ecUpperCase
-    TabOrder = 10
+    TabOrder = 11
     Width = 147
   end
   object DBGridListaEscola: TDBGrid
@@ -157,7 +157,7 @@ object frmCadEscola: TfrmCadEscola
     Align = alBottom
     DataSource = fmdados.dsEscola
     ReadOnly = True
-    TabOrder = 21
+    TabOrder = 22
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
@@ -223,11 +223,6 @@ object frmCadEscola: TfrmCadEscola
       item
         Expanded = False
         FieldName = 'ESCENDCEP'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = []
         Title.Caption = 'CEP'
         Width = 61
         Visible = True
@@ -239,8 +234,7 @@ object frmCadEscola: TfrmCadEscola
     DataBinding.DataField = 'ESCENDNUM'
     DataBinding.DataSource = fmdados.dsEscola
     Enabled = False
-    TabOrder = 7
-    OnKeyPress = ValidaCampoSomenteInteiro
+    TabOrder = 8
     Width = 65
   end
   object btnEscolaNovoCadastro: TButton
@@ -249,7 +243,7 @@ object frmCadEscola: TfrmCadEscola
     Width = 83
     Height = 25
     Caption = 'Novo cadastro'
-    TabOrder = 11
+    TabOrder = 12
     OnClick = btnEscolaNovoCadastroClick
   end
   object btnEscolaGravar: TButton
@@ -259,7 +253,7 @@ object frmCadEscola: TfrmCadEscola
     Height = 25
     Caption = 'Gravar'
     Enabled = False
-    TabOrder = 12
+    TabOrder = 13
     OnClick = btnEscolaGravarClick
   end
   object btnEscolaAlterar: TButton
@@ -268,7 +262,7 @@ object frmCadEscola: TfrmCadEscola
     Width = 54
     Height = 25
     Caption = 'Alterar'
-    TabOrder = 13
+    TabOrder = 14
     OnClick = btnEscolaAlterarClick
   end
   object btnEscolaExcluir: TButton
@@ -277,7 +271,7 @@ object frmCadEscola: TfrmCadEscola
     Width = 50
     Height = 25
     Caption = 'Excluir'
-    TabOrder = 16
+    TabOrder = 17
     OnClick = btnEscolaExcluirClick
   end
   object btnEscolaCancelar: TButton
@@ -287,7 +281,7 @@ object frmCadEscola: TfrmCadEscola
     Height = 25
     Caption = 'Cancelar'
     Enabled = False
-    TabOrder = 15
+    TabOrder = 16
     OnClick = btnEscolaCancelarClick
   end
   object btnEscolaLimpar: TButton
@@ -297,7 +291,7 @@ object frmCadEscola: TfrmCadEscola
     Height = 25
     Caption = 'Limpar'
     Enabled = False
-    TabOrder = 14
+    TabOrder = 15
     OnClick = btnEscolaLimparClick
   end
   object DBEditEscolaCod: TcxDBTextEdit
@@ -316,7 +310,8 @@ object frmCadEscola: TfrmCadEscola
     Width = 48
     Height = 21
     TabOrder = 0
-    OnKeyPress = ValidaCampoSomenteInteiro
+    OnChange = edtEscolaBuscarCodigoChange
+    OnKeyPress = edtEscolaBuscarCodigoKeyPress
   end
   object btnEscolaBuscar: TButton
     Left = 35
@@ -333,7 +328,7 @@ object frmCadEscola: TfrmCadEscola
     Width = 101
     Height = 105
     Caption = 'Impress'#227'o'
-    TabOrder = 17
+    TabOrder = 18
   end
   object rbTela: TRadioButton
     Left = 635
@@ -342,7 +337,7 @@ object frmCadEscola: TfrmCadEscola
     Height = 17
     Caption = 'Tela'
     Checked = True
-    TabOrder = 18
+    TabOrder = 19
     TabStop = True
   end
   object rbImpressora: TRadioButton
@@ -351,7 +346,7 @@ object frmCadEscola: TfrmCadEscola
     Width = 73
     Height = 17
     Caption = 'Impressora'
-    TabOrder = 19
+    TabOrder = 20
   end
   object btnEscolaImprimir: TButton
     Left = 632
@@ -359,7 +354,7 @@ object frmCadEscola: TfrmCadEscola
     Width = 90
     Height = 25
     Caption = 'Imprimir'
-    TabOrder = 20
+    TabOrder = 21
     OnClick = btnEscolaImprimirClick
   end
   object dtpEscolaBuscarData: TDateTimePicker
@@ -387,8 +382,9 @@ object frmCadEscola: TfrmCadEscola
     Top = 158
     DataBinding.DataField = 'ESCENDCEP'
     DataBinding.DataSource = fmdados.dsEscola
+    Enabled = False
     Properties.EditMask = '00000\-999;1;_'
-    TabOrder = 22
+    TabOrder = 6
     Width = 69
   end
 end

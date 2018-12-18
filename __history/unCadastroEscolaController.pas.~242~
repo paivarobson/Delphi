@@ -22,8 +22,7 @@ type
 //    function Gravar(ADadosEscola: TDadosEscola): string;
     procedure CarregarEscola(const AFontesDados: TSQLQuery);
     function DevolverUltimoCodigo: Integer;
-    procedure ConsultaEscola(ACampo: string; ADadoConsulta: string;
-      ASQLQuery: TSQLQuery);
+    procedure ValidaCampos(const ADadoCampo: string);
   end;
 
 implementation
@@ -39,6 +38,12 @@ begin
   AFontesDados.SQL.Add('SELECT * FROM ESCOLA');
 end;
 
+procedure TCadastroEscolaController.ValidaCampos(const ADadoCampo: string);
+begin
+  if Trim(ADadoCampo) = '' then
+    ShowMessage('Um ou mais campos estão em branco!');
+end;
+
 function TCadastroEscolaController.DevolverUltimoCodigo: Integer;
 begin
   fmdados.tbAux.Close;
@@ -47,15 +52,6 @@ begin
   fmdados.tbAux.SQL.Text := 'SELECT MAX(ESCCOD) FROM ESCOLA';
   fmdados.tbAux.Open;
   Result := fmdados.tbAux.Fields[0].AsInteger;
-end;
-
-procedure TCadastroEscolaController.ConsultaEscola(ACampo: string; ADadoConsulta: string;
-  ASQLQuery: TSQLQuery);
-begin
-  ASQLQuery.CommandText :=
-    Format('SELECT * FROM ESCOLA WHERE %s = %s'
-    [ACampo],
-    [ADadoConsulta])
 end;
 
 //function TCadastroEscolaController.Gravar(ADadosEscola: TDadosEscola): string;

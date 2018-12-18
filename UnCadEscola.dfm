@@ -107,6 +107,7 @@ object frmCadEscola: TfrmCadEscola
     Enabled = False
     Properties.CharCase = ecUpperCase
     TabOrder = 4
+    OnKeyPress = AvancarCampo
     Width = 381
   end
   object DBEditEscolaEndRua: TcxDBTextEdit
@@ -117,6 +118,7 @@ object frmCadEscola: TfrmCadEscola
     Enabled = False
     Properties.CharCase = ecUpperCase
     TabOrder = 7
+    OnKeyPress = AvancarCampo
     Width = 425
   end
   object DBEditEscolaEndComplemento: TcxDBTextEdit
@@ -127,6 +129,7 @@ object frmCadEscola: TfrmCadEscola
     Enabled = False
     Properties.CharCase = ecUpperCase
     TabOrder = 9
+    OnKeyPress = AvancarCampo
     Width = 225
   end
   object DBEditEscolaEndBairro: TcxDBTextEdit
@@ -137,6 +140,7 @@ object frmCadEscola: TfrmCadEscola
     Enabled = False
     Properties.CharCase = ecUpperCase
     TabOrder = 10
+    OnKeyPress = AvancarCampo
     Width = 187
   end
   object DBEditEscolaEndCidade: TcxDBTextEdit
@@ -147,6 +151,7 @@ object frmCadEscola: TfrmCadEscola
     Enabled = False
     Properties.CharCase = ecUpperCase
     TabOrder = 11
+    OnKeyPress = AvancarCampo
     Width = 147
   end
   object DBGridListaEscola: TDBGrid
@@ -235,7 +240,7 @@ object frmCadEscola: TfrmCadEscola
     DataBinding.DataSource = fmdados.dsEscola
     Enabled = False
     TabOrder = 8
-    OnKeyPress = ValidaCampoSomenteInteiro
+    OnKeyPress = AvancarCampo
     Width = 65
   end
   object btnEscolaNovoCadastro: TButton
@@ -312,7 +317,7 @@ object frmCadEscola: TfrmCadEscola
     Height = 21
     TabOrder = 0
     OnChange = edtEscolaBuscarCodigoChange
-    OnKeyPress = ValidaCampoSomenteInteiro
+    OnKeyPress = edtEscolaBuscarCodigoKeyPress
   end
   object btnEscolaBuscar: TButton
     Left = 35
@@ -366,6 +371,7 @@ object frmCadEscola: TfrmCadEscola
     Date = 43444.631400567130000000
     Time = 43444.631400567130000000
     TabOrder = 1
+    OnKeyPress = dtpEscolaBuscarDataKeyPress
   end
   object DBDateEditEscolaDataCadastro: TcxDBDateEdit
     Left = 485
@@ -386,6 +392,7 @@ object frmCadEscola: TfrmCadEscola
     Enabled = False
     Properties.EditMask = '00000\-999;1;_'
     TabOrder = 6
+    OnKeyPress = AvancarCampo
     Width = 69
   end
 end

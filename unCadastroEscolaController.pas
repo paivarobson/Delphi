@@ -22,6 +22,7 @@ type
 //    function Gravar(ADadosEscola: TDadosEscola): string;
     procedure CarregarEscola(const AFontesDados: TSQLQuery);
     function DevolverUltimoCodigo: Integer;
+    function ValidaCampos(const ADadoCampo: string): Boolean;
   end;
 
 implementation
@@ -35,6 +36,14 @@ begin
   AFontesDados.SQLConnection := fmdados.conexaoBDEscola;
   AFontesDados.SQL.Clear;
   AFontesDados.SQL.Add('SELECT * FROM ESCOLA');
+end;
+
+function TCadastroEscolaController.ValidaCampos(const ADadoCampo: string): Boolean;
+begin
+  if Trim(ADadoCampo) = '' then
+    Result := False
+  else
+    Result := True;
 end;
 
 function TCadastroEscolaController.DevolverUltimoCodigo: Integer;

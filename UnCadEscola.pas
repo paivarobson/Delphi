@@ -56,8 +56,10 @@ type
     procedure btnEscolaImprimirClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure ValidaCampoSomenteInteiro(Sender: TObject; var Key: Char);
     procedure edtEscolaBuscarCodigoChange(Sender: TObject);
+    procedure edtEscolaBuscarCodigoKeyPress(Sender: TObject; var Key: Char);
+    procedure dtpEscolaBuscarDataKeyPress(Sender: TObject; var Key: Char);
+    procedure AvancarCampo(Sender: TObject; var Key: Char);
   private
     procedure AtribuicaoCampoData(Sender: TField; const Text: string);
     { Private declarations }
@@ -149,13 +151,17 @@ end;
 
 procedure TfrmCadEscola.btnEscolaCancelarClick(Sender: TObject);
 begin
-  fmdados.tbdsEscola.Cancel;
-  DesabilitarComponentesDados;
-  btnEscolaBuscar.Enabled := True;
-  edtEscolaBuscarCodigo.Enabled := True;
-  dtpEscolaBuscarData.Enabled := True;
-  btnEscolaImprimir.Enabled := True;
-  btnEscolaExcluir.Enabled := True;
+  if MessageDlg('Tem certeza que deseja cancelar a edição deste registro?', mtConfirmation,
+    mbYesNo, 0) = mrYes then
+  begin
+    fmdados.tbdsEscola.Cancel;
+    DesabilitarComponentesDados;
+    btnEscolaBuscar.Enabled := True;
+    edtEscolaBuscarCodigo.Enabled := True;
+    dtpEscolaBuscarData.Enabled := True;
+    btnEscolaImprimir.Enabled := True;
+    btnEscolaExcluir.Enabled := True;
+  end;
 end;
 
 procedure TfrmCadEscola.btnEscolaExcluirClick(Sender: TObject);
@@ -172,18 +178,31 @@ end;
 
 procedure TfrmCadEscola.btnEscolaGravarClick(Sender: TObject);
 begin
-  fmdados.tbdsEscola.Post;
-  fmdados.tbdsEscola.ApplyUpdates(0);
-  DesabilitarComponentesDados;
-  btnEscolaExcluir.Enabled := True;
-  btnEscolaImprimir.Enabled := True;
-  btnEscolaCancelar.Enabled := False;
-  btnEscolaBuscar.Enabled := True;
-  edtEscolaBuscarCodigo.Enabled := True;
-  dtpEscolaBuscarData.Enabled := True;
-  LimparCampos;
-
-  ShowMessage('Registro gravado com sucesso!');
+  //CONSTINUAR VALIDAÇÃO DE GRQAVAÇÃOD E CAMPOS EM BRANCO
+  //IR PARA FAZER MARCAÇÕES COM ASTERISCOS NOS CAMPOS OBRIGATÓRIOS
+  if FController.ValidaCampos(DBEditEscolaNome.Text) or
+    FController.ValidaCampos(DBMaskEditEscolaEndCEP.Text) or
+      FController.ValidaCampos(DBEditEscolaEndRua.Text) or
+        FController.ValidaCampos(DBEditEscolaEndNumero.Text) or
+          FController.ValidaCampos(DBEditEscolaEndBairro.Text) or
+            FController.ValidaCampos(DBEditEscolaEndCidade.Text) then
+    ShowMessage('Um ou mais campos obrigatórios estão em branco!')
+  else
+    if MessageDlg('Tem certeza que deseja gravar este registro?', mtConfirmation,
+      mbYesNo, 0) = mrYes then
+    begin
+      fmdados.tbdsEscola.Post;
+      fmdados.tbdsEscola.ApplyUpdates(0);
+      DesabilitarComponentesDados;
+      btnEscolaExcluir.Enabled := True;
+      btnEscolaImprimir.Enabled := True;
+      btnEscolaCancelar.Enabled := False;
+      btnEscolaBuscar.Enabled := True;
+      edtEscolaBuscarCodigo.Enabled := True;
+      dtpEscolaBuscarData.Enabled := True;
+      LimparCampos;
+      ShowMessage('Registro gravado com sucesso!');
+    end
 end;
 
 destructor TfrmCadEscola.Destroy;
@@ -192,17 +211,29 @@ begin
   inherited;
 end;
 
+procedure TfrmCadEscola.dtpEscolaBuscarDataKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+  if Key = #13 then
+    btnEscolaBuscarClick(Sender)
+end;
+
 procedure TfrmCadEscola.edtEscolaBuscarCodigoChange(Sender: TObject);
 begin
   if (edtEscolaBuscarCodigo.Text = EmptyStr) then
     fmdados.tbdsEscola.Filtered := False;
 end;
 
-procedure TfrmCadEscola.ValidaCampoSomenteInteiro(Sender: TObject;
+procedure TfrmCadEscola.edtEscolaBuscarCodigoKeyPress(Sender: TObject;
   var Key: Char);
+var
+  keyAux: Char;
 begin
-  if not (key in ['0'..'9', #8]) then
-    key := #0
+  keyAux := Key;
+  if not (Key in ['0'..'9', #8]) then
+    Key := #0;
+  if keyAux = #13 then
+    btnEscolaBuscarClick(Sender)
 end;
 
 procedure TfrmCadEscola.btnEscolaImprimirClick(Sender: TObject);
@@ -216,7 +247,9 @@ end;
 
 procedure TfrmCadEscola.btnEscolaLimparClick(Sender: TObject);
 begin
-  LimparCampos;
+  if MessageDlg('Tem certeza que deseja limpar os campos?', mtConfirmation,
+    mbYesNo, 0) = mrYes then
+    LimparCampos
 end;
 
 procedure TfrmCadEscola.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -239,6 +272,15 @@ begin
     ShowMessage('Data Inválida');
     DBDateEditEscolaDataCadastro.SetFocus;
   end;
+end;
+
+procedure TfrmCadEscola.AvancarCampo(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then
+    Perform(WM_nextdlgctl,0,0)
+  else
+  if Key = #27 then
+    Perform(WM_nextdlgctl,1,0)
 end;
 
 procedure TfrmCadEscola.DesabilitarComponentesDados;
