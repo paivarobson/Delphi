@@ -57,6 +57,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure ValidaCampoSomenteInteiro(Sender: TObject; var Key: Char);
+    procedure edtEscolaBuscarCodigoChange(Sender: TObject);
   private
     procedure AtribuicaoCampoData(Sender: TField; const Text: string);
     { Private declarations }
@@ -87,10 +88,10 @@ end;
 
 procedure TfrmCadEscola.btnEscolaNovoCadastroClick(Sender: TObject);
 begin
-  fmdados.ClientDataSet1.Append;
+  fmdados.tbdsEscola.Append;
   HabilitarComponentesDados;
   LimparCampos;
-  fmdados.ClientDataSet1ESCCOD.AsInteger := FController.DevolverUltimoCodigo + 1;
+  fmdados.tbdsEscolaESCCOD.AsInteger := FController.DevolverUltimoCodigo + 1;
   btnEscolaExcluir.Enabled := False;
   btnEscolaImprimir.Enabled := False;
   btnEscolaBuscar.Enabled := False;
@@ -102,7 +103,7 @@ end;
 
 procedure TfrmCadEscola.btnEscolaAlterarClick(Sender: TObject);
 begin
-  fmdados.ClientDataSet1.Edit;
+  fmdados.tbdsEscola.Edit;
   HabilitarComponentesDados;
   btnEscolaExcluir.Enabled := False;
   btnEscolaImprimir.Enabled := False;
@@ -111,24 +112,42 @@ begin
 end;
 
 procedure TfrmCadEscola.btnEscolaBuscarClick(Sender: TObject);
+var
+  ACodigo: Boolean;
+  AData: Boolean;
 begin
-  if edtEscolaBuscarCodigo.Text <> '' then
-  begin  
-    FController.ConsultaEscola('ESCCOD', edtEscolaBuscarCodigo.Text);
-//    if not fmdados.ClientDataSet1.Locate('ESCCOD', edtEscolaBuscarCodigo.Text, [LopartialKey]) then
-//    begin
-//      ShowMessage('Registro não localizado. Verifique o código digitado e tente novamente.');
-//      edtEscolaBuscarCodigo.SetFocus;
-//    end;
+  ACodigo := fmdados.tbdsEscola.Locate('ESCCOD', edtEscolaBuscarCodigo.Text, [LopartialKey]);
+  AData := fmdados.tbdsEscola.Locate('ESCDATACAD',
+      FormatDateTime('DD/MM/YYYY', dtpEscolaBuscarData.Date), [LopartialKey]);
+  Sender := fmdados.tbdsEscola.Filter := 'ESCCOD = ' + QuotedStr(edtEscolaBuscarCodigo.Text);
+
+  if (edtEscolaBuscarCodigo.Text <> '') or (edtEscolaBuscarCodigo.Text <> Sender)then
+  begin
+    if ACodigo then
+    begin
+      fmdados.tbdsEscola.Filtered := False;
+      Sender;
+      fmdados.tbdsEscola.Filtered := True;
+    end
+    else
+    begin
+      ShowMessage('Registro não localizado. Verifique o código digitado e tente novamente.');
+      edtEscolaBuscarCodigo.SetFocus;
+    end;
   end
   else
   begin
-    FController.ConsultaEscola('ESCDATACAD', FormatDateTime('DD/MM/YYYY', dtpEscolaBuscarData.Date));
-    if not fmdados.ClientDataSet1.Locate('ESCDATACAD',
-      FormatDateTime('DD/MM/YYYY', dtpEscolaBuscarData.Date), [LopartialKey]) then
+    if not AData then
     begin
       ShowMessage('Registro não localizado. Verifique a data consultada e tente novamente.');
       dtpEscolaBuscarData.SetFocus;
+    end
+    else
+    begin
+      fmdados.tbdsEscola.Filtered := False;
+      fmdados.tbdsEscola.Filter := 'ESCDATACAD = ' + QuotedStr(
+        FormatDateTime('DD/MM/YYYY', dtpEscolaBuscarData.Date));
+      fmdados.tbdsEscola.Filtered := True;
     end;
   end;
 
@@ -136,7 +155,7 @@ end;
 
 procedure TfrmCadEscola.btnEscolaCancelarClick(Sender: TObject);
 begin
-  fmdados.ClientDataSet1.Cancel;
+  fmdados.tbdsEscola.Cancel;
   DesabilitarComponentesDados;
   btnEscolaBuscar.Enabled := True;
   edtEscolaBuscarCodigo.Enabled := True;
@@ -150,17 +169,17 @@ begin
   if MessageDlg('Tem certeza que deseja excluir este registro?', mtConfirmation,
     mbYesNo, 0) = mrYes then
   begin
-    fmdados.ClientDataSet1.Delete;
-    fmdados.ClientDataSet1.ApplyUpdates(0);
-    fmdados.ClientDataSet1.Refresh;
+    fmdados.tbdsEscola.Delete;
+    fmdados.tbdsEscola.ApplyUpdates(0);
+    fmdados.tbdsEscola.Refresh;
     ShowMessage('Registro excluído com sucesso!');
   end;
 end;
 
 procedure TfrmCadEscola.btnEscolaGravarClick(Sender: TObject);
 begin
-  fmdados.ClientDataSet1.Post;
-  fmdados.ClientDataSet1.ApplyUpdates(0);
+  fmdados.tbdsEscola.Post;
+  fmdados.tbdsEscola.ApplyUpdates(0);
   DesabilitarComponentesDados;
   btnEscolaExcluir.Enabled := True;
   btnEscolaImprimir.Enabled := True;
@@ -177,6 +196,12 @@ destructor TfrmCadEscola.Destroy;
 begin
   FreeAndNil(FController);
   inherited;
+end;
+
+procedure TfrmCadEscola.edtEscolaBuscarCodigoChange(Sender: TObject);
+begin
+  if (edtEscolaBuscarCodigo.Text = EmptyStr) then
+    fmdados.tbdsEscola.Filtered := False;
 end;
 
 procedure TfrmCadEscola.ValidaCampoSomenteInteiro(Sender: TObject;
@@ -202,13 +227,13 @@ end;
 
 procedure TfrmCadEscola.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  fmdados.ClientDataSet1.Close;
+  fmdados.tbdsEscola.Close;
 end;
 
 procedure TfrmCadEscola.FormShow(Sender: TObject);
 begin
-  fmdados.ClientDataSet1.Open;
-  fmdados.ClientDataSet1ESCDATACAD.OnSetText := AtribuicaoCampoData;
+  fmdados.tbdsEscola.Open;
+  fmdados.tbdsEscolaESCDATACAD.OnSetText := AtribuicaoCampoData;
 end;
 
 procedure TfrmCadEscola.AtribuicaoCampoData(Sender: TField;

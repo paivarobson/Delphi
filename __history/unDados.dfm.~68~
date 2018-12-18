@@ -24,17 +24,16 @@ object fmdados: Tfmdados
       'OS Authentication=False'
       'Prepare SQL=False')
     VendorLib = 'oledb'
-    Connected = True
     Left = 45
     Top = 13
   end
   object dspEscola: TDataSetProvider
     DataSet = tbEscola
+    Constraints = False
     Left = 592
     Top = 8
   end
   object ClientDataSet1: TClientDataSet
-    Active = True
     Aggregates = <>
     DisableStringTrim = True
     Params = <>
@@ -48,6 +47,9 @@ object fmdados: Tfmdados
     object ClientDataSet1ESCNOME: TStringField
       FieldName = 'ESCNOME'
       Size = 100
+    end
+    object ClientDataSet1ESCDATACAD: TSQLTimeStampField
+      FieldName = 'ESCDATACAD'
     end
     object ClientDataSet1ESCENDRUA: TStringField
       FieldName = 'ESCENDRUA'
@@ -71,10 +73,7 @@ object fmdados: Tfmdados
     end
     object ClientDataSet1ESCENDCEP: TStringField
       FieldName = 'ESCENDCEP'
-      Size = 8
-    end
-    object ClientDataSet1ESCDATACAD: TWideStringField
-      FieldName = 'ESCDATACAD'
+      Size = 9
     end
   end
   object dsEscola: TDataSource
@@ -83,7 +82,6 @@ object fmdados: Tfmdados
     Top = 72
   end
   object tbEscola: TSQLQuery
-    Active = True
     DataSource = dsEscola
     MaxBlobSize = -1
     Params = <>
@@ -99,9 +97,6 @@ object fmdados: Tfmdados
     object tbEscolaESCNOME: TStringField
       FieldName = 'ESCNOME'
       Size = 100
-    end
-    object tbEscolaESCDATACAD: TWideStringField
-      FieldName = 'ESCDATACAD'
     end
     object tbEscolaESCENDRUA: TStringField
       FieldName = 'ESCENDRUA'
@@ -125,11 +120,13 @@ object fmdados: Tfmdados
     end
     object tbEscolaESCENDCEP: TStringField
       FieldName = 'ESCENDCEP'
-      Size = 8
+      Size = 9
+    end
+    object tbEscolaESCDATACAD: TSQLTimeStampField
+      FieldName = 'ESCDATACAD'
     end
   end
   object tbAux: TSQLQuery
-    Active = True
     DataSource = dsEscola
     MaxBlobSize = -1
     Params = <>

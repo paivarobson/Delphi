@@ -22,7 +22,6 @@ type
 //    function Gravar(ADadosEscola: TDadosEscola): string;
     procedure CarregarEscola(const AFontesDados: TSQLQuery);
     function DevolverUltimoCodigo: Integer;
-    procedure ConsultaEscola(ACampo: string; ADadoConsulta: string);
   end;
 
 implementation
@@ -47,30 +46,6 @@ begin
   fmdados.tbAux.Open;
   Result := fmdados.tbAux.Fields[0].AsInteger;
 end;
-
-procedure TCadastroEscolaController.ConsultaEscola(ACampo: string; ADadoConsulta: string);
-var
-  AConsultaSQL: TSQLQuery;
-begin
-  AConsultaSQL := TSQLQuery.Create(nil);
-  AConsultaSQL.SQLConnection := fmdados.conexaoBDEscola;
-  AConsultaSQL.SQL.Clear;
-  AConsultaSQL.SQL.Add('SELECT * FROM ESCOLA');
-  //AConsultaSQL.ParamByName('pACampo').AsString := ACampo;
-  //if StrToIntDef(ADadoConsulta, 0) = 0 then
-    //AConsultaSQL.ParamByName('pADadoConsulta').AsDate := StrToDate(ADadoConsulta)
-  //else
-   // AConsultaSQL.ParamByName('pADadoConsulta').AsInteger := StrToInt(ADadoConsulta);
-
-  //if CAMPO 1 PREENCHDIO then
-  AConsultaSQL.Open;
-  AConsultaSQL.Filtered := False;
-  AConsultaSQL.Filter := ACampo + ' = ' + ADadoConsulta;
-  AConsultaSQL.Filtered := True;
-  FreeAndNil(AConsultaSQL);
-end;
-
-
 
 //function TCadastroEscolaController.Gravar(ADadosEscola: TDadosEscola): string;
 //var

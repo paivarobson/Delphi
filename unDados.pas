@@ -10,7 +10,7 @@ type
   Tfmdados = class(TDataModule)
     conexaoBDEscola: TSQLConnection;
     dspEscola: TDataSetProvider;
-    ClientDataSet1: TClientDataSet;
+    tbdsEscola: TClientDataSet;
     dsEscola: TDataSource;
     tbEscola: TSQLQuery;
     tbAux: TSQLQuery;
@@ -22,16 +22,16 @@ type
     tbEscolaESCENDBAIRRO: TStringField;
     tbEscolaESCENDCIDADE: TStringField;
     tbEscolaESCENDCEP: TStringField;
-    ClientDataSet1ESCCOD: TIntegerField;
-    ClientDataSet1ESCNOME: TStringField;
-    ClientDataSet1ESCENDRUA: TStringField;
-    ClientDataSet1ESCENDNUM: TStringField;
-    ClientDataSet1ESCENDCOMP: TStringField;
-    ClientDataSet1ESCENDBAIRRO: TStringField;
-    ClientDataSet1ESCENDCIDADE: TStringField;
+    tbdsEscolaESCCOD: TIntegerField;
+    tbdsEscolaESCNOME: TStringField;
+    tbdsEscolaESCENDRUA: TStringField;
+    tbdsEscolaESCENDNUM: TStringField;
+    tbdsEscolaESCENDCOMP: TStringField;
+    tbdsEscolaESCENDBAIRRO: TStringField;
+    tbdsEscolaESCENDCIDADE: TStringField;
     tbEscolaESCDATACAD: TSQLTimeStampField;
-    ClientDataSet1ESCDATACAD: TSQLTimeStampField;
-    ClientDataSet1ESCENDCEP: TStringField;
+    tbdsEscolaESCDATACAD: TSQLTimeStampField;
+    tbdsEscolaESCENDCEP: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private

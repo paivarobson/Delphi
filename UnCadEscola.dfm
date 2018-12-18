@@ -223,11 +223,6 @@ object frmCadEscola: TfrmCadEscola
       item
         Expanded = False
         FieldName = 'ESCENDCEP'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = []
         Title.Caption = 'CEP'
         Width = 61
         Visible = True
@@ -316,6 +311,7 @@ object frmCadEscola: TfrmCadEscola
     Width = 48
     Height = 21
     TabOrder = 0
+    OnChange = edtEscolaBuscarCodigoChange
     OnKeyPress = ValidaCampoSomenteInteiro
   end
   object btnEscolaBuscar: TButton

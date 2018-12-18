@@ -33,51 +33,51 @@ object fmdados: Tfmdados
     Left = 592
     Top = 8
   end
-  object ClientDataSet1: TClientDataSet
+  object tbdsEscola: TClientDataSet
     Aggregates = <>
     DisableStringTrim = True
     Params = <>
     ProviderName = 'dspEscola'
     Left = 96
     Top = 72
-    object ClientDataSet1ESCCOD: TIntegerField
+    object tbdsEscolaESCCOD: TIntegerField
       FieldName = 'ESCCOD'
       Required = True
     end
-    object ClientDataSet1ESCNOME: TStringField
+    object tbdsEscolaESCNOME: TStringField
       FieldName = 'ESCNOME'
       Size = 100
     end
-    object ClientDataSet1ESCDATACAD: TSQLTimeStampField
+    object tbdsEscolaESCDATACAD: TSQLTimeStampField
       FieldName = 'ESCDATACAD'
     end
-    object ClientDataSet1ESCENDRUA: TStringField
+    object tbdsEscolaESCENDRUA: TStringField
       FieldName = 'ESCENDRUA'
       Size = 100
     end
-    object ClientDataSet1ESCENDNUM: TStringField
+    object tbdsEscolaESCENDNUM: TStringField
       FieldName = 'ESCENDNUM'
       Size = 10
     end
-    object ClientDataSet1ESCENDCOMP: TStringField
+    object tbdsEscolaESCENDCOMP: TStringField
       FieldName = 'ESCENDCOMP'
       Size = 30
     end
-    object ClientDataSet1ESCENDBAIRRO: TStringField
+    object tbdsEscolaESCENDBAIRRO: TStringField
       FieldName = 'ESCENDBAIRRO'
       Size = 50
     end
-    object ClientDataSet1ESCENDCIDADE: TStringField
+    object tbdsEscolaESCENDCIDADE: TStringField
       FieldName = 'ESCENDCIDADE'
       Size = 50
     end
-    object ClientDataSet1ESCENDCEP: TStringField
+    object tbdsEscolaESCENDCEP: TStringField
       FieldName = 'ESCENDCEP'
       Size = 9
     end
   end
   object dsEscola: TDataSource
-    DataSet = ClientDataSet1
+    DataSet = tbdsEscola
     Left = 16
     Top = 72
   end

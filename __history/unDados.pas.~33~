@@ -3,7 +3,8 @@ unit unDados;
 interface
 
 uses
-  SysUtils, Classes, WideStrings, DB, SqlExpr, FMTBcd, Provider, DBClient;
+  SysUtils, Classes, WideStrings, DB, SqlExpr, FMTBcd, Provider, DBClient,
+  DBTables;
 
 type
   Tfmdados = class(TDataModule)
@@ -13,7 +14,6 @@ type
     dsEscola: TDataSource;
     tbEscola: TSQLQuery;
     tbAux: TSQLQuery;
-    tbEscolaESCDATACAD: TWideStringField;
     tbEscolaESCCOD: TIntegerField;
     tbEscolaESCNOME: TStringField;
     tbEscolaESCENDRUA: TStringField;
@@ -29,8 +29,9 @@ type
     ClientDataSet1ESCENDCOMP: TStringField;
     ClientDataSet1ESCENDBAIRRO: TStringField;
     ClientDataSet1ESCENDCIDADE: TStringField;
+    tbEscolaESCDATACAD: TSQLTimeStampField;
+    ClientDataSet1ESCDATACAD: TSQLTimeStampField;
     ClientDataSet1ESCENDCEP: TStringField;
-    ClientDataSet1ESCDATACAD: TWideStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private

@@ -22,7 +22,8 @@ type
 //    function Gravar(ADadosEscola: TDadosEscola): string;
     procedure CarregarEscola(const AFontesDados: TSQLQuery);
     function DevolverUltimoCodigo: Integer;
-    procedure ConsultaEscola(ACampo: string; ADadoConsulta: string);
+    procedure ConsultaEscola(ACampo: string; ADadoConsulta: string;
+      ASQLQuery: TSQLQuery);
   end;
 
 implementation
@@ -48,28 +49,16 @@ begin
   Result := fmdados.tbAux.Fields[0].AsInteger;
 end;
 
-procedure TCadastroEscolaController.ConsultaEscola(ACampo: string; ADadoConsulta: string);
-var
-  AConsultaSQL: TSQLQuery;
+procedure TCadastroEscolaController.ConsultaEscola(ACampo: string; ADadoConsulta: string;
+  ASQLQuery: TSQLQuery);
 begin
-  AConsultaSQL := TSQLQuery.Create(nil);
-  AConsultaSQL.SQLConnection := fmdados.conexaoBDEscola;
-  AConsultaSQL.SQL.Clear;
-  AConsultaSQL.SQL.Add('SELECT * FROM ESCOLA WHERE 1 = 0');
-  //AConsultaSQL.ParamByName('pAACampo').AsString := ACampo;
-  //if StrToIntDef(ADadoConsulta, 0) = 0 then
-    //AConsultaSQL.ParamByName('pADadoConsulta').AsDate := StrToDate(ADadoConsulta)
-  //else
-   // AConsultaSQL.ParamByName('pADadoConsulta').AsInteger := StrToInt(ADadoConsulta);
-  AConsultaSQL.Filtered := False;
-  if CAMPO 1 PREENCHDIO then
+  ASQLQuery.SQL.Add(
+    Format('SELECT * FROM ESCOLA WHERE %s = %s',
+    [ACampo],
+    [ADadoConsulta]));
+  ASQLQuery.Open;
 
-  AConsultaSQL.Filter := '' + ACampo + ' = ' + ;
-  AConsultaSQL.Filtered := True;
-  FreeAndNil(AConsultaSQL);
 end;
-
-
 
 //function TCadastroEscolaController.Gravar(ADadosEscola: TDadosEscola): string;
 //var
