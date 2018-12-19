@@ -23,6 +23,7 @@ type
     procedure CarregarEscola(const AFontesDados: TSQLQuery);
     function DevolverUltimoCodigo: Integer;
     function ValidaCampos(const ADadoCampo: string): Boolean;
+    function CamposValidados: Boolean;
   end;
 
 implementation

@@ -101,7 +101,7 @@ object frmCadEscola: TfrmCadEscola
   end
   object lblEscolaConsultaOrdenada: TLabel
     Left = 35
-    Top = 234
+    Top = 232
     Width = 63
     Height = 13
     Caption = 'Ordenar por:'
@@ -169,7 +169,7 @@ object frmCadEscola: TfrmCadEscola
     Align = alBottom
     DataSource = fmdados.dsEscola
     ReadOnly = True
-    TabOrder = 23
+    TabOrder = 22
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
@@ -247,7 +247,7 @@ object frmCadEscola: TfrmCadEscola
     Width = 83
     Height = 25
     Caption = 'Novo cadastro'
-    TabOrder = 13
+    TabOrder = 12
     OnClick = btnEscolaNovoCadastroClick
   end
   object btnEscolaGravar: TButton
@@ -257,7 +257,7 @@ object frmCadEscola: TfrmCadEscola
     Height = 25
     Caption = 'Gravar'
     Enabled = False
-    TabOrder = 14
+    TabOrder = 13
     OnClick = btnEscolaGravarClick
   end
   object btnEscolaAlterar: TButton
@@ -266,7 +266,7 @@ object frmCadEscola: TfrmCadEscola
     Width = 54
     Height = 25
     Caption = 'Alterar'
-    TabOrder = 15
+    TabOrder = 14
     OnClick = btnEscolaAlterarClick
   end
   object btnEscolaExcluir: TButton
@@ -275,7 +275,7 @@ object frmCadEscola: TfrmCadEscola
     Width = 50
     Height = 25
     Caption = 'Excluir'
-    TabOrder = 18
+    TabOrder = 17
     OnClick = btnEscolaExcluirClick
   end
   object btnEscolaCancelar: TButton
@@ -285,7 +285,7 @@ object frmCadEscola: TfrmCadEscola
     Height = 25
     Caption = 'Cancelar'
     Enabled = False
-    TabOrder = 17
+    TabOrder = 16
     OnClick = btnEscolaCancelarClick
   end
   object btnEscolaLimpar: TButton
@@ -295,7 +295,7 @@ object frmCadEscola: TfrmCadEscola
     Height = 25
     Caption = 'Limpar'
     Enabled = False
-    TabOrder = 16
+    TabOrder = 15
     OnClick = btnEscolaLimparClick
   end
   object DBEditEscolaCod: TcxDBTextEdit
@@ -332,7 +332,7 @@ object frmCadEscola: TfrmCadEscola
     Width = 101
     Height = 105
     Caption = 'Impress'#227'o'
-    TabOrder = 19
+    TabOrder = 18
   end
   object rbTela: TRadioButton
     Left = 635
@@ -341,7 +341,7 @@ object frmCadEscola: TfrmCadEscola
     Height = 17
     Caption = 'Tela'
     Checked = True
-    TabOrder = 20
+    TabOrder = 19
     TabStop = True
   end
   object rbImpressora: TRadioButton
@@ -350,7 +350,7 @@ object frmCadEscola: TfrmCadEscola
     Width = 73
     Height = 17
     Caption = 'Impressora'
-    TabOrder = 21
+    TabOrder = 20
   end
   object btnEscolaImprimir: TButton
     Left = 632
@@ -358,7 +358,7 @@ object frmCadEscola: TfrmCadEscola
     Width = 90
     Height = 25
     Caption = 'Imprimir'
-    TabOrder = 22
+    TabOrder = 21
     OnClick = btnEscolaImprimirClick
   end
   object dtpEscolaBuscarData: TDateTimePicker
@@ -396,13 +396,11 @@ object frmCadEscola: TfrmCadEscola
   object ComboBoxEscolaConsultaOrdenada: TComboBox
     Left = 35
     Top = 251
-    Width = 110
+    Width = 122
     Height = 21
     ItemHeight = 13
-    ItemIndex = 0
-    TabOrder = 12
-    Text = 'C'#243'digo'
-    OnChange = ComboBoxEscolaConsultaOrdenadaChange
+    TabOrder = 23
+    Text = 'ComboBoxEscolaConsultaOrdenada'
     Items.Strings = (
       'C'#243'digo'
       'Escola'

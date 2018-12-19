@@ -396,13 +396,11 @@ object frmCadEscola: TfrmCadEscola
   object ComboBoxEscolaConsultaOrdenada: TComboBox
     Left = 35
     Top = 251
-    Width = 110
+    Width = 86
     Height = 21
     ItemHeight = 13
-    ItemIndex = 0
     TabOrder = 12
-    Text = 'C'#243'digo'
-    OnChange = ComboBoxEscolaConsultaOrdenadaChange
+    Text = 'ComboBoxEscolaConsultaOrdenada'
     Items.Strings = (
       'C'#243'digo'
       'Escola'

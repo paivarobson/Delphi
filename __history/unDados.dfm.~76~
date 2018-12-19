@@ -55,12 +55,6 @@ object fmdados: Tfmdados
       DisplayLabel = 'Data de cadastro'
       FieldName = 'ESCDATACAD'
     end
-    object tbdsEscolaESCENDCEP: TStringField
-      Tag = 1
-      DisplayLabel = 'CEP'
-      FieldName = 'ESCENDCEP'
-      Size = 9
-    end
     object tbdsEscolaESCENDRUA: TStringField
       Tag = 1
       DisplayLabel = 'Rua'
@@ -90,6 +84,12 @@ object fmdados: Tfmdados
       FieldName = 'ESCENDCIDADE'
       Size = 50
     end
+    object tbdsEscolaESCENDCEP: TStringField
+      Tag = 1
+      DisplayLabel = 'CEP'
+      FieldName = 'ESCENDCEP'
+      Size = 9
+    end
   end
   object dsEscola: TDataSource
     DataSet = tbdsEscola
@@ -113,10 +113,6 @@ object fmdados: Tfmdados
       FieldName = 'ESCNOME'
       Size = 100
     end
-    object tbEscolaESCENDCEP: TStringField
-      FieldName = 'ESCENDCEP'
-      Size = 9
-    end
     object tbEscolaESCENDRUA: TStringField
       FieldName = 'ESCENDRUA'
       Size = 100
@@ -136,6 +132,10 @@ object fmdados: Tfmdados
     object tbEscolaESCENDCIDADE: TStringField
       FieldName = 'ESCENDCIDADE'
       Size = 50
+    end
+    object tbEscolaESCENDCEP: TStringField
+      FieldName = 'ESCENDCEP'
+      Size = 9
     end
     object tbEscolaESCDATACAD: TSQLTimeStampField
       FieldName = 'ESCDATACAD'

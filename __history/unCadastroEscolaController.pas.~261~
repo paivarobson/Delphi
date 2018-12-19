@@ -56,6 +56,11 @@ begin
   Result := fmdados.tbAux.Fields[0].AsInteger;
 end;
 
+procedure TCadastroEscolaController.ConsultaEscolaOrdenada;
+begin
+
+end;
+
 //function TCadastroEscolaController.Gravar(ADadosEscola: TDadosEscola): string;
 //var
 //  FQuery: TSQLQuery;

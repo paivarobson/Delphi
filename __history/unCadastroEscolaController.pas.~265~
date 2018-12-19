@@ -18,6 +18,8 @@ type
   end;
 
   TCadastroEscolaController = class
+  private
+    procedure ConsultaOrdenada;
   public
 //    function Gravar(ADadosEscola: TDadosEscola): string;
     procedure CarregarEscola(const AFontesDados: TSQLQuery);

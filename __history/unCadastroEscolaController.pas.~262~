@@ -18,6 +18,8 @@ type
   end;
 
   TCadastroEscolaController = class
+  private
+    procedure ConsultaOrdenada;
   public
 //    function Gravar(ADadosEscola: TDadosEscola): string;
     procedure CarregarEscola(const AFontesDados: TSQLQuery);
@@ -54,6 +56,11 @@ begin
   fmdados.tbAux.SQL.Text := 'SELECT MAX(ESCCOD) FROM ESCOLA';
   fmdados.tbAux.Open;
   Result := fmdados.tbAux.Fields[0].AsInteger;
+end;
+
+procedure TCadastroEscolaController.ConsultaOrdenada;
+begin
+
 end;
 
 //function TCadastroEscolaController.Gravar(ADadosEscola: TDadosEscola): string;
