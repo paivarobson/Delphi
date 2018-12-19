@@ -35,6 +35,7 @@ type
     RLDBText5: TRLDBText;
     RLDBText6: TRLDBText;
     RLDBText7: TRLDBText;
+    RLSystemInfo1: TRLSystemInfo;
   private
     { Private declarations }
   public

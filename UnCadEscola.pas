@@ -119,6 +119,7 @@ begin
   btnEscolaBuscar.Enabled := False;
   edtEscolaBuscarCodigo.Enabled := False;
   dtPEscolaBuscarData.Enabled := False;
+  ComboBoxEscolaConsultaOrdenada.Enabled := False;
   DBDateEditEscolaDataCadastro.Text := FormatDateTime('DD/MM/YYYY', Now);
 
 end;
@@ -131,6 +132,7 @@ begin
   btnEscolaImprimir.Enabled := False;
   btnEscolaBuscar.Enabled := False;
   edtEscolaBuscarCodigo.Enabled := False;
+  ComboBoxEscolaConsultaOrdenada.Enabled := False;
 end;
 
 procedure TfrmCadEscola.btnEscolaBuscarClick(Sender: TObject);
@@ -181,6 +183,7 @@ begin
     dtpEscolaBuscarData.Enabled := True;
     btnEscolaImprimir.Enabled := True;
     btnEscolaExcluir.Enabled := True;
+    ComboBoxEscolaConsultaOrdenada.Enabled := True;
   end;
 end;
 
@@ -236,6 +239,7 @@ begin
       btnEscolaBuscar.Enabled := True;
       edtEscolaBuscarCodigo.Enabled := True;
       dtpEscolaBuscarData.Enabled := True;
+      ComboBoxEscolaConsultaOrdenada.Enabled := True;
       LimparCampos;
       ShowMessage('Registro gravado com sucesso!');
     end

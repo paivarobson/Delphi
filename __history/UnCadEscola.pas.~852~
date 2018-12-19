@@ -100,12 +100,11 @@ end;
 
 procedure TfrmCadEscola.ConsultaOrdenada;
 begin
-  if ComboBoxEscolaConsultaOrdenada.ItemIndex = 0 then
-    fmdados.tbdsEscola.IndexFieldNames := 'ESCCOD';
-    if ComboBoxEscolaConsultaOrdenada.ItemIndex = 1 then
-      fmdados.tbdsEscola.IndexFieldNames := 'ESCNOME'
-    else
-      fmdados.tbdsEscola.IndexFieldNames := 'ESCDATACAD'
+  case ComboBoxEscolaConsultaOrdenada.ItemIndex of
+    0: fmdados.tbdsEscola.IndexFieldNames := 'ESCCOD';
+    1: fmdados.tbdsEscola.IndexFieldNames := 'ESCNOME';
+    2: fmdados.tbdsEscola.IndexFieldNames := 'ESCDATACAD';
+  end;
 end;
 
 
@@ -120,6 +119,7 @@ begin
   btnEscolaBuscar.Enabled := False;
   edtEscolaBuscarCodigo.Enabled := False;
   dtPEscolaBuscarData.Enabled := False;
+  ComboBoxEscolaConsultaOrdenada.Enabled := False;
   DBDateEditEscolaDataCadastro.Text := FormatDateTime('DD/MM/YYYY', Now);
 
 end;
@@ -132,6 +132,7 @@ begin
   btnEscolaImprimir.Enabled := False;
   btnEscolaBuscar.Enabled := False;
   edtEscolaBuscarCodigo.Enabled := False;
+  ComboBoxEscolaConsultaOrdenada.Enabled := False;
 end;
 
 procedure TfrmCadEscola.btnEscolaBuscarClick(Sender: TObject);
@@ -237,6 +238,7 @@ begin
       btnEscolaBuscar.Enabled := True;
       edtEscolaBuscarCodigo.Enabled := True;
       dtpEscolaBuscarData.Enabled := True;
+      ComboBoxEscolaConsultaOrdenada.Enabled := True;
       LimparCampos;
       ShowMessage('Registro gravado com sucesso!');
     end

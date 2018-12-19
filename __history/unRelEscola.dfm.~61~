@@ -1,7 +1,7 @@
 object frmRelEscola: TfrmRelEscola
   Left = 0
   Top = 0
-  Caption = 'Listagem Escola'
+  Caption = 's'
   ClientHeight = 462
   ClientWidth = 930
   Color = clBtnFace
@@ -14,11 +14,11 @@ object frmRelEscola: TfrmRelEscola
   PixelsPerInch = 96
   TextHeight = 13
   object RLReportEscola: TRLReport
-    Left = -6
+    Left = 8
     Top = 8
     Width = 794
     Height = 1123
-    DataSource = frmCadEscola.dsEscola
+    DataSource = fmdados.dsEscola
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
     Font.Height = -13
@@ -69,7 +69,7 @@ object frmRelEscola: TfrmRelEscola
       BandType = btHeader
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
-      Font.Height = -13
+      Font.Height = -11
       Font.Name = 'Arial'
       Font.Style = [fsBold]
       ParentFont = False
@@ -79,62 +79,80 @@ object frmRelEscola: TfrmRelEscola
         Width = 30
         Height = 16
         AutoSize = False
-        Caption = 'C'#243'digo'
+        Caption = 'C'#243'd.'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
       end
       object rlblRelEscolaNome: TRLLabel
         Left = 39
         Top = 6
-        Width = 122
-        Height = 16
+        Width = 118
+        Height = 14
         Caption = 'Escola'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
       end
       object rlblRelEscolaDataCadastro: TRLLabel
         Left = 163
         Top = 6
         Width = 70
-        Height = 16
+        Height = 14
         Caption = 'Dt. Cadastro'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
       end
       object rlblRelEscolaRua: TRLLabel
         Left = 239
         Top = 6
-        Width = 102
-        Height = 16
+        Width = 23
+        Height = 14
         Caption = 'Rua'
       end
       object rlblRelEscolaNumero: TRLLabel
         Left = 343
         Top = 6
-        Width = 40
-        Height = 16
+        Width = 18
+        Height = 14
         Caption = 'N'#186
       end
       object rlblRelEscolaComplemento: TRLLabel
-        Left = 389
+        Left = 367
         Top = 6
-        Width = 69
-        Height = 16
+        Width = 67
+        Height = 14
         Caption = 'Complem.'
       end
       object rlblRelEscolaBairro: TRLLabel
-        Left = 464
+        Left = 471
         Top = 6
-        Width = 89
-        Height = 16
+        Width = 36
+        Height = 14
         Caption = 'Bairro'
       end
       object rlblRelEscolaCidade: TRLLabel
         Left = 559
         Top = 6
-        Width = 90
-        Height = 16
+        Width = 41
+        Height = 14
         Caption = 'Cidade'
       end
       object rlblRelEscolaCEP: TRLLabel
         Left = 655
         Top = 6
-        Width = 60
-        Height = 16
+        Width = 24
+        Height = 14
         Caption = 'CEP'
       end
     end
@@ -142,75 +160,143 @@ object frmRelEscola: TfrmRelEscola
       Left = 38
       Top = 121
       Width = 718
-      Height = 24
+      Height = 28
       object rldbtxtEscolaNome: TRLDBText
         Left = 39
         Top = 0
-        Width = 122
-        Height = 16
+        Width = 118
+        Height = 14
         Align = faTopOnly
         DataField = 'ESCNOME'
-        DataSource = frmCadEscola.dsEscola
+        DataSource = fmdados.dsEscola
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
         Transparent = False
       end
       object rldbtxtEscolaCod: TRLDBText
         Left = 3
         Top = 0
         Width = 30
-        Height = 16
+        Height = 14
         Align = faTopOnly
         DataField = 'ESCCOD'
-        DataSource = frmCadEscola.dsEscola
+        DataSource = fmdados.dsEscola
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
         Transparent = False
       end
       object RLDBText1: TRLDBText
         Left = 163
         Top = 0
         Width = 70
-        Height = 16
+        Height = 14
+        DataField = 'ESCDATACAD'
+        DataSource = fmdados.dsEscola
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
       end
       object RLDBText2: TRLDBText
         Left = 239
         Top = 0
-        Width = 102
-        Height = 16
+        Width = 65
+        Height = 14
+        DataField = 'ESCENDRUA'
+        DataSource = fmdados.dsEscola
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
       end
       object RLDBText3: TRLDBText
         Left = 343
         Top = 0
-        Width = 40
-        Height = 16
+        Width = 18
+        Height = 14
+        DataField = 'ESCENDNUM'
+        DataSource = fmdados.dsEscola
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
       end
       object RLDBText4: TRLDBText
-        Left = 389
+        Left = 367
         Top = 0
-        Width = 69
-        Height = 16
+        Width = 79
+        Height = 14
+        DataField = 'ESCENDCOMP'
+        DataSource = fmdados.dsEscola
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
       end
       object RLDBText5: TRLDBText
-        Left = 464
+        Left = 471
         Top = 0
-        Width = 89
-        Height = 16
+        Width = 82
+        Height = 14
+        DataField = 'ESCENDBAIRRO'
+        DataSource = fmdados.dsEscola
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
       end
       object RLDBText6: TRLDBText
         Left = 559
         Top = 0
-        Width = 90
-        Height = 16
+        Width = 80
+        Height = 14
+        DataField = 'ESCENDCIDADE'
+        DataSource = fmdados.dsEscola
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
       end
       object RLDBText7: TRLDBText
         Left = 655
         Top = 0
-        Width = 66
-        Height = 16
+        Width = 62
+        Height = 14
+        DataField = 'ESCENDCEP'
+        DataSource = fmdados.dsEscola
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
       end
     end
     object RLBand4: TRLBand
       Left = 38
-      Top = 145
+      Top = 149
       Width = 718
-      Height = 40
+      Height = 16
       BandType = btFooter
       object RLSystemInfo3: TRLSystemInfo
         Left = 471

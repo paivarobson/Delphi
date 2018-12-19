@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, RLReport, UnCadEscola;
+  Dialogs, RLReport, UnCadEscola, unDados;
 
 type
   TfrmRelEscola = class(TForm)
@@ -21,6 +21,20 @@ type
     RLSystemInfo2: TRLSystemInfo;
     RLSystemInfo3: TRLSystemInfo;
     RLSystemInfo4: TRLSystemInfo;
+    rlblRelEscolaDataCadastro: TRLLabel;
+    RLDBText1: TRLDBText;
+    rlblRelEscolaRua: TRLLabel;
+    rlblRelEscolaNumero: TRLLabel;
+    rlblRelEscolaComplemento: TRLLabel;
+    rlblRelEscolaBairro: TRLLabel;
+    rlblRelEscolaCidade: TRLLabel;
+    rlblRelEscolaCEP: TRLLabel;
+    RLDBText2: TRLDBText;
+    RLDBText3: TRLDBText;
+    RLDBText4: TRLDBText;
+    RLDBText5: TRLDBText;
+    RLDBText6: TRLDBText;
+    RLDBText7: TRLDBText;
   private
     { Private declarations }
   public
