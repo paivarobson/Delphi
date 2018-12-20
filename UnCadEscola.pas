@@ -26,7 +26,6 @@ type
     lblEscolaEndCidade: TLabel;
     DBEditEscolaEndCidade: TcxDBTextEdit;
     lblEscolaendCep: TLabel;
-    DBGridListaEscola: TDBGrid;
     DBEditEscolaEndNumero: TcxDBTextEdit;
     lblEscolaFrmTitulo: TLabel;
     btnEscolaNovoCadastro: TButton;
@@ -36,17 +35,9 @@ type
     btnEscolaCancelar: TButton;
     btnEscolaLimpar: TButton;
     DBEditEscolaCod: TcxDBTextEdit;
-    edtEscolaBuscarCodigo: TEdit;
-    btnEscolaBuscar: TButton;
-    rgImpressao: TRadioGroup;
-    rbTela: TRadioButton;
-    rbImpressora: TRadioButton;
-    btnEscolaImprimir: TButton;
-    dtpEscolaBuscarData: TDateTimePicker;
+    btnEscolaPesquisar: TButton;
     DBDateEditEscolaDataCadastro: TcxDBDateEdit;
     DBMaskEditEscolaEndCEP: TcxDBMaskEdit;
-    ComboBoxEscolaConsultaOrdenada: TComboBox;
-    lblEscolaConsultaOrdenada: TLabel;
     procedure btnEscolaNovoCadastroClick(Sender: TObject);
     procedure btnEscolaGravarClick(Sender: TObject);
     procedure btnEscolaCancelarClick(Sender: TObject);
@@ -54,18 +45,13 @@ type
     procedure btnEscolaLimparClick(Sender: TObject);
     procedure btnEscolaExcluirClick(Sender: TObject);
     procedure btnEscolaAlterarClick(Sender: TObject);
-    procedure btnEscolaBuscarClick(Sender: TObject);
-    procedure btnEscolaImprimirClick(Sender: TObject);
-    procedure FormShow(Sender: TObject);
+    procedure btnEscolaPesquisarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure edtEscolaBuscarCodigoChange(Sender: TObject);
-    procedure edtEscolaBuscarCodigoKeyPress(Sender: TObject; var Key: Char);
-    procedure dtpEscolaBuscarDataKeyPress(Sender: TObject; var Key: Char);
     procedure AvancarCampo(Sender: TObject; var Key: Char);
     procedure ComboBoxEscolaConsultaOrdenadaChange(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     procedure AtribuicaoCampoData(Sender: TField; const Text: string);
-    procedure ConsultaOrdenada;
     { Private declarations }
   public
     { Public declarations }
@@ -83,7 +69,7 @@ var
 implementation
 
 uses
-  unRelEscola;
+  unRelEscola, unPesquisaEscola;
 
 {$R *.dfm}
 
@@ -95,31 +81,23 @@ end;
 
 procedure TfrmCadEscola.ComboBoxEscolaConsultaOrdenadaChange(Sender: TObject);
 begin
-  ConsultaOrdenada;
+//  ConsultaOrdenada;
 end;
-
-procedure TfrmCadEscola.ConsultaOrdenada;
-begin
-  case ComboBoxEscolaConsultaOrdenada.ItemIndex of
-    0: fmdados.tbdsEscola.IndexFieldNames := 'ESCCOD';
-    1: fmdados.tbdsEscola.IndexFieldNames := 'ESCNOME';
-    2: fmdados.tbdsEscola.IndexFieldNames := 'ESCDATACAD';
-  end;
-end;
-
 
 procedure TfrmCadEscola.btnEscolaNovoCadastroClick(Sender: TObject);
 begin
+  fmdados.tbdsEscola.Open;
+  fmdados.tbdsEscolaESCDATACAD.OnSetText := AtribuicaoCampoData;
   fmdados.tbdsEscola.Append;
   HabilitarComponentesDados;
   LimparCampos;
   fmdados.tbdsEscolaESCCOD.AsInteger := FController.DevolverUltimoCodigo + 1;
   btnEscolaExcluir.Enabled := False;
-  btnEscolaImprimir.Enabled := False;
-  btnEscolaBuscar.Enabled := False;
-  edtEscolaBuscarCodigo.Enabled := False;
-  dtPEscolaBuscarData.Enabled := False;
-  ComboBoxEscolaConsultaOrdenada.Enabled := False;
+//  btnEscolaImprimir.Enabled := False;
+  btnEscolaPesquisar.Enabled := False;
+//  edtEscolaBuscarCodigo.Enabled := False;
+//  dtPEscolaBuscarData.Enabled := False;
+//  ComboBoxEscolaConsultaOrdenada.Enabled := False;
   DBDateEditEscolaDataCadastro.Text := FormatDateTime('DD/MM/YYYY', Now);
 
 end;
@@ -129,45 +107,50 @@ begin
   fmdados.tbdsEscola.Edit;
   HabilitarComponentesDados;
   btnEscolaExcluir.Enabled := False;
-  btnEscolaImprimir.Enabled := False;
-  btnEscolaBuscar.Enabled := False;
-  edtEscolaBuscarCodigo.Enabled := False;
-  ComboBoxEscolaConsultaOrdenada.Enabled := False;
+//  btnEscolaImprimir.Enabled := False;
+  btnEscolaPesquisar.Enabled := False;
+//  edtEscolaBuscarCodigo.Enabled := False;
+//  ComboBoxEscolaConsultaOrdenada.Enabled := False;
 end;
 
-procedure TfrmCadEscola.btnEscolaBuscarClick(Sender: TObject);
+procedure TfrmCadEscola.btnEscolaPesquisarClick(Sender: TObject);
 begin
-  fmdados.tbdsEscola.Filtered := False;
-  if edtEscolaBuscarCodigo.Text <> '' then
-  begin
-    if fmdados.tbdsEscola.Locate('ESCCOD', edtEscolaBuscarCodigo.Text, [LopartialKey]) then
-    begin
-      fmdados.tbdsEscola.Filtered := False;
-      fmdados.tbdsEscola.Filter := 'ESCCOD = ' + QuotedStr(edtEscolaBuscarCodigo.Text);
-      fmdados.tbdsEscola.Filtered := True;
-    end
-    else
-    begin
-      ShowMessage('Registro não localizado. Verifique o código digitado e tente novamente.');
-      edtEscolaBuscarCodigo.SetFocus;
-    end;
-  end
-  else
-  begin
-    if not fmdados.tbdsEscola.Locate('ESCDATACAD',
-      FormatDateTime('DD/MM/YYYY', dtpEscolaBuscarData.Date), [LopartialKey]) then
-    begin
-      ShowMessage('Registro não localizado. Verifique a data consultada e tente novamente.');
-      dtpEscolaBuscarData.SetFocus;
-    end
-    else
-    begin
-      fmdados.tbdsEscola.Filtered := False;
-      fmdados.tbdsEscola.Filter := 'ESCDATACAD = ' + QuotedStr(
-        FormatDateTime('DD/MM/YYYY', dtpEscolaBuscarData.Date));
-      fmdados.tbdsEscola.Filtered := True;
-    end;
-  end;
+  Application.CreateForm(TfrmPesquisaEscola, frmPesquisaEscola);
+  frmPesquisaEscola.ShowModal;
+//  if frmPesquisaEscola.CodigoEscolaSelecionado > 0 then
+//    fmdados.tbdsEscola.Locate('ESCCOD', frmPesquisaEscola.CodigoEscolaSelecionado, []);
+
+//  fmdados.tbdsEscola.Filtered := False;
+//  if edtEscolaBuscarCodigo.Text <> '' then
+//  begin
+//    if fmdados.tbdsEscola.Locate('ESCCOD', edtEscolaBuscarCodigo.Text, [LopartialKey]) then
+//    begin
+//      fmdados.tbdsEscola.Filtered := False;
+//      fmdados.tbdsEscola.Filter := 'ESCCOD = ' + QuotedStr(edtEscolaBuscarCodigo.Text);
+//      fmdados.tbdsEscola.Filtered := True;
+//    end
+//    else
+//    begin
+//      ShowMessage('Registro não localizado. Verifique o código digitado e tente novamente.');
+//      edtEscolaBuscarCodigo.SetFocus;
+//    end;
+//  end
+//  else
+//  begin
+//    if not fmdados.tbdsEscola.Locate('ESCDATACAD',
+//      FormatDateTime('DD/MM/YYYY', dtpEscolaBuscarData.Date), [LopartialKey]) then
+//    begin
+//      ShowMessage('Registro não localizado. Verifique a data consultada e tente novamente.');
+//      dtpEscolaBuscarData.SetFocus;
+//    end
+//    else
+//    begin
+//      fmdados.tbdsEscola.Filtered := False;
+//      fmdados.tbdsEscola.Filter := 'ESCDATACAD = ' + QuotedStr(
+//        FormatDateTime('DD/MM/YYYY', dtpEscolaBuscarData.Date));
+//      fmdados.tbdsEscola.Filtered := True;
+//    end;
+//  end;
 
 end;
 
@@ -178,13 +161,14 @@ begin
   begin
     fmdados.tbdsEscola.Cancel;
     DesabilitarComponentesDados;
-    btnEscolaBuscar.Enabled := True;
-    edtEscolaBuscarCodigo.Enabled := True;
-    dtpEscolaBuscarData.Enabled := True;
-    btnEscolaImprimir.Enabled := True;
+    btnEscolaPesquisar.Enabled := True;
+//    edtEscolaBuscarCodigo.Enabled := True;
+//    dtpEscolaBuscarData.Enabled := True;
+//    btnEscolaImprimir.Enabled := True;
     btnEscolaExcluir.Enabled := True;
-    ComboBoxEscolaConsultaOrdenada.Enabled := True;
+//    ComboBoxEscolaConsultaOrdenada.Enabled := True;
   end;
+  fmdados.tbdsEscola.Close;
 end;
 
 procedure TfrmCadEscola.btnEscolaExcluirClick(Sender: TObject);
@@ -197,6 +181,7 @@ begin
     fmdados.tbdsEscola.Refresh;
     ShowMessage('Registro excluído com sucesso!');
   end;
+  fmdados.tbdsEscola.Close;
 end;
 
 function TfrmCadEscola.CamposValidados: Boolean;
@@ -234,12 +219,12 @@ begin
       fmdados.tbdsEscola.ApplyUpdates(0);
       DesabilitarComponentesDados;
       btnEscolaExcluir.Enabled := True;
-      btnEscolaImprimir.Enabled := True;
+//      btnEscolaImprimir.Enabled := True;
       btnEscolaCancelar.Enabled := False;
-      btnEscolaBuscar.Enabled := True;
-      edtEscolaBuscarCodigo.Enabled := True;
-      dtpEscolaBuscarData.Enabled := True;
-      ComboBoxEscolaConsultaOrdenada.Enabled := True;
+      btnEscolaPesquisar.Enabled := True;
+//      edtEscolaBuscarCodigo.Enabled := True;
+//      dtpEscolaBuscarData.Enabled := True;
+//      ComboBoxEscolaConsultaOrdenada.Enabled := True;
       LimparCampos;
       ShowMessage('Registro gravado com sucesso!');
     end
@@ -249,40 +234,6 @@ destructor TfrmCadEscola.Destroy;
 begin
   FreeAndNil(FController);
   inherited;
-end;
-
-procedure TfrmCadEscola.dtpEscolaBuscarDataKeyPress(Sender: TObject;
-  var Key: Char);
-begin
-  if Key = #13 then
-    btnEscolaBuscarClick(Sender)
-end;
-
-procedure TfrmCadEscola.edtEscolaBuscarCodigoChange(Sender: TObject);
-begin
-  if (edtEscolaBuscarCodigo.Text = EmptyStr) then
-    fmdados.tbdsEscola.Filtered := False;
-end;
-
-procedure TfrmCadEscola.edtEscolaBuscarCodigoKeyPress(Sender: TObject;
-  var Key: Char);
-var
-  keyAux: Char;
-begin
-  keyAux := Key;
-  if not (Key in ['0'..'9', #8]) then
-    Key := #0;
-  if keyAux = #13 then
-    btnEscolaBuscarClick(Sender)
-end;
-
-procedure TfrmCadEscola.btnEscolaImprimirClick(Sender: TObject);
-begin
-  frmRelEscola := TfrmRelEscola.Create(Application);
-  if rbTela.Checked then
-    frmRelEscola.RLReportEscola.Preview()
-  else
-    frmRelEscola.RLReportEscola.Print
 end;
 
 procedure TfrmCadEscola.btnEscolaLimparClick(Sender: TObject);
@@ -299,8 +250,7 @@ end;
 
 procedure TfrmCadEscola.FormShow(Sender: TObject);
 begin
-  fmdados.tbdsEscola.Open;
-  fmdados.tbdsEscolaESCDATACAD.OnSetText := AtribuicaoCampoData;
+  btnEscolaNovoCadastroClick(Sender);
 end;
 
 procedure TfrmCadEscola.AtribuicaoCampoData(Sender: TField;
@@ -331,7 +281,7 @@ begin
   btnEscolaAlterar.Enabled := True;
   btnEscolaCancelar.Enabled := False;
   btnEscolaExcluir.Enabled := False;
-  btnEscolaImprimir.Enabled := False;
+//  btnEscolaImprimir.Enabled := False;
   DBEditEscolaCod.Enabled := False;
   DBEditEscolaNome.Enabled := False;
   DBEditEscolaEndRua.Enabled := False;
@@ -340,7 +290,7 @@ begin
   DBEditEscolaEndCidade.Enabled := False;
   DBMaskEditEscolaEndCEP.Enabled := False;
   DBEditEscolaEndBairro.Enabled := False;
-  DBGridListaEscola.Enabled := True;
+  //DBGridListaEscola.Enabled := True;
 end;
 
 procedure TfrmCadEscola.HabilitarComponentesDados;
@@ -357,7 +307,7 @@ begin
   DBEditEscolaEndCidade.Enabled := True;
   DBMaskEditEscolaEndCEP.Enabled := True;
   DBEditEscolaEndBairro.Enabled := True;
-  DBGridListaEscola.Enabled := False;
+  //DBGridListaEscola.Enabled := False;
   DBEditEscolaNome.SetFocus;
 end;
 

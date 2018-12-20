@@ -36,6 +36,7 @@ type
     RLDBText6: TRLDBText;
     RLDBText7: TRLDBText;
     RLSystemInfo1: TRLSystemInfo;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -48,5 +49,12 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmRelEscola.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Action := caFree;
+  Release;
+  frmRelEscola := nil;
+end;
 
 end.

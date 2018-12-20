@@ -6,16 +6,15 @@ uses
   unCadastroEscolaController in 'unCadastroEscolaController.pas',
   UnCadEscola in 'UnCadEscola.pas' {frmCadEscola},
   unRelEscola in 'unRelEscola.pas',
-  unEscolaIndex in 'unEscolaIndex.pas' {frmEscolaIndex};
+  unEscolaIndex in 'unEscolaIndex.pas' {frmEscolaIndex},
+  unPesquisaEscola in 'unPesquisaEscola.pas' {frmPesquisaEscola};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TfrmCadEscola, frmCadEscola);
   Application.CreateForm(TfrmEscolaIndex, frmEscolaIndex);
   Application.CreateForm(Tfmdados, fmdados);
-  Application.CreateForm(TfrmRelEscola, frmRelEscola);
   Application.Run;
 end.

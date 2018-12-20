@@ -128,9 +128,21 @@
       
       
       
+      
+      
+      
+      
+      
+      
       <Excluded_Packages Name="$(BDS)\bin\dcloffice2k100.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
       <Excluded_Packages Name="$(BDS)\bin\dclofficexp100.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
     </Excluded_Packages><Source><Source Name="MainSource">ProjetoEscola.dpr</Source></Source>  
+    
+    
+    
+    
+    
+    
     
     
     
@@ -303,6 +315,9 @@
     </DCCReference>
     <DCCReference Include="unEscolaIndex.pas">
       <Form>frmEscolaIndex</Form>
+    </DCCReference>
+    <DCCReference Include="unPesquisaEscola.pas">
+      <Form>frmPesquisaEscola</Form>
     </DCCReference>
     <DCCReference Include="unRelEscola.pas" />
     <None Include="ModelSupport_ProjetoEscola\default.txaPackage" />

@@ -39,7 +39,7 @@ object fmdados: Tfmdados
     Params = <>
     ProviderName = 'dspEscola'
     Left = 144
-    Top = 144
+    Top = 151
     object tbdsEscolaESCCOD: TIntegerField
       DisplayLabel = 'C'#243'digo'
       FieldName = 'ESCCOD'
