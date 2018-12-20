@@ -47,13 +47,11 @@ type
     procedure btnEscolaAlterarClick(Sender: TObject);
     procedure btnEscolaPesquisarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure edtEscolaBuscarCodigoChange(Sender: TObject);
-    procedure dtpEscolaBuscarDataKeyPress(Sender: TObject; var Key: Char);
     procedure AvancarCampo(Sender: TObject; var Key: Char);
     procedure ComboBoxEscolaConsultaOrdenadaChange(Sender: TObject);
+    procedure DBEditEscolaEndNumeroKeyPress(Sender: TObject; var Key: Char);
   private
     procedure AtribuicaoCampoData(Sender: TField; const Text: string);
-    procedure ConsultaOrdenada;
     { Private declarations }
   public
     { Public declarations }
@@ -86,12 +84,6 @@ begin
 //  ConsultaOrdenada;
 end;
 
-procedure TfrmCadEscola.ConsultaOrdenada;
-begin
-
-end;
-
-
 procedure TfrmCadEscola.btnEscolaNovoCadastroClick(Sender: TObject);
 begin
   fmdados.tbdsEscola.Open;
@@ -116,7 +108,7 @@ begin
   HabilitarComponentesDados;
   btnEscolaExcluir.Enabled := False;
 //  btnEscolaImprimir.Enabled := False;
-//  btnEscolaBuscar.Enabled := False;
+  btnEscolaPesquisar.Enabled := False;
 //  edtEscolaBuscarCodigo.Enabled := False;
 //  ComboBoxEscolaConsultaOrdenada.Enabled := False;
 end;
@@ -169,13 +161,14 @@ begin
   begin
     fmdados.tbdsEscola.Cancel;
     DesabilitarComponentesDados;
-//    btnEscolaBuscar.Enabled := True;
+    btnEscolaPesquisar.Enabled := True;
 //    edtEscolaBuscarCodigo.Enabled := True;
 //    dtpEscolaBuscarData.Enabled := True;
 //    btnEscolaImprimir.Enabled := True;
     btnEscolaExcluir.Enabled := True;
 //    ComboBoxEscolaConsultaOrdenada.Enabled := True;
   end;
+  fmdados.tbdsEscola.Close;
 end;
 
 procedure TfrmCadEscola.btnEscolaExcluirClick(Sender: TObject);
@@ -188,6 +181,7 @@ begin
     fmdados.tbdsEscola.Refresh;
     ShowMessage('Registro excluído com sucesso!');
   end;
+  fmdados.tbdsEscola.Close;
 end;
 
 function TfrmCadEscola.CamposValidados: Boolean;
@@ -227,7 +221,7 @@ begin
       btnEscolaExcluir.Enabled := True;
 //      btnEscolaImprimir.Enabled := True;
       btnEscolaCancelar.Enabled := False;
-//      btnEscolaBuscar.Enabled := True;
+      btnEscolaPesquisar.Enabled := True;
 //      edtEscolaBuscarCodigo.Enabled := True;
 //      dtpEscolaBuscarData.Enabled := True;
 //      ComboBoxEscolaConsultaOrdenada.Enabled := True;
@@ -240,19 +234,6 @@ destructor TfrmCadEscola.Destroy;
 begin
   FreeAndNil(FController);
   inherited;
-end;
-
-procedure TfrmCadEscola.dtpEscolaBuscarDataKeyPress(Sender: TObject;
-  var Key: Char);
-begin
-//  if Key = #13 then
-//    btnEscolaBuscarClick(Sender)
-end;
-
-procedure TfrmCadEscola.edtEscolaBuscarCodigoChange(Sender: TObject);
-begin
-//  if (edtEscolaBuscarCodigo.Text = EmptyStr) then
-//    fmdados.tbdsEscola.Filtered := False;
 end;
 
 procedure TfrmCadEscola.btnEscolaLimparClick(Sender: TObject);
@@ -285,6 +266,14 @@ begin
   else
   if Key = #27 then
     Perform(WM_nextdlgctl,1,0)
+end;
+
+procedure TfrmCadEscola.DBEditEscolaEndNumeroKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+  if not (Key in ['0'..'9', #8]) then
+    Key := #0;
+  AvancarCampo(Sender, Key);
 end;
 
 procedure TfrmCadEscola.DesabilitarComponentesDados;

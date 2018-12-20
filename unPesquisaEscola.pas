@@ -18,6 +18,7 @@ type
     lblEscolaTituloLista: TLabel;
     rgImpressao: TRadioGroup;
     btnEscolaImprimir: TButton;
+    btnEscolaNovoCadastro: TButton;
     procedure DBGridListaEscolaDblClick(Sender: TObject);
     procedure btnEscolaBuscarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);

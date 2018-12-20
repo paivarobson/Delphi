@@ -15,7 +15,6 @@ object frmCadEscola: TfrmCadEscola
   OldCreateOrder = False
   Position = poScreenCenter
   OnClose = FormClose
-  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object lblEscolaCodigo: TLabel
@@ -161,7 +160,7 @@ object frmCadEscola: TfrmCadEscola
     DataBinding.DataSource = fmdados.dsEscola
     Enabled = False
     TabOrder = 6
-    OnKeyPress = AvancarCampo
+    OnKeyPress = DBEditEscolaEndNumeroKeyPress
     Width = 65
   end
   object btnEscolaNovoCadastro: TButton

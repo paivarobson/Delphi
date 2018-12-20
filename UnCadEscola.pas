@@ -49,7 +49,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure AvancarCampo(Sender: TObject; var Key: Char);
     procedure ComboBoxEscolaConsultaOrdenadaChange(Sender: TObject);
-    procedure FormShow(Sender: TObject);
+    procedure DBEditEscolaEndNumeroKeyPress(Sender: TObject; var Key: Char);
   private
     procedure AtribuicaoCampoData(Sender: TField; const Text: string);
     { Private declarations }
@@ -248,11 +248,6 @@ begin
   fmdados.tbdsEscola.Close;
 end;
 
-procedure TfrmCadEscola.FormShow(Sender: TObject);
-begin
-  btnEscolaNovoCadastroClick(Sender);
-end;
-
 procedure TfrmCadEscola.AtribuicaoCampoData(Sender: TField;
   const Text: string);
 begin
@@ -271,6 +266,16 @@ begin
   else
   if Key = #27 then
     Perform(WM_nextdlgctl,1,0)
+end;
+
+procedure TfrmCadEscola.DBEditEscolaEndNumeroKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+  if not (Key in ['0'..'9', #8]) then
+  begin
+    AvancarCampo(Sender, Key);
+    Key := #0;
+  end;
 end;
 
 procedure TfrmCadEscola.DesabilitarComponentesDados;

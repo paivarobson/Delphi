@@ -38,9 +38,9 @@ object frmPesquisaEscola: TfrmPesquisaEscola
   end
   object DBGridListaEscola: TDBGrid
     Left = 0
-    Top = 224
+    Top = 192
     Width = 801
-    Height = 241
+    Height = 273
     Align = alBottom
     DataSource = fmdados.dsEscola
     ReadOnly = True
@@ -182,5 +182,13 @@ object frmPesquisaEscola: TfrmPesquisaEscola
     Caption = 'Imprimir'
     TabOrder = 7
     OnClick = btnEscolaImprimirClick
+  end
+  object btnEscolaNovoCadastro: TButton
+    Left = 335
+    Top = 153
+    Width = 83
+    Height = 25
+    Caption = 'Novo cadastro'
+    TabOrder = 8
   end
 end

@@ -12,15 +12,11 @@ type
     lblEscolaConsultaOrdenada: TLabel;
     ComboBoxEscolaConsultaOrdenada: TComboBox;
     rgEscolaPesquisar: TRadioGroup;
-    rbEscolaPesquisarCodigo: TRadioButton;
-    rbEscolaPesquisarDataCadastro: TRadioButton;
     dtpEscolaBuscarData: TDateTimePicker;
     edtEscolaBuscarCodigo: TEdit;
     btnEscolaBuscar: TButton;
     lblEscolaTituloLista: TLabel;
     rgImpressao: TRadioGroup;
-    rbTela: TRadioButton;
-    rbImpressora: TRadioButton;
     btnEscolaImprimir: TButton;
     procedure DBGridListaEscolaDblClick(Sender: TObject);
     procedure btnEscolaBuscarClick(Sender: TObject);
@@ -33,7 +29,7 @@ type
     procedure btnEscolaImprimirClick(Sender: TObject);
   private
     //FCodigoEscolaSelecionado: Integer;
-    procedure SetCodigoEscolaSelecionado(const Value: Integer);
+//    procedure SetCodigoEscolaSelecionado(const Value: Integer);
     procedure ConsultaOrdenada;
   public
 //    property CodigoEscolaSelecionado: Integer read FCodigoEscolaSelecionado write SetCodigoEscolaSelecionado;
@@ -45,14 +41,14 @@ var
 implementation
 
 uses
-  unDados;
+  unDados, unRelEscola;
 
 {$R *.dfm}
 
 procedure TfrmPesquisaEscola.btnEscolaImprimirClick(Sender: TObject);
 begin
   Application.CreateForm(TfrmRelEscola, frmRelEscola);
-  if rbTela.Checked then
+  if rgImpressao.ItemIndex = 0 then
     frmRelEscola.RLReportEscola.Preview()
   else
     frmRelEscola.RLReportEscola.Print
@@ -76,7 +72,7 @@ end;
 procedure TfrmPesquisaEscola.btnEscolaBuscarClick(Sender: TObject);
 begin
   fmdados.tbdsEscola.Filtered := False;
-  if rbEscolaPesquisarCodigo.Checked then
+  if rgEscolaPesquisar.ItemIndex = 0 then
   begin
     if edtEscolaBuscarCodigo.Text = '' then
     begin
@@ -160,9 +156,9 @@ begin
   fmdados.tbdsEscola.Open;
 end;
 
-procedure TfrmPesquisaEscola.SetCodigoEscolaSelecionado(const Value: Integer);
-begin
-//  FCodigoEscolaSelecionado := Value;
-end;
+//procedure TfrmPesquisaEscola.SetCodigoEscolaSelecionado(const Value: Integer);
+//begin
+////  FCodigoEscolaSelecionado := Value;
+//end;
 
 end.
