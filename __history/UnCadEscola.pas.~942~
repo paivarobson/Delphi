@@ -202,8 +202,6 @@ end;
 
 procedure TfrmCadEscola.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  //FALHAS MP FECHAMENTO DAS TELAS EM ALGUMA DAS ROTINAS
-  // FAZER TESTE ESCOLAINDEX - CADASTRO - CONSULTA E FECHAR O INVERSO
   if frmEscolaIndex = nil then
   begin
     Application.CreateForm(TfrmEscolaIndex,frmEscolaIndex);

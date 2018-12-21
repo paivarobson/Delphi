@@ -1,7 +1,6 @@
 object frmCadEscola: TfrmCadEscola
   Left = 0
   Top = 0
-  BiDiMode = bdLeftToRight
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Cadastro de Escola'
@@ -14,10 +13,8 @@ object frmCadEscola: TfrmCadEscola
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  ParentBiDiMode = False
   Position = poScreenCenter
   OnClose = FormClose
-  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object lblEscolaCodigo: TLabel

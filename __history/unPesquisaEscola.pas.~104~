@@ -65,22 +65,25 @@ end;
 procedure TfrmPesquisaEscola.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
-  FecharForm;
+  FecharForm
 end;
 
 procedure TfrmPesquisaEscola.FecharForm;
 begin
-  if frmCadEscola = nil then
+  if frmCadEscola.ChecagemTelaCadastroExecutadaAntesDaConsulta then
   begin
-    Application.CreateForm(TfrmCadEscola,frmCadEscola);
-    FreeAndNil(frmPesquisaEscola);
-    frmCadEscola.ShowModal;
-  end
-  else
-  begin
-    fmdados.tbdsEscola.Close;
-    Close;
-    frmCadEscola.ShowModal;
+    if frmCadEscola = nil then
+    begin
+      Application.CreateForm(TfrmCadEscola,frmCadEscola);
+      FreeAndNil(frmPesquisaEscola);
+      frmCadEscola.ShowModal;
+    end
+    else
+    begin
+      fmdados.tbdsEscola.Close;
+      Close;
+      frmCadEscola.ShowModal;
+    end;
   end;
 end;
 

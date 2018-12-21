@@ -13,6 +13,7 @@ object frmPesquisaEscola: TfrmPesquisaEscola
   OldCreateOrder = False
   Position = poScreenCenter
   OnClose = FormClose
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object lblEscolaConsultaOrdenada: TLabel
@@ -25,17 +26,15 @@ object frmPesquisaEscola: TfrmPesquisaEscola
   object lblEscolaTituloLista: TLabel
     Left = 251
     Top = 6
-    Width = 184
+    Width = 195
     Height = 33
-    Caption = 'Consulta Escola'
+    Caption = 'Pesquisar Escola'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -27
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
-    ParentShowHint = False
-    ShowHint = False
   end
   object DBGridListaEscola: TDBGrid
     Left = 0
@@ -134,7 +133,6 @@ object frmPesquisaEscola: TfrmPesquisaEscola
       'C'#243'digo'
       'Data de Cadastro')
     TabOrder = 1
-    OnClick = rgEscolaPesquisarClick
   end
   object dtpEscolaBuscarData: TDateTimePicker
     Left = 77
@@ -143,7 +141,6 @@ object frmPesquisaEscola: TfrmPesquisaEscola
     Height = 21
     Date = 43444.631400567130000000
     Time = 43444.631400567130000000
-    Enabled = False
     TabOrder = 3
     OnKeyPress = dtpEscolaBuscarDataKeyPress
   end
@@ -152,8 +149,6 @@ object frmPesquisaEscola: TfrmPesquisaEscola
     Top = 126
     Width = 48
     Height = 21
-    ParentShowHint = False
-    ShowHint = True
     TabOrder = 2
     OnChange = edtEscolaBuscarCodigoChange
     OnKeyPress = edtEscolaBuscarCodigoKeyPress
@@ -195,6 +190,5 @@ object frmPesquisaEscola: TfrmPesquisaEscola
     Height = 25
     Caption = 'Novo cadastro'
     TabOrder = 8
-    OnClick = btnEscolaNovoCadastroClick
   end
 end

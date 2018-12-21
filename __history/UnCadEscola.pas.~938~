@@ -70,7 +70,7 @@ var
 implementation
 
 uses
-  unRelEscola, unPesquisaEscola, unEscolaIndex;
+  unRelEscola, unPesquisaEscola;
 
 {$R *.dfm}
 
@@ -108,12 +108,12 @@ begin
   begin
     Application.CreateForm(TfrmPesquisaEscola, frmPesquisaEscola);
     FreeAndNil(frmCadEscola);
-    frmPesquisaEscola.BorderIcons := BorderIcons - [biSystemMenu];
     frmPesquisaEscola.ShowModal;
+    frmPesquisaEscola.BorderIcons := BorderIcons - [biSystemMenu];
   end
   else
   begin
-    frmPesquisaEscola.ShowModal;
+    frmCadEscola.ShowModal;
     Close;
   end;
 end;
@@ -202,16 +202,7 @@ end;
 
 procedure TfrmCadEscola.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  //FALHAS MP FECHAMENTO DAS TELAS EM ALGUMA DAS ROTINAS
-  // FAZER TESTE ESCOLAINDEX - CADASTRO - CONSULTA E FECHAR O INVERSO
-  if frmEscolaIndex = nil then
-  begin
-    Application.CreateForm(TfrmEscolaIndex,frmEscolaIndex);
-    FreeAndNil(frmCadEscola);
-  end
-  else
-    Close;
-  frmEscolaIndex.ShowModal;
+  Close;
 end;
 
 procedure TfrmCadEscola.FormShow(Sender: TObject);

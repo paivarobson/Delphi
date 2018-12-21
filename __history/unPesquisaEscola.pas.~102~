@@ -33,7 +33,6 @@ type
     //FCodigoEscolaSelecionado: Integer;
 //    procedure SetCodigoEscolaSelecionado(const Value: Integer);
     procedure ConsultaOrdenada;
-    procedure FecharForm;
   public
 //    property CodigoEscolaSelecionado: Integer read FCodigoEscolaSelecionado write SetCodigoEscolaSelecionado;
   end;
@@ -59,17 +58,6 @@ end;
 
 procedure TfrmPesquisaEscola.btnEscolaNovoCadastroClick(Sender: TObject);
 begin
-  FecharForm;
-end;
-
-procedure TfrmPesquisaEscola.FormClose(Sender: TObject;
-  var Action: TCloseAction);
-begin
-  FecharForm;
-end;
-
-procedure TfrmPesquisaEscola.FecharForm;
-begin
   if frmCadEscola = nil then
   begin
     Application.CreateForm(TfrmCadEscola,frmCadEscola);
@@ -81,6 +69,17 @@ begin
     fmdados.tbdsEscola.Close;
     Close;
     frmCadEscola.ShowModal;
+  end;
+
+end;
+
+procedure TfrmPesquisaEscola.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  if frmCadEscola.ChecagemTelaCadastroExecutadaAntesDaConsulta then
+  begin
+    fmdados.tbdsEscola.Close;
+    Close;
   end;
 end;
 

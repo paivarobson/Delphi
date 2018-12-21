@@ -13,6 +13,7 @@ object frmPesquisaEscola: TfrmPesquisaEscola
   OldCreateOrder = False
   Position = poScreenCenter
   OnClose = FormClose
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object lblEscolaConsultaOrdenada: TLabel
@@ -195,6 +196,5 @@ object frmPesquisaEscola: TfrmPesquisaEscola
     Height = 25
     Caption = 'Novo cadastro'
     TabOrder = 8
-    OnClick = btnEscolaNovoCadastroClick
   end
 end

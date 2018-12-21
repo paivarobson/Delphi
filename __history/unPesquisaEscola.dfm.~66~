@@ -195,6 +195,5 @@ object frmPesquisaEscola: TfrmPesquisaEscola
     Height = 25
     Caption = 'Novo cadastro'
     TabOrder = 8
-    OnClick = btnEscolaNovoCadastroClick
   end
 end

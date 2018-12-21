@@ -16,19 +16,6 @@ object frmEscolaIndex: TfrmEscolaIndex
   OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
-  object Label2: TLabel
-    Left = 199
-    Top = 56
-    Width = 275
-    Height = 97
-    Caption = 'GESCO'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clGray
-    Font.Height = -80
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentFont = False
-  end
   object lblEscolaBoasVindas: TLabel
     Left = 192
     Top = 56
@@ -43,44 +30,44 @@ object frmEscolaIndex: TfrmEscolaIndex
     ParentFont = False
   end
   object Label1: TLabel
-    Left = 200
-    Top = 138
-    Width = 267
-    Height = 30
-    Caption = 'G e s t '#227' o   E s c o l a r'
+    Left = 192
+    Top = 159
+    Width = 275
+    Height = 49
+    Caption = 'Gest'#227'o Escolar'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -25
+    Font.Height = -41
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
   end
   object mmEscola: TMainMenu
     Left = 104
-    object menuArquivo: TMenuItem
+    object Arquivo1: TMenuItem
       Caption = '&Arquivo'
-      object menuArquivoNovo: TMenuItem
+      object Novo1: TMenuItem
         Caption = 'Novo'
-        object menuArquivoNovoCadastro: TMenuItem
+        object Cadastro2: TMenuItem
           Caption = 'Cadastro'
-          object menuVisualizarConsultar: TMenuItem
+          object escola1: TMenuItem
             Caption = '&Escola'
-            OnClick = menuVisualizarConsultarClick
+            OnClick = escola1Click
           end
         end
       end
-      object menuArquivoSair: TMenuItem
+      object Cadastro1: TMenuItem
         Caption = 'Sair'
-        OnClick = menuArquivoSairClick
+        OnClick = Cadastro1Click
       end
     end
-    object menuVisualizar: TMenuItem
+    object Pesquisar1: TMenuItem
       Caption = 'Visualizar'
       object Consultar1: TMenuItem
         Caption = 'Consultar'
-        object menuVisualizarConsultarEscola: TMenuItem
+        object Escola2: TMenuItem
           Caption = 'Escola'
-          OnClick = menuVisualizarConsultarEscolaClick
+          OnClick = Escola2Click
         end
       end
     end

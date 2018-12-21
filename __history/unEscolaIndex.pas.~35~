@@ -49,23 +49,20 @@ procedure TfrmEscolaIndex.menuVisualizarConsultarClick(Sender: TObject);
 begin
   if frmCadEscola = nil then
   begin
-    Application.CreateForm(TfrmCadEscola, frmCadEscola);
+    Application.CreateForm(TfrmPesquisaEscola, frmCadEscola);
     FreeAndNil(frmEscolaIndex);
+    frmCadEscola.ShowModal;
   end
   else
+  begin
+    frmCadEscola.ShowModal;
     Close;
-  frmCadEscola.ShowModal;
+  end;
 end;
 
 procedure TfrmEscolaIndex.menuVisualizarConsultarEscolaClick(Sender: TObject);
 begin
-  if frmPesquisaEscola = nil then
-  begin
-    Application.CreateForm(TfrmPesquisaEscola, frmPesquisaEscola);
-    FreeAndNil(frmEscolaIndex);
-  end
-  else
-    Close;
+  Application.CreateForm(TfrmPesquisaEscola, frmPesquisaEscola);
   frmPesquisaEscola.ShowModal;
 end;
 

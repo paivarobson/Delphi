@@ -43,8 +43,8 @@ object frmEscolaIndex: TfrmEscolaIndex
     ParentFont = False
   end
   object Label1: TLabel
-    Left = 200
-    Top = 138
+    Left = 199
+    Top = 141
     Width = 267
     Height = 30
     Caption = 'G e s t '#227' o   E s c o l a r'

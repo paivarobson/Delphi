@@ -62,6 +62,7 @@ type
     procedure AfterConstruction; override;
     destructor Destroy; override;
     function CamposValidados: Boolean;
+    function ChecagemTelaCadastroExecutadaAntesDaConsulta: Boolean;
   end;
 
 var
@@ -70,7 +71,7 @@ var
 implementation
 
 uses
-  unRelEscola, unPesquisaEscola, unEscolaIndex;
+  unRelEscola, unPesquisaEscola;
 
 {$R *.dfm}
 
@@ -78,6 +79,11 @@ procedure TfrmCadEscola.AfterConstruction;
 begin
   inherited;
   FController := TCadastroEscolaController.Create;
+end;
+
+function TfrmCadEscola.ChecagemTelaCadastroExecutadaAntesDaConsulta: Boolean;
+begin
+
 end;
 
 procedure TfrmCadEscola.btnEscolaNovoCadastroClick(Sender: TObject);
@@ -108,12 +114,11 @@ begin
   begin
     Application.CreateForm(TfrmPesquisaEscola, frmPesquisaEscola);
     FreeAndNil(frmCadEscola);
-    frmPesquisaEscola.BorderIcons := BorderIcons - [biSystemMenu];
     frmPesquisaEscola.ShowModal;
   end
   else
   begin
-    frmPesquisaEscola.ShowModal;
+    frmCadEscola.ShowModal;
     Close;
   end;
 end;
@@ -180,8 +185,12 @@ begin
       fmdados.tbdsEscola.ApplyUpdates(0);
       DesabilitarComponentesDados;
       btnEscolaExcluir.Enabled := True;
+//      btnEscolaImprimir.Enabled := True;
       btnEscolaCancelar.Enabled := False;
       btnEscolaPesquisar.Enabled := True;
+//      edtEscolaBuscarCodigo.Enabled := True;
+//      dtpEscolaBuscarData.Enabled := True;
+//      ComboBoxEscolaConsultaOrdenada.Enabled := True;
       LimparCampos;
       ShowMessage('Registro gravado com sucesso!');
     end
@@ -202,21 +211,13 @@ end;
 
 procedure TfrmCadEscola.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  //FALHAS MP FECHAMENTO DAS TELAS EM ALGUMA DAS ROTINAS
-  // FAZER TESTE ESCOLAINDEX - CADASTRO - CONSULTA E FECHAR O INVERSO
-  if frmEscolaIndex = nil then
-  begin
-    Application.CreateForm(TfrmEscolaIndex,frmEscolaIndex);
-    FreeAndNil(frmCadEscola);
-  end
-  else
-    Close;
-  frmEscolaIndex.ShowModal;
+  Close;
 end;
 
 procedure TfrmCadEscola.FormShow(Sender: TObject);
 begin
   HabilitarCRUDCasoPossuaDados;
+  ChecagemTelaCadastroExecutadaAntesDaConsulta;
 end;
 
 procedure TfrmCadEscola.HabilitarCRUDCasoPossuaDados;
