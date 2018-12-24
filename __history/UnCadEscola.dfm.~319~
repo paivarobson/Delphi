@@ -283,6 +283,5 @@ object frmCadEscola: TfrmCadEscola
     Height = 25
     Caption = 'Fechar'
     TabOrder = 16
-    OnClick = btnEscolaFecharClick
   end
 end

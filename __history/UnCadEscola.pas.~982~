@@ -38,7 +38,6 @@ type
     btnEscolaPesquisar: TButton;
     DBDateEditEscolaDataCadastro: TcxDBDateEdit;
     DBMaskEditEscolaEndCEP: TcxDBMaskEdit;
-    btnEscolaFechar: TButton;
     procedure btnEscolaNovoCadastroClick(Sender: TObject);
     procedure btnEscolaGravarClick(Sender: TObject);
     procedure btnEscolaCancelarClick(Sender: TObject);
@@ -50,8 +49,8 @@ type
     procedure DBEditEscolaEndNumeroKeyPress(Sender: TObject; var Key: Char);
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure AvancarCampo(Sender: TObject; var Key: Char);
-    procedure btnEscolaFecharClick(Sender: TObject);
+    procedure DBEditEscolaNomeExit(Sender: TObject);
+    procedure DBEditEscolaNomeKeyPress(Sender: TObject; var Key: Char);
   private
     procedure AtribuicaoCampoData(Sender: TField; const Text: string);
     procedure HabilitarCRUDCasoPossuaDados;
@@ -106,10 +105,17 @@ end;
 
 procedure TfrmCadEscola.btnEscolaPesquisarClick(Sender: TObject);
 begin
-  if not Assigned(frmCadEscola) then
-    frmPesquisaEscola := TfrmPesquisaEscola.Create(frmEscolaIndex);
-  frmPesquisaEscola.Show;
-  Close;
+  if frmPesquisaEscola = nil then
+  begin
+    Application.CreateForm(TfrmPesquisaEscola, frmPesquisaEscola);
+    frmPesquisaEscola.ShowModal;
+    FreeAndNil(frmPesquisaEscola);
+  end
+  else
+  begin
+    frmPesquisaEscola.ShowModal;
+    Close;
+  end;
 end;
 
 procedure TfrmCadEscola.btnEscolaCancelarClick(Sender: TObject);
@@ -137,11 +143,6 @@ begin
     ShowMessage('Registro excluído com sucesso!');
   end;
   fmdados.tbdsEscola.Close;
-end;
-
-procedure TfrmCadEscola.btnEscolaFecharClick(Sender: TObject);
-begin
-  Close;
 end;
 
 function TfrmCadEscola.CamposValidados: Boolean;
@@ -241,12 +242,18 @@ procedure TfrmCadEscola.DBEditEscolaEndNumeroKeyPress(Sender: TObject;
 begin
   if not (Key in ['0'..'9', #8]) then
   begin
-    AvancarCampo(Sender, Key);
+    DBEditEscolaNomeKeyPress(Sender, Key);
     Key := #0;
   end;
 end;
 
-procedure TfrmCadEscola.AvancarCampo(Sender: TObject;
+procedure TfrmCadEscola.DBEditEscolaNomeExit(Sender: TObject);
+begin
+  if not CamposValidados then
+    DBEditEscolaNome.SetFocus
+end;
+
+procedure TfrmCadEscola.DBEditEscolaNomeKeyPress(Sender: TObject;
   var Key: Char);
 begin
   if (Key = #13) then

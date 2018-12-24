@@ -202,13 +202,4 @@ object frmPesquisaEscola: TfrmPesquisaEscola
     TabOrder = 8
     OnClick = btnEscolaNovoCadastroClick
   end
-  object btnEscolaConsultaFechar: TButton
-    Left = 721
-    Top = 8
-    Width = 49
-    Height = 25
-    Caption = 'Fechar'
-    TabOrder = 9
-    OnClick = btnEscolaConsultaFecharClick
-  end
 end

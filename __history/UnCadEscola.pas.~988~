@@ -106,10 +106,16 @@ end;
 
 procedure TfrmCadEscola.btnEscolaPesquisarClick(Sender: TObject);
 begin
-  if not Assigned(frmCadEscola) then
+  if frmPesquisaEscola = nil then
+  begin
     frmPesquisaEscola := TfrmPesquisaEscola.Create(frmEscolaIndex);
-  frmPesquisaEscola.Show;
-  Close;
+    frmPesquisaEscola.Show;
+  end
+  else
+  begin
+    frmPesquisaEscola.Show;
+    Close;
+  end;
 end;
 
 procedure TfrmCadEscola.btnEscolaCancelarClick(Sender: TObject);

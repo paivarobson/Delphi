@@ -1,22 +1,18 @@
 object frmPesquisaEscola: TfrmPesquisaEscola
   Left = 0
   Top = 0
-  BorderIcons = []
-  BorderStyle = bsSingle
+  BorderStyle = bsToolWindow
   Caption = 'Pesquisar'
-  ClientHeight = 500
-  ClientWidth = 800
+  ClientHeight = 510
+  ClientWidth = 810
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  FormStyle = fsMDIChild
   OldCreateOrder = False
   Position = poScreenCenter
-  Visible = True
-  WindowState = wsMaximized
   OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
@@ -44,8 +40,8 @@ object frmPesquisaEscola: TfrmPesquisaEscola
   end
   object DBGridListaEscola: TDBGrid
     Left = 0
-    Top = 227
-    Width = 800
+    Top = 237
+    Width = 810
     Height = 273
     Align = alBottom
     DataSource = fmdados.dsEscola
@@ -201,14 +197,5 @@ object frmPesquisaEscola: TfrmPesquisaEscola
     Caption = 'Novo cadastro'
     TabOrder = 8
     OnClick = btnEscolaNovoCadastroClick
-  end
-  object btnEscolaConsultaFechar: TButton
-    Left = 721
-    Top = 8
-    Width = 49
-    Height = 25
-    Caption = 'Fechar'
-    TabOrder = 9
-    OnClick = btnEscolaConsultaFecharClick
   end
 end

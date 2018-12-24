@@ -19,7 +19,6 @@ type
     rgImpressao: TRadioGroup;
     btnEscolaImprimir: TButton;
     btnEscolaNovoCadastro: TButton;
-    btnEscolaConsultaFechar: TButton;
     procedure DBGridListaEscolaDblClick(Sender: TObject);
     procedure btnEscolaBuscarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -30,7 +29,6 @@ type
     procedure btnEscolaImprimirClick(Sender: TObject);
     procedure rgEscolaPesquisarClick(Sender: TObject);
     procedure btnEscolaNovoCadastroClick(Sender: TObject);
-    procedure btnEscolaConsultaFecharClick(Sender: TObject);
   private
     //FCodigoEscolaSelecionado: Integer;
 //    procedure SetCodigoEscolaSelecionado(const Value: Integer);
@@ -49,11 +47,6 @@ uses
 
 {$R *.dfm}
 
-procedure TfrmPesquisaEscola.btnEscolaConsultaFecharClick(Sender: TObject);
-begin
-  Close;
-end;
-
 procedure TfrmPesquisaEscola.btnEscolaImprimirClick(Sender: TObject);
 begin
   Application.CreateForm(TfrmRelEscola, frmRelEscola);
@@ -68,6 +61,7 @@ begin
   if not Assigned(frmCadEscola) then
     frmCadEscola := TfrmCadEscola.Create(frmEscolaIndex);
   frmCadEscola.Show;
+  Close;
 end;
 
 procedure TfrmPesquisaEscola.FormClose(Sender: TObject;
@@ -96,7 +90,6 @@ end;
 
 procedure TfrmPesquisaEscola.btnEscolaBuscarClick(Sender: TObject);
 begin
-  fmdados.tbdsEscola.Open;
   fmdados.tbdsEscola.Filtered := False;
   if rgEscolaPesquisar.ItemIndex = 0 then
   begin
@@ -138,6 +131,7 @@ begin
     end;
     dtpEscolaBuscarData.SetFocus;
   end;
+  fmdados.tbdsEscola.Open;
 end;
 
 procedure TfrmPesquisaEscola.DBGridListaEscolaDblClick(Sender: TObject);

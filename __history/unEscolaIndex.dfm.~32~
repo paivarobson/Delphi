@@ -2,7 +2,7 @@ object frmEscolaIndex: TfrmEscolaIndex
   Left = 0
   Top = 0
   BorderStyle = bsSingle
-  Caption = 'GESCO'
+  Caption = 'Boas-vindas'
   ClientHeight = 500
   ClientWidth = 800
   Color = clBtnFace

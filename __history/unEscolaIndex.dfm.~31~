@@ -2,9 +2,9 @@ object frmEscolaIndex: TfrmEscolaIndex
   Left = 0
   Top = 0
   BorderStyle = bsSingle
-  Caption = 'GESCO'
-  ClientHeight = 500
-  ClientWidth = 800
+  Caption = 'Boas-vindas'
+  ClientHeight = 344
+  ClientWidth = 697
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,40 +18,40 @@ object frmEscolaIndex: TfrmEscolaIndex
   PixelsPerInch = 96
   TextHeight = 13
   object Label2: TLabel
-    Left = 207
-    Top = 128
-    Width = 367
-    Height = 129
+    Left = 199
+    Top = 56
+    Width = 275
+    Height = 97
     Caption = 'GESCO'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clGray
-    Font.Height = -107
+    Font.Height = -80
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
   end
   object lblEscolaBoasVindas: TLabel
-    Left = 200
-    Top = 128
-    Width = 367
-    Height = 129
+    Left = 192
+    Top = 56
+    Width = 275
+    Height = 97
     Caption = 'GESCO'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -107
+    Font.Height = -80
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
   end
   object Label1: TLabel
-    Left = 213
-    Top = 240
-    Width = 344
-    Height = 40
+    Left = 200
+    Top = 138
+    Width = 267
+    Height = 30
     Caption = 'G e s t '#227' o   E s c o l a r'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -33
+    Font.Height = -25
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False

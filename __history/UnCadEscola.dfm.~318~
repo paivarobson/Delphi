@@ -170,7 +170,7 @@ object frmCadEscola: TfrmCadEscola
     Width = 65
   end
   object btnEscolaNovoCadastro: TButton
-    Left = 228
+    Left = 300
     Top = 234
     Width = 83
     Height = 25
@@ -180,7 +180,7 @@ object frmCadEscola: TfrmCadEscola
     OnKeyPress = AvancarCampo
   end
   object btnEscolaGravar: TButton
-    Left = 317
+    Left = 389
     Top = 234
     Width = 46
     Height = 25
@@ -191,7 +191,7 @@ object frmCadEscola: TfrmCadEscola
     OnKeyPress = AvancarCampo
   end
   object btnEscolaAlterar: TButton
-    Left = 369
+    Left = 441
     Top = 234
     Width = 54
     Height = 25
@@ -201,7 +201,7 @@ object frmCadEscola: TfrmCadEscola
     OnKeyPress = AvancarCampo
   end
   object btnEscolaExcluir: TButton
-    Left = 544
+    Left = 616
     Top = 234
     Width = 50
     Height = 25
@@ -211,7 +211,7 @@ object frmCadEscola: TfrmCadEscola
     OnKeyPress = AvancarCampo
   end
   object btnEscolaCancelar: TButton
-    Left = 483
+    Left = 555
     Top = 234
     Width = 55
     Height = 25
@@ -222,7 +222,7 @@ object frmCadEscola: TfrmCadEscola
     OnKeyPress = AvancarCampo
   end
   object btnEscolaLimpar: TButton
-    Left = 429
+    Left = 501
     Top = 234
     Width = 48
     Height = 25
@@ -275,14 +275,5 @@ object frmCadEscola: TfrmCadEscola
     TabOrder = 4
     OnKeyPress = AvancarCampo
     Width = 69
-  end
-  object btnEscolaFechar: TButton
-    Left = 600
-    Top = 234
-    Width = 67
-    Height = 25
-    Caption = 'Fechar'
-    TabOrder = 16
-    OnClick = btnEscolaFecharClick
   end
 end

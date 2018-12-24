@@ -134,9 +134,221 @@
       
       
       
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
       <Excluded_Packages Name="$(BDS)\bin\dcloffice2k100.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
       <Excluded_Packages Name="$(BDS)\bin\dclofficexp100.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
     </Excluded_Packages><Source><Source Name="MainSource">ProjetoEscola.dpr</Source></Source>  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -253,7 +465,6 @@
       <DebugEnvironmentVariables Name="BDSAppDataBaseDir">'BDS'</DebugEnvironmentVariables>
       <DebugEnvironmentVariables Name="FPS_BROWSER_APP_PROFILE_STRING">'Internet Explorer'</DebugEnvironmentVariables>
       <DebugEnvironmentVariables Name="FPS_BROWSER_USER_PROFILE_STRING">'Default'</DebugEnvironmentVariables>
-      <DebugEnvironmentVariables Name="LOGONSERVER">'\\ZINCO'</DebugEnvironmentVariables>
     </DebugEnvironmentVariables>
     <DebugSysEnvironmentVariables>
       <DebugSysEnvironmentVariables Name="__COMPAT_LAYER">'RunAsAdmin DetectorsVista'</DebugSysEnvironmentVariables>
@@ -270,6 +481,7 @@
       <DebugSysEnvironmentVariables Name="HOMEDRIVE">'C:'</DebugSysEnvironmentVariables>
       <DebugSysEnvironmentVariables Name="HOMEPATH">'\Users\Joserobson'</DebugSysEnvironmentVariables>
       <DebugSysEnvironmentVariables Name="LOCALAPPDATA">'C:\Users\Joserobson\AppData\Local'</DebugSysEnvironmentVariables>
+      <DebugSysEnvironmentVariables Name="LOGONSERVER">'\\ZINCO'</DebugSysEnvironmentVariables>
       <DebugSysEnvironmentVariables Name="MSMPI_BIN">'C:\Program Files\Microsoft MPI\Bin\'</DebugSysEnvironmentVariables>
       <DebugSysEnvironmentVariables Name="NUMBER_OF_PROCESSORS">'4'</DebugSysEnvironmentVariables>
       <DebugSysEnvironmentVariables Name="OneDrive">'C:\Users\Joserobson\OneDrive'</DebugSysEnvironmentVariables>

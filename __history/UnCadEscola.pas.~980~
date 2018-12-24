@@ -38,7 +38,6 @@ type
     btnEscolaPesquisar: TButton;
     DBDateEditEscolaDataCadastro: TcxDBDateEdit;
     DBMaskEditEscolaEndCEP: TcxDBMaskEdit;
-    btnEscolaFechar: TButton;
     procedure btnEscolaNovoCadastroClick(Sender: TObject);
     procedure btnEscolaGravarClick(Sender: TObject);
     procedure btnEscolaCancelarClick(Sender: TObject);
@@ -47,11 +46,11 @@ type
     procedure btnEscolaExcluirClick(Sender: TObject);
     procedure btnEscolaAlterarClick(Sender: TObject);
     procedure btnEscolaPesquisarClick(Sender: TObject);
+    procedure AvancarCampo(Sender: TObject; var Key: Char);
     procedure DBEditEscolaEndNumeroKeyPress(Sender: TObject; var Key: Char);
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure AvancarCampo(Sender: TObject; var Key: Char);
-    procedure btnEscolaFecharClick(Sender: TObject);
+    procedure DBEditEscolaNomeExit(Sender: TObject);
   private
     procedure AtribuicaoCampoData(Sender: TField; const Text: string);
     procedure HabilitarCRUDCasoPossuaDados;
@@ -106,10 +105,17 @@ end;
 
 procedure TfrmCadEscola.btnEscolaPesquisarClick(Sender: TObject);
 begin
-  if not Assigned(frmCadEscola) then
-    frmPesquisaEscola := TfrmPesquisaEscola.Create(frmEscolaIndex);
-  frmPesquisaEscola.Show;
-  Close;
+  if frmPesquisaEscola = nil then
+  begin
+    Application.CreateForm(TfrmPesquisaEscola, frmPesquisaEscola);
+    frmPesquisaEscola.ShowModal;
+    FreeAndNil(frmPesquisaEscola);
+  end
+  else
+  begin
+    frmPesquisaEscola.ShowModal;
+    Close;
+  end;
 end;
 
 procedure TfrmCadEscola.btnEscolaCancelarClick(Sender: TObject);
@@ -137,11 +143,6 @@ begin
     ShowMessage('Registro excluído com sucesso!');
   end;
   fmdados.tbdsEscola.Close;
-end;
-
-procedure TfrmCadEscola.btnEscolaFecharClick(Sender: TObject);
-begin
-  Close;
 end;
 
 function TfrmCadEscola.CamposValidados: Boolean;
@@ -236,6 +237,20 @@ begin
   end;
 end;
 
+procedure TfrmCadEscola.AvancarCampo(Sender: TObject; var Key: Char);
+begin
+  if CamposValidados then
+  begin
+    if (Key = #13) then
+      Perform(WM_nextdlgctl,0,0)
+    else
+      if Key = #27 then
+        Perform(WM_nextdlgctl,1,0)
+  end
+  else
+    DBEditEscolaNome.SetFocus
+end;
+
 procedure TfrmCadEscola.DBEditEscolaEndNumeroKeyPress(Sender: TObject;
   var Key: Char);
 begin
@@ -246,15 +261,9 @@ begin
   end;
 end;
 
-procedure TfrmCadEscola.AvancarCampo(Sender: TObject;
-  var Key: Char);
+procedure TfrmCadEscola.DBEditEscolaNomeExit(Sender: TObject);
 begin
-  if (Key = #13) then
-    Perform(WM_nextdlgctl,0,0)
-  else
-    if Key = #27 then
-      Perform(WM_nextdlgctl,1,0)
-
+  AvancarCampo(Sender);
 end;
 
 procedure TfrmCadEscola.DesabilitarComponentesDados;
