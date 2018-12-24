@@ -46,17 +46,19 @@ end;
 
 procedure TfrmEscolaIndex.menuArquivoCadastroEscolaClick(Sender: TObject);
 begin
-  if not Assigned(frmCadEscola) then
-    frmCadEscola := TfrmCadEscola.Create(Self);
-  frmCadEscola.Show;
-
+  Application.CreateForm(TfrmCadEscola, frmCadEscola);
+  frmCadEscola.ShowModal;
+  FreeAndNil(frmCadEscola);
 end;
 
 procedure TfrmEscolaIndex.menuVisualizarConsultarEscolaClick(Sender: TObject);
 begin
-  if not Assigned(frmPesquisaEscola) then
-    frmPesquisaEscola := TfrmPesquisaEscola.Create(Self);
-  frmPesquisaEscola.Show;
+  if frmPesquisaEscola = nil then
+    Application.CreateForm(TfrmPesquisaEscola, frmPesquisaEscola)
+  else
+    Close;
+  FreeAndNil(frmEscolaIndex);
+  frmPesquisaEscola.ShowModal;
 end;
 
 end.

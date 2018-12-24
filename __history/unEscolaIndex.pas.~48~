@@ -55,7 +55,7 @@ end;
 procedure TfrmEscolaIndex.menuVisualizarConsultarEscolaClick(Sender: TObject);
 begin
   if not Assigned(frmPesquisaEscola) then
-    frmPesquisaEscola := TfrmPesquisaEscola.Create(Self);
+    Application.CreateForm(TfrmPesquisaEscola, frmPesquisaEscola);
   frmPesquisaEscola.Show;
 end;
 

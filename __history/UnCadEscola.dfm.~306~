@@ -2,7 +2,7 @@ object frmCadEscola: TfrmCadEscola
   Left = 0
   Top = 0
   BiDiMode = bdLeftToRight
-  BorderIcons = [biMinimize]
+  BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Cadastro de Escola'
   ClientHeight = 260
@@ -13,11 +13,9 @@ object frmCadEscola: TfrmCadEscola
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  FormStyle = fsMDIChild
   OldCreateOrder = False
   ParentBiDiMode = False
   Position = poScreenCenter
-  Visible = True
   OnClose = FormClose
   OnShow = FormShow
   PixelsPerInch = 96

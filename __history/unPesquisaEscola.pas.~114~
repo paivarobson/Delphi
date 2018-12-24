@@ -28,11 +28,11 @@ type
     procedure ComboBoxEscolaConsultaOrdenadaChange(Sender: TObject);
     procedure btnEscolaImprimirClick(Sender: TObject);
     procedure rgEscolaPesquisarClick(Sender: TObject);
-    procedure btnEscolaNovoCadastroClick(Sender: TObject);
   private
     //FCodigoEscolaSelecionado: Integer;
 //    procedure SetCodigoEscolaSelecionado(const Value: Integer);
     procedure ConsultaOrdenada;
+    procedure FecharForm;
   public
 //    property CodigoEscolaSelecionado: Integer read FCodigoEscolaSelecionado write SetCodigoEscolaSelecionado;
   end;
@@ -54,14 +54,6 @@ begin
     frmRelEscola.RLReportEscola.Preview()
   else
     frmRelEscola.RLReportEscola.Print
-end;
-
-procedure TfrmPesquisaEscola.btnEscolaNovoCadastroClick(Sender: TObject);
-begin
-  if not Assigned(frmCadEscola) then
-    frmCadEscola := TfrmCadEscola.Create(frmEscolaIndex);
-  frmCadEscola.Show;
-  Close;
 end;
 
 procedure TfrmPesquisaEscola.FormClose(Sender: TObject;
@@ -137,6 +129,7 @@ end;
 procedure TfrmPesquisaEscola.DBGridListaEscolaDblClick(Sender: TObject);
 begin
   btnEscolaNovoCadastroClick(Sender);
+  Close;
 end;
 
 procedure TfrmPesquisaEscola.dtpEscolaBuscarDataKeyPress(Sender: TObject;

@@ -59,9 +59,8 @@ end;
 procedure TfrmPesquisaEscola.btnEscolaNovoCadastroClick(Sender: TObject);
 begin
   if not Assigned(frmCadEscola) then
-    frmCadEscola := TfrmCadEscola.Create(frmEscolaIndex);
+    frmCadEscola := TfrmCadEscola.Create(Self);
   frmCadEscola.Show;
-  Close;
 end;
 
 procedure TfrmPesquisaEscola.FormClose(Sender: TObject;

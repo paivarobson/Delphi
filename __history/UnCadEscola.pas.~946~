@@ -49,7 +49,6 @@ type
     procedure AvancarCampo(Sender: TObject; var Key: Char);
     procedure DBEditEscolaEndNumeroKeyPress(Sender: TObject; var Key: Char);
     procedure FormShow(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     procedure AtribuicaoCampoData(Sender: TField; const Text: string);
     procedure HabilitarCRUDCasoPossuaDados;
@@ -197,13 +196,6 @@ begin
   if MessageDlg('Tem certeza que deseja limpar os campos?', mtConfirmation,
     mbYesNo, 0) = mrYes then
     LimparCampos
-end;
-
-procedure TfrmCadEscola.FormClose(Sender: TObject; var Action: TCloseAction);
-begin
-  Action := caFree;
-  Release;
-  frmCadEscola := nil;
 end;
 
 procedure TfrmCadEscola.FormShow(Sender: TObject);

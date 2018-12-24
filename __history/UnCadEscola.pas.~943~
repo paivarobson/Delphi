@@ -46,10 +46,10 @@ type
     procedure btnEscolaExcluirClick(Sender: TObject);
     procedure btnEscolaAlterarClick(Sender: TObject);
     procedure btnEscolaPesquisarClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure AvancarCampo(Sender: TObject; var Key: Char);
     procedure DBEditEscolaEndNumeroKeyPress(Sender: TObject; var Key: Char);
     procedure FormShow(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     procedure AtribuicaoCampoData(Sender: TField; const Text: string);
     procedure HabilitarCRUDCasoPossuaDados;
@@ -107,8 +107,9 @@ begin
   if frmPesquisaEscola = nil then
   begin
     Application.CreateForm(TfrmPesquisaEscola, frmPesquisaEscola);
+    FreeAndNil(frmCadEscola);
+    frmPesquisaEscola.BorderIcons := BorderIcons - [biSystemMenu];
     frmPesquisaEscola.ShowModal;
-    FreeAndNil(frmPesquisaEscola);
   end
   else
   begin
@@ -201,9 +202,16 @@ end;
 
 procedure TfrmCadEscola.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  Action := caFree;
-  Release;
-  frmCadEscola := nil;
+  //FALHAS MP FECHAMENTO DAS TELAS EM ALGUMA DAS ROTINAS
+  // FAZER TESTE ESCOLAINDEX - CADASTRO - CONSULTA E FECHAR O INVERSO
+  if frmEscolaIndex = nil then
+  begin
+    Application.CreateForm(TfrmEscolaIndex,frmEscolaIndex);
+    FreeAndNil(frmCadEscola);
+  end
+  else
+    Close;
+  frmEscolaIndex.ShowModal;
 end;
 
 procedure TfrmCadEscola.FormShow(Sender: TObject);

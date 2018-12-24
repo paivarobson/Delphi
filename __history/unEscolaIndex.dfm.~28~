@@ -10,7 +10,6 @@ object frmEscolaIndex: TfrmEscolaIndex
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  FormStyle = fsMDIForm
   Menu = mmEscola
   OldCreateOrder = False
   Position = poScreenCenter
@@ -65,7 +64,7 @@ object frmEscolaIndex: TfrmEscolaIndex
           Caption = 'Cadastro'
           object menuVisualizarConsultar: TMenuItem
             Caption = '&Escola'
-            OnClick = menuArquivoCadastroEscolaClick
+            OnClick = menuVisualizarConsultarClick
           end
         end
       end

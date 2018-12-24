@@ -33,6 +33,7 @@ type
     //FCodigoEscolaSelecionado: Integer;
 //    procedure SetCodigoEscolaSelecionado(const Value: Integer);
     procedure ConsultaOrdenada;
+    procedure FecharForm;
   public
 //    property CodigoEscolaSelecionado: Integer read FCodigoEscolaSelecionado write SetCodigoEscolaSelecionado;
   end;
@@ -58,10 +59,7 @@ end;
 
 procedure TfrmPesquisaEscola.btnEscolaNovoCadastroClick(Sender: TObject);
 begin
-  if not Assigned(frmCadEscola) then
-    frmCadEscola := TfrmCadEscola.Create(frmEscolaIndex);
-  frmCadEscola.Show;
-  Close;
+  FecharForm;
 end;
 
 procedure TfrmPesquisaEscola.FormClose(Sender: TObject;
@@ -69,9 +67,22 @@ procedure TfrmPesquisaEscola.FormClose(Sender: TObject;
 begin
   Action := caFree;
   Release;
-  frmPesquisaEscola := nil;
+  frmCadEscola := nil;
 end;
 
+procedure TfrmPesquisaEscola.FecharForm;
+begin
+  if not (frmCadEscola = nil) then
+  begin
+    Application.CreateForm(TfrmCadEscola,frmCadEscola);
+  end
+  else
+  begin
+    fmdados.tbdsEscola.Close;
+    Close;
+    frmCadEscola.ShowModal;
+  end;
+end;
 
 procedure TfrmPesquisaEscola.ComboBoxEscolaConsultaOrdenadaChange(
   Sender: TObject);
@@ -137,6 +148,7 @@ end;
 procedure TfrmPesquisaEscola.DBGridListaEscolaDblClick(Sender: TObject);
 begin
   btnEscolaNovoCadastroClick(Sender);
+  Close;
 end;
 
 procedure TfrmPesquisaEscola.dtpEscolaBuscarDataKeyPress(Sender: TObject;
