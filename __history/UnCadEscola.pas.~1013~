@@ -54,7 +54,7 @@ type
     procedure btnEscolaFecharClick(Sender: TObject);
   private
     procedure AtribuicaoCampoData(Sender: TField; const Text: string);
-    procedure HabilitarCRUDCasoPossuaDados;
+    function HabilitarAlterarExcluirCasoPossuaDados: Boolean;
     { Private declarations }
   public
     { Public declarations }
@@ -106,7 +106,7 @@ end;
 
 procedure TfrmCadEscola.btnEscolaPesquisarClick(Sender: TObject);
 begin
-  if not Assigned(frmCadEscola then
+  if not Assigned(frmPesquisaEscola) then
     frmPesquisaEscola := TfrmPesquisaEscola.Create(frmEscolaIndex);
   frmPesquisaEscola.Show;
   Close;
@@ -122,8 +122,8 @@ begin
     btnEscolaPesquisar.Enabled := True;
     btnEscolaExcluir.Enabled := True;
   end;
+  if HabilitarAlterarExcluirCasoPossuaDados then
     fmdados.tbdsEscola.Close;
-    HabilitarCRUDCasoPossuaDados
 end;
 
 procedure TfrmCadEscola.btnEscolaExcluirClick(Sender: TObject);
@@ -134,9 +134,10 @@ begin
     fmdados.tbdsEscola.Delete;
     fmdados.tbdsEscola.ApplyUpdates(0);
     fmdados.tbdsEscola.Refresh;
+    fmdados.tbdsEscola.Close;
     ShowMessage('Registro excluído com sucesso!');
-  end;
-  fmdados.tbdsEscola.Close;
+
+  end
 end;
 
 procedure TfrmCadEscola.btnEscolaFecharClick(Sender: TObject);
@@ -208,20 +209,31 @@ end;
 
 procedure TfrmCadEscola.FormShow(Sender: TObject);
 begin
-  HabilitarCRUDCasoPossuaDados;
+  HabilitarAlterarExcluirCasoPossuaDados;
 end;
 
-procedure TfrmCadEscola.HabilitarCRUDCasoPossuaDados;
+function TfrmCadEscola.HabilitarAlterarExcluirCasoPossuaDados: Boolean;
 begin
-  if DBEditEscolaCod.Text = EmptyStr then
+  if fmdados.tbdsEscola.Active then
   begin
-    btnEscolaAlterar.Enabled := False;
-    btnEscolaExcluir.Enabled := False;
+    if fmdados.tbdsEscola.Fields[0].AsInteger = FController.DevolverUltimoCodigo then
+    begin
+      btnEscolaAlterar.Enabled := False;
+      btnEscolaExcluir.Enabled := False;
+      Result := False;
+    end
+    else
+    begin
+      btnEscolaAlterar.Enabled := True;
+      btnEscolaExcluir.Enabled := True;
+      Result := True;
+    end;
   end
   else
   begin
-    btnEscolaAlterar.Enabled := True;
-    btnEscolaExcluir.Enabled := True;
+    btnEscolaAlterar.Enabled := False;
+    btnEscolaExcluir.Enabled := False;
+    Result := False;
   end;
 end;
 

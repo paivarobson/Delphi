@@ -38,6 +38,7 @@ type
     btnEscolaPesquisar: TButton;
     DBDateEditEscolaDataCadastro: TcxDBDateEdit;
     DBMaskEditEscolaEndCEP: TcxDBMaskEdit;
+    btnEscolaFechar: TButton;
     procedure btnEscolaNovoCadastroClick(Sender: TObject);
     procedure btnEscolaGravarClick(Sender: TObject);
     procedure btnEscolaCancelarClick(Sender: TObject);
@@ -49,10 +50,11 @@ type
     procedure DBEditEscolaEndNumeroKeyPress(Sender: TObject; var Key: Char);
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure DBEditEscolaNomeExit(Sender: TObject);
+    procedure AvancarCampo(Sender: TObject; var Key: Char);
+    procedure btnEscolaFecharClick(Sender: TObject);
   private
     procedure AtribuicaoCampoData(Sender: TField; const Text: string);
-    procedure HabilitarCRUDCasoPossuaDados;
+    function HabilitarAlterarExcluirCasoPossuaDados: Boolean;
     { Private declarations }
   public
     { Public declarations }
@@ -104,17 +106,10 @@ end;
 
 procedure TfrmCadEscola.btnEscolaPesquisarClick(Sender: TObject);
 begin
-  if frmPesquisaEscola = nil then
-  begin
-    Application.CreateForm(TfrmPesquisaEscola, frmPesquisaEscola);
-    frmPesquisaEscola.ShowModal;
-    FreeAndNil(frmPesquisaEscola);
-  end
-  else
-  begin
-    frmPesquisaEscola.ShowModal;
-    Close;
-  end;
+  if not Assigned(frmPesquisaEscola) then
+    frmPesquisaEscola := TfrmPesquisaEscola.Create(frmEscolaIndex);
+  frmPesquisaEscola.Show;
+  Close;
 end;
 
 procedure TfrmCadEscola.btnEscolaCancelarClick(Sender: TObject);
@@ -127,8 +122,8 @@ begin
     btnEscolaPesquisar.Enabled := True;
     btnEscolaExcluir.Enabled := True;
   end;
+  if HabilitarAlterarExcluirCasoPossuaDados then
     fmdados.tbdsEscola.Close;
-    HabilitarCRUDCasoPossuaDados
 end;
 
 procedure TfrmCadEscola.btnEscolaExcluirClick(Sender: TObject);
@@ -139,9 +134,15 @@ begin
     fmdados.tbdsEscola.Delete;
     fmdados.tbdsEscola.ApplyUpdates(0);
     fmdados.tbdsEscola.Refresh;
+    fmdados.tbdsEscola.Close;
     ShowMessage('Registro excluído com sucesso!');
-  end;
-  fmdados.tbdsEscola.Close;
+
+  end
+end;
+
+procedure TfrmCadEscola.btnEscolaFecharClick(Sender: TObject);
+begin
+  Close;
 end;
 
 function TfrmCadEscola.CamposValidados: Boolean;
@@ -208,20 +209,35 @@ end;
 
 procedure TfrmCadEscola.FormShow(Sender: TObject);
 begin
-  HabilitarCRUDCasoPossuaDados;
+  HabilitarAlterarExcluirCasoPossuaDados;
 end;
 
-procedure TfrmCadEscola.HabilitarCRUDCasoPossuaDados;
+function TfrmCadEscola.HabilitarAlterarExcluirCasoPossuaDados: Boolean;
 begin
-  if DBEditEscolaCod.Text = EmptyStr then
-  begin
-    btnEscolaAlterar.Enabled := False;
-    btnEscolaExcluir.Enabled := False;
-  end
-  else
-  begin
-    btnEscolaAlterar.Enabled := True;
-    btnEscolaExcluir.Enabled := True;
+  try
+    if fmdados.tbdsEscola.Active then
+    begin
+      if fmdados.tbdsEscola.Fields[0].AsInteger = FController.DevolverUltimoCodigo then
+      begin
+        btnEscolaAlterar.Enabled := False;
+        btnEscolaExcluir.Enabled := False;
+        Result := False;
+      end
+      else
+      begin
+        btnEscolaAlterar.Enabled := True;
+        btnEscolaExcluir.Enabled := True;
+        Result := True;
+      end;
+    end
+    else
+    begin
+      btnEscolaAlterar.Enabled := False;
+      btnEscolaExcluir.Enabled := False;
+      Result := False;
+    end;
+  finally
+
   end;
 end;
 
@@ -246,9 +262,15 @@ begin
   end;
 end;
 
-procedure TfrmCadEscola.DBEditEscolaNomeExit(Sender: TObject);
+procedure TfrmCadEscola.AvancarCampo(Sender: TObject;
+  var Key: Char);
 begin
-  AvancarCampo(Sender, '#13');
+  if (Key = #13) then
+    Perform(WM_nextdlgctl,0,0)
+  else
+    if Key = #27 then
+      Perform(WM_nextdlgctl,1,0)
+
 end;
 
 procedure TfrmCadEscola.DesabilitarComponentesDados;

@@ -54,7 +54,7 @@ type
     procedure btnEscolaFecharClick(Sender: TObject);
   private
     procedure AtribuicaoCampoData(Sender: TField; const Text: string);
-    procedure HabilitarCRUDCasoPossuaDados;
+    function HabilitarAlterarExcluirCasoPossuaDados: Boolean;
     { Private declarations }
   public
     { Public declarations }
@@ -106,7 +106,7 @@ end;
 
 procedure TfrmCadEscola.btnEscolaPesquisarClick(Sender: TObject);
 begin
-  if not Assigned(frmCadEscola) then
+  if not Assigned(frmPesquisaEscola) then
     frmPesquisaEscola := TfrmPesquisaEscola.Create(frmEscolaIndex);
   frmPesquisaEscola.Show;
   Close;
@@ -117,13 +117,12 @@ begin
   if MessageDlg('Tem certeza que deseja cancelar a edição deste registro?', mtConfirmation,
     mbYesNo, 0) = mrYes then
   begin
+    HabilitarAlterarExcluirCasoPossuaDados;
     fmdados.tbdsEscola.Cancel;
     DesabilitarComponentesDados;
     btnEscolaPesquisar.Enabled := True;
     btnEscolaExcluir.Enabled := True;
   end;
-    fmdados.tbdsEscola.Close;
-    HabilitarCRUDCasoPossuaDados
 end;
 
 procedure TfrmCadEscola.btnEscolaExcluirClick(Sender: TObject);
@@ -134,9 +133,11 @@ begin
     fmdados.tbdsEscola.Delete;
     fmdados.tbdsEscola.ApplyUpdates(0);
     fmdados.tbdsEscola.Refresh;
+    fmdados.tbdsEscola.Close;
+    HabilitarAlterarExcluirCasoPossuaDados;
     ShowMessage('Registro excluído com sucesso!');
-  end;
-  fmdados.tbdsEscola.Close;
+
+  end
 end;
 
 procedure TfrmCadEscola.btnEscolaFecharClick(Sender: TObject);
@@ -178,6 +179,7 @@ begin
       fmdados.tbdsEscola.Post;
       fmdados.tbdsEscola.ApplyUpdates(0);
       DesabilitarComponentesDados;
+      //VERIFICAR ENABLE DO BOTÃO EXCLUIR QUE PERMAECEU ATIVO APÓS GRAVAÇÃO DE NOVO REGISTRO
       btnEscolaExcluir.Enabled := True;
       btnEscolaCancelar.Enabled := False;
       btnEscolaPesquisar.Enabled := True;
@@ -208,20 +210,32 @@ end;
 
 procedure TfrmCadEscola.FormShow(Sender: TObject);
 begin
-  HabilitarCRUDCasoPossuaDados;
+  HabilitarAlterarExcluirCasoPossuaDados;
 end;
 
-procedure TfrmCadEscola.HabilitarCRUDCasoPossuaDados;
+function TfrmCadEscola.HabilitarAlterarExcluirCasoPossuaDados: Boolean;
 begin
-  if DBEditEscolaCod.Text = EmptyStr then
+  if fmdados.tbdsEscola.Active then
   begin
-    btnEscolaAlterar.Enabled := False;
-    btnEscolaExcluir.Enabled := False;
+    if fmdados.tbdsEscola.Fields[0].AsInteger = (FController.DevolverUltimoCodigo + 1) then
+    begin
+      btnEscolaAlterar.Enabled := False;
+      btnEscolaExcluir.Enabled := False;
+      fmdados.tbdsEscola.Close;
+      Result := False;
+    end
+    else
+    begin
+      btnEscolaAlterar.Enabled := True;
+      btnEscolaExcluir.Enabled := True;
+      Result := True;
+    end;
   end
   else
   begin
-    btnEscolaAlterar.Enabled := True;
-    btnEscolaExcluir.Enabled := True;
+    btnEscolaAlterar.Enabled := False;
+    btnEscolaExcluir.Enabled := False;
+    Result := False;
   end;
 end;
 
@@ -262,7 +276,6 @@ begin
   btnEscolaNovoCadastro.Enabled := True;
   btnEscolaGravar.Enabled := False;
   btnEscolaLimpar.Enabled := False;
-  btnEscolaAlterar.Enabled := True;
   btnEscolaCancelar.Enabled := False;
   btnEscolaExcluir.Enabled := False;
   DBEditEscolaCod.Enabled := False;

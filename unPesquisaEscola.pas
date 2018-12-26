@@ -68,6 +68,8 @@ begin
   if not Assigned(frmCadEscola) then
     frmCadEscola := TfrmCadEscola.Create(frmEscolaIndex);
   frmCadEscola.Show;
+  frmCadEscola.btnEscolaNovoCadastroClick(Sender);
+  Close;
 end;
 
 procedure TfrmPesquisaEscola.FormClose(Sender: TObject;
@@ -142,7 +144,10 @@ end;
 
 procedure TfrmPesquisaEscola.DBGridListaEscolaDblClick(Sender: TObject);
 begin
-  btnEscolaNovoCadastroClick(Sender);
+  if not Assigned(frmCadEscola) then
+    frmCadEscola := TfrmCadEscola.Create(frmEscolaIndex);
+  Close;
+  frmCadEscola.Show;
 end;
 
 procedure TfrmPesquisaEscola.dtpEscolaBuscarDataKeyPress(Sender: TObject;
