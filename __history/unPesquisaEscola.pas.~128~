@@ -84,8 +84,7 @@ end;
 
 procedure TfrmPesquisaEscola.FormShow(Sender: TObject);
 begin
-  rgEscolaPesquisar.SetFocus;
-  fmdados.tbdsEscola.Close;
+  rgEscolaPesquisar.SetFocus
 end;
 
 procedure TfrmPesquisaEscola.ComboBoxEscolaConsultaOrdenadaChange(
@@ -151,7 +150,6 @@ begin
     frmCadEscola := TfrmCadEscola.Create(frmEscolaIndex);
   Close;
   frmCadEscola.Show;
-  fmdados.tbdsEscola.Open;
 end;
 
 procedure TfrmPesquisaEscola.dtpEscolaBuscarDataKeyPress(Sender: TObject;

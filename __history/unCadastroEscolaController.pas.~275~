@@ -4,11 +4,6 @@ interface
 
 uses DB, DBClient, SqlExpr, Windows, Dialogs, SysUtils, DateUtils, StdCtrls;
 
-
-
-
-
-
 type
   TDadosEscola = record
     Codigo: Integer;
@@ -23,13 +18,11 @@ type
   end;
 
     TCadastroEscolaController = class
+    procedure AvancarCampo(Sender: TObject; var Key: Char);
   public
     procedure CarregarEscola(const AFontesDados: TSQLQuery);
     function DevolverUltimoCodigo: Integer;
     function ValidaCampos(const ADadoCampo: string): Boolean;
-    function Dados: TClientDataSet;
-    function DadosFieldData: string;
-    function DadosFieldCodigo: Integer;
   end;
 
 implementation
@@ -44,20 +37,15 @@ begin
   AFontesDados.SQL.Clear;
   AFontesDados.SQL.Add('SELECT * FROM ESCOLA');
 end;
-
-function TCadastroEscolaController.Dados: TClientDataSet;
+//Método para avançar e recuar campo com a tecla ENTER e ESC respectivamente
+procedure TCadastroEscolaController.AvancarCampo(Sender: TObject;
+  var Key: Char);
 begin
-  Result := fmdados.tbdsEscola;
-end;
-
-function TCadastroEscolaController.DadosFieldData: string;
-begin
-  Result := fmdados.tbdsEscolaESCDATACAD.OnSetText;
-end;
-
-function TCadastroEscolaController.DadosFieldCodigo: Integer;
-begin
-  Result := fmdados.tbdsEscolaESCCOD.AsInteger;
+  if (Key = #13) then //Verifica se a tecla pressionada é ENTER
+    Perform(WM_nextdlgctl,0,0)
+  else
+    if Key = #27 then //Verifica se a tecla pressionada é ESC
+      Perform(WM_nextdlgctl,1,0)
 end;
 
 function TCadastroEscolaController.ValidaCampos(const ADadoCampo: string): Boolean;

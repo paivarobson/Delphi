@@ -84,9 +84,9 @@ end;
 //(Botão NOVO CADASTRO) Evento para habilitar campos para a inclusão
 procedure TfrmCadEscola.btnEscolaNovoCadastroClick(Sender: TObject);
 begin
-  FController.Dados.Open;
-  FController.DadosFieldData := FormatacaoEValidacaoCampoData; //Atribui validação da data direto no CDS
-  FController.Dados.Append;
+  fmdados.tbdsEscola.Open;
+  fmdados.tbdsEscolaESCDATACAD.OnSetText := FormatacaoEValidacaoCampoData; //Atribui validação da data direto no CDS 
+  fmdados.tbdsEscola.Append;
   HabilitarComponentesDados; //Habilita os componentes necessários para NOVO CADASTRO
   LimparCampos; //Limpa os campos necessários para NOVO CADASTRO caso possuam algum dado
   fmdados.tbdsEscolaESCCOD.AsInteger := FController.DevolverUltimoCodigo + 1; //Aplica o CÓDIGO IDENTIFICADOR

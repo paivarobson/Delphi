@@ -273,7 +273,7 @@ object frmCadEscola: TfrmCadEscola
     Enabled = False
     Properties.EditMask = '00000\-999;1;_'
     TabOrder = 4
-    OnKeyPress = DBEditEscolaEndNumeroKeyPress
+    OnKeyPress = AvancarCampo
     Width = 69
   end
   object btnEscolaFechar: TButton

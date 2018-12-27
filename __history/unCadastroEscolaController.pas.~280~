@@ -28,8 +28,6 @@ type
     function DevolverUltimoCodigo: Integer;
     function ValidaCampos(const ADadoCampo: string): Boolean;
     function Dados: TClientDataSet;
-    function DadosFieldData: string;
-    function DadosFieldCodigo: Integer;
   end;
 
 implementation
@@ -48,16 +46,6 @@ end;
 function TCadastroEscolaController.Dados: TClientDataSet;
 begin
   Result := fmdados.tbdsEscola;
-end;
-
-function TCadastroEscolaController.DadosFieldData: string;
-begin
-  Result := fmdados.tbdsEscolaESCDATACAD.OnSetText;
-end;
-
-function TCadastroEscolaController.DadosFieldCodigo: Integer;
-begin
-  Result := fmdados.tbdsEscolaESCCOD.AsInteger;
 end;
 
 function TCadastroEscolaController.ValidaCampos(const ADadoCampo: string): Boolean;

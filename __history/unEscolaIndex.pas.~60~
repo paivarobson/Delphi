@@ -38,14 +38,14 @@ uses
   UnCadEscola, unPesquisaEscola;
 
 {$R *.dfm}
-//(Menu Arquivo>>Sair) Fechar todo o sistema
+
 procedure TfrmEscolaIndex.menuArquivoSairClick(Sender: TObject);
 begin
   if MessageDlg('O sistema será totalmente encerrado. Deseja continuar?', mtConfirmation,
     mbYesNo, 0) = mrYes then
     Close
 end;
-//(Menu Arquivo>>Cadastro>>Escola) Evento para abrir o Form CADASTRO ESCOLA
+//Evento para abrir Form CADASTRO ESCOLA
 procedure TfrmEscolaIndex.menuArquivoCadastroEscolaClick(Sender: TObject);
 begin
   if not Assigned(frmCadEscola) then //Verifica se o Form CADASTRO ESCOLA está FECHADO para ser CRIADO
@@ -54,13 +54,13 @@ begin
   if Assigned(frmPesquisaEscola) then //Verifica se o Form PESQUISA ESCOLA está ABERTO para que seja FECHADO
     frmPesquisaEscola.Close;
 end;
-//(Menu Visualizar>>Consultar>>Escola) Evento para abrir o Form PESQUISA ESCOLA
+//
 procedure TfrmEscolaIndex.menuVisualizarConsultarEscolaClick(Sender: TObject);
 begin
-  if not Assigned(frmPesquisaEscola) then //Verifica se o Form PESQUISA ESCOLA está FECHADO para ser CRIADO
+  if not Assigned(frmPesquisaEscola) then
     frmPesquisaEscola := TfrmPesquisaEscola.Create(Self);
   frmPesquisaEscola.Show;
-  if Assigned(frmCadEscola) then //Verifica se o Form CADASTRO ESCOLA está ABERTO para que seja FECHADO
+  if Assigned(frmCadEscola) then
     frmCadEscola.Close;
 end;
 

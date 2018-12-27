@@ -7,7 +7,7 @@ uses
   Dialogs, WideStrings, FMTBcd, cxGraphics, cxControls, cxLookAndFeels,
   cxLookAndFeelPainters, cxContainer, cxEdit, cxDBEdit, cxTextEdit, cxMaskEdit,
   cxSpinEdit, StdCtrls, DB, SqlExpr, Grids, DBGrids, Provider, DBClient,
-  ExtCtrls, DBCtrls, unCadastroEscolaController, ADODB, ComCtrls, Mask,
+  ExtCtrls, DBCtrls, unDados, unCadastroEscolaController, ADODB, ComCtrls, Mask,
   JvExMask, JvToolEdit, JvDBControls, cxDropDownEdit, cxCalendar;
 
 type
@@ -84,9 +84,9 @@ end;
 //(Botão NOVO CADASTRO) Evento para habilitar campos para a inclusão
 procedure TfrmCadEscola.btnEscolaNovoCadastroClick(Sender: TObject);
 begin
-  FController.Dados.Open;
-  FController.DadosFieldData := FormatacaoEValidacaoCampoData; //Atribui validação da data direto no CDS
-  FController.Dados.Append;
+  fmdados.tbdsEscola.Open;
+  fmdados.tbdsEscolaESCDATACAD.OnSetText := FormatacaoEValidacaoCampoData; //Atribui validação da data direto no CDS 
+  fmdados.tbdsEscola.Append;
   HabilitarComponentesDados; //Habilita os componentes necessários para NOVO CADASTRO
   LimparCampos; //Limpa os campos necessários para NOVO CADASTRO caso possuam algum dado
   fmdados.tbdsEscolaESCCOD.AsInteger := FController.DevolverUltimoCodigo + 1; //Aplica o CÓDIGO IDENTIFICADOR
@@ -155,7 +155,7 @@ begin
   try
     for i := 0 to fmdados.tbdsEscola.Fields.Count - 1 do
     begin
-      if (FController.Dados.Fields[i].Tag = 1) and
+      if (fmdados.tbdsEscola.Fields[i].Tag = 1) and             
         (fmdados.tbdsEscola.Fields[i].AsString = EmptyStr) then
         Campos.Add('- ' + fmdados.tbdsEscola.Fields[i].DisplayName) //Armazena o NOME DO CAMPO dentro de uma LISTA
     end;
@@ -271,13 +271,13 @@ end;
 procedure TfrmCadEscola.AvancarCampo(Sender: TObject;
   var Key: Char);
 begin
-  if (Key = #13) then //Verifica se a tecla pressionada é ENTER
+  if (Key = #13) then //Verifica se é tecla ENTER
     Perform(WM_nextdlgctl,0,0)
   else
-    if Key = #27 then //Verifica se a tecla pressionada é ESC
+    if Key = #27 then //Verifica se é tecla ESC
       Perform(WM_nextdlgctl,1,0)
 end;
-//Método desabilitador da maioria dos componentes
+
 procedure TfrmCadEscola.DesabilitarComponentesDados;
 begin
   btnEscolaNovoCadastro.Enabled := True;
@@ -294,7 +294,7 @@ begin
   DBMaskEditEscolaEndCEP.Enabled := False;
   DBEditEscolaEndBairro.Enabled := False;
 end;
-//Método habilitador da maioria dos componentes
+
 procedure TfrmCadEscola.HabilitarComponentesDados;
 begin
   btnEscolaNovoCadastro.Enabled := False;
@@ -310,7 +310,7 @@ begin
   DBEditEscolaEndBairro.Enabled := True;
   DBEditEscolaNome.SetFocus;
 end;
-//Método para limpar os campos de entrada de dados
+
 procedure TfrmCadEscola.LimparCampos;
 begin
   DBEditEscolaCod.Clear;
