@@ -31,6 +31,7 @@ type
     procedure rgEscolaPesquisarClick(Sender: TObject);
     procedure btnEscolaNovoCadastroClick(Sender: TObject);
     procedure btnEscolaConsultaFecharClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     //FCodigoEscolaSelecionado: Integer;
 //    procedure SetCodigoEscolaSelecionado(const Value: Integer);
@@ -81,6 +82,11 @@ begin
 end;
 
 
+procedure TfrmPesquisaEscola.FormShow(Sender: TObject);
+begin
+  rgEscolaPesquisar.SetFocus
+end;
+
 procedure TfrmPesquisaEscola.ComboBoxEscolaConsultaOrdenadaChange(
   Sender: TObject);
 begin
@@ -110,6 +116,7 @@ begin
       fmdados.tbdsEscola.Filtered := True;
     end
     else
+    begin
       if fmdados.tbdsEscola.Locate('ESCCOD', edtEscolaBuscarCodigo.Text, [LopartialKey]) then
       begin
         fmdados.tbdsEscola.Filtered := False;
@@ -117,20 +124,15 @@ begin
         fmdados.tbdsEscola.Filtered := True;
       end
       else
-      begin
-        ShowMessage('Registro não localizado. Verifique o código digitado e tente novamente.');
-        edtEscolaBuscarCodigo.SetFocus;
-      end;
+        ShowMessage('Registro não localizado. Verifique o código digitado e tente novamente.')
+    end;
     edtEscolaBuscarCodigo.SetFocus;
   end
   else
   begin
     if not fmdados.tbdsEscola.Locate('ESCDATACAD',
       FormatDateTime('DD/MM/YYYY', dtpEscolaBuscarData.Date), [LopartialKey]) then
-    begin
-      ShowMessage('Registro não localizado. Verifique a data consultada e tente novamente.');
-      dtpEscolaBuscarData.SetFocus;
-    end
+      ShowMessage('Registro não localizado. Verifique a data consultada e tente novamente.')
     else
     begin
       fmdados.tbdsEscola.Filtered := False;

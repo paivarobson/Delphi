@@ -54,7 +54,7 @@ type
     procedure btnEscolaFecharClick(Sender: TObject);
   private
     procedure AtribuicaoCampoData(Sender: TField; const Text: string);
-    function HabilitarCRUDCasoPossuaDados: Boolean;
+    function HabilitarAlterarExcluirCasoPossuaDados: Boolean;
     { Private declarations }
   public
     { Public declarations }
@@ -117,13 +117,12 @@ begin
   if MessageDlg('Tem certeza que deseja cancelar a edição deste registro?', mtConfirmation,
     mbYesNo, 0) = mrYes then
   begin
+    HabilitarAlterarExcluirCasoPossuaDados;
     fmdados.tbdsEscola.Cancel;
     DesabilitarComponentesDados;
     btnEscolaPesquisar.Enabled := True;
     btnEscolaExcluir.Enabled := True;
   end;
-  if HabilitarCRUDCasoPossuaDados then
-    fmdados.tbdsEscola.Close;
 end;
 
 procedure TfrmCadEscola.btnEscolaExcluirClick(Sender: TObject);
@@ -135,6 +134,7 @@ begin
     fmdados.tbdsEscola.ApplyUpdates(0);
     fmdados.tbdsEscola.Refresh;
     fmdados.tbdsEscola.Close;
+    HabilitarAlterarExcluirCasoPossuaDados;
     ShowMessage('Registro excluído com sucesso!');
 
   end
@@ -179,6 +179,7 @@ begin
       fmdados.tbdsEscola.Post;
       fmdados.tbdsEscola.ApplyUpdates(0);
       DesabilitarComponentesDados;
+      //VERIFICAR ENABLE DO BOTÃO EXCLUIR QUE PERMAECEU ATIVO APÓS GRAVAÇÃO DE NOVO REGISTROs
       btnEscolaExcluir.Enabled := True;
       btnEscolaCancelar.Enabled := False;
       btnEscolaPesquisar.Enabled := True;
@@ -209,44 +210,32 @@ end;
 
 procedure TfrmCadEscola.FormShow(Sender: TObject);
 begin
-  HabilitarCRUDCasoPossuaDados;
+  HabilitarAlterarExcluirCasoPossuaDados;
 end;
 
-function TfrmCadEscola.HabilitarCRUDCasoPossuaDados: Boolean;
-var
-  i: Integer;
-  Campos: TStringList;
+function TfrmCadEscola.HabilitarAlterarExcluirCasoPossuaDados: Boolean;
 begin
-  try
-    if fmdados.tbdsEscola.Active then
-    begin
-      Campos := TStringList.Create;
-      for i := 0 to fmdados.tbdsEscola.Fields.Count - 1 do
-      begin
-        if fmdados.tbdsEscola.Fields[i].AsString = EmptyStr then
-          Campos.Add(fmdados.tbdsEscola.Fields[i].DisplayName)
-      end;
-      if Campos.Count > 2 then
-      begin
-        btnEscolaAlterar.Enabled := True;
-        btnEscolaExcluir.Enabled := True;
-        Result := False;
-      end
-      else
-      begin
-        btnEscolaAlterar.Enabled := False;
-        btnEscolaExcluir.Enabled := False;
-        Result := True;
-      end;
-    end
-    else
+  if fmdados.tbdsEscola.Active then
+  begin
+    if fmdados.tbdsEscola.Fields[0].AsInteger = (FController.DevolverUltimoCodigo + 1) then
     begin
       btnEscolaAlterar.Enabled := False;
       btnEscolaExcluir.Enabled := False;
+      fmdados.tbdsEscola.Close;
       Result := False;
+    end
+    else
+    begin
+      btnEscolaAlterar.Enabled := True;
+      btnEscolaExcluir.Enabled := True;
+      Result := True;
     end;
-  finally
-
+  end
+  else
+  begin
+    btnEscolaAlterar.Enabled := False;
+    btnEscolaExcluir.Enabled := False;
+    Result := False;
   end;
 end;
 
@@ -287,7 +276,6 @@ begin
   btnEscolaNovoCadastro.Enabled := True;
   btnEscolaGravar.Enabled := False;
   btnEscolaLimpar.Enabled := False;
-  btnEscolaAlterar.Enabled := True;
   btnEscolaCancelar.Enabled := False;
   btnEscolaExcluir.Enabled := False;
   DBEditEscolaCod.Enabled := False;

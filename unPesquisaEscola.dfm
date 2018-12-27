@@ -18,6 +18,7 @@ object frmPesquisaEscola: TfrmPesquisaEscola
   Visible = True
   WindowState = wsMaximized
   OnClose = FormClose
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object lblEscolaConsultaOrdenada: TLabel
@@ -182,7 +183,7 @@ object frmPesquisaEscola: TfrmPesquisaEscola
     Items.Strings = (
       'Tela'
       'Impressora')
-    TabOrder = 6
+    TabOrder = 7
   end
   object btnEscolaImprimir: TButton
     Left = 680
@@ -190,7 +191,7 @@ object frmPesquisaEscola: TfrmPesquisaEscola
     Width = 90
     Height = 25
     Caption = 'Imprimir'
-    TabOrder = 7
+    TabOrder = 8
     OnClick = btnEscolaImprimirClick
   end
   object btnEscolaNovoCadastro: TButton
@@ -199,7 +200,7 @@ object frmPesquisaEscola: TfrmPesquisaEscola
     Width = 83
     Height = 25
     Caption = 'Novo cadastro'
-    TabOrder = 8
+    TabOrder = 6
     OnClick = btnEscolaNovoCadastroClick
   end
   object btnEscolaConsultaFechar: TButton

@@ -121,7 +121,6 @@ begin
     fmdados.tbdsEscola.Cancel;
     DesabilitarComponentesDados;
     btnEscolaPesquisar.Enabled := True;
-    btnEscolaExcluir.Enabled := True;
   end;
 end;
 
@@ -179,7 +178,7 @@ begin
       fmdados.tbdsEscola.Post;
       fmdados.tbdsEscola.ApplyUpdates(0);
       DesabilitarComponentesDados;
-      //VERIFICAR ENABLE DO BOTÃO EXCLUIR QUE PERMAECEU ATIVO APÓS GRAVAÇÃO DE NOVO REGISTRO
+      //VERIFICAR ENABLE DO BOTÃO EXCLUIR QUE PERMAECEU ATIVO APÓS GRAVAÇÃO DE NOVO REGISTROs
       btnEscolaExcluir.Enabled := True;
       btnEscolaCancelar.Enabled := False;
       btnEscolaPesquisar.Enabled := True;

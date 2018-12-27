@@ -41,7 +41,9 @@ uses
 
 procedure TfrmEscolaIndex.menuArquivoSairClick(Sender: TObject);
 begin
-  Close;
+  if MessageDlg('O sistema será totalmente encerrado. Deseja continuar?', mtConfirmation,
+    mbYesNo, 0) = mrYes then
+    Close
 end;
 
 procedure TfrmEscolaIndex.menuArquivoCadastroEscolaClick(Sender: TObject);
@@ -49,7 +51,8 @@ begin
   if not Assigned(frmCadEscola) then
     frmCadEscola := TfrmCadEscola.Create(Self);
   frmCadEscola.Show;
-
+  if Assigned(frmPesquisaEscola) then
+    frmPesquisaEscola.Close;
 end;
 
 procedure TfrmEscolaIndex.menuVisualizarConsultarEscolaClick(Sender: TObject);
@@ -57,6 +60,8 @@ begin
   if not Assigned(frmPesquisaEscola) then
     frmPesquisaEscola := TfrmPesquisaEscola.Create(Self);
   frmPesquisaEscola.Show;
+  if Assigned(frmCadEscola) then
+    frmCadEscola.Close;
 end;
 
 end.

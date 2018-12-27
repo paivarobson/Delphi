@@ -20,7 +20,7 @@ type
     Consultar1: TMenuItem;
     Label1: TLabel;
     Label2: TLabel;
-    procedure menuVisualizarConsultarClick(Sender: TObject);
+    procedure menuArquivoCadastroEscolaClick(Sender: TObject);
     procedure menuVisualizarConsultarEscolaClick(Sender: TObject);
     procedure menuArquivoSairClick(Sender: TObject);
   private
@@ -44,28 +44,19 @@ begin
   Close;
 end;
 
-procedure TfrmEscolaIndex.menuVisualizarConsultarClick(Sender: TObject);
+procedure TfrmEscolaIndex.menuArquivoCadastroEscolaClick(Sender: TObject);
 begin
-  if frmCadEscola = nil then
-  begin
-    Application.CreateForm(TfrmCadEscola, frmCadEscola);
-    FreeAndNil(frmEscolaIndex);
-  end
-  else
-    Close;
-  frmCadEscola.ShowModal;
+  if not Assigned(frmCadEscola) then
+    frmCadEscola := TfrmCadEscola.Create(Self);
+  frmCadEscola.Show;
+
 end;
 
 procedure TfrmEscolaIndex.menuVisualizarConsultarEscolaClick(Sender: TObject);
 begin
-  if frmPesquisaEscola = nil then
-  begin
-    Application.CreateForm(TfrmPesquisaEscola, frmPesquisaEscola);
-    FreeAndNil(frmEscolaIndex);
-  end
-  else
-    Close;
-  frmPesquisaEscola.ShowModal;
+  if not Assigned(frmPesquisaEscola) then
+    frmPesquisaEscola := TfrmPesquisaEscola.Create(Self);
+  frmPesquisaEscola.Show;
 end;
 
 end.
