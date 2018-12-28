@@ -45,9 +45,9 @@ object frmPesquisaEscola: TfrmPesquisaEscola
   end
   object DBGridListaEscola: TDBGrid
     Left = 0
-    Top = 227
+    Top = 184
     Width = 778
-    Height = 273
+    Height = 316
     Align = alBottom
     DataSource = fmdados.dsEscola
     ReadOnly = True

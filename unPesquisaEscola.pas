@@ -56,11 +56,6 @@ begin
   inherited;
   FController := TCadastroEscolaController.Create; //Instãncia da Classe Controller
 end;
-
-procedure TfrmPesquisaEscola.btnEscolaConsultaFecharClick(Sender: TObject);
-begin
-  Close;
-end;
 //(BOTÃO IMPRIMIR)
 procedure TfrmPesquisaEscola.btnEscolaImprimirClick(Sender: TObject);
 begin
@@ -80,25 +75,16 @@ begin
   Close;
 end;
 
-procedure TfrmPesquisaEscola.FormClose(Sender: TObject;
-  var Action: TCloseAction);
-begin
-  Action := caFree;
-  Release; //Libera o Form da memória permitindo a execução da fila antes que receba o Free
-  frmPesquisaEscola := nil;
-end;
-
-
 procedure TfrmPesquisaEscola.FormShow(Sender: TObject);
 begin
   rgEscolaPesquisar.SetFocus; //Inicia o Form setado a opção de CONSULTA POR CÓDIGO
-  dtpEscolaBuscarData.DateTime := StrToDateTime(FormatDateTime('DD/MM/YYYY', Now));
+  dtpEscolaBuscarData.DateTime := StrToDateTime(FormatDateTime('DD/MM/YYYY', Now)); //Seta data atual do SO
 end;
 //(COMBOBOX 'ORDENAR POR')
 procedure TfrmPesquisaEscola.ComboBoxEscolaConsultaOrdenadaChange(
   Sender: TObject);
 begin
-  ConsultaOrdenada;
+  ConsultaOrdenada; //Método ordenador conforme a seleção da COMBOBOX
 end;
 //Método para ordenação da lista de consulta por CÓDIGO, DESCRIÇÃO ou DATA DE CADASTRO
 procedure TfrmPesquisaEscola.ConsultaOrdenada;
@@ -151,6 +137,11 @@ begin
     dtpEscolaBuscarData.SetFocus; //Sempre será setado foco após a consulta por DATA
   end;
 end;
+//(BOTÃO TELA PRINCIPAL)
+procedure TfrmPesquisaEscola.btnEscolaConsultaFecharClick(Sender: TObject);
+begin
+  Close;
+end;
 //Evento Click do DBGRID. Fecha o Form atual para abrir o Form CADASTRO ESCOLA
 procedure TfrmPesquisaEscola.DBGridListaEscolaDblClick(Sender: TObject);
 begin
@@ -197,6 +188,14 @@ begin
     dtpEscolaBuscarData.Enabled := True;
     edtEscolaBuscarCodigo.Enabled := False;
   end;
+end;
+
+procedure TfrmPesquisaEscola.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  Action := caFree;
+  Release; //Libera o Form da memória permitindo a execução da fila antes que receba o Free
+  frmPesquisaEscola := nil;
 end;
 
 destructor TfrmPesquisaEscola.Destroy;

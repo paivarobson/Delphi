@@ -33,15 +33,12 @@ type
     procedure btnEscolaConsultaFecharClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
-    //FCodigoEscolaSelecionado: Integer;
-//    procedure SetCodigoEscolaSelecionado(const Value: Integer);
     procedure ConsultaOrdenada;
   public
     FController: TCadastroEscolaController;
     FRelatorio: TfrmRelEscola;
     procedure AfterConstruction; override;
     destructor Destroy; override;
-//    property CodigoEscolaSelecionado: Integer read FCodigoEscolaSelecionado write SetCodigoEscolaSelecionado;
   end;
 
 var
@@ -59,7 +56,7 @@ begin
   inherited;
   FController := TCadastroEscolaController.Create; //Instãncia da Classe Controller
 end;
-
+//(BOTÃO TELA PRINCIPAL)
 procedure TfrmPesquisaEscola.btnEscolaConsultaFecharClick(Sender: TObject);
 begin
   Close;
@@ -187,10 +184,10 @@ begin
     Key := #0;
   dtpEscolaBuscarDataKeyPress(Sender, KeyAux); //Método permite ação da tecla ENTER
 end;
-
+//Habilitar campos de consulta CÓDIGO ou DATA DE CADASTRO conforme seleção correspondente dos RadioButtons
 procedure TfrmPesquisaEscola.rgEscolaPesquisarClick(Sender: TObject);
 begin
-  if rgEscolaPesquisar.ItemIndex = 0 then
+  if rgEscolaPesquisar.ItemIndex = 0 then //ItemIndex = 0 = Código
   begin
     edtEscolaBuscarCodigo.Enabled := True;
     dtpEscolaBuscarData.Enabled := False;
@@ -207,9 +204,4 @@ begin
   inherited;
   FreeAndNil(FController);
 end;
-
-//procedure TfrmPesquisaEscola.SetCodigoEscolaSelecionado(const Value: Integer);
-//begin
-////  FCodigoEscolaSelecionado := Value;
-//end;
 end.

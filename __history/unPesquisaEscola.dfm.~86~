@@ -5,7 +5,7 @@ object frmPesquisaEscola: TfrmPesquisaEscola
   BorderStyle = bsSingle
   Caption = 'Pesquisar'
   ClientHeight = 500
-  ClientWidth = 800
+  ClientWidth = 778
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,6 +18,7 @@ object frmPesquisaEscola: TfrmPesquisaEscola
   Visible = True
   WindowState = wsMaximized
   OnClose = FormClose
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object lblEscolaConsultaOrdenada: TLabel
@@ -45,7 +46,7 @@ object frmPesquisaEscola: TfrmPesquisaEscola
   object DBGridListaEscola: TDBGrid
     Left = 0
     Top = 227
-    Width = 800
+    Width = 778
     Height = 273
     Align = alBottom
     DataSource = fmdados.dsEscola
@@ -67,6 +68,7 @@ object frmPesquisaEscola: TfrmPesquisaEscola
       item
         Expanded = False
         FieldName = 'ESCNOME'
+        Title.Caption = 'Descri'#231#227'o'
         Width = 131
         Visible = True
       end
@@ -182,7 +184,7 @@ object frmPesquisaEscola: TfrmPesquisaEscola
     Items.Strings = (
       'Tela'
       'Impressora')
-    TabOrder = 6
+    TabOrder = 7
   end
   object btnEscolaImprimir: TButton
     Left = 680
@@ -190,7 +192,7 @@ object frmPesquisaEscola: TfrmPesquisaEscola
     Width = 90
     Height = 25
     Caption = 'Imprimir'
-    TabOrder = 7
+    TabOrder = 8
     OnClick = btnEscolaImprimirClick
   end
   object btnEscolaNovoCadastro: TButton
@@ -199,15 +201,15 @@ object frmPesquisaEscola: TfrmPesquisaEscola
     Width = 83
     Height = 25
     Caption = 'Novo cadastro'
-    TabOrder = 8
+    TabOrder = 6
     OnClick = btnEscolaNovoCadastroClick
   end
   object btnEscolaConsultaFechar: TButton
-    Left = 721
+    Left = 688
     Top = 8
-    Width = 49
+    Width = 82
     Height = 25
-    Caption = 'Fechar'
+    Caption = 'Tela principal'
     TabOrder = 9
     OnClick = btnEscolaConsultaFecharClick
   end

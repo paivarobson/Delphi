@@ -56,11 +56,6 @@ begin
   inherited;
   FController := TCadastroEscolaController.Create; //Instãncia da Classe Controller
 end;
-
-procedure TfrmPesquisaEscola.btnEscolaConsultaFecharClick(Sender: TObject);
-begin
-  Close;
-end;
 //(BOTÃO IMPRIMIR)
 procedure TfrmPesquisaEscola.btnEscolaImprimirClick(Sender: TObject);
 begin
@@ -184,10 +179,10 @@ begin
     Key := #0;
   dtpEscolaBuscarDataKeyPress(Sender, KeyAux); //Método permite ação da tecla ENTER
 end;
-//Habilitar campos de consulta CÓDIGO ou DATA DE CADASTRO
+//Habilitar campos de consulta CÓDIGO ou DATA DE CADASTRO conforme seleção correspondente dos RadioButtons
 procedure TfrmPesquisaEscola.rgEscolaPesquisarClick(Sender: TObject);
 begin
-  if rgEscolaPesquisar.ItemIndex = 0 then
+  if rgEscolaPesquisar.ItemIndex = 0 then //ItemIndex = 0 = Código
   begin
     edtEscolaBuscarCodigo.Enabled := True;
     dtpEscolaBuscarData.Enabled := False;
