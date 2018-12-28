@@ -187,7 +187,7 @@ end;
 //Habilitar campos de consulta CÓDIGO ou DATA DE CADASTRO conforme seleção correspondente dos RadioButtons
 procedure TfrmPesquisaEscola.rgEscolaPesquisarClick(Sender: TObject);
 begin
-  if rgEscolaPesquisar.ItemIndex = 0 then //ItemIndex = 0 = Código
+  if rgEscolaPesquisar.ItemIndex = 0 then
   begin
     edtEscolaBuscarCodigo.Enabled := True;
     dtpEscolaBuscarData.Enabled := False;

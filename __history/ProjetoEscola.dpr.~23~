@@ -7,7 +7,7 @@ uses
   unEscolaIndex in 'unEscolaIndex.pas' {frmEscolaIndex},
   UnCadEscola in 'UnCadEscola.pas' {frmCadEscola},
   unPesquisaEscola in 'unPesquisaEscola.pas' {frmPesquisaEscola},
-  unRelEscola in 'unRelEscola.pas' {frmRelEscola};
+  unRelEscola in 'unRelEscola.pas';
 
 
 {$R *.res}

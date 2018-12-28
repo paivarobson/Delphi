@@ -55,6 +55,7 @@ type
   private
     procedure FormatacaoEValidacaoCampoData(Sender: TField; const Text: string);
     function HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados: Boolean;
+    procedure LimparCamposForm;
     { Private declarations }
   public
     { Public declarations }

@@ -62,11 +62,12 @@ begin
   fmdados.tbdsEscolaESCENDBAIRRO.Clear;
   fmdados.tbdsEscolaESCENDCIDADE.Clear;
 end;
-//Método verificador do último CÓDIGO registrado no BD 
+
 function TCadastroEscolaController.DevolverUltimoCodigo: Integer;
 begin
   fmdados.tbAux.Close;
   fmdados.tbAux.SQL.Clear;
+
   fmdados.tbAux.SQL.Text := 'SELECT MAX(ESCCOD) FROM ESCOLA';
   fmdados.tbAux.Open;
   Result := fmdados.tbAux.Fields[0].AsInteger;

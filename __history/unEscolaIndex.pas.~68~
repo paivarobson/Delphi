@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, Menus, dxGDIPlusClasses, ExtCtrls;
+  Dialogs, StdCtrls, Menus;
 
 type
   TfrmEscolaIndex = class(TForm)
@@ -20,7 +20,6 @@ type
     Consultar1: TMenuItem;
     Label1: TLabel;
     Label2: TLabel;
-    imgLogo: TImage;
     procedure menuArquivoCadastroEscolaClick(Sender: TObject);
     procedure menuVisualizarConsultarEscolaClick(Sender: TObject);
     procedure menuArquivoSairClick(Sender: TObject);

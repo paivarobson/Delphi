@@ -5,7 +5,7 @@ object frmPesquisaEscola: TfrmPesquisaEscola
   BorderStyle = bsSingle
   Caption = 'Pesquisar'
   ClientHeight = 500
-  ClientWidth = 778
+  ClientWidth = 800
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -46,7 +46,7 @@ object frmPesquisaEscola: TfrmPesquisaEscola
   object DBGridListaEscola: TDBGrid
     Left = 0
     Top = 227
-    Width = 778
+    Width = 800
     Height = 273
     Align = alBottom
     DataSource = fmdados.dsEscola

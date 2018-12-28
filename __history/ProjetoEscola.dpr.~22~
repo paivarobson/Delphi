@@ -4,11 +4,10 @@ uses
   Forms,
   unDados in 'unDados.pas' {fmdados: TDataModule},
   unCadastroEscolaController in 'unCadastroEscolaController.pas',
-  unEscolaIndex in 'unEscolaIndex.pas' {frmEscolaIndex},
   UnCadEscola in 'UnCadEscola.pas' {frmCadEscola},
-  unPesquisaEscola in 'unPesquisaEscola.pas' {frmPesquisaEscola},
-  unRelEscola in 'unRelEscola.pas' {frmRelEscola};
-
+  unRelEscola in 'unRelEscola.pas',
+  unEscolaIndex in 'unEscolaIndex.pas' {frmEscolaIndex},
+  unPesquisaEscola in 'unPesquisaEscola.pas' {frmPesquisaEscola};
 
 {$R *.res}
 

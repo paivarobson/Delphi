@@ -55,11 +55,13 @@ type
   private
     procedure FormatacaoEValidacaoCampoData(Sender: TField; const Text: string);
     function HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados: Boolean;
+    procedure LimparCamposForm;
     { Private declarations }
   public
     { Public declarations }
     FController: TCadastroEscolaController;
     procedure HabilitarComponentesDados;
+    procedure LimparFieldsCDS;
     procedure AfterConstruction; override;
     destructor Destroy; override;
     function CamposValidados: Boolean;
@@ -80,11 +82,6 @@ begin
   inherited;
   FController := TCadastroEscolaController.Create; //Instãncia da Classe Controller
 end;
-
-procedure TfrmCadEscola.FormShow(Sender: TObject);
-begin
-  HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados;
-end;
 //(BOTÃO PESQUISAR) Evento para abrir o Form PESQUISA ESCOLA 
 procedure TfrmCadEscola.btnEscolaPesquisarClick(Sender: TObject);
 begin
@@ -100,7 +97,7 @@ begin
   FController.DadosFieldData.OnSetText := FormatacaoEValidacaoCampoData; //Atribui validação da data direto no CDS
   FController.DadosCDS.Append;
   HabilitarComponentesDados; //Habilita os componentes necessários para NOVO CADASTRO
-  FController.LimparFieldsCDS; //Limpa os campos necessários para NOVO CADASTRO caso possuam algum dado
+  LimparFieldsCDS; //Limpa os campos necessários para NOVO CADASTRO caso possuam algum dado
   FController.DadosFieldCodigo.AsInteger := FController.DevolverUltimoCodigo + 1; //Aplica o CÓDIGO IDENTIFICADOR
   btnEscolaPesquisar.Enabled := False;
   btnEscolaAlterar.Enabled := False;
@@ -142,7 +139,7 @@ procedure TfrmCadEscola.btnEscolaLimparClick(Sender: TObject);
 begin
   if MessageDlg('Tem certeza que deseja limpar os campos?', mtConfirmation,
     mbYesNo, 0) = mrYes then
-    FController.LimparFieldsCDS
+    LimparFieldsCDS
 end;
 //(BOTÃO CANCELAR) Evento para Habilitar/Desabilitar componentes de acordo com as verificações
 procedure TfrmCadEscola.btnEscolaCancelarClick(Sender: TObject);
@@ -294,6 +291,30 @@ begin
   DBMaskEditEscolaEndCEP.Enabled := True;
   DBEditEscolaEndBairro.Enabled := True;
   DBEditEscolaNome.SetFocus;
+end;
+//Método para limpar os campos de entrada de dados
+procedure TfrmCadEscola.LimparFieldsCDS;
+begin
+  FController.DadosFieldNome.Clear;
+  FController.DadosFieldCEP.Clear;
+  FController.DadosFieldRua.Clear;
+  FController.DadosFieldNumero.Clear;
+  FController.DadosFieldComplemento.Clear;
+  FController.DadosFieldBairro.Clear;
+  FController.DadosFieldCidade.Clear;
+end;
+
+procedure TfrmCadEscola.LimparCamposForm;
+begin
+  DBEditEscolaCod.Clear;
+  DBEditEscolaNome.Clear;
+  DBDateEditEscolaDataCadastro.Clear;
+  DBMaskEditEscolaEndCEP.Clear;
+  DBEditEscolaEndRua.Clear;
+  DBEditEscolaEndNumero.Clear;
+  DBEditEscolaEndComplemento.Clear;
+  DBEditEscolaEndBairro.Clear;
+  DBEditEscolaEndCidade.Clear; 
 end;
 
 procedure TfrmCadEscola.btnEscolaFecharClick(Sender: TObject);

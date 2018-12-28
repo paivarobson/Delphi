@@ -55,6 +55,7 @@ type
   private
     procedure FormatacaoEValidacaoCampoData(Sender: TField; const Text: string);
     function HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados: Boolean;
+    procedure LimparCamposForm;
     { Private declarations }
   public
     { Public declarations }
@@ -142,7 +143,7 @@ procedure TfrmCadEscola.btnEscolaLimparClick(Sender: TObject);
 begin
   if MessageDlg('Tem certeza que deseja limpar os campos?', mtConfirmation,
     mbYesNo, 0) = mrYes then
-    FController.LimparFieldsCDS
+    LimparFieldsCDS
 end;
 //(BOTÃO CANCELAR) Evento para Habilitar/Desabilitar componentes de acordo com as verificações
 procedure TfrmCadEscola.btnEscolaCancelarClick(Sender: TObject);
@@ -294,6 +295,19 @@ begin
   DBMaskEditEscolaEndCEP.Enabled := True;
   DBEditEscolaEndBairro.Enabled := True;
   DBEditEscolaNome.SetFocus;
+end;
+
+procedure TfrmCadEscola.LimparCamposForm;
+begin
+  DBEditEscolaCod.Clear;
+  DBEditEscolaNome.Clear;
+  DBDateEditEscolaDataCadastro.Clear;
+  DBMaskEditEscolaEndCEP.Clear;
+  DBEditEscolaEndRua.Clear;
+  DBEditEscolaEndNumero.Clear;
+  DBEditEscolaEndComplemento.Clear;
+  DBEditEscolaEndBairro.Clear;
+  DBEditEscolaEndCidade.Clear; 
 end;
 
 procedure TfrmCadEscola.btnEscolaFecharClick(Sender: TObject);

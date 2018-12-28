@@ -26,6 +26,7 @@ type
   public
 //    procedure CarregarEscola(const AFontesDados: TSQLQuery);
     function DevolverUltimoCodigo: Integer;
+    function ValidaCampos(const ADadoCampo: string): Boolean;
     function DadosCDS: TClientDataSet;
     function DadosFieldCodigo: TIntegerField;
     function DadosFieldData: TSQLTimeStampField;
@@ -36,7 +37,7 @@ implementation
 
 uses
   unDados;
-//Método para o uso do ClientDataSet externamente
+//Método para o uso do ClientDataSet
 function TCadastroEscolaController.DadosCDS: TClientDataSet;
 begin
   Result := fmdados.tbdsEscola;
@@ -62,11 +63,20 @@ begin
   fmdados.tbdsEscolaESCENDBAIRRO.Clear;
   fmdados.tbdsEscolaESCENDCIDADE.Clear;
 end;
-//Método verificador do último CÓDIGO registrado no BD 
+
+function TCadastroEscolaController.ValidaCampos(const ADadoCampo: string): Boolean;
+begin
+  if Trim(ADadoCampo) = '' then
+    Result := True
+  else
+    Result := False;
+end;
+
 function TCadastroEscolaController.DevolverUltimoCodigo: Integer;
 begin
   fmdados.tbAux.Close;
   fmdados.tbAux.SQL.Clear;
+
   fmdados.tbAux.SQL.Text := 'SELECT MAX(ESCCOD) FROM ESCOLA';
   fmdados.tbAux.Open;
   Result := fmdados.tbAux.Fields[0].AsInteger;
