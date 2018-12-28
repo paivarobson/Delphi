@@ -31,11 +31,14 @@ type
     procedure rgEscolaPesquisarClick(Sender: TObject);
     procedure btnEscolaNovoCadastroClick(Sender: TObject);
     procedure btnEscolaConsultaFecharClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     //FCodigoEscolaSelecionado: Integer;
 //    procedure SetCodigoEscolaSelecionado(const Value: Integer);
     procedure ConsultaOrdenada;
   public
+    FController: TCadastroEscolaController;
+    procedure AfterConstruction; override;
 //    property CodigoEscolaSelecionado: Integer read FCodigoEscolaSelecionado write SetCodigoEscolaSelecionado;
   end;
 
@@ -45,9 +48,15 @@ var
 implementation
 
 uses
-  unDados, unRelEscola, unEscolaIndex, UnCadEscola;
+  unRelEscola, unEscolaIndex, UnCadEscola, unCadastroEscolaController;
 
 {$R *.dfm}
+//Método executado logo depois do Construtor
+procedure TfrmPesquisaEscola.AfterConstruction;
+begin
+  inherited;
+  FController := TCadastroEscolaController.Create; //Instãncia da Classe Controller
+end;
 
 procedure TfrmPesquisaEscola.btnEscolaConsultaFecharClick(Sender: TObject);
 begin
@@ -80,6 +89,12 @@ begin
   frmPesquisaEscola := nil;
 end;
 
+
+procedure TfrmPesquisaEscola.FormShow(Sender: TObject);
+begin
+  rgEscolaPesquisar.SetFocus;
+  Fcontro.Close;
+end;
 
 procedure TfrmPesquisaEscola.ComboBoxEscolaConsultaOrdenadaChange(
   Sender: TObject);
@@ -144,6 +159,7 @@ begin
     frmCadEscola := TfrmCadEscola.Create(frmEscolaIndex);
   Close;
   frmCadEscola.Show;
+  fmdados.tbdsEscola.Open;
 end;
 
 procedure TfrmPesquisaEscola.dtpEscolaBuscarDataKeyPress(Sender: TObject;

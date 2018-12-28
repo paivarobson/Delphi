@@ -27,9 +27,16 @@ type
     procedure CarregarEscola(const AFontesDados: TSQLQuery);
     function DevolverUltimoCodigo: Integer;
     function ValidaCampos(const ADadoCampo: string): Boolean;
-    function Dados: TClientDataSet;
-    function DadosFieldData: string;
-    function DadosFieldCodigo: Integer;
+    function DadosCDS: TClientDataSet;
+    function DadosFieldCodigo: TIntegerField;
+    function DadosFieldNome: TStringField;
+    function DadosFieldData: TSQLTimeStampField;
+    function DadosFieldBairro: TStringField;
+    function DadosFieldCEP: TStringField;
+    function DadosFieldCidade: TStringField;
+    function DadosFieldComplemento: TStringField;
+    function DadosFieldNumero: TStringField;
+    function DadosFieldRua: TStringField;
   end;
 
 implementation
@@ -45,19 +52,54 @@ begin
   AFontesDados.SQL.Add('SELECT * FROM ESCOLA');
 end;
 
-function TCadastroEscolaController.Dados: TClientDataSet;
+function TCadastroEscolaController.DadosCDS: TClientDataSet;
 begin
   Result := fmdados.tbdsEscola;
 end;
 
-function TCadastroEscolaController.DadosFieldData: string;
+function TCadastroEscolaController.DadosFieldCodigo: TIntegerField;
 begin
-  Result := fmdados.tbdsEscolaESCDATACAD.OnSetText;
+  Result := fmdados.tbdsEscolaESCCOD;
 end;
 
-function TCadastroEscolaController.DadosFieldCodigo: Integer;
+function TCadastroEscolaController.DadosFieldNome: TStringField;
 begin
-  Result := fmdados.tbdsEscolaESCCOD.AsInteger;
+  Result := fmdados.tbdsEscolaESCNOME;
+end;
+
+function TCadastroEscolaController.DadosFieldData: TSQLTimeStampField;
+begin
+  Result := fmdados.tbdsEscolaESCDATACAD;
+end;
+
+function TCadastroEscolaController.DadosFieldCEP: TStringField;
+begin
+  Result := fmdados.tbdsEscolaESCENDCEP;
+end;
+
+function TCadastroEscolaController.DadosFieldRua: TStringField;
+begin
+  Result := fmdados.tbdsEscolaESCENDRUA;
+end;
+
+function TCadastroEscolaController.DadosFieldNumero: TStringField;
+begin
+  Result := fmdados.tbdsEscolaESCENDNUM;
+end;
+
+function TCadastroEscolaController.DadosFieldComplemento: TStringField;
+begin
+  Result := fmdados.tbdsEscolaESCENDCOMP;
+end;
+
+function TCadastroEscolaController.DadosFieldBairro: TStringField;
+begin
+  Result := fmdados.tbdsEscolaESCENDBAIRRO;
+end;
+
+function TCadastroEscolaController.DadosFieldCidade: TStringField;
+begin
+  Result := fmdados.tbdsEscolaESCENDCIDADE;
 end;
 
 function TCadastroEscolaController.ValidaCampos(const ADadoCampo: string): Boolean;

@@ -27,6 +27,9 @@ type
     procedure CarregarEscola(const AFontesDados: TSQLQuery);
     function DevolverUltimoCodigo: Integer;
     function ValidaCampos(const ADadoCampo: string): Boolean;
+    function Dados: TClientDataSet;
+    function DadosFieldData: TSQLTimeStampField;
+    function DadosFieldCodigo: TSQLTimeStampField;
   end;
 
 implementation
@@ -42,6 +45,20 @@ begin
   AFontesDados.SQL.Add('SELECT * FROM ESCOLA');
 end;
 
+function TCadastroEscolaController.Dados: TClientDataSet;
+begin
+  Result := fmdados.tbdsEscola;
+end;
+
+function TCadastroEscolaController.DadosFieldData: TSQLTimeStampField;
+begin
+  Result := fmdados.tbdsEscolaESCDATACAD;
+end;
+
+function TCadastroEscolaController.DadosFieldCodigo: TSQLTimeStampField;
+begin
+  Result := fmdados.tbdsEscolaESCCOD;
+end;
 
 function TCadastroEscolaController.ValidaCampos(const ADadoCampo: string): Boolean;
 begin

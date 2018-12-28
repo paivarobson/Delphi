@@ -2,7 +2,7 @@ unit unCadastroEscolaController;
 
 interface
 
-uses DB, DBClient, SqlExpr, Windows, Dialogs, SysUtils, DateUtils, StdCtrls, Controls;
+uses DB, DBClient, SqlExpr, Windows, Dialogs, SysUtils, DateUtils, StdCtrls;
 
 
 
@@ -23,11 +23,13 @@ type
   end;
 
     TCadastroEscolaController = class
-    procedure AvancarCampo(Sender: TObject; var Key: Char);
   public
     procedure CarregarEscola(const AFontesDados: TSQLQuery);
     function DevolverUltimoCodigo: Integer;
     function ValidaCampos(const ADadoCampo: string): Boolean;
+    function Dados: TClientDataSet;
+    function DadosFieldData: TSQLTimeStampField;
+    function DadosFieldCodigo: TIntegerField;
   end;
 
 implementation
@@ -42,15 +44,20 @@ begin
   AFontesDados.SQL.Clear;
   AFontesDados.SQL.Add('SELECT * FROM ESCOLA');
 end;
-//Método para avançar e recuar campo com a tecla ENTER e ESC respectivamente
-procedure TCadastroEscolaController.AvancarCampo(Sender: TObject;
-  var Key: Char);
+
+function TCadastroEscolaController.Dados: TClientDataSet;
 begin
-  if (Key = #13) then //Verifica se a tecla pressionada é ENTER
-    Perform(WM_nextdlgctl,0,0)
-  else
-    if Key = #27 then //Verifica se a tecla pressionada é ESC
-      Perform(WM_nextdlgctl,1,0)
+  Result := fmdados.tbdsEscola;
+end;
+
+function TCadastroEscolaController.DadosFieldData: TSQLTimeStampField;
+begin
+  Result := fmdados.tbdsEscolaESCDATACAD;
+end;
+
+function TCadastroEscolaController.DadosFieldCodigo: TIntegerField;
+begin
+  Result := fmdados.tbdsEscolaESCCOD;
 end;
 
 function TCadastroEscolaController.ValidaCampos(const ADadoCampo: string): Boolean;

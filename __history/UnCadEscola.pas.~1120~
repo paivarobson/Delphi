@@ -7,7 +7,7 @@ uses
   Dialogs, WideStrings, FMTBcd, cxGraphics, cxControls, cxLookAndFeels,
   cxLookAndFeelPainters, cxContainer, cxEdit, cxDBEdit, cxTextEdit, cxMaskEdit,
   cxSpinEdit, StdCtrls, DB, SqlExpr, Grids, DBGrids, Provider, DBClient,
-  ExtCtrls, DBCtrls, unDados, unCadastroEscolaController, ADODB, ComCtrls, Mask,
+  ExtCtrls, DBCtrls, unCadastroEscolaController, ADODB, ComCtrls, Mask,
   JvExMask, JvToolEdit, JvDBControls, cxDropDownEdit, cxCalendar;
 
 type
@@ -84,12 +84,12 @@ end;
 //(Botão NOVO CADASTRO) Evento para habilitar campos para a inclusão
 procedure TfrmCadEscola.btnEscolaNovoCadastroClick(Sender: TObject);
 begin
-  fmdados.tbdsEscola.Open;
-  fmdados.tbdsEscolaESCDATACAD.OnSetText := FormatacaoEValidacaoCampoData; //Atribui validação da data direto no CDS 
-  fmdados.tbdsEscola.Append;
+  FController.DadosCDS.Open;
+  FController.DadosFieldData.OnSetText := FormatacaoEValidacaoCampoData; //Atribui validação da data direto no CDS
+  FController.DadosCDS.Append;
   HabilitarComponentesDados; //Habilita os componentes necessários para NOVO CADASTRO
   LimparCampos; //Limpa os campos necessários para NOVO CADASTRO caso possuam algum dado
-  fmdados.tbdsEscolaESCCOD.AsInteger := FController.DevolverUltimoCodigo + 1; //Aplica o CÓDIGO IDENTIFICADOR
+  FController.DadosFieldCodigo.AsInteger := FController.DevolverUltimoCodigo + 1; //Aplica o CÓDIGO IDENTIFICADOR
   btnEscolaPesquisar.Enabled := False;
   btnEscolaAlterar.Enabled := False;
   btnEscolaExcluir.Enabled := False;;
@@ -99,7 +99,7 @@ end;
 //(BOTÃO ALTERAR) Evento para habilitar campos para a edição
 procedure TfrmCadEscola.btnEscolaAlterarClick(Sender: TObject);
 begin  
-  fmdados.tbdsEscola.Edit;
+  FController.DadosCDS.Edit;
   HabilitarComponentesDados; //Habilita os componentes necessários para EDIÇÃO
   HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados;
   btnEscolaPesquisar.Enabled := False;
@@ -119,7 +119,7 @@ begin
     mbYesNo, 0) = mrYes then
   begin
     HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados;
-    fmdados.tbdsEscola.Cancel;
+    FController.DadosCDS.Cancel;
     DesabilitarComponentesDados;
     btnEscolaPesquisar.Enabled := True;
   end;
@@ -130,10 +130,10 @@ begin
   if MessageDlg('Tem certeza que deseja excluir este registro?', mtConfirmation,
     mbYesNo, 0) = mrYes then
   begin
-    fmdados.tbdsEscola.Delete;
-    fmdados.tbdsEscola.ApplyUpdates(0);
-    fmdados.tbdsEscola.Refresh;
-    fmdados.tbdsEscola.Close;
+    FController.DadosCDS.Delete;
+    FController.DadosCDS.ApplyUpdates(0);
+    FController.DadosCDS.Refresh;
+    FController.DadosCDS.Close;
     HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados;
     DesabilitarComponentesDados;
     btnEscolaPesquisar.Enabled := True;
@@ -153,11 +153,11 @@ var
 begin
   Campos := TStringList.Create;
   try
-    for i := 0 to fmdados.tbdsEscola.Fields.Count - 1 do
+    for i := 0 to FController.DadosCDS.Fields.Count - 1 do
     begin
-      if (fmdados.tbdsEscola.Fields[i].Tag = 1) and             
-        (fmdados.tbdsEscola.Fields[i].AsString = EmptyStr) then
-        Campos.Add('- ' + fmdados.tbdsEscola.Fields[i].DisplayName) //Armazena o NOME DO CAMPO dentro de uma LISTA
+      if (FController.DadosCDS.Fields[i].Tag = 1) and
+        (FController.DadosCDS.Fields[i].AsString = EmptyStr) then
+        Campos.Add('- ' + FController.DadosCDS.Fields[i].DisplayName) //Armazena o NOME DO CAMPO dentro de uma LISTA
     end;
     if (Campos.Count > 0) then //Verifica se há algum campo obrigatório vazio
     begin
@@ -178,8 +178,8 @@ begin
       if MessageDlg('Tem certeza que deseja gravar este registro?', mtConfirmation,
         mbYesNo, 0) = mrYes then
       begin
-        fmdados.tbdsEscola.Post;
-        fmdados.tbdsEscola.ApplyUpdates(0);
+        FController.DadosCDS.Post;
+        FController.DadosCDS.ApplyUpdates(0);
         DesabilitarComponentesDados;
         btnEscolaExcluir.Enabled := True;
         btnEscolaCancelar.Enabled := False;
@@ -216,18 +216,18 @@ end;
 procedure TfrmCadEscola.FormShow(Sender: TObject);
 begin
   HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados;
-  fmdados.tbdsEscola.Close;
+  FController.DadosCDS.Close;
 end;
 //Métódo verifica as ocasições que os BOTÕES ALTERAR e EXCLUIR devem serem habilitados ou não
 function TfrmCadEscola.HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados: Boolean;
 begin
-  if fmdados.tbdsEscola.Active then
+  if FController.DadosCDS.Active then
   begin
-    if fmdados.tbdsEscola.Fields[0].AsInteger = (FController.DevolverUltimoCodigo + 1) then
+    if FController.DadosCDS.Fields[0].AsInteger = (FController.DevolverUltimoCodigo + 1) then
     begin
       btnEscolaAlterar.Enabled := False;
       btnEscolaExcluir.Enabled := False;
-      fmdados.tbdsEscola.Close;
+      FController.DadosCDS.Close;
       Result := False;
     end
     else
@@ -244,7 +244,7 @@ begin
     Result := False;
   end;
 end;
-
+//Validador campo DATA
 procedure TfrmCadEscola.FormatacaoEValidacaoCampoData(Sender: TField;
   const Text: string);
 begin
@@ -255,7 +255,7 @@ begin
     DBDateEditEscolaDataCadastro.SetFocus;
   end;
 end;
-
+//Método para permitir escrita de somente números
 procedure TfrmCadEscola.DBEditEscolaEndNumeroKeyPress(Sender: TObject;
   var Key: Char);
 begin
@@ -265,26 +265,25 @@ begin
     Application.MessageBox('Somente números.','Caractere inválido', MB_ICONWARNING)
   end
   else
-    AvancarCampo(Sender, Key)
+    AvancarCampo(Sender, Key) //Avançar e recuar campo com a tecla ENTER e ESC respectivamente
 end;
-
+//Método para avançar e recuar campo com a tecla ENTER e ESC respectivamente
 procedure TfrmCadEscola.AvancarCampo(Sender: TObject;
   var Key: Char);
 begin
-  if (Key = #13) then
+  if (Key = #13) then //Verifica se a tecla pressionada é ENTER
     Perform(WM_nextdlgctl,0,0)
   else
-    if Key = #27 then
+    if Key = #27 then //Verifica se a tecla pressionada é ESC
       Perform(WM_nextdlgctl,1,0)
 end;
-
+//Método desabilitador da maioria dos componentes
 procedure TfrmCadEscola.DesabilitarComponentesDados;
 begin
   btnEscolaNovoCadastro.Enabled := True;
   btnEscolaGravar.Enabled := False;
   btnEscolaLimpar.Enabled := False;
   btnEscolaCancelar.Enabled := False;
-  btnEscolaExcluir.Enabled := False;
   DBEditEscolaCod.Enabled := False;
   DBEditEscolaNome.Enabled := False;
   DBEditEscolaEndRua.Enabled := False;
@@ -294,7 +293,7 @@ begin
   DBMaskEditEscolaEndCEP.Enabled := False;
   DBEditEscolaEndBairro.Enabled := False;
 end;
-
+//Método habilitador da maioria dos componentes
 procedure TfrmCadEscola.HabilitarComponentesDados;
 begin
   btnEscolaNovoCadastro.Enabled := False;
@@ -310,17 +309,15 @@ begin
   DBEditEscolaEndBairro.Enabled := True;
   DBEditEscolaNome.SetFocus;
 end;
-
+//Método para limpar os campos de entrada de dados
 procedure TfrmCadEscola.LimparCampos;
 begin
-  DBEditEscolaCod.Clear;
-  DBEditEscolaNome.Clear;
-  DBDateEditEscolaDataCadastro.Clear;
-  DBEditEscolaEndRua.Clear;
-  DBEditEscolaEndNumero.Clear;
-  DBEditEscolaEndComplemento.Clear;
-  DBEditEscolaEndCidade.Clear;
-  DBMaskEditEscolaEndCEP.Clear;
+  FController.DadosFieldData.Clear;
+  FController.DadosFieldRua.Clear;
+  FController.DadosFieldNumero.Clear;
+  FController.DadosFieldComplemento.Clear;
+  FController.DadosFieldCidade.Clear;
+  FController.DadosFieldCEP.Clear;
   DBEditEscolaEndBairro.Clear;
 end;
 

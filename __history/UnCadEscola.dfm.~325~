@@ -112,8 +112,7 @@ object frmCadEscola: TfrmCadEscola
     Enabled = False
     Properties.CharCase = ecUpperCase
     TabOrder = 2
-    OnExit = DBEditEscolaNomeExit
-    OnKeyPress = DBEditEscolaNomeKeyPress
+    OnKeyPress = AvancarCampo
     Width = 381
   end
   object DBEditEscolaEndRua: TcxDBTextEdit
@@ -124,6 +123,7 @@ object frmCadEscola: TfrmCadEscola
     Enabled = False
     Properties.CharCase = ecUpperCase
     TabOrder = 5
+    OnKeyPress = AvancarCampo
     Width = 425
   end
   object DBEditEscolaEndComplemento: TcxDBTextEdit
@@ -134,6 +134,7 @@ object frmCadEscola: TfrmCadEscola
     Enabled = False
     Properties.CharCase = ecUpperCase
     TabOrder = 7
+    OnKeyPress = AvancarCampo
     Width = 225
   end
   object DBEditEscolaEndBairro: TcxDBTextEdit
@@ -144,6 +145,7 @@ object frmCadEscola: TfrmCadEscola
     Enabled = False
     Properties.CharCase = ecUpperCase
     TabOrder = 8
+    OnKeyPress = AvancarCampo
     Width = 187
   end
   object DBEditEscolaEndCidade: TcxDBTextEdit
@@ -154,6 +156,7 @@ object frmCadEscola: TfrmCadEscola
     Enabled = False
     Properties.CharCase = ecUpperCase
     TabOrder = 9
+    OnKeyPress = AvancarCampo
     Width = 147
   end
   object DBEditEscolaEndNumero: TcxDBTextEdit
@@ -167,16 +170,17 @@ object frmCadEscola: TfrmCadEscola
     Width = 65
   end
   object btnEscolaNovoCadastro: TButton
-    Left = 300
+    Left = 228
     Top = 234
     Width = 83
     Height = 25
     Caption = 'Novo cadastro'
     TabOrder = 10
     OnClick = btnEscolaNovoCadastroClick
+    OnKeyPress = AvancarCampo
   end
   object btnEscolaGravar: TButton
-    Left = 389
+    Left = 317
     Top = 234
     Width = 46
     Height = 25
@@ -184,27 +188,30 @@ object frmCadEscola: TfrmCadEscola
     Enabled = False
     TabOrder = 11
     OnClick = btnEscolaGravarClick
+    OnKeyPress = AvancarCampo
   end
   object btnEscolaAlterar: TButton
-    Left = 441
+    Left = 369
     Top = 234
     Width = 54
     Height = 25
     Caption = 'Alterar'
     TabOrder = 12
     OnClick = btnEscolaAlterarClick
+    OnKeyPress = AvancarCampo
   end
   object btnEscolaExcluir: TButton
-    Left = 616
+    Left = 544
     Top = 234
     Width = 50
     Height = 25
     Caption = 'Excluir'
     TabOrder = 15
     OnClick = btnEscolaExcluirClick
+    OnKeyPress = AvancarCampo
   end
   object btnEscolaCancelar: TButton
-    Left = 555
+    Left = 483
     Top = 234
     Width = 55
     Height = 25
@@ -212,9 +219,10 @@ object frmCadEscola: TfrmCadEscola
     Enabled = False
     TabOrder = 14
     OnClick = btnEscolaCancelarClick
+    OnKeyPress = AvancarCampo
   end
   object btnEscolaLimpar: TButton
-    Left = 501
+    Left = 429
     Top = 234
     Width = 48
     Height = 25
@@ -222,6 +230,7 @@ object frmCadEscola: TfrmCadEscola
     Enabled = False
     TabOrder = 13
     OnClick = btnEscolaLimparClick
+    OnKeyPress = AvancarCampo
   end
   object DBEditEscolaCod: TcxDBTextEdit
     Left = 96
@@ -231,6 +240,7 @@ object frmCadEscola: TfrmCadEscola
     Enabled = False
     ParentFont = False
     TabOrder = 1
+    OnKeyPress = AvancarCampo
     Width = 57
   end
   object btnEscolaPesquisar: TButton
@@ -241,6 +251,7 @@ object frmCadEscola: TfrmCadEscola
     Caption = 'Pesquisar'
     TabOrder = 0
     OnClick = btnEscolaPesquisarClick
+    OnKeyPress = AvancarCampo
   end
   object DBDateEditEscolaDataCadastro: TcxDBDateEdit
     Left = 546
@@ -251,6 +262,7 @@ object frmCadEscola: TfrmCadEscola
     Enabled = False
     Properties.DateButtons = [btnClear, btnNow, btnToday]
     TabOrder = 3
+    OnKeyPress = AvancarCampo
     Width = 121
   end
   object DBMaskEditEscolaEndCEP: TcxDBMaskEdit
@@ -261,6 +273,16 @@ object frmCadEscola: TfrmCadEscola
     Enabled = False
     Properties.EditMask = '00000\-999;1;_'
     TabOrder = 4
+    OnKeyPress = DBEditEscolaEndNumeroKeyPress
     Width = 69
+  end
+  object btnEscolaFechar: TButton
+    Left = 600
+    Top = 234
+    Width = 67
+    Height = 25
+    Caption = 'Fechar'
+    TabOrder = 16
+    OnClick = btnEscolaFecharClick
   end
 end
