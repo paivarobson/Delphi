@@ -3,12 +3,12 @@ program ProjetoEscola;
 uses
   Forms,
   unDados in 'unDados.pas' {fmdados: TDataModule},
-  unCadastroEscolaController in 'Controle\unCadastroEscolaController.pas',
+  unCadastroEscolaController in 'unCadastroEscolaController.pas',
   unEscolaIndex in 'unEscolaIndex.pas' {frmEscolaIndex},
   UnCadEscola in 'UnCadEscola.pas' {frmCadEscola},
   unPesquisaEscola in 'unPesquisaEscola.pas' {frmPesquisaEscola},
-  unRelEscola in 'unRelEscola.pas' {frmRelEscola},
-  unClasseEscola in 'Modelo\unClasseEscola.pas';
+  unRelEscola in 'unRelEscola.pas' {frmRelEscola};
+
 
 {$R *.res}
 

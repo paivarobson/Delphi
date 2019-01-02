@@ -5,6 +5,7 @@ interface
 uses DB, DBClient, SqlExpr, Windows, Dialogs, SysUtils, DateUtils, StdCtrls;
 
 type
+
     TCadastroEscolaController = class
   public
     function DevolverUltimoCodigo: Integer;
@@ -17,7 +18,7 @@ type
 implementation
 
 uses
-  unDados, unClasseEscola;
+  unDados;
 //Método para o uso do ClientDataSet externamente
 function TCadastroEscolaController.DadosCDS: TClientDataSet;
 begin

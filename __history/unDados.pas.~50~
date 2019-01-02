@@ -8,7 +8,7 @@ uses
 
 type
   Tfmdados = class(TDataModule)
-    FConexaoBDEscola: TSQLConnection;
+    ConexaoBDEscola: TSQLConnection;
     dspEscola: TDataSetProvider;
     tbdsEscola: TClientDataSet;
     dsEscola: TDataSource;
@@ -38,7 +38,7 @@ type
     { Private declarations }
   public
     { Public declarations }
-    property ConexaoBDEscola: TSQLConnection read GetConexaoBDEscola;
+    property ConexaoDB: TSQLConnection read GetConexaoBDEscola;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   end;
@@ -55,17 +55,17 @@ uses
 
 procedure Tfmdados.DataModuleCreate(Sender: TObject);
 begin
-  FConexaoBDEscola.Connected := True;
+  ConexaoBDEscola.Connected := True;
 end;
 
 procedure Tfmdados.DataModuleDestroy(Sender: TObject);
 begin
-  FConexaoBDEscola.Connected := False;
+  ConexaoBDEscola.Connected := False;
 end;
 
 function Tfmdados.GetConexaoBDEscola: TSQLConnection;
 begin
-  Result := FConexaoBDEscola;
+  Result := ConexaoBDEscola;
 end;
 
 end.

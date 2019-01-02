@@ -17,7 +17,7 @@ type
 implementation
 
 uses
-  unDados, unClasseEscola;
+  unDados;
 //Método para o uso do ClientDataSet externamente
 function TCadastroEscolaController.DadosCDS: TClientDataSet;
 begin

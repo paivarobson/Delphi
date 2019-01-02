@@ -2,7 +2,8 @@ unit unCadastroEscolaController;
 
 interface
 
-uses DB, DBClient, SqlExpr, Windows, Dialogs, SysUtils, DateUtils, StdCtrls;
+uses DB, DBClient, SqlExpr, Windows, Dialogs, SysUtils, DateUtils, StdCtrls
+  unClasseEscola;
 
 type
     TCadastroEscolaController = class
@@ -17,7 +18,7 @@ type
 implementation
 
 uses
-  unDados, unClasseEscola;
+  unDados;
 //Método para o uso do ClientDataSet externamente
 function TCadastroEscolaController.DadosCDS: TClientDataSet;
 begin

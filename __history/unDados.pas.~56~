@@ -39,8 +39,8 @@ type
   public
     { Public declarations }
     property ConexaoBDEscola: TSQLConnection read GetConexaoBDEscola;
-    procedure DataModuleCreate(Sender: TObject);
-    procedure DataModuleDestroy(Sender: TObject);
+    procedure Create(Sender: TObject);
+    procedure Destroy(Sender: TObject); override;
   end;
 
 var
@@ -53,14 +53,16 @@ uses
 
 {$R *.dfm}
 
-procedure Tfmdados.DataModuleCreate(Sender: TObject);
+procedure Tfmdados.Create(Sender: TObject);
 begin
   FConexaoBDEscola.Connected := True;
 end;
 
-procedure Tfmdados.DataModuleDestroy(Sender: TObject);
+procedure Tfmdados.Destroy(Sender: TObject);
 begin
   FConexaoBDEscola.Connected := False;
+  FreeAndNil(FConexaoBDEscola);
+  inherited;
 end;
 
 function Tfmdados.GetConexaoBDEscola: TSQLConnection;

@@ -1,8 +1,10 @@
 object fmdados: Tfmdados
   OldCreateOrder = False
+  OnCreate = DataModuleCreate
+  OnDestroy = DataModuleDestroy
   Height = 231
   Width = 411
-  object FConexaoBDEscola: TSQLConnection
+  object conexaoBDEscola: TSQLConnection
     ConnectionName = 'MSSQLConnection'
     DriverName = 'MSSQL'
     GetDriverFunc = 'getSQLDriverMSSQL'
@@ -100,7 +102,7 @@ object fmdados: Tfmdados
     Params = <>
     SQL.Strings = (
       'select * from ESCOLA')
-    SQLConnection = FConexaoBDEscola
+    SQLConnection = conexaoBDEscola
     Left = 152
     Top = 64
     object tbEscolaESCCOD: TIntegerField
@@ -145,7 +147,7 @@ object fmdados: Tfmdados
     Params = <>
     SQL.Strings = (
       'select * from ESCOLA')
-    SQLConnection = FConexaoBDEscola
+    SQLConnection = conexaoBDEscola
     Left = 232
     Top = 64
   end

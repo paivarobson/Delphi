@@ -38,7 +38,7 @@ type
     { Private declarations }
   public
     { Public declarations }
-    property ConexaoBDEscola: TSQLConnection read GetConexaoBDEscola;
+    property ConexaoDB: TSQLConnection read GetConexaoBDEscola;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   end;

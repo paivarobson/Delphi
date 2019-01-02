@@ -4,9 +4,27 @@ interface
 
 uses DB, DBClient, SqlExpr, Windows, Dialogs, SysUtils, DateUtils, StdCtrls;
 
+
+
+
+
+
 type
+  TDadosEscola = record
+    Codigo: Integer;
+    Nome: string;
+    DataCadastro: TDateTime;
+    CEP: string;
+    Rua: string;
+    Numero: string;
+    Complemento: string;
+    Bairro: string;
+    Cidade: string;
+  end;
+
     TCadastroEscolaController = class
   public
+//    procedure CarregarEscola(const AFontesDados: TSQLQuery);
     function DevolverUltimoCodigo: Integer;
     function DadosCDS: TClientDataSet;
     function DadosFieldCodigo: TIntegerField;
@@ -17,7 +35,7 @@ type
 implementation
 
 uses
-  unDados, unClasseEscola;
+  unDados;
 //Método para o uso do ClientDataSet externamente
 function TCadastroEscolaController.DadosCDS: TClientDataSet;
 begin

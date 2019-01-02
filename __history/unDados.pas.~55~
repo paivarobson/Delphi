@@ -40,7 +40,7 @@ type
     { Public declarations }
     property ConexaoBDEscola: TSQLConnection read GetConexaoBDEscola;
     procedure DataModuleCreate(Sender: TObject);
-    procedure DataModuleDestroy(Sender: TObject);
+    procedure DataModuleDestroy(Sender: TObject); override;
   end;
 
 var
@@ -61,6 +61,8 @@ end;
 procedure Tfmdados.DataModuleDestroy(Sender: TObject);
 begin
   FConexaoBDEscola.Connected := False;
+  FreeAndNil(FConexaoBDEscola);
+  inherited;
 end;
 
 function Tfmdados.GetConexaoBDEscola: TSQLConnection;

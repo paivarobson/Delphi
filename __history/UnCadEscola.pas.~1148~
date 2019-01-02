@@ -204,7 +204,7 @@ begin
   Release; //Libera o Form da memória permitindo a execução da fila antes que receba o Free
   frmCadEscola := nil;
 end;
-//Métódo verifica as ocasiões que os BOTÕES ALTERAR e EXCLUIR devem serem habilitados ou não
+//Métódo verifica as ocasições que os BOTÕES ALTERAR e EXCLUIR devem serem habilitados ou não
 function TfrmCadEscola.HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados: Boolean;
 begin
   if FController.DadosCDS.Active then

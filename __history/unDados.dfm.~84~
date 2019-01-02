@@ -1,5 +1,7 @@
 object fmdados: Tfmdados
   OldCreateOrder = False
+  OnCreate = DataModuleCreate
+  OnDestroy = DataModuleDestroy
   Height = 231
   Width = 411
   object FConexaoBDEscola: TSQLConnection
