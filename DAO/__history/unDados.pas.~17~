@@ -35,12 +35,19 @@ type
 
   private
     function GetConexaoBDEscola: TSQLConnection;
+
+
     { Private declarations }
   public
     { Public declarations }
     property ConexaoBDEscola: TSQLConnection read GetConexaoBDEscola;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
+    procedure NovoCadastro;
+    procedure Gravar;
+    procedure CancelarEdicao;
+    procedure Excluir;
+
   end;
 
 var
@@ -61,11 +68,37 @@ end;
 procedure Tfmdados.DataModuleDestroy(Sender: TObject);
 begin
   FConexaoBDEscola.Connected := False;
+  FreeAndNil(FConexaoBDEscola);
 end;
 
 function Tfmdados.GetConexaoBDEscola: TSQLConnection;
 begin
   Result := FConexaoBDEscola;
+end;
+//Método NOVO CADASTRO
+procedure Tfmdados.NovoCadastro;
+begin
+  tbdsEscola.Open;
+  tbdsEscola.Append;
+end;
+//Método GRAVAR
+procedure Tfmdados.Gravar;
+begin
+  tbdsEscola.Post;
+  tbdsEscola.ApplyUpdates(0);
+end;
+//Método CANCELAR EDIÇÃO
+procedure Tfmdados.CancelarEdicao;
+begin
+  tbdsEscola.Cancel;
+end;
+//Método EXCLUIR
+procedure Tfmdados.Excluir;
+begin
+  tbdsEscola.Delete;
+  tbdsEscola.ApplyUpdates(0);
+  tbdsEscola.Refresh;
+  tbdsEscola.Close;
 end;
 
 end.

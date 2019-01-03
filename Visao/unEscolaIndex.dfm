@@ -522,8 +522,26 @@ object frmEscolaIndex: TfrmEscolaIndex
       95E9C27FF5EEC874E1BF7A7764BAF05FBD3B325DF8AFDE1D992EFC57EF8AA0FC
       1FE09D549A4701E55A0000000049454E44AE426082}
   end
+  object btnCadastroEscola: TButton
+    Left = 64
+    Top = 2
+    Width = 137
+    Height = 25
+    Caption = 'Cadastro Escola'
+    TabOrder = 0
+    OnClick = btnCadastroEscolaClick
+  end
+  object btnConsultaEscola: TButton
+    Left = 616
+    Top = 2
+    Width = 169
+    Height = 25
+    Caption = 'Pesquisa Escola'
+    TabOrder = 1
+    OnClick = btnConsultaEscolaClick
+  end
   object mmEscola: TMainMenu
-    Left = 104
+    Left = 24
     object menuArquivo: TMenuItem
       Caption = '&Arquivo'
       object menuArquivoNovo: TMenuItem

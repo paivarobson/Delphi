@@ -2,7 +2,9 @@ unit unCadastroEscolaController;
 
 interface
 
-uses DB, DBClient, SqlExpr, Windows, Dialogs, SysUtils, DateUtils, StdCtrls;
+uses
+  DB, DBClient, SqlExpr, Windows, Dialogs, SysUtils, DateUtils, StdCtrls,
+  Messages;
 
 type
     TCadastroEscolaController = class
@@ -12,12 +14,36 @@ type
     function DadosFieldCodigo: TIntegerField;
     function DadosFieldData: TSQLTimeStampField;
     procedure LimparFieldsCDS;
+    procedure NovoCadastroEscola;
+    procedure GravarEscola;
+    procedure ExcluirEscola;
+    procedure CancelarEdicaoEscola;
   end;
 
 implementation
 
 uses
   unDados, unClasseEscola;
+
+procedure TCadastroEscolaController.NovoCadastroEscola;
+begin
+  fmdados.NovoCadastro;
+end;
+//Método GRAVAR
+procedure TCadastroEscolaController.GravarEscola;
+begin
+  fmdados.Gravar;
+end;
+//Método CANCELAR
+procedure TCadastroEscolaController.CancelarEdicaoEscola;
+begin
+  fmdados.CancelarEdicao;
+end;
+//Método EXCLUIR
+procedure TCadastroEscolaController.ExcluirEscola;
+begin
+  fmdados.Excluir;
+end;
 //Método para o uso do ClientDataSet externamente
 function TCadastroEscolaController.DadosCDS: TClientDataSet;
 begin

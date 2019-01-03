@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, Grids, DBGrids, StdCtrls, ComCtrls, DB, ExtCtrls, unCadastroEscolaController, unRelEscola;
+  Dialogs, Grids, DBGrids, StdCtrls, ComCtrls, DB, ExtCtrls, unPesquisaEscolaController, unRelEscola;
 
 type
   TfrmPesquisaEscola = class(TForm)
@@ -35,7 +35,7 @@ type
   private
     procedure ConsultaOrdenada;
   public
-    FController: TCadastroEscolaController;
+    FController: TPesquisaEscolaController;
     FRelatorio: TfrmRelEscola;
     procedure AfterConstruction; override;
     destructor Destroy; override;
@@ -47,14 +47,14 @@ var
 implementation
 
 uses
-  unEscolaIndex, UnCadEscola;
+  unEscolaIndex, unCadEscola;
 
 {$R *.dfm}
 //Método executado logo depois do Construtor
 procedure TfrmPesquisaEscola.AfterConstruction;
 begin
   inherited;
-  FController := TCadastroEscolaController.Create; //Instãncia da Classe Controller
+  FController := TPesquisaEscolaController.Create; //Instãncia da Classe Controller
 end;
 //(BOTÃO IMPRIMIR)
 procedure TfrmPesquisaEscola.btnEscolaImprimirClick(Sender: TObject);

@@ -21,9 +21,13 @@ type
     Label1: TLabel;
     Label2: TLabel;
     imgLogo: TImage;
+    btnCadastroEscola: TButton;
+    btnConsultaEscola: TButton;
     procedure menuArquivoCadastroEscolaClick(Sender: TObject);
     procedure menuVisualizarConsultarEscolaClick(Sender: TObject);
     procedure menuArquivoSairClick(Sender: TObject);
+    procedure btnCadastroEscolaClick(Sender: TObject);
+    procedure btnConsultaEscolaClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -47,6 +51,16 @@ begin
     Close
 end;
 //(Menu Arquivo>>Cadastro>>Escola) Evento para abrir o Form CADASTRO ESCOLA
+procedure TfrmEscolaIndex.btnCadastroEscolaClick(Sender: TObject);
+begin
+  menuArquivoCadastroEscolaClick(Sender);
+end;
+
+procedure TfrmEscolaIndex.btnConsultaEscolaClick(Sender: TObject);
+begin
+  menuVisualizarConsultarEscolaClick(Sender);
+end;
+
 procedure TfrmEscolaIndex.menuArquivoCadastroEscolaClick(Sender: TObject);
 begin
   if not Assigned(frmCadEscola) then //Verifica se o Form CADASTRO ESCOLA está FECHADO para ser CRIADO
