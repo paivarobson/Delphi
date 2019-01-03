@@ -34,33 +34,9 @@
       
       
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
       <Excluded_Packages Name="$(BDS)\bin\dcloffice2k100.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
       <Excluded_Packages Name="$(BDS)\bin\dclofficexp100.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
     </Excluded_Packages><Source><Source Name="MainSource">ProjetoEscola.dpr</Source></Source>  
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -130,12 +106,30 @@
       <MainSource>MainSource</MainSource>
     </DelphiCompile>
     <DCCReference Include="Controle\unCadastroEscolaController.pas" />
+    <DCCReference Include="DAOunDados.pas">
+      <ModuleName>unDados</ModuleName>
+      <Form>fmdados</Form>
+      <DesignClass>TDataModule</DesignClass>
+    </DCCReference>
+    <DCCReference Include="DAunDados.pas">
+      <DesignClass>TDataModule</DesignClass>
+      <Form>fmdados</Form>
+    </DCCReference>
+    <DCCReference Include="Modelo\unClasseEscola.pas" />
+    <DCCReference Include="MounDados.pas">
+      <DesignClass>TDataModule</DesignClass>
+      <Form>fmdados</Form>
+    </DCCReference>
+    <DCCReference Include="MunDados.pas">
+      <DesignClass>TDataModule</DesignClass>
+      <Form>fmdados</Form>
+    </DCCReference>
     <DCCReference Include="UnCadEscola.pas">
       <Form>frmCadEscola</Form>
     </DCCReference>
     <DCCReference Include="unDados.pas">
-      <Form>fmdados</Form>
       <DesignClass>TDataModule</DesignClass>
+      <Form>fmdados</Form>
     </DCCReference>
     <DCCReference Include="unEscolaIndex.pas">
       <Form>frmEscolaIndex</Form>
@@ -144,6 +138,18 @@
       <Form>frmPesquisaEscola</Form>
     </DCCReference>
     <DCCReference Include="unRelEscola.pas">
+      <Form>frmRelEscola</Form>
+    </DCCReference>
+    <DCCReference Include="Visao\UnCadEscola.pas">
+      <Form>frmCadEscola</Form>
+    </DCCReference>
+    <DCCReference Include="Visao\unEscolaIndex.pas">
+      <Form>frmEscolaIndex</Form>
+    </DCCReference>
+    <DCCReference Include="Visao\unPesquisaEscola.pas">
+      <Form>frmPesquisaEscola</Form>
+    </DCCReference>
+    <DCCReference Include="Visao\unRelEscola.pas">
       <Form>frmRelEscola</Form>
     </DCCReference>
   </ItemGroup>

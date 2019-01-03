@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2018/12/03 11:29:07.914.dproj,C:\Users\Joserobson\Documents\RAD Studio\Projects\Project1.dproj=C:\Users\Joserobson\Documents\RAD Studio\Projects\ProjetoEscola.dproj</Transaction>
+    <Transaction>2018/12/03 11:29:19.470.pas,C:\Users\Joserobson\Documents\RAD Studio\Projects\Unit1.pas=C:\Users\Joserobson\Documents\RAD Studio\Projects\unCadastroEscola.pas</Transaction>
+    <Transaction>2018/12/03 11:29:19.470.dfm,C:\Users\Joserobson\Documents\RAD Studio\Projects\Unit1.dfm=C:\Users\Joserobson\Documents\RAD Studio\Projects\unCadastroEscola.dfm</Transaction>
+    <Transaction>2018/12/03 11:30:09.064.pas,C:\Users\Joserobson\Documents\RAD Studio\Projects\unCadastroEscola.pas=C:\DESENVOLVIMENTO\PROJETOS\escola\unCadastroEscola.pas</Transaction>
+    <Transaction>2018/12/03 11:30:09.064.dfm,C:\Users\Joserobson\Documents\RAD Studio\Projects\unCadastroEscola.dfm=C:\DESENVOLVIMENTO\PROJETOS\escola\unCadastroEscola.dfm</Transaction>
+    <Transaction>2018/12/03 11:43:05.094.dproj,C:\Users\Joserobson\Documents\RAD Studio\Projects\ProjetoEscola.dproj=C:\DESENVOLVIMENTO\PROJETOS\ProjetoEscola.dproj</Transaction>
+    <Transaction>2018/12/03 11:43:26.238.dproj,C:\DESENVOLVIMENTO\PROJETOS\ProjetoEscola.dproj=C:\DESENVOLVIMENTO\PROJETOS\escola\ProjetoEscola.dproj</Transaction>
+    <Transaction>2018/12/05 13:33:42.616.pas,C:\DESENVOLVIMENTO\PROJETOS\escola\Unit1.pas=C:\DESENVOLVIMENTO\PROJETOS\escola\unDados.pas</Transaction>
+    <Transaction>2018/12/05 13:33:42.616.dfm,C:\DESENVOLVIMENTO\PROJETOS\escola\Unit1.dfm=C:\DESENVOLVIMENTO\PROJETOS\escola\unDados.dfm</Transaction>
+    <Transaction>2018/12/05 14:45:24.343.pas,C:\DESENVOLVIMENTO\PROJETOS\escola\Unit1.pas=C:\DESENVOLVIMENTO\PROJETOS\escola\unCadastroEscolaController.pas</Transaction>
+    <Transaction>2018/12/06 11:57:25.058.pas,C:\DESENVOLVIMENTO\PROJETOS\escola\Unit1.pas=C:\DESENVOLVIMENTO\PROJETOS\escola\UnCadEscola.pas</Transaction>
+    <Transaction>2018/12/06 11:57:25.058.dfm,C:\DESENVOLVIMENTO\PROJETOS\escola\Unit1.dfm=C:\DESENVOLVIMENTO\PROJETOS\escola\UnCadEscola.dfm</Transaction>
+    <Transaction>2018/12/10 10:32:41.665.pas,C:\DESENVOLVIMENTO\PROJETOS\escola\Unit1.pas=C:\DESENVOLVIMENTO\PROJETOS\escola\RelEscola.pas</Transaction>
+    <Transaction>2018/12/10 10:32:41.665.dfm,C:\DESENVOLVIMENTO\PROJETOS\escola\Unit1.dfm=C:\DESENVOLVIMENTO\PROJETOS\escola\RelEscola.dfm</Transaction>
+    <Transaction>2018/12/10 15:31:03.633.pas,C:\DESENVOLVIMENTO\PROJETOS\escola\unCadastroEscola.pas=</Transaction>
+    <Transaction>2018/12/10 15:31:03.633.dfm,C:\DESENVOLVIMENTO\PROJETOS\escola\unCadastroEscola.dfm=</Transaction>
+    <Transaction>2018/12/10 15:54:10.222.pas,C:\DESENVOLVIMENTO\PROJETOS\escola\Unit1.pas=C:\DESENVOLVIMENTO\PROJETOS\escola\unEscolaIndex.pas</Transaction>
+    <Transaction>2018/12/10 15:54:10.222.dfm,C:\DESENVOLVIMENTO\PROJETOS\escola\Unit1.dfm=C:\DESENVOLVIMENTO\PROJETOS\escola\unEscolaIndex.dfm</Transaction>
+    <Transaction>2018/12/20 11:14:06.449.pas,C:\DESENVOLVIMENTO\PROJETOS\escola\Unit1.pas=C:\DESENVOLVIMENTO\PROJETOS\escola\unPesquisaEscola.pas</Transaction>
+    <Transaction>2018/12/20 11:14:06.449.dfm,C:\DESENVOLVIMENTO\PROJETOS\escola\Unit1.dfm=C:\DESENVOLVIMENTO\PROJETOS\escola\unPesquisaEscola.dfm</Transaction>
+    <Transaction>2019/01/02 15:01:38.466.pas,C:\DESENVOLVIMENTO\PROJETOS\escola\Unit1.pas=C:\DESENVOLVIMENTO\PROJETOS\escola\unClasseEscola.pas</Transaction>
+    <Transaction>2019/01/02 15:51:55.735.pas,C:\DESENVOLVIMENTO\PROJETOS\escola\unClasseEscola.pas=C:\DESENVOLVIMENTO\PROJETOS\escola\Modelo\unClasseEscola.pas</Transaction>
+  </Transactions>
+</BorlandProject>
