@@ -1,0 +1,22 @@
+unit unEscolaDAO;
+
+interface
+
+type
+  TEscolaDAO = class
+    procedure CarregarEscola(AEscola: TEscolaModelo);
+  end;
+
+implementation
+
+uses
+  unEscolaModelo;
+
+{ TEscolaDAO }
+
+procedure TEscolaDAO.CarregarEscola(AEscola: TEscolaModelo);
+begin
+
+end;
+
+end.

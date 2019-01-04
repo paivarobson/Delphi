@@ -1,0 +1,15 @@
+unit unEscolaDAO;
+
+interface
+
+type
+  TEscolaDAO = class
+    procedure CarregarEscola(AEscola: TEscolaModelo);
+  end;
+
+implementation
+
+uses
+  unEscolaModelo;
+
+end.

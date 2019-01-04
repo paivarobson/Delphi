@@ -6,7 +6,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, WideStrings, FMTBcd, cxGraphics, cxControls, cxLookAndFeels,
   cxLookAndFeelPainters, cxContainer, cxEdit, cxDBEdit, cxTextEdit, cxMaskEdit,
-  cxSpinEdit, StdCtrls, SqlExpr, Grids, DBGrids, Provider, DBClient,
+  cxSpinEdit, StdCtrls, DB, SqlExpr, Grids, DBGrids, Provider, DBClient,
   ExtCtrls, DBCtrls, unCadastroEscolaController, ADODB, ComCtrls, Mask,
   JvExMask, JvToolEdit, JvDBControls, cxDropDownEdit, cxCalendar;
 
