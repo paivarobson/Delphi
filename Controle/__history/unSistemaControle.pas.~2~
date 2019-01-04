@@ -1,0 +1,15 @@
+unit unSistemaControle;
+
+interface
+
+uses
+  SysUtils;
+
+type
+  TSistemaControle = class
+
+  end;
+
+implementation
+
+end.

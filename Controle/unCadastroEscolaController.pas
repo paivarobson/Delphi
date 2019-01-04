@@ -23,7 +23,7 @@ type
 implementation
 
 uses
-  unDados, unClasseEscola;
+  unDados, unEscolaModelo;
 
 procedure TCadastroEscolaController.NovoCadastroEscola;
 begin

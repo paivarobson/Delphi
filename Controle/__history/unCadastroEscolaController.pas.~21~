@@ -2,13 +2,12 @@ unit unCadastroEscolaController;
 
 interface
 
-uses DB, DBClient, SqlExpr, Windows, Dialogs, SysUtils, DateUtils, StdCtrls;
+uses
+  DB, DBClient, SqlExpr, Windows, Dialogs, SysUtils, DateUtils, StdCtrls,
+  Messages;
 
 type
     TCadastroEscolaController = class
-  private
-
-
   public
     function DevolverUltimoCodigo: Integer;
     function DadosCDS: TClientDataSet;

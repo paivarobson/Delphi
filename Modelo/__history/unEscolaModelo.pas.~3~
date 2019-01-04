@@ -11,7 +11,6 @@ type
     FCodigo: Integer;
     FNome: string;
     FDataCadastro: TDateTime;
-    FCep: string;
     FRua: string;
     FNumero: string;
     FComplemento: string;
@@ -21,7 +20,6 @@ type
     procedure SetCodigo(const Valor: Integer);
     procedure SetNome(const Valor: string);
     procedure SetDataCadastro(const Valor: TDateTime);
-    procedure SetCep(const Valor: string);
     procedure SetRua(const Valor: string);
     procedure SetNumero(const Valor: string);
     procedure SetComplemento(const Valor: string);
@@ -31,7 +29,6 @@ type
     function GetCodigo: Integer;
     function GetNome: string;
     function GetDataCadastro: TDateTime;
-    function GetCep: string;
     function GetRua: string;
     function GetNumero: string;
     function GetComplemento: string;
@@ -44,7 +41,6 @@ type
     property Codigo: Integer read GetCodigo write SetCodigo;
     property Nome: string read GetNome write SetNome;
     property DataCadastro: TDateTime read GetDataCadastro write SetDataCadastro;
-    property Cep: string read GetCep write SetCep;
     property Rua: string read GetRua write SetRua;
     property Numero: string read GetNumero write SetNumero;
     property Complemento: string read GetComplemento write SetComplemento;
@@ -75,11 +71,6 @@ begin
   FNome := Valor;
 end;
 
-procedure TEscolaModelo.SetCep(const Valor: string);
-begin
-  FCep := Valor;
-end;
-
 procedure TEscolaModelo.SetDataCadastro(const Valor: TDateTime);
 begin
   FDataCadastro := Valor;
@@ -103,7 +94,6 @@ procedure TEscolaModelo.SetBairro(const Valor: string);
 begin
   FBairro := Valor;
 end;
-
 procedure TEscolaModelo.SetCidade(const Valor: string);
 begin
   FCidade := Valor;
@@ -142,11 +132,6 @@ end;
 function TEscolaModelo.GetBairro: string;
 begin
   Result := FBairro;
-end;
-
-function TEscolaModelo.GetCep: string;
-begin
-
 end;
 
 function TEscolaModelo.GetCidade: string;

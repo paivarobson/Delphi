@@ -3,7 +3,7 @@ unit unEscolaDAO;
 interface
 
 uses
-  unEscolaModelo, unDados;
+  unEscolaModelo;
 
 type
   TEscolaDAO = class

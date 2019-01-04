@@ -101,7 +101,7 @@ begin
   FController.DadosFieldCodigo.AsInteger := FController.DevolverUltimoCodigo + 1; //Aplica o CÓDIGO IDENTIFICADOR
   btnEscolaPesquisar.Enabled := False;
   btnEscolaAlterar.Enabled := False;
-  btnEscolaExcluir.Enabled := False;;
+  btnEscolaExcluir.Enabled := False;
   DBDateEditEscolaDataCadastro.Text := FormatDateTime('DD/MM/YYYY', Now); //Atribui DATA ATUAL do SO
 end;
 //(BOTÃO GRAVAR)

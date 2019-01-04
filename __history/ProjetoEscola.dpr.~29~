@@ -8,10 +8,8 @@ uses
   UnCadEscola in 'Visao\UnCadEscola.pas' {frmCadEscola},
   unPesquisaEscola in 'Visao\unPesquisaEscola.pas' {frmPesquisaEscola},
   unRelEscola in 'Visao\unRelEscola.pas' {frmRelEscola},
-  unEscolaModelo in 'Modelo\unEscolaModelo.pas',
-  unPesquisaEscolaController in 'Controle\unPesquisaEscolaController.pas',
-  unEscolaDAO in 'DAO\unEscolaDAO.pas',
-  unSistemaControle in 'Controle\unSistemaControle.pas';
+  unClasseEscola in 'Modelo\unClasseEscola.pas',
+  unPesquisaEscolaController in 'Controle\unPesquisaEscolaController.pas';
 
 {$R *.res}
 

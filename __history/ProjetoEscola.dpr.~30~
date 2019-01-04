@@ -10,8 +10,7 @@ uses
   unRelEscola in 'Visao\unRelEscola.pas' {frmRelEscola},
   unEscolaModelo in 'Modelo\unEscolaModelo.pas',
   unPesquisaEscolaController in 'Controle\unPesquisaEscolaController.pas',
-  unEscolaDAO in 'DAO\unEscolaDAO.pas',
-  unSistemaControle in 'Controle\unSistemaControle.pas';
+  unEscolaDAO in 'DAO\unEscolaDAO.pas';
 
 {$R *.res}
 
