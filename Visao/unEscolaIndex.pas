@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, Menus, dxGDIPlusClasses, ExtCtrls;
+  Dialogs, StdCtrls, Menus, dxGDIPlusClasses, ExtCtrls, unSistemaControle, unConexao;
 
 type
   TfrmEscolaIndex = class(TForm)
@@ -52,8 +52,19 @@ begin
 end;
 //(Menu Arquivo>>Cadastro>>Escola) Evento para abrir o Form CADASTRO ESCOLA
 procedure TfrmEscolaIndex.btnCadastroEscolaClick(Sender: TObject);
+var
+  VConexao: TConexao;
 begin
-  menuArquivoCadastroEscolaClick(Sender);
+  try
+    VConexao := TConexao.Create;
+    VConexao.GetConnection.Connected := True;
+
+    if VConexao.GetConnection.Connected then
+      ShowMessage('Conectado!!! HAHAHAHA');
+  finally
+    FreeAndNil(VConexao);
+  end;
+//  menuArquivoCadastroEscolaClick(Sender);
 end;
 
 procedure TfrmEscolaIndex.btnConsultaEscolaClick(Sender: TObject);
@@ -78,5 +89,8 @@ begin
   if Assigned(frmCadEscola) then //Verifica se o Form CADASTRO ESCOLA está ABERTO para que seja FECHADO
     frmCadEscola.Close;
 end;
+
+initialization
+  ReportMemoryLeaksOnShutdown := True;
 
 end.

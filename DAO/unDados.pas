@@ -35,12 +35,14 @@ type
 
   private
     function GetConexaoBDEscola: TSQLConnection;
-
-
+    function GetTbEscola: TSQLQuery;
     { Private declarations }
   public
     { Public declarations }
     property ConexaoBDEscola: TSQLConnection read GetConexaoBDEscola;
+    property ComponenteQuery: TSQLQuery read GetTbEscola write tbEscola;
+
+    function DataModuleQuery: TSQLQuery;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure NovoCadastro;
@@ -59,6 +61,10 @@ uses
   UnCadEscola;
 
 {$R *.dfm}
+function Tfmdados.GetTbEscola: TSQLQuery;
+begin
+  Result := tbEscola;
+end;
 
 procedure Tfmdados.DataModuleCreate(Sender: TObject);
 begin
@@ -69,6 +75,11 @@ procedure Tfmdados.DataModuleDestroy(Sender: TObject);
 begin
   FConexaoBDEscola.Connected := False;
   FreeAndNil(FConexaoBDEscola);
+end;
+
+function Tfmdados.DataModuleQuery: TSQLQuery;
+begin
+  Result := tbEscola;
 end;
 
 function Tfmdados.GetConexaoBDEscola: TSQLConnection;

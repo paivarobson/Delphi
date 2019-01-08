@@ -39,8 +39,11 @@ type
     function GetCidade: string;
 
   public
-    constructor Create;
+    constructor Create(ACodigo: Integer);
     destructor Destroy; override;
+
+    procedure Carregar;
+
     property Codigo: Integer read GetCodigo write SetCodigo;
     property Nome: string read GetNome write SetNome;
     property DataCadastro: TDateTime read GetDataCadastro write SetDataCadastro;
@@ -54,9 +57,24 @@ type
 
 implementation
 
-constructor TEscolaModelo.Create;
+uses
+  unEscolaDAO;
+
+procedure TEscolaModelo.Carregar;
+var
+  VEscolaDao: TEscolaDAO;
 begin
-  FEscola := TEscolaModelo.Create;
+  VEscolaDao := TEscolaDAO.Create;
+  try
+    VEscolaDao.CarregarEscola(Self, Codigo);
+  finally
+    FreeAndNil(VEscolaDao);
+  end;
+end;
+
+constructor TEscolaModelo.Create(ACodigo: Integer);
+begin
+  FCodigo := ACodigo;
 end;
 
 destructor TEscolaModelo.Destroy;

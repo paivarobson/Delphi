@@ -11,7 +11,8 @@ uses
   unEscolaModelo in 'Modelo\unEscolaModelo.pas',
   unPesquisaEscolaController in 'Controle\unPesquisaEscolaController.pas',
   unEscolaDAO in 'DAO\unEscolaDAO.pas',
-  unSistemaControle in 'Controle\unSistemaControle.pas';
+  unSistemaControle in 'Controle\unSistemaControle.pas',
+  unConexao in 'DAO\unConexao.pas';
 
 {$R *.res}
 
