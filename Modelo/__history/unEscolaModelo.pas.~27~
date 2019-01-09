@@ -39,6 +39,7 @@ type
     function GetCidade: string;
 
   public
+    constructor Create(ACodigo: Integer);
     destructor Destroy; override;
 
     procedure Carregar(ACodigo: Integer);
@@ -69,6 +70,11 @@ begin
   finally
     FreeAndNil(VEscolaDao);
   end;
+end;
+
+constructor TEscolaModelo.Create(ACodigo: Integer);
+begin
+  FCodigo := ACodigo;
 end;
 
 destructor TEscolaModelo.Destroy;

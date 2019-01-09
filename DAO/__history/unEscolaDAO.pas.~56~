@@ -20,10 +20,11 @@ implementation
 procedure TEscolaDAO.Carregar(AEscolaModelo: TEscolaModelo; ACodigo: Integer);
 var
   VQuery: TSQLQuery;
+  cCampo: string;
 begin
   VQuery := TSistemaControle.GetInstancia().Conexao.CriarQuery;
   try
-    VQuery.CommandText := Format('SELECT ' +
+    VQuery.CommandText := 'SELECT ' +
                  'ESCCOD, ' +
                  'ESCNOME, ' +
                  'ESCDATACAD, ' +
@@ -35,9 +36,8 @@ begin
                  'ESCENDCIDADE ' +
                'FROM ' +
                  'ESCOLA ' +
-               'WHERE ESCCOD = %d',
-               [ACodigo]);
-    VQuery.Open;
+               'WHERE ESCCOD = :' + cCampo;
+    VQuery.ParamByName(cCampo).Value := ACodigo;
     try
       AEscolaModelo.Codigo       := VQuery.Fields[0].AsInteger;
       AEscolaModelo.Nome         := VQuery.Fields[1].AsString;

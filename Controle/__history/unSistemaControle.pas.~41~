@@ -3,13 +3,14 @@ unit unSistemaControle;
 interface
 
 uses
-  unConexao, SysUtils, SqlExpr, unEscolaModelo;
+  unConexao, SysUtils, unEscolaModelo, SqlExpr;
 
 type
   TSistemaControle = class
   private
     FConexao     : TConexao;
     FEscolaModelo: TEscolaModelo;
+    FEscolaCodigo: Integer;
 
     class var FInstancia: TSistemaControle;
   public
@@ -21,7 +22,7 @@ type
     class function GetInstancia: TSistemaControle;
 
     property Conexao: TConexao read FConexao write FConexao;
-    property EscolaModelo: TEscolaModelo read FEscolaModelo write FEscolaModelo;
+    property Escola: TEscolaModelo read FEscolaModelo write FEscolaModelo;
   end;
 
 implementation
@@ -30,13 +31,13 @@ implementation
 
 procedure TSistemaControle.CarregarEscola(ACodigoEscola: Integer);
 begin
-  EscolaModelo.Carregar(ACodigoEscola);
+  FEscolaModelo.Carregar(ACodigoEscola);
 end;
 
 constructor TSistemaControle.Create;
 begin
   FConexao := TConexao.Create;
-  FEscolaModelo := TEscolaModelo.Create;
+  FEscolaModelo := TEscolaModelo.Create(FEscolaCodigo);
 end;
 
 destructor TSistemaControle.Destroy;

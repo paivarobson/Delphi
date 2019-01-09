@@ -78,18 +78,18 @@ end;
 
 procedure TfrmEscolaIndex.FormCreate(Sender: TObject);
 begin
-  TSistemaControle.GetInstancia();
-  TSistemaControle.GetInstancia().CarregarEscola(1);
+   TSistemaControle.GetInstancia().SetEscola(1);
+  TSistemaControle.GetInstancia().CarregarEscola();
 
   StatusBar1.Panels[0].Text :=
-    IntToStr(TSistemaControle.GetInstancia().EscolaModelo.Codigo) + #13 + ' - ' +
-    TSistemaControle.GetInstancia().EscolaModelo.Nome + #13 + ' - ' +
-    DateToStr(TSistemaControle.GetInstancia().EscolaModelo.DataCadastro) + #13 + ' - ' +
-    TSistemaControle.GetInstancia().EscolaModelo.Rua + #13 + ' - ' +
-    TSistemaControle.GetInstancia().EscolaModelo.Numero + #13 + ' - ' +
-    TSistemaControle.GetInstancia().EscolaModelo.Complemento + #13 + ' - ' +
-    TSistemaControle.GetInstancia().EscolaModelo.Bairro + #13 + ' - ' +
-    TSistemaControle.GetInstancia().EscolaModelo.Cidade;
+    IntToStr(TSistemaControle.GetInstancia().Escola.Codigo) + #13 +
+    TSistemaControle.GetInstancia().Escola.Nome + #13 +
+    DateToStr(TSistemaControle.GetInstancia().Escola.DataCadastro) + #13 +
+    TSistemaControle.GetInstancia().Escola.Rua + #13 +
+    TSistemaControle.GetInstancia().Escola.Numero + #13 +
+    TSistemaControle.GetInstancia().Escola.Complemento + #13 +
+    TSistemaControle.GetInstancia().Escola.Bairro + #13 +
+    TSistemaControle.GetInstancia().Escola.Cidade;
 
 end;
 

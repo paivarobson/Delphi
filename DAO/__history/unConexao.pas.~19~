@@ -42,7 +42,6 @@ end;
 constructor TConexao.Create;
 begin
   FConnection := TSQLConnection.Create(nil);
-
   Self.ConfigurarConexao();
 end;
 

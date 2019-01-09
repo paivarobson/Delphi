@@ -23,7 +23,7 @@ var
 begin
   VQuery := TSistemaControle.GetInstancia().Conexao.CriarQuery;
   try
-    VQuery.CommandText := Format('SELECT ' +
+    VQuery.CommandText := 'SELECT ' +
                  'ESCCOD, ' +
                  'ESCNOME, ' +
                  'ESCDATACAD, ' +
@@ -35,19 +35,18 @@ begin
                  'ESCENDCIDADE ' +
                'FROM ' +
                  'ESCOLA ' +
-               'WHERE ESCCOD = %d',
-               [ACodigo]);
-    VQuery.Open;
+               'WHERE ESCCOD = :codigo';
+    VQuery.ParamByName('codigo').Value := ACodigo;
     try
-      AEscolaModelo.Codigo       := VQuery.Fields[0].AsInteger;
-      AEscolaModelo.Nome         := VQuery.Fields[1].AsString;
+      AEscolaModelo.Codigo := VQuery.Fields[0].AsInteger;
+      AEscolaModelo.Nome := VQuery.Fields[1].AsString;
       AEscolaModelo.DataCadastro := VQuery.Fields[2].AsDateTime;
-      AEscolaModelo.Cep          := VQuery.Fields[3].AsString;
-      AEscolaModelo.Rua          := VQuery.Fields[4].AsString;
-      AEscolaModelo.Numero       := VQuery.Fields[5].AsString;
-      AEscolaModelo.Complemento  := VQuery.Fields[6].AsString;
-      AEscolaModelo.Bairro       := VQuery.Fields[7].AsString;
-      AEscolaModelo.Cidade       := VQuery.Fields[8].AsString;
+      AEscolaModelo.Cep := VQuery.Fields[3].AsString;
+      AEscolaModelo.Rua := VQuery.Fields[4].AsString;
+      AEscolaModelo.Numero := VQuery.Fields[5].AsString;
+      AEscolaModelo.Complemento := VQuery.Fields[6].AsString;
+      AEscolaModelo.Bairro := VQuery.Fields[7].AsString;
+      AEscolaModelo.Cidade := VQuery.Fields[8].AsString;
     finally
       VQuery.Close;
     end;

@@ -11,11 +11,11 @@ type
     FConnection: TSQLConnection;
 
     procedure ConfigurarConexao;
+
+    function CriarQuery: TSQLQuery;
   public
     constructor Create;
     destructor Destroy; override;
-
-    function CriarQuery: TSQLQuery;
 
     function GetConnection: TSQLConnection;
   end;
@@ -42,7 +42,6 @@ end;
 constructor TConexao.Create;
 begin
   FConnection := TSQLConnection.Create(nil);
-
   Self.ConfigurarConexao();
 end;
 

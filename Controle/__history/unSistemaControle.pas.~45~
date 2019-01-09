@@ -21,7 +21,7 @@ type
     class function GetInstancia: TSistemaControle;
 
     property Conexao: TConexao read FConexao write FConexao;
-    property EscolaModelo: TEscolaModelo read FEscolaModelo write FEscolaModelo;
+    property Escola: TEscolaModelo read FEscolaModelo write FEscolaModelo;
   end;
 
 implementation
@@ -30,7 +30,7 @@ implementation
 
 procedure TSistemaControle.CarregarEscola(ACodigoEscola: Integer);
 begin
-  EscolaModelo.Carregar(ACodigoEscola);
+  FEscolaModelo.Carregar(ACodigoEscola);
 end;
 
 constructor TSistemaControle.Create;

@@ -37,7 +37,7 @@ begin
                  'ESCOLA ' +
                'WHERE ESCCOD = %d',
                [ACodigo]);
-    VQuery.Open;
+    VQuery.Open;               
     try
       AEscolaModelo.Codigo       := VQuery.Fields[0].AsInteger;
       AEscolaModelo.Nome         := VQuery.Fields[1].AsString;

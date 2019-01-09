@@ -7,7 +7,7 @@ uses SysUtils;
 type
   TEscolaModelo = class
   private
-    FEscolaModelo: TEscolaModelo;
+    FEscola: TEscolaModelo;
     FCodigo: Integer;
     FNome: string;
     FDataCadastro: TDateTime;
@@ -39,9 +39,10 @@ type
     function GetCidade: string;
 
   public
+//    constructor Create(ACodigo: Integer);
     destructor Destroy; override;
 
-    procedure Carregar(ACodigo: Integer);
+    procedure Carregar;
 
     property Codigo: Integer read GetCodigo write SetCodigo;
     property Nome: string read GetNome write SetNome;
@@ -59,21 +60,26 @@ implementation
 uses
   unEscolaDAO;
 
-procedure TEscolaModelo.Carregar(ACodigo: Integer);
+procedure TEscolaModelo.Carregar;
 var
   VEscolaDao: TEscolaDAO;
 begin
   VEscolaDao := TEscolaDAO.Create;
   try
-    VEscolaDao.Carregar(Self, ACodigo);
+    VEscolaDao.Carregar(Self);
   finally
     FreeAndNil(VEscolaDao);
   end;
 end;
 
+//constructor TEscolaModelo.Create(ACodigo: Integer);
+//begin
+////  FCodigo := ACodigo;
+//end;
+
 destructor TEscolaModelo.Destroy;
 begin
-  FreeAndNil(FEscolaModelo);
+  FreeAndNil(FEscola);
   inherited;
 end;
 

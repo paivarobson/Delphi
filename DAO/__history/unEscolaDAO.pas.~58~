@@ -23,7 +23,7 @@ var
 begin
   VQuery := TSistemaControle.GetInstancia().Conexao.CriarQuery;
   try
-    VQuery.CommandText := Format('SELECT ' +
+    VQuery.CommandText := 'SELECT ' +
                  'ESCCOD, ' +
                  'ESCNOME, ' +
                  'ESCDATACAD, ' +
@@ -35,9 +35,7 @@ begin
                  'ESCENDCIDADE ' +
                'FROM ' +
                  'ESCOLA ' +
-               'WHERE ESCCOD = %d',
-               [ACodigo]);
-    VQuery.Open;
+               'WHERE ESCCOD = %d' [ACodigo];
     try
       AEscolaModelo.Codigo       := VQuery.Fields[0].AsInteger;
       AEscolaModelo.Nome         := VQuery.Fields[1].AsString;

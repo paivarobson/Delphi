@@ -544,13 +544,13 @@ object frmEscolaIndex: TfrmEscolaIndex
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 368
+    Top = 481
     Width = 800
-    Height = 132
-    Panels = <
-      item
-        Width = 50
-      end>
+    Height = 19
+    Panels = <>
+    ExplicitLeft = 160
+    ExplicitTop = 480
+    ExplicitWidth = 0
   end
   object mmEscola: TMainMenu
     Left = 24

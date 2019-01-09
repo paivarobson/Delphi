@@ -17,7 +17,6 @@ object frmEscolaIndex: TfrmEscolaIndex
   OldCreateOrder = False
   Position = poMainFormCenter
   OnCreate = FormCreate
-  OnDestroy = FormDestroy
   PixelsPerInch = 96
   TextHeight = 13
   object Label2: TLabel
@@ -541,16 +540,6 @@ object frmEscolaIndex: TfrmEscolaIndex
     Caption = 'Pesquisa Escola'
     TabOrder = 1
     OnClick = btnConsultaEscolaClick
-  end
-  object StatusBar1: TStatusBar
-    Left = 0
-    Top = 368
-    Width = 800
-    Height = 132
-    Panels = <
-      item
-        Width = 50
-      end>
   end
   object mmEscola: TMainMenu
     Left = 24
