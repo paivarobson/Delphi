@@ -1,0 +1,10 @@
+unit unEnumerado;
+
+interface
+
+type
+  TAcao = (tpIncluir, tpAlterar, tpExcluir);
+
+implementation
+
+end.

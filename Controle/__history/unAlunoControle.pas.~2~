@@ -1,0 +1,16 @@
+unit unAlunoControle;
+
+interface
+
+uses
+  TAlunoModelo;
+
+type
+  TClienteControle = class
+  private
+    FClienteModelo:
+  end;
+
+implementation
+
+end.

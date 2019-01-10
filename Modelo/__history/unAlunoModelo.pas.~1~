@@ -1,0 +1,43 @@
+unit unClienteModelo;
+
+interface
+
+uses
+  unEnumerado;
+
+type
+  TClienteModelo = class
+  private
+    FAcao: TAcao;
+    FNome: string;
+    FMatricula: Integer;
+
+    procedure SetAcao(const Value: TAcao);
+    procedure SetMatricula(const Value: Integer);
+    procedure SetNome(const Value: string);
+  public
+    property Matricula: Integer read FMatricula write SetMatricula;
+    property Nome: string read FNome write SetNome;
+    property Acao: TAcao read FAcao write SetAcao;
+  end;
+
+implementation
+
+{ TClienteModelo }
+
+procedure TClienteModelo.SetAcao(const Value: TAcao);
+begin
+  FAcao := Value;
+end;
+
+procedure TClienteModelo.SetMatricula(const Value: Integer);
+begin
+  FMatricula := Value;
+end;
+
+procedure TClienteModelo.SetNome(const Value: string);
+begin
+  FNome := Value;
+end;
+
+end.

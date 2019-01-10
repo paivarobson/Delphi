@@ -2,7 +2,8 @@ unit unEscolaModelo;
 
 interface
 
-uses SysUtils;
+uses
+  SysUtils, unEnumerado;
 
 type
   TEscolaModelo = class
@@ -17,6 +18,8 @@ type
     FComplemento: string;
     FBairro: string;
     FCidade: string;
+    FAcao: TAcao;
+
 
     procedure SetCodigo(const Valor: Integer);
     procedure SetNome(const Valor: string);
@@ -27,7 +30,8 @@ type
     procedure SetComplemento(const Valor: string);
     procedure SetBairro(const Valor: string);
     procedure SetCidade(const Valor: string);
-    
+    procedure SetAcao(const Value: TAcao);
+
     function GetCodigo: Integer;
     function GetNome: string;
     function GetDataCadastro: TDateTime;
@@ -52,6 +56,7 @@ type
     property Complemento: string read GetComplemento write SetComplemento;
     property Bairro: string read GetBairro write SetBairro;
     property Cidade: string read GetCidade write SetCidade;
+    property Acao: TAcao read FAcao write SetAcao;
   end;
 
 implementation
@@ -109,6 +114,11 @@ end;
 procedure TEscolaModelo.SetComplemento(const Valor: string);
 begin
   FComplemento := Valor;
+end;
+
+procedure TEscolaModelo.SetAcao(const Value: TAcao);
+begin
+  FAcao := Value;
 end;
 
 procedure TEscolaModelo.SetBairro(const Valor: string);

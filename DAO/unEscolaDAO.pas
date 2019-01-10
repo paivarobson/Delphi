@@ -23,7 +23,7 @@ var
 begin
   VQuery := TSistemaControle.GetInstancia().Conexao.CriarQuery;
   try
-    VQuery.CommandText := Format('SELECT ' +
+    VQuery.SQL.Text := Format('SELECT ' +
                  'ESCCOD, ' +
                  'ESCNOME, ' +
                  'ESCDATACAD, ' +

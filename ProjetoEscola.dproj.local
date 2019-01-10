@@ -29,5 +29,20 @@
     <Transaction>2019/01/04 11:48:47.202.pas,C:\DESENVOLVIMENTO\PROJETOS\escola\Modelo\unClasseEscola.pas=C:\DESENVOLVIMENTO\PROJETOS\escola\Modelo\unEscolaModelo.pas</Transaction>
     <Transaction>2019/01/04 13:36:50.929.pas,C:\DESENVOLVIMENTO\PROJETOS\escola\Unit1.pas=C:\DESENVOLVIMENTO\PROJETOS\escola\Controle\unSistemaControle.pas</Transaction>
     <Transaction>2019/01/08 13:09:50.101.pas,C:\DESENVOLVIMENTO\PROJETOS\escola\Unit1.pas=C:\DESENVOLVIMENTO\PROJETOS\escola\DAO\unConexao.pas</Transaction>
+    <Transaction>2019/01/10 14:00:55.230.pas,C:\DESENVOLVIMENTO\PROJETOS\escola\Unit1.pas=C:\DESENVOLVIMENTO\PROJETOS\escola\unEnumerado.pas</Transaction>
+    <Transaction>2019/01/10 14:27:56.838.pas,C:\DESENVOLVIMENTO\PROJETOS\escola\Unit1.pas=C:\DESENVOLVIMENTO\PROJETOS\escola\Modelo\unClienteModelo.pas</Transaction>
+    <Transaction>2019/01/10 14:52:02.944.pas,C:\DESENVOLVIMENTO\PROJETOS\escola\Unit1.pas=C:\DESENVOLVIMENTO\PROJETOS\escola\Visao\unFrmAluno.pas</Transaction>
+    <Transaction>2019/01/10 14:52:02.944.dfm,C:\DESENVOLVIMENTO\PROJETOS\escola\Unit1.dfm=C:\DESENVOLVIMENTO\PROJETOS\escola\Visao\unFrmAluno.dfm</Transaction>
+    <Transaction>2019/01/10 14:52:51.818.pas,C:\DESENVOLVIMENTO\PROJETOS\escola\Visao\UnCadEscola.pas=C:\DESENVOLVIMENTO\PROJETOS\escola\Visao\unFrmCadEscola.pas</Transaction>
+    <Transaction>2019/01/10 14:52:51.818.dfm,C:\DESENVOLVIMENTO\PROJETOS\escola\Visao\UnCadEscola.dfm=C:\DESENVOLVIMENTO\PROJETOS\escola\Visao\unFrmCadEscola.dfm</Transaction>
+    <Transaction>2019/01/10 14:53:01.099.pas,C:\DESENVOLVIMENTO\PROJETOS\escola\Visao\unEscolaIndex.pas=C:\DESENVOLVIMENTO\PROJETOS\escola\Visao\unFrmEscolaIndex.pas</Transaction>
+    <Transaction>2019/01/10 14:53:01.099.dfm,C:\DESENVOLVIMENTO\PROJETOS\escola\Visao\unEscolaIndex.dfm=C:\DESENVOLVIMENTO\PROJETOS\escola\Visao\unFrmEscolaIndex.dfm</Transaction>
+    <Transaction>2019/01/10 14:53:07.250.pas,C:\DESENVOLVIMENTO\PROJETOS\escola\Visao\unPesquisaEscola.pas=C:\DESENVOLVIMENTO\PROJETOS\escola\Visao\unFrmPesquisaEscola.pas</Transaction>
+    <Transaction>2019/01/10 14:53:07.250.dfm,C:\DESENVOLVIMENTO\PROJETOS\escola\Visao\unPesquisaEscola.dfm=C:\DESENVOLVIMENTO\PROJETOS\escola\Visao\unFrmPesquisaEscola.dfm</Transaction>
+    <Transaction>2019/01/10 14:55:41.283.pas,C:\DESENVOLVIMENTO\PROJETOS\escola\Visao\unFrmEscolaIndex.pas=C:\DESENVOLVIMENTO\PROJETOS\escola\Visao\unFrmPrincipal.pas</Transaction>
+    <Transaction>2019/01/10 14:55:41.283.dfm,C:\DESENVOLVIMENTO\PROJETOS\escola\Visao\unFrmEscolaIndex.dfm=C:\DESENVOLVIMENTO\PROJETOS\escola\Visao\unFrmPrincipal.dfm</Transaction>
+    <Transaction>2019/01/10 15:29:54.509.pas,C:\DESENVOLVIMENTO\PROJETOS\escola\Unit1.pas=C:\DESENVOLVIMENTO\PROJETOS\escola\DAO\unAlunoDAO.pas</Transaction>
+    <Transaction>2019/01/10 15:43:08.747.pas,C:\DESENVOLVIMENTO\PROJETOS\escola\Unit1.pas=C:\DESENVOLVIMENTO\PROJETOS\escola\Controle\unAlunoControle.pas</Transaction>
+    <Transaction>2019/01/10 15:44:41.492.pas,C:\DESENVOLVIMENTO\PROJETOS\escola\Modelo\unClienteModelo.pas=C:\DESENVOLVIMENTO\PROJETOS\escola\Modelo\unAlunoModelo.pas</Transaction>
   </Transactions>
 </BorlandProject>

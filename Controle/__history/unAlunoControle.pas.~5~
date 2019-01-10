@@ -1,0 +1,25 @@
+unit unAlunoControle;
+
+interface
+
+uses
+  TAlunoModelo;
+
+type
+  TAlunoControle = class
+  private
+    FAlunoModelo: TAlunoModelo;
+  public
+    constructor Create;
+
+  end;
+
+implementation
+
+
+constructor TAlunoControle.Create;
+begin
+  FAlunoModelo := TAlunoModelo.Create;
+end;
+
+end.

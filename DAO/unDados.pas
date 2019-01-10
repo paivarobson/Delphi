@@ -58,7 +58,7 @@ var
 implementation
 
 uses
-  UnCadEscola;
+  unFrmCadEscola;
 
 {$R *.dfm}
 function Tfmdados.GetTbEscola: TSQLQuery;

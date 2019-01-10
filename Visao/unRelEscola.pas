@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, RLReport, UnCadEscola, unDados;
+  Dialogs, RLReport, unFrmCadEscola, unDados;
 
 type
   TfrmRelEscola = class(TForm)
