@@ -36,7 +36,6 @@ object frmCadEscola: TfrmCadEscola
     Width = 34
     Height = 13
     Caption = 'Escola:'
-    FocusControl = DBEditEscolaNome
   end
   object lblEscolaDataCadastro: TLabel
     Left = 546
@@ -51,7 +50,6 @@ object frmCadEscola: TfrmCadEscola
     Width = 23
     Height = 13
     Caption = 'Rua:'
-    FocusControl = DBEditEscolaEndRua
   end
   object lblEscolaEndNumero: TLabel
     Left = 602
@@ -66,7 +64,6 @@ object frmCadEscola: TfrmCadEscola
     Width = 69
     Height = 13
     Caption = 'Complemento:'
-    FocusControl = DBEditEscolaEndComplemento
   end
   object lblEscolaEndBairro: TLabel
     Left = 327
@@ -74,7 +71,6 @@ object frmCadEscola: TfrmCadEscola
     Width = 32
     Height = 13
     Caption = 'Bairro:'
-    FocusControl = DBEditEscolaEndBairro
   end
   object lblEscolaEndCidade: TLabel
     Left = 520
@@ -82,7 +78,6 @@ object frmCadEscola: TfrmCadEscola
     Width = 37
     Height = 13
     Caption = 'Cidade:'
-    FocusControl = DBEditEscolaEndCidade
   end
   object lblEscolaendCep: TLabel
     Left = 96
@@ -104,78 +99,13 @@ object frmCadEscola: TfrmCadEscola
     Font.Style = []
     ParentFont = False
   end
-  object DBEditEscolaNome: TcxDBTextEdit
-    Left = 159
-    Top = 105
-    DataBinding.DataField = 'ESCNOME'
-    DataBinding.DataSource = fmdados.dsEscola
-    Enabled = False
-    Properties.CharCase = ecUpperCase
-    TabOrder = 2
-    OnKeyPress = AvancarCampo
-    Width = 381
-  end
-  object DBEditEscolaEndRua: TcxDBTextEdit
-    Left = 171
-    Top = 150
-    DataBinding.DataField = 'ESCENDRUA'
-    DataBinding.DataSource = fmdados.dsEscola
-    Enabled = False
-    Properties.CharCase = ecUpperCase
-    TabOrder = 5
-    OnKeyPress = AvancarCampo
-    Width = 425
-  end
-  object DBEditEscolaEndComplemento: TcxDBTextEdit
-    Left = 96
-    Top = 193
-    DataBinding.DataField = 'ESCENDCOMP'
-    DataBinding.DataSource = fmdados.dsEscola
-    Enabled = False
-    Properties.CharCase = ecUpperCase
-    TabOrder = 7
-    OnKeyPress = AvancarCampo
-    Width = 225
-  end
-  object DBEditEscolaEndBairro: TcxDBTextEdit
-    Left = 327
-    Top = 193
-    DataBinding.DataField = 'ESCENDBAIRRO'
-    DataBinding.DataSource = fmdados.dsEscola
-    Enabled = False
-    Properties.CharCase = ecUpperCase
-    TabOrder = 8
-    OnKeyPress = AvancarCampo
-    Width = 187
-  end
-  object DBEditEscolaEndCidade: TcxDBTextEdit
-    Left = 520
-    Top = 193
-    DataBinding.DataField = 'ESCENDCIDADE'
-    DataBinding.DataSource = fmdados.dsEscola
-    Enabled = False
-    Properties.CharCase = ecUpperCase
-    TabOrder = 9
-    OnKeyPress = AvancarCampo
-    Width = 147
-  end
-  object DBEditEscolaEndNumero: TcxDBTextEdit
-    Left = 602
-    Top = 150
-    DataBinding.DataField = 'ESCENDNUM'
-    DataBinding.DataSource = fmdados.dsEscola
-    Enabled = False
-    TabOrder = 6
-    OnKeyPress = DBEditEscolaEndNumeroKeyPress
-    Width = 65
-  end
   object btnEscolaNovoCadastro: TButton
     Left = 228
     Top = 234
     Width = 83
     Height = 25
     Caption = 'Novo cadastro'
-    TabOrder = 10
+    TabOrder = 9
     OnClick = btnEscolaNovoCadastroClick
     OnKeyPress = AvancarCampo
   end
@@ -186,7 +116,7 @@ object frmCadEscola: TfrmCadEscola
     Height = 25
     Caption = 'Gravar'
     Enabled = False
-    TabOrder = 11
+    TabOrder = 10
     OnClick = btnEscolaGravarClick
     OnKeyPress = AvancarCampo
   end
@@ -196,7 +126,7 @@ object frmCadEscola: TfrmCadEscola
     Width = 54
     Height = 25
     Caption = 'Alterar'
-    TabOrder = 12
+    TabOrder = 11
     OnClick = btnEscolaAlterarClick
     OnKeyPress = AvancarCampo
   end
@@ -206,7 +136,7 @@ object frmCadEscola: TfrmCadEscola
     Width = 50
     Height = 25
     Caption = 'Excluir'
-    TabOrder = 15
+    TabOrder = 14
     OnClick = btnEscolaExcluirClick
     OnKeyPress = AvancarCampo
   end
@@ -217,7 +147,7 @@ object frmCadEscola: TfrmCadEscola
     Height = 25
     Caption = 'Cancelar'
     Enabled = False
-    TabOrder = 14
+    TabOrder = 13
     OnClick = btnEscolaCancelarClick
     OnKeyPress = AvancarCampo
   end
@@ -228,20 +158,9 @@ object frmCadEscola: TfrmCadEscola
     Height = 25
     Caption = 'Limpar'
     Enabled = False
-    TabOrder = 13
+    TabOrder = 12
     OnClick = btnEscolaLimparClick
     OnKeyPress = AvancarCampo
-  end
-  object DBEditEscolaCod: TcxDBTextEdit
-    Left = 96
-    Top = 105
-    DataBinding.DataField = 'ESCCOD'
-    DataBinding.DataSource = fmdados.dsEscola
-    Enabled = False
-    ParentFont = False
-    TabOrder = 1
-    OnKeyPress = AvancarCampo
-    Width = 57
   end
   object btnEscolaPesquisar: TButton
     Left = 96
@@ -253,36 +172,100 @@ object frmCadEscola: TfrmCadEscola
     OnClick = btnEscolaPesquisarClick
     OnKeyPress = AvancarCampo
   end
-  object DBDateEditEscolaDataCadastro: TcxDBDateEdit
-    Left = 546
-    Top = 105
-    BeepOnEnter = False
-    DataBinding.DataField = 'ESCDATACAD'
-    DataBinding.DataSource = fmdados.dsEscola
-    Enabled = False
-    Properties.DateButtons = [btnClear, btnNow, btnToday]
-    TabOrder = 3
-    OnKeyPress = AvancarCampo
-    Width = 121
-  end
-  object DBMaskEditEscolaEndCEP: TcxDBMaskEdit
-    Left = 96
-    Top = 150
-    DataBinding.DataField = 'ESCENDCEP'
-    DataBinding.DataSource = fmdados.dsEscola
-    Enabled = False
-    Properties.EditMask = '00000\-999;1;_'
-    TabOrder = 4
-    OnKeyPress = DBEditEscolaEndNumeroKeyPress
-    Width = 69
-  end
   object btnEscolaFechar: TButton
     Left = 600
     Top = 234
     Width = 67
     Height = 25
     Caption = 'Fechar'
-    TabOrder = 16
+    TabOrder = 15
     OnClick = btnEscolaFecharClick
+  end
+  object edtEscolaCodigo: TEdit
+    Left = 96
+    Top = 105
+    Width = 57
+    Height = 21
+    Enabled = False
+    TabOrder = 1
+    Text = 'edtEscolaCodigo'
+    OnKeyPress = AvancarCampo
+  end
+  object maskEditEscolaEndCEP: TMaskEdit
+    Left = 96
+    Top = 150
+    Width = 69
+    Height = 21
+    Enabled = False
+    TabOrder = 3
+    Text = 'maskEditEscolaEndCEP'
+    OnKeyPress = AvancarCampo
+  end
+  object edtEscolaNome: TEdit
+    Left = 159
+    Top = 105
+    Width = 381
+    Height = 21
+    Enabled = False
+    TabOrder = 2
+    Text = 'edtEscolaNome'
+    OnKeyPress = AvancarCampo
+  end
+  object edtEscolaEndRua: TEdit
+    Left = 171
+    Top = 150
+    Width = 425
+    Height = 21
+    Enabled = False
+    TabOrder = 4
+    Text = 'edtEscolaEndRua'
+    OnKeyPress = AvancarCampo
+  end
+  object edtEscolaEndNumero: TEdit
+    Left = 602
+    Top = 150
+    Width = 65
+    Height = 21
+    Enabled = False
+    TabOrder = 5
+    Text = 'edtEscolaCodigo'
+  end
+  object edtEscolaEndComplemento: TEdit
+    Left = 96
+    Top = 193
+    Width = 225
+    Height = 21
+    Enabled = False
+    TabOrder = 6
+    Text = 'edtEscolaEndComplemento'
+    OnKeyPress = AvancarCampo
+  end
+  object edtEscolaEndBairro: TEdit
+    Left = 327
+    Top = 193
+    Width = 187
+    Height = 21
+    Enabled = False
+    TabOrder = 7
+    Text = 'edtEscolaEndBairro'
+    OnKeyPress = AvancarCampo
+  end
+  object edtEscolaEndCidade: TEdit
+    Left = 520
+    Top = 193
+    Width = 147
+    Height = 21
+    Enabled = False
+    TabOrder = 8
+    Text = 'edtEscolaEndCidade'
+    OnKeyPress = AvancarCampo
+  end
+  object cxDateEditEscolaDataCadastro: TcxDateEdit
+    Left = 546
+    Top = 105
+    Enabled = False
+    TabOrder = 16
+    OnKeyPress = AvancarCampo
+    Width = 121
   end
 end

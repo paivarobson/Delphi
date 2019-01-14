@@ -3,7 +3,7 @@ unit unEscolaDAO;
 interface
 
 uses
-  unEscolaModelo, unDados, SqlExpr, SysUtils, unSistemaControle;
+  unEscolaModelo, unDados, SqlExpr, SysUtils, unSistemaControle, DBClient;
 
 type
   TEscolaDAO = class
@@ -20,8 +20,10 @@ implementation
 procedure TEscolaDAO.Carregar(AEscolaModelo: TEscolaModelo; ACodigo: Integer);
 var
   VQuery: TSQLQuery;
+  VClientDS: TClientDataSet;
 begin
-  VQuery := TSistemaControle.GetInstancia().Conexao.CriarQuery;
+  VQuery := fmdados.tbEscola;
+  VClientDS := fmdados.cdsEscola;
   try
     VQuery.SQL.Text := Format('SELECT ' +
                  'ESCCOD, ' +
@@ -37,22 +39,22 @@ begin
                  'ESCOLA ' +
                'WHERE ESCCOD = %d',
                [ACodigo]);
-    VQuery.Open;
+    VClientDS.Open;
     try
-      AEscolaModelo.Codigo       := VQuery.Fields[0].AsInteger;
-      AEscolaModelo.Nome         := VQuery.Fields[1].AsString;
-      AEscolaModelo.DataCadastro := VQuery.Fields[2].AsDateTime;
-      AEscolaModelo.Cep          := VQuery.Fields[3].AsString;
-      AEscolaModelo.Rua          := VQuery.Fields[4].AsString;
-      AEscolaModelo.Numero       := VQuery.Fields[5].AsString;
-      AEscolaModelo.Complemento  := VQuery.Fields[6].AsString;
-      AEscolaModelo.Bairro       := VQuery.Fields[7].AsString;
-      AEscolaModelo.Cidade       := VQuery.Fields[8].AsString;
+      AEscolaModelo.Codigo       := VClientDS.Fields[0].AsInteger;
+      AEscolaModelo.Nome         := VClientDS.Fields[1].AsString;
+      AEscolaModelo.DataCadastro := VClientDS.Fields[2].AsDateTime;
+      AEscolaModelo.Cep          := VClientDS.Fields[3].AsString;
+      AEscolaModelo.Rua          := VClientDS.Fields[4].AsString;
+      AEscolaModelo.Numero       := VClientDS.Fields[5].AsString;
+      AEscolaModelo.Complemento  := VClientDS.Fields[6].AsString;
+      AEscolaModelo.Bairro       := VClientDS.Fields[7].AsString;
+      AEscolaModelo.Cidade       := VClientDS.Fields[8].AsString;
     finally
-      VQuery.Close;
+      VClientDS.Close;
     end;
   finally
-    FreeAndNil(VQuery);
+    FreeAndNil(VClientDS);
   end;
 end;
 

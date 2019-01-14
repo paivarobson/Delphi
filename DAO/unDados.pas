@@ -10,7 +10,7 @@ type
   Tfmdados = class(TDataModule)
     FConexaoBDEscola: TSQLConnection;
     dspEscola: TDataSetProvider;
-    tbdsEscola: TClientDataSet;
+    cdsEscola: TClientDataSet;
     dsEscola: TDataSource;
     tbEscola: TSQLQuery;
     tbAux: TSQLQuery;
@@ -22,16 +22,19 @@ type
     tbEscolaESCENDBAIRRO: TStringField;
     tbEscolaESCENDCIDADE: TStringField;
     tbEscolaESCENDCEP: TStringField;
-    tbdsEscolaESCCOD: TIntegerField;
-    tbdsEscolaESCNOME: TStringField;
-    tbdsEscolaESCENDRUA: TStringField;
-    tbdsEscolaESCENDNUM: TStringField;
-    tbdsEscolaESCENDCOMP: TStringField;
-    tbdsEscolaESCENDBAIRRO: TStringField;
-    tbdsEscolaESCENDCIDADE: TStringField;
+    cdsEscolaESCCOD: TIntegerField;
+    cdsEscolaESCNOME: TStringField;
+    cdsEscolaESCENDRUA: TStringField;
+    cdsEscolaESCENDNUM: TStringField;
+    cdsEscolaESCENDCOMP: TStringField;
+    cdsEscolaESCENDBAIRRO: TStringField;
+    cdsEscolaESCENDCIDADE: TStringField;
     tbEscolaESCDATACAD: TSQLTimeStampField;
-    tbdsEscolaESCDATACAD: TSQLTimeStampField;
-    tbdsEscolaESCENDCEP: TStringField;
+    cdsEscolaESCDATACAD: TSQLTimeStampField;
+    cdsEscolaESCENDCEP: TStringField;
+    tbAluno: TSQLQuery;
+    dspAluno: TDataSetProvider;
+    cdsAluno: TClientDataSet;
 
   private
     function GetConexaoBDEscola: TSQLConnection;
@@ -89,27 +92,27 @@ end;
 //Método NOVO CADASTRO
 procedure Tfmdados.NovoCadastro;
 begin
-  tbdsEscola.Open;
-  tbdsEscola.Append;
+  cdsEscola.Open;
+  cdsEscola.Append;
 end;
 //Método GRAVAR
 procedure Tfmdados.Gravar;
 begin
-  tbdsEscola.Post;
-  tbdsEscola.ApplyUpdates(0);
+  cdsEscola.Post;
+  cdsEscola.ApplyUpdates(0);
 end;
 //Método CANCELAR EDIÇÃO
 procedure Tfmdados.CancelarEdicao;
 begin
-  tbdsEscola.Cancel;
+  cdsEscola.Cancel;
 end;
 //Método EXCLUIR
 procedure Tfmdados.Excluir;
 begin
-  tbdsEscola.Delete;
-  tbdsEscola.ApplyUpdates(0);
-  tbdsEscola.Refresh;
-  tbdsEscola.Close;
+  cdsEscola.Delete;
+  cdsEscola.ApplyUpdates(0);
+  cdsEscola.Refresh;
+  cdsEscola.Close;
 end;
 
 end.

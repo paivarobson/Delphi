@@ -1,0 +1,114 @@
+unit unCadastroEscolaController;
+
+interface
+
+uses
+  DB, DBClient, SqlExpr, Windows, Dialogs, SysUtils, DateUtils, StdCtrls,
+  Messages, unEscolaModelo;
+
+type
+    TCadastroEscolaController = class
+  private
+    FEscolaModelo: TEscolaModelo;
+    procedure SetEscolaModelo(const Value: TEscolaModelo);
+
+  public
+    procedure Create;
+    procedure Deatroy; override;
+
+    function DevolverUltimoCodigo: Integer;
+    function DadosCDS: TClientDataSet;
+    function DadosFieldCodigo: TIntegerField;
+    function DadosFieldData: TSQLTimeStampField;
+
+    procedure LimparFieldsCDS;
+    procedure NovoCadastroEscola;
+    procedure GravarEscola;
+    procedure ExcluirEscola;
+    procedure CancelarEdicaoEscola;
+    procedure CarregarEscola(ACodigoEscola: Integer);
+    
+    property EscolaModelo: TEscolaModelo read FEscolaModelo write SetEscolaModelo;
+  end;
+
+implementation
+
+uses
+  unDados;
+
+procedure TCadastroEscolaController.NovoCadastroEscola;
+begin
+  fmdados.NovoCadastro;
+end;
+procedure TCadastroEscolaController.SetEscolaModelo(const Value: TEscolaModelo);
+begin
+  FEscolaModelo := Value;
+end;
+
+//Método GRAVAR
+procedure TCadastroEscolaController.GravarEscola;
+begin
+  fmdados.Gravar;
+end;
+//Método CANCELAR
+procedure TCadastroEscolaController.CancelarEdicaoEscola;
+begin
+  fmdados.CancelarEdicao;
+end;
+//Método EXCLUIR
+procedure TCadastroEscolaController.ExcluirEscola;
+begin
+  fmdados.Excluir;
+end;
+//Método para o uso do ClientDataSet externamente
+procedure TCadastroEscolaController.CarregarEscola(ACodigoEscola: Integer);
+begin
+  EscolaModelo.CarregarEscola(ACodigoEscola);
+end;
+
+procedure TCadastroEscolaController.Create;
+begin
+  FEscolaModelo := TEscolaModelo.Create;
+end;
+
+function TCadastroEscolaController.DadosCDS: TClientDataSet;
+begin
+  Result := fmdados.cdsEscola;
+end;
+
+function TCadastroEscolaController.DadosFieldCodigo: TIntegerField;
+begin
+  Result := fmdados.cdsEscolaESCCOD;
+end;
+
+function TCadastroEscolaController.DadosFieldData: TSQLTimeStampField;
+begin
+  Result := fmdados.cdsEscolaESCDATACAD;
+end;
+//Método para limpar os dados direto no ClientDataSet
+procedure TCadastroEscolaController.LimparFieldsCDS;
+begin
+  fmdados.cdsEscolaESCNOME.Clear;
+  fmdados.cdsEscolaESCENDCEP.Clear;
+  fmdados.cdsEscolaESCENDRUA.Clear;
+  fmdados.cdsEscolaESCENDNUM.Clear;
+  fmdados.cdsEscolaESCENDCOMP.Clear;
+  fmdados.cdsEscolaESCENDBAIRRO.Clear;
+  fmdados.cdsEscolaESCENDCIDADE.Clear;
+end;
+//Método verificador do último CÓDIGO registrado no BD 
+procedure TCadastroEscolaController.Deatroy;
+begin
+  inherited;
+  FEscolaModelo.Destroy;
+end;
+
+function TCadastroEscolaController.DevolverUltimoCodigo: Integer;
+begin
+  fmdados.tbAux.Close;
+  fmdados.tbAux.SQL.Clear;
+  fmdados.tbAux.SQL.Text := 'SELECT MAX(ESCCOD) FROM ESCOLA';
+  fmdados.tbAux.Open;
+  Result := fmdados.tbAux.Fields[0].AsInteger;
+end;
+end.

@@ -1,7 +1,7 @@
 object fmdados: Tfmdados
   OldCreateOrder = False
-  Height = 231
-  Width = 411
+  Height = 349
+  Width = 485
   object FConexaoBDEscola: TSQLConnection
     ConnectionName = 'MSSQLConnection'
     DriverName = 'MSSQL'
@@ -22,68 +22,68 @@ object fmdados: Tfmdados
       'OS Authentication=False'
       'Prepare SQL=False')
     VendorLib = 'oledb'
-    Left = 197
-    Top = 13
+    Left = 85
+    Top = 5
   end
   object dspEscola: TDataSetProvider
     DataSet = tbEscola
     Constraints = False
     UpdateMode = upWhereChanged
-    Left = 192
+    Left = 80
     Top = 104
   end
-  object tbdsEscola: TClientDataSet
+  object cdsEscola: TClientDataSet
     Aggregates = <>
     DisableStringTrim = True
     Params = <>
     ProviderName = 'dspEscola'
-    Left = 144
-    Top = 151
-    object tbdsEscolaESCCOD: TIntegerField
+    Left = 72
+    Top = 167
+    object cdsEscolaESCCOD: TIntegerField
       DisplayLabel = 'C'#243'digo'
       FieldName = 'ESCCOD'
       Required = True
     end
-    object tbdsEscolaESCNOME: TStringField
+    object cdsEscolaESCNOME: TStringField
       Tag = 1
       DisplayLabel = 'Escola'
       FieldName = 'ESCNOME'
       Size = 100
     end
-    object tbdsEscolaESCDATACAD: TSQLTimeStampField
+    object cdsEscolaESCDATACAD: TSQLTimeStampField
       DisplayLabel = 'Data de cadastro'
       FieldName = 'ESCDATACAD'
     end
-    object tbdsEscolaESCENDCEP: TStringField
+    object cdsEscolaESCENDCEP: TStringField
       Tag = 1
       DisplayLabel = 'CEP'
       FieldName = 'ESCENDCEP'
       Size = 9
     end
-    object tbdsEscolaESCENDRUA: TStringField
+    object cdsEscolaESCENDRUA: TStringField
       Tag = 1
       DisplayLabel = 'Rua'
       FieldName = 'ESCENDRUA'
       Size = 100
     end
-    object tbdsEscolaESCENDNUM: TStringField
+    object cdsEscolaESCENDNUM: TStringField
       Tag = 1
       DisplayLabel = 'N'#250'mero'
       FieldName = 'ESCENDNUM'
       Size = 10
     end
-    object tbdsEscolaESCENDCOMP: TStringField
+    object cdsEscolaESCENDCOMP: TStringField
       DisplayLabel = 'Complemento'
       FieldName = 'ESCENDCOMP'
       Size = 30
     end
-    object tbdsEscolaESCENDBAIRRO: TStringField
+    object cdsEscolaESCENDBAIRRO: TStringField
       Tag = 1
       DisplayLabel = 'Bairro'
       FieldName = 'ESCENDBAIRRO'
       Size = 50
     end
-    object tbdsEscolaESCENDCIDADE: TStringField
+    object cdsEscolaESCENDCIDADE: TStringField
       Tag = 1
       DisplayLabel = 'Cidade'
       FieldName = 'ESCENDCIDADE'
@@ -91,19 +91,18 @@ object fmdados: Tfmdados
     end
   end
   object dsEscola: TDataSource
-    DataSet = tbdsEscola
-    Left = 96
-    Top = 176
+    DataSet = cdsEscola
+    Left = 72
+    Top = 240
   end
   object tbEscola: TSQLQuery
-    DataSource = dsEscola
     MaxBlobSize = -1
     Params = <>
     SQL.Strings = (
       'select * from escola')
     SQLConnection = FConexaoBDEscola
-    Left = 152
-    Top = 64
+    Left = 40
+    Top = 56
     object tbEscolaESCCOD: TIntegerField
       FieldName = 'ESCCOD'
       Required = True
@@ -147,7 +146,30 @@ object fmdados: Tfmdados
     SQL.Strings = (
       'select * from ESCOLA')
     SQLConnection = FConexaoBDEscola
-    Left = 228
-    Top = 65
+    Left = 124
+    Top = 57
+  end
+  object tbAluno: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      'select * from aluno')
+    SQLConnection = FConexaoBDEscola
+    Left = 292
+    Top = 81
+  end
+  object dspAluno: TDataSetProvider
+    DataSet = tbAluno
+    Constraints = False
+    UpdateMode = upWhereChanged
+    Left = 336
+    Top = 80
+  end
+  object cdsAluno: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspAluno'
+    Left = 312
+    Top = 136
   end
 end

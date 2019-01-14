@@ -6,7 +6,7 @@ uses
   Windows, Messages, SysUtils, Variants, Graphics, Controls, Forms,
   Dialogs, StdCtrls, Menus, dxGDIPlusClasses, ExtCtrls, unSistemaControle, unConexao,
   ComCtrls, DB, Classes, ToolWin, ActnMan, ActnCtrls, ActnMenus, ActnList,
-  XPStyleActnCtrls;
+  XPStyleActnCtrls, unCadEscolaController;
 
 type
   TfrmPrincipal = class(TForm)
@@ -36,9 +36,12 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure Action1Execute(Sender: TObject);
   private
-    { Private declarations }
+    FControladorEscola: TCadEscolaController;
+    procedure SetControladorEscola(const Value: TCadEscolaController);
+  published
+
   public
-    { Public declarations }
+    property ControladorEscola: TCadEscolaController read FControladorEscola write SetControladorEscola;
   end;
 
 var
@@ -47,7 +50,7 @@ var
 implementation
 
 uses
-  unFrmCadEscola, unFrmPesquisaEscola, unFrmAluno, StrUtils;
+  unFrmCadEscola, unFrmPesquisaEscola, unFrmCadAluno, StrUtils;
 
 {$R *.dfm}
 //(Menu Arquivo>>Sair) Fechar todo o sistema
@@ -57,7 +60,6 @@ begin
     mbYesNo, 0) = mrYes then
     Close
 end;
-//(Menu Arquivo>>Cadastro>>Escola) Evento para abrir o Form CADASTRO ESCOLA
 procedure TfrmPrincipal.Action1Execute(Sender: TObject);
 begin
   Application.CreateForm(TfrmCadAluno, frmCadAluno);
@@ -67,20 +69,20 @@ begin
     frmCadAluno.Release;
   end;
 end;
-
+//(Menu Arquivo>>Cadastro>>Escola) Evento para abrir o Form CADASTRO ESCOLA
 procedure TfrmPrincipal.btnCadastroEscolaClick(Sender: TObject);
-var
-  VConexao: TConexao;
+//var
+//  VConexao: TConexao;
 begin
-  try
-    VConexao := TConexao.Create;
-    VConexao.GetConnection.Connected := True;
-
-    if VConexao.GetConnection.Connected then
-      ShowMessage('Conectado!!! ');
-  finally
-    FreeAndNil(VConexao);
-  end;
+//  try
+//    VConexao := TConexao.Create;
+//    VConexao.GetConnection.Connected := True;
+//
+//    if VConexao.GetConnection.Connected then
+//      ShowMessage('Conectado!!! ');
+//  finally
+//    FreeAndNil(VConexao);
+//  end;
   menuArquivoCadastroEscolaClick(Sender);
 end;
 
@@ -91,24 +93,26 @@ end;
 
 procedure TfrmPrincipal.FormCreate(Sender: TObject);
 begin
-  TSistemaControle.GetInstancia();
-  TSistemaControle.GetInstancia().CarregarEscola(18);
-
-  StatusBar1.Panels[0].Text :=
-    IntToStr(TSistemaControle.GetInstancia().EscolaModelo.Codigo) + #13 + ' - ' +
-    TSistemaControle.GetInstancia().EscolaModelo.Nome + #13 + ' - ' +
-    DateToStr(TSistemaControle.GetInstancia().EscolaModelo.DataCadastro) + #13 + ' - ' +
-    TSistemaControle.GetInstancia().EscolaModelo.Rua + #13 + ' - ' +
-    TSistemaControle.GetInstancia().EscolaModelo.Numero + #13 + ' - ' +
-    TSistemaControle.GetInstancia().EscolaModelo.Complemento + #13 + ' - ' +
-    TSistemaControle.GetInstancia().EscolaModelo.Bairro + #13 + ' - ' +
-    TSistemaControle.GetInstancia().EscolaModelo.Cidade;
+//  FController := TCadEscolaController.Create;
+//  FController.CarregarEscola(1);
+//
+//  StatusBar1.Panels[0].Text :=
+//    IntToStr(FController.EscolaModelo.Codigo) + #13 + ' - ' +
+//    FController.EscolaModelo.Nome + #13 + ' - ' +
+//    DateToStr(FController.EscolaModelo.DataCadastro) + #13 + ' - ' +
+//    FController.EscolaModelo.Cep + #13 + ' - ' +
+//    FController.EscolaModelo.Rua + #13 + ' - ' +
+//    FController.EscolaModelo.Numero + #13 + ' - ' +
+//    FController.EscolaModelo.Complemento + #13 + ' - ' +
+//    FController.EscolaModelo.Bairro + #13 + ' - ' +
+//    FController.EscolaModelo.Cidade;
 
 end;
 
 procedure TfrmPrincipal.FormDestroy(Sender: TObject);
 begin
-  TSistemaControle.GetInstancia().Destroy;
+  FreeAndNil(FControladorEscola);
+//  TSistemaControle.GetInstancia().Destroy;
 end;
 
 procedure TfrmPrincipal.menuArquivoCadastroEscolaClick(Sender: TObject);
@@ -127,6 +131,11 @@ begin
   frmPesquisaEscola.Show;
   if Assigned(frmCadEscola) then //Verifica se o Form CADASTRO ESCOLA está ABERTO para que seja FECHADO
     frmCadEscola.Close;
+end;
+
+procedure TfrmPrincipal.SetControladorEscola(const Value: TCadEscolaController);
+begin
+  FControladorEscola := Value;
 end;
 
 initialization

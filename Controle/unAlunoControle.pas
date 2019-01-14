@@ -3,7 +3,7 @@ unit unAlunoControle;
 interface
 
 uses
-  unAlunoModelo, SysUtils, SqlExpr;
+  unAlunoModelo, SysUtils, SqlExpr, Provider;
 
 type
   TAlunoControle = class
@@ -13,7 +13,8 @@ type
     constructor Create;
     destructor Destroy; override;
 
-    function Obter: TSQLQuery;
+//    function Obter: TSQLQuery;
+//    function ObterProvider: TDataSetProvider;
 
   end;
 
@@ -27,13 +28,18 @@ end;
 
 destructor TAlunoControle.Destroy;
 begin
-  FreeAndNil(FAlunoModelo);
+  FAlunoModelo.Free;
   inherited;
 end;
 
-function TAlunoControle.Obter: TSQLQuery;
-begin
-  Result := FAlunoModelo.Obter;
-end;
+//function TAlunoControle.Obter: TSQLQuery;
+//begin
+//  Result := FAlunoModelo.Obter;//
+//end;
+
+//function TAlunoControle.ObterProvider: TDataSetProvider;
+//begin
+////  Result := FAlunoModelo.ObterProvider;
+//end;
 
 end.
