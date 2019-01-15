@@ -46,6 +46,7 @@ type
     destructor Destroy; override;
 
     procedure Carregar(ACodigo: Integer);
+    procedure Inserir;
 
     property Codigo: Integer read GetCodigo write SetCodigo;
     property Nome: string read GetNome write SetNome;
@@ -149,6 +150,18 @@ end;
 function TEscolaModelo.GetRua: string;
 begin
   Result := FRua;
+end;
+
+procedure TEscolaModelo.Inserir;
+var
+  VEscolaDao: TEscolaDAO;
+begin
+  VEscolaDao := TEscolaDAO.Create;
+  try
+    VEscolaDao.Inserir(FEscolaModelo);
+  finally
+    FreeAndNil(VEscolaDao);
+  end;
 end;
 
 function TEscolaModelo.GetNumero: string;

@@ -524,34 +524,6 @@ object frmPrincipal: TfrmPrincipal
       95E9C27FF5EEC874E1BF7A7764BAF05FBD3B325DF8AFDE1D992EFC57EF8AA0FC
       1FE09D549A4701E55A0000000049454E44AE426082}
   end
-  object StatusBar1: TStatusBar
-    Left = 0
-    Top = 368
-    Width = 800
-    Height = 132
-    Panels = <
-      item
-        Width = 50
-      end>
-  end
-  object ActionMainMenuBar1: TActionMainMenuBar
-    Left = 0
-    Top = 0
-    Width = 800
-    Height = 26
-    UseSystemFont = False
-    ActionManager = ActionManager1
-    Caption = 'ActionMainMenuBar1'
-    ColorMap.HighlightColor = clWhite
-    ColorMap.BtnSelectedColor = clBtnFace
-    ColorMap.UnusedColor = clWhite
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -12
-    Font.Name = 'Segoe UI'
-    Font.Style = []
-    Spacing = 0
-  end
   object mmEscola: TMainMenu
     Left = 24
     Top = 56
@@ -594,10 +566,9 @@ object frmPrincipal: TfrmPrincipal
               end>
             Caption = '&Cadastros'
           end>
-        ActionBar = ActionMainMenuBar1
       end>
-    Left = 664
-    Top = 160
+    Left = 80
+    Top = 56
     StyleName = 'XP Style'
     object Action1: TAction
       Category = '&Cadastros'

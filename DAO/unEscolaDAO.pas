@@ -11,6 +11,9 @@ type
 
   public
     procedure Carregar(AEscolaModelo: TEscolaModelo; ACodigo: Integer);
+    function Inserir(AEscolaModelo: TEscolaModelo): Boolean;
+    procedure LimparDadosClient;
+
   end;
 
 implementation
@@ -56,6 +59,38 @@ begin
   finally
     FreeAndNil(VClientDS);
   end;
+end;
+
+function TEscolaDAO.Inserir(AEscolaModelo: TEscolaModelo): Boolean;
+var
+  VClientDS: TClientDataSet;
+begin
+  VClientDS := fmdados.cdsEscola;
+  try
+    VClientDS.Open;
+    VClientDS.Append;
+
+    VClientDS.FieldByName('ESCCOD').AsInteger := AEscolaModelo.Codigo;
+    VClientDS.FieldByName('ESCNOME').AsString := AEscolaModelo.Nome;
+    VClientDS.FieldByName('ESCDATACAD').AsDateTime := AEscolaModelo.DataCadastro;
+    VClientDS.FieldByName('ESCENDCEP').AsString := AEscolaModelo.Cep;
+    VClientDS.FieldByName('ESCENDRUA').AsString := AEscolaModelo.Rua;
+    VClientDS.FieldByName('ESCENDNUM').AsString := AEscolaModelo.Numero;
+    VClientDS.FieldByName('ESCENDCOMP').AsString := AEscolaModelo.Complemento;
+    VClientDS.FieldByName('ESCENDBAIRRO').AsString := AEscolaModelo.Bairro;
+    VClientDS.FieldByName('ESCENDCIDADE').AsString := AEscolaModelo.Cidade;
+
+    VClientDS.Post;
+
+    Result := True;
+  finally
+    FreeAndNil(VClientDS);
+  end;
+end;
+
+procedure TEscolaDAO.LimparDadosClient;
+begin
+  fmdados.cdsEscola.ClearFields;
 end;
 
 end.
