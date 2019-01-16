@@ -62,7 +62,6 @@ type
     destructor Destroy; override;
 
     procedure CarregarComponentesCadEscola;
-    procedure CarregarClientDS;
     procedure HabilitarComponentesDados;
     procedure AfterConstruction; override;
 
@@ -78,22 +77,9 @@ var
 implementation
 
 uses
-  unRelEscola, unFrmPesquisaEscola, unFrmPrincipal, unDados;
+  unRelEscola, unFrmPesquisaEscola, unFrmPrincipal;
 
 {$R *.dfm}
-procedure TfrmCadEscola.CarregarClientDS;
-begin
-  ControladorEscola.EscolaModelo.Codigo := StrToInt(edtEscolaCodigo.Text);
-  ControladorEscola.EscolaModelo.Nome := edtEscolaNome.Text;
-  ControladorEscola.EscolaModelo.DataCadastro := cxDateEditEscolaDataCadastro.Date;
-  ControladorEscola.EscolaModelo.Cep := maskEditEscolaEndCEP.Text;
-  ControladorEscola.EscolaModelo.Rua := edtEscolaEndRua.Text;
-  ControladorEscola.EscolaModelo.Numero := edtEscolaEndNumero.Text;
-  ControladorEscola.EscolaModelo.Complemento := edtEscolaEndComplemento.Text;
-  ControladorEscola.EscolaModelo.Bairro := edtEscolaEndBairro.Text;
-  ControladorEscola.EscolaModelo.Cidade := edtEscolaEndCidade.Text;
-end;
-
 procedure TfrmCadEscola.CarregarComponentesCadEscola;
 begin
   edtEscolaCodigo.Text := IntToStr(ControladorEscola.EscolaModelo.Codigo);
@@ -154,19 +140,17 @@ end;
 //(BOTÃO GRAVAR)
 procedure TfrmCadEscola.btnEscolaGravarClick(Sender: TObject);
 begin
-  CarregarClientDS;
-  ControladorEscola.Gravar;
+  //Verificar o botão gravar de acordo com a nova arquitetura
   try
-    if ControladorEscola.EscolaModelo.ValidarCampos then
+    if CamposValidados then
       if MessageDlg('Tem certeza que deseja gravar este registro?', mtConfirmation,
         mbYesNo, 0) = mrYes then
       begin
-//        ControladorEscola.Gravar;
+        ControladorEscola.Gravar;
         DesabilitarComponentesDados;
         btnEscolaCancelar.Enabled := False;
         btnEscolaPesquisar.Enabled := True;
-//        HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados;
-        fmdados.Gravar;
+        HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados;
         ShowMessage('Registro gravado com sucesso!');
       end
   except
@@ -231,7 +215,7 @@ begin
     if (Campos.Count > 0) then //Verifica se há algum campo obrigatório vazio
     begin
       Result := False;
-      ShowMessage('unFrmCadEscola - Preencha os campos obrigatórios:' + #13 + #13 + Campos.Text); //Exibe os CAMPOS por NOME
+      ShowMessage('Preencha os campos obrigatórios:' + #13 + #13 + Campos.Text); //Exibe os CAMPOS por NOME
     end
     else
       Result := True;

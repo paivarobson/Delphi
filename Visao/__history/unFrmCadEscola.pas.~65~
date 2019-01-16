@@ -78,7 +78,7 @@ var
 implementation
 
 uses
-  unRelEscola, unFrmPesquisaEscola, unFrmPrincipal, unDados;
+  unRelEscola, unFrmPesquisaEscola, unFrmPrincipal;
 
 {$R *.dfm}
 procedure TfrmCadEscola.CarregarClientDS;
@@ -166,7 +166,6 @@ begin
         btnEscolaCancelar.Enabled := False;
         btnEscolaPesquisar.Enabled := True;
 //        HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados;
-        fmdados.Gravar;
         ShowMessage('Registro gravado com sucesso!');
       end
   except

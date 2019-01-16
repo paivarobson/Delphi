@@ -3,7 +3,7 @@ unit unEscolaModelo;
 interface
 
 uses
-  SysUtils, unEnumerado, Classes, Dialogs;
+  SysUtils, unEnumerado, Classes;
 
 type
   TEscolaModelo = class
@@ -48,7 +48,7 @@ type
     procedure Carregar(ACodigo: Integer);
     procedure Gravar;
 
-    function ValidarCampos: Boolean;
+    procedure ValidarCampos;
 
     property Codigo: Integer read GetCodigo write SetCodigo;
     property Nome: string read GetNome write SetNome;
@@ -79,30 +79,27 @@ begin
   end;
 end;
 
-function TEscolaModelo.ValidarCampos: Boolean;
+procedure TEscolaModelo.ValidarCampos;
 var
   i: Integer;
   Campos: TStrings;
-  VEscolaDAO: TEscolaDAO;
 begin
-  VEscolaDAO := TEscolaDAO.Create;
   Campos := TStringList.Create;
   try
-    for i := 0 to VEscolaDAO.ClientDS.Fields.Count - 1 do
+    for i := 0 to ControladorEscola.ClientD. Fields.Count - 1 do
     begin
-      if (VEscolaDAO.ClientDS.Fields[i].Tag = 1) and
-        (VEscolaDAO.ClientDS.Fields.Fields[i].AsString = EmptyStr) then
-        Campos.Add('- ' + VEscolaDAO.ClientDS.Fields.Fields[i].DisplayName) //Armazena o NOME DO CAMPO dentro de uma LISTA
+      if (ControladorEscola.DadosCDS.Fields[i].Tag = 1) and
+        (ControladorEscola.DadosCDS.Fields[i].AsString = EmptyStr) then
+        Campos.Add('- ' + ControladorEscola.DadosCDS.Fields[i].DisplayName) //Armazena o NOME DO CAMPO dentro de uma LISTA
     end;
     if (Campos.Count > 0) then //Verifica se há algum campo obrigatório vazio
     begin
       Result := False;
-      ShowMessage('EscolaModelo - Preencha os campos obrigatórios:' + #13 + #13 + Campos.Text); //Exibe os CAMPOS por NOME
+      ShowMessage('Preencha os campos obrigatórios:' + #13 + #13 + Campos.Text); //Exibe os CAMPOS por NOME
     end
     else
       Result := True;
   finally
-    VEscolaDAO.Free;
     Campos.Free; //Libera a lista da memória
   end;
 end;

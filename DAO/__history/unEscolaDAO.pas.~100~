@@ -11,9 +11,6 @@ type
   private
     FClientDS: TClientDataSet;
     FEscolaDAO: TEscolaDAO;
-
-    function GetClientDS: TClientDataSet;
-
     procedure SetClientDS(const Value: TClientDataSet);
     procedure SetEscolaDAO(const Value: TEscolaDAO);
 
@@ -24,7 +21,7 @@ type
     procedure Carregar(AEscolaModelo: TEscolaModelo; ACodigo: Integer);
     procedure LimparDadosClient;
 
-    property ClientDS: TClientDataSet read GetClientDS write SetClientDS;
+    property ClientDS: TClientDataSet read FClientDS write SetClientDS;
     property EscolaDAO: TEscolaDAO read FEscolaDAO write SetEscolaDAO;
 
   end;
@@ -79,15 +76,9 @@ begin
   end;
 end;
 
-function TEscolaDAO.GetClientDS: TClientDataSet;
-begin
-  Result := fmdados.cdsEscola;
-end;
-
 function TEscolaDAO.Gravar(AEscolaModelo: TEscolaModelo): Boolean;
 begin
   try
-    ClientDS.Open;
     ClientDS.FieldByName('ESCCOD').AsInteger := AEscolaModelo.Codigo;
     ClientDS.FieldByName('ESCNOME').AsString := AEscolaModelo.Nome;
     ClientDS.FieldByName('ESCDATACAD').AsDateTime := AEscolaModelo.DataCadastro;

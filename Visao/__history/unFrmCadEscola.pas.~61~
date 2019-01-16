@@ -62,7 +62,6 @@ type
     destructor Destroy; override;
 
     procedure CarregarComponentesCadEscola;
-    procedure CarregarClientDS;
     procedure HabilitarComponentesDados;
     procedure AfterConstruction; override;
 
@@ -78,22 +77,9 @@ var
 implementation
 
 uses
-  unRelEscola, unFrmPesquisaEscola, unFrmPrincipal, unDados;
+  unRelEscola, unFrmPesquisaEscola, unFrmPrincipal;
 
 {$R *.dfm}
-procedure TfrmCadEscola.CarregarClientDS;
-begin
-  ControladorEscola.EscolaModelo.Codigo := StrToInt(edtEscolaCodigo.Text);
-  ControladorEscola.EscolaModelo.Nome := edtEscolaNome.Text;
-  ControladorEscola.EscolaModelo.DataCadastro := cxDateEditEscolaDataCadastro.Date;
-  ControladorEscola.EscolaModelo.Cep := maskEditEscolaEndCEP.Text;
-  ControladorEscola.EscolaModelo.Rua := edtEscolaEndRua.Text;
-  ControladorEscola.EscolaModelo.Numero := edtEscolaEndNumero.Text;
-  ControladorEscola.EscolaModelo.Complemento := edtEscolaEndComplemento.Text;
-  ControladorEscola.EscolaModelo.Bairro := edtEscolaEndBairro.Text;
-  ControladorEscola.EscolaModelo.Cidade := edtEscolaEndCidade.Text;
-end;
-
 procedure TfrmCadEscola.CarregarComponentesCadEscola;
 begin
   edtEscolaCodigo.Text := IntToStr(ControladorEscola.EscolaModelo.Codigo);
@@ -126,7 +112,7 @@ end;
 procedure TfrmCadEscola.FormShow(Sender: TObject);
 begin
   ControladorEscola := TCadEscolaController.Create; //Instãncia da Classe Controller
-//  ControladorEscola.CarregarEscola(1);
+  ControladorEscola.CarregarEscola(1);
   CarregarComponentesCadEscola;
 //  HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados;
 end;
@@ -154,8 +140,8 @@ end;
 //(BOTÃO GRAVAR)
 procedure TfrmCadEscola.btnEscolaGravarClick(Sender: TObject);
 begin
-  CarregarClientDS;
-  ControladorEscola.Gravar;
+  //Verificar o botão gravar de acordo com a nova arquitetura
+   ControladorEscola.Gravar;
   try
     if ControladorEscola.EscolaModelo.ValidarCampos then
       if MessageDlg('Tem certeza que deseja gravar este registro?', mtConfirmation,
@@ -165,8 +151,7 @@ begin
         DesabilitarComponentesDados;
         btnEscolaCancelar.Enabled := False;
         btnEscolaPesquisar.Enabled := True;
-//        HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados;
-        fmdados.Gravar;
+        HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados;
         ShowMessage('Registro gravado com sucesso!');
       end
   except

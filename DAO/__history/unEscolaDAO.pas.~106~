@@ -87,7 +87,6 @@ end;
 function TEscolaDAO.Gravar(AEscolaModelo: TEscolaModelo): Boolean;
 begin
   try
-    ClientDS.Open;
     ClientDS.FieldByName('ESCCOD').AsInteger := AEscolaModelo.Codigo;
     ClientDS.FieldByName('ESCNOME').AsString := AEscolaModelo.Nome;
     ClientDS.FieldByName('ESCDATACAD').AsDateTime := AEscolaModelo.DataCadastro;
@@ -97,7 +96,8 @@ begin
     ClientDS.FieldByName('ESCENDCOMP').AsString := AEscolaModelo.Complemento;
     ClientDS.FieldByName('ESCENDBAIRRO').AsString := AEscolaModelo.Bairro;
     ClientDS.FieldByName('ESCENDCIDADE').AsString := AEscolaModelo.Cidade;
-
+    ClientDS.Post;
+    
     Result := True;
   finally
     FreeAndNil(FClientDS);

@@ -11,20 +11,18 @@ type
   private
     FClientDS: TClientDataSet;
     FEscolaDAO: TEscolaDAO;
-
-    function GetClientDS: TClientDataSet;
-
     procedure SetClientDS(const Value: TClientDataSet);
     procedure SetEscolaDAO(const Value: TEscolaDAO);
 
   public
+    constructor Create;
     destructor Destroy; override;
     function Gravar(AEscolaModelo: TEscolaModelo): Boolean;
 
     procedure Carregar(AEscolaModelo: TEscolaModelo; ACodigo: Integer);
     procedure LimparDadosClient;
 
-    property ClientDS: TClientDataSet read GetClientDS write SetClientDS;
+    property ClientDS: TClientDataSet read FClientDS write SetClientDS;
     property EscolaDAO: TEscolaDAO read FEscolaDAO write SetEscolaDAO;
 
   end;
@@ -33,9 +31,14 @@ implementation
 
 { TEscolaDAO }
 
+constructor TEscolaDAO.Create;
+begin
+  FClientDS := fmdados.cdsEscola;
+  FEscolaDAO := TEscolaDAO.Create;
+end;
+
 destructor TEscolaDAO.Destroy;
 begin
-  FreeAndNil(FEscolaDAO);
   FreeAndNil(FClientDS);
   inherited;
 end;
@@ -79,28 +82,25 @@ begin
   end;
 end;
 
-function TEscolaDAO.GetClientDS: TClientDataSet;
-begin
-  Result := fmdados.cdsEscola;
-end;
-
 function TEscolaDAO.Gravar(AEscolaModelo: TEscolaModelo): Boolean;
+var
+  VClientDS: TClientDataSet;
 begin
+  VClientDS := fmdados.cdsEscola;
   try
-    ClientDS.Open;
-    ClientDS.FieldByName('ESCCOD').AsInteger := AEscolaModelo.Codigo;
-    ClientDS.FieldByName('ESCNOME').AsString := AEscolaModelo.Nome;
-    ClientDS.FieldByName('ESCDATACAD').AsDateTime := AEscolaModelo.DataCadastro;
-    ClientDS.FieldByName('ESCENDCEP').AsString := AEscolaModelo.Cep;
-    ClientDS.FieldByName('ESCENDRUA').AsString := AEscolaModelo.Rua;
-    ClientDS.FieldByName('ESCENDNUM').AsString := AEscolaModelo.Numero;
-    ClientDS.FieldByName('ESCENDCOMP').AsString := AEscolaModelo.Complemento;
-    ClientDS.FieldByName('ESCENDBAIRRO').AsString := AEscolaModelo.Bairro;
-    ClientDS.FieldByName('ESCENDCIDADE').AsString := AEscolaModelo.Cidade;
+    VClientDS.FieldByName('ESCCOD').AsInteger := AEscolaModelo.Codigo;
+    VClientDS.FieldByName('ESCNOME').AsString := AEscolaModelo.Nome;
+    VClientDS.FieldByName('ESCDATACAD').AsDateTime := AEscolaModelo.DataCadastro;
+    VClientDS.FieldByName('ESCENDCEP').AsString := AEscolaModelo.Cep;
+    VClientDS.FieldByName('ESCENDRUA').AsString := AEscolaModelo.Rua;
+    VClientDS.FieldByName('ESCENDNUM').AsString := AEscolaModelo.Numero;
+    VClientDS.FieldByName('ESCENDCOMP').AsString := AEscolaModelo.Complemento;
+    VClientDS.FieldByName('ESCENDBAIRRO').AsString := AEscolaModelo.Bairro;
+    VClientDS.FieldByName('ESCENDCIDADE').AsString := AEscolaModelo.Cidade;
 
     Result := True;
   finally
-    FreeAndNil(FClientDS);
+    FreeAndNil(VClientDS);
   end;
 end;
 

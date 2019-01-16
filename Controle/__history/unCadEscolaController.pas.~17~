@@ -27,7 +27,7 @@ type
     procedure ExcluirEscola;
     procedure CancelarEdicaoEscola;
     procedure CarregarEscola(ACodigoEscola: Integer);
-    procedure Gravar;
+    procedure InserirEscola;
     
     property EscolaModelo: TEscolaModelo read FEscolaModelo write SetEscolaModelo;
   end;
@@ -67,9 +67,9 @@ procedure TCadEscolaController.GravarEscola;
 begin
   fmdados.Gravar;
 end;
-procedure TCadEscolaController.Gravar;
+procedure TCadEscolaController.InserirEscola;
 begin
-  EscolaModelo.Gravar;
+  EscolaModelo.Inserir;
 end;
 
 //Método CANCELAR

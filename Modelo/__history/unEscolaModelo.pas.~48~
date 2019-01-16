@@ -3,7 +3,7 @@ unit unEscolaModelo;
 interface
 
 uses
-  SysUtils, unEnumerado, Classes, Dialogs;
+  SysUtils, unEnumerado, Classes;
 
 type
   TEscolaModelo = class
@@ -97,7 +97,7 @@ begin
     if (Campos.Count > 0) then //Verifica se há algum campo obrigatório vazio
     begin
       Result := False;
-      ShowMessage('EscolaModelo - Preencha os campos obrigatórios:' + #13 + #13 + Campos.Text); //Exibe os CAMPOS por NOME
+      ShowMessage('Preencha os campos obrigatórios:' + #13 + #13 + Campos.Text); //Exibe os CAMPOS por NOME
     end
     else
       Result := True;
