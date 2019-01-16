@@ -19,9 +19,15 @@ type
 
   public
     destructor Destroy; override;
-    function Gravar(AEscolaModelo: TEscolaModelo): Boolean;
+    function DevolverUltimoCodigo: Integer;
+    function ObterDadosParaClientDS(AEscolaModelo: TEscolaModelo): Boolean;
+
 
     procedure Carregar(AEscolaModelo: TEscolaModelo; ACodigo: Integer);
+    procedure GravarEscolaClientDS;
+    procedure NovoCadastroClientDS;
+    procedure CancelarEdicaoClientDS;
+    procedure ExcluirClientDS;
     procedure LimparDadosClient;
 
     property ClientDS: TClientDataSet read GetClientDS write SetClientDS;
@@ -38,6 +44,25 @@ begin
   FreeAndNil(FEscolaDAO);
   FreeAndNil(FClientDS);
   inherited;
+end;
+
+function TEscolaDAO.DevolverUltimoCodigo: Integer;
+begin
+  fmdados.tbAux.Close;
+  fmdados.tbAux.SQL.Clear;
+  fmdados.tbAux.SQL.Text := 'SELECT MAX(ESCCOD) FROM ESCOLA';
+  fmdados.tbAux.Open;
+  Result := fmdados.tbAux.Fields[0].AsInteger;
+end;
+
+procedure TEscolaDAO.ExcluirClientDS;
+begin
+  fmdados.ExcluirClientDS;
+end;
+
+procedure TEscolaDAO.CancelarEdicaoClientDS;
+begin
+  fmdados.CancelarEdicaoClientDS;
 end;
 
 procedure TEscolaDAO.Carregar(AEscolaModelo: TEscolaModelo; ACodigo: Integer);
@@ -84,7 +109,12 @@ begin
   Result := fmdados.cdsEscola;
 end;
 
-function TEscolaDAO.Gravar(AEscolaModelo: TEscolaModelo): Boolean;
+procedure TEscolaDAO.GravarEscolaClientDS;
+begin
+  fmdados.GravarClientDS;
+end;
+
+function TEscolaDAO.ObterDadosParaClientDS(AEscolaModelo: TEscolaModelo): Boolean;
 begin
   try
     ClientDS.Open;
@@ -107,6 +137,11 @@ end;
 procedure TEscolaDAO.LimparDadosClient;
 begin
   fmdados.cdsEscola.ClearFields;
+end;
+
+procedure TEscolaDAO.NovoCadastroClientDS;
+begin
+  fmdados.NovoCadastroClientDS;
 end;
 
 procedure TEscolaDAO.SetClientDS(const Value: TClientDataSet);

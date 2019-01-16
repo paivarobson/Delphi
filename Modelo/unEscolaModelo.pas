@@ -3,7 +3,7 @@ unit unEscolaModelo;
 interface
 
 uses
-  SysUtils, unEnumerado, Classes, Dialogs;
+  SysUtils, unEnumerado, Classes, Dialogs, DBClient;
 
 type
   TEscolaModelo = class
@@ -43,12 +43,20 @@ type
     function GetCidade: string;
 
   public
+    constructor Create;
     destructor Destroy; override;
 
     procedure Carregar(ACodigo: Integer);
-    procedure Gravar;
+    procedure NovoCadastroClientDS;
+    procedure CancelarEdicaoClientDS;
+    procedure ExcluirClientDS;
+    procedure GravarEscolaClientDS;
+    procedure LimparCampos;
 
     function ValidarCampos: Boolean;
+    function ObterClientDS: TClientDataSet;
+    function DevolverUltimoCodigo: Integer;
+    function ObterDadosParaClientDS: Boolean;
 
     property Codigo: Integer read GetCodigo write SetCodigo;
     property Nome: string read GetNome write SetNome;
@@ -67,6 +75,14 @@ implementation
 uses
   unEscolaDAO;
 
+var
+  FEscolaDAO: TEscolaDAO;
+
+procedure TEscolaModelo.CancelarEdicaoClientDS;
+begin
+  FEscolaDAO.CancelarEdicaoClientDS;
+end;
+
 procedure TEscolaModelo.Carregar(ACodigo: Integer);
 var
   VEscolaDao: TEscolaDAO;
@@ -83,16 +99,14 @@ function TEscolaModelo.ValidarCampos: Boolean;
 var
   i: Integer;
   Campos: TStrings;
-  VEscolaDAO: TEscolaDAO;
 begin
-  VEscolaDAO := TEscolaDAO.Create;
   Campos := TStringList.Create;
   try
-    for i := 0 to VEscolaDAO.ClientDS.Fields.Count - 1 do
+    for i := 0 to FEscolaDAO.ClientDS.Fields.Count - 1 do
     begin
-      if (VEscolaDAO.ClientDS.Fields[i].Tag = 1) and
-        (VEscolaDAO.ClientDS.Fields.Fields[i].AsString = EmptyStr) then
-        Campos.Add('- ' + VEscolaDAO.ClientDS.Fields.Fields[i].DisplayName) //Armazena o NOME DO CAMPO dentro de uma LISTA
+      if (FEscolaDAO.ClientDS.Fields[i].Tag = 1) and
+        (FEscolaDAO.ClientDS.Fields.Fields[i].AsString = EmptyStr) then
+        Campos.Add('- ' + FEscolaDAO.ClientDS.Fields.Fields[i].DisplayName) //Armazena o NOME DO CAMPO dentro de uma LISTA
     end;
     if (Campos.Count > 0) then //Verifica se há algum campo obrigatório vazio
     begin
@@ -102,15 +116,30 @@ begin
     else
       Result := True;
   finally
-    VEscolaDAO.Free;
     Campos.Free; //Libera a lista da memória
   end;
 end;
 
+constructor TEscolaModelo.Create;
+begin
+  FEscolaDAO := TEscolaDAO.Create;
+end;
+
 destructor TEscolaModelo.Destroy;
 begin
+  FreeAndNil(FEscolaDAO);
   FreeAndNil(FEscolaModelo);
   inherited;
+end;
+
+function TEscolaModelo.DevolverUltimoCodigo: Integer;
+begin
+  Result := FEscolaDAO.DevolverUltimoCodigo;
+end;
+
+procedure TEscolaModelo.ExcluirClientDS;
+begin
+  FEscolaDAO.ExcluirClientDS;
 end;
 
 procedure TEscolaModelo.SetCodigo(const Valor: Integer);
@@ -182,16 +211,35 @@ begin
   Result := FRua;
 end;
 
-procedure TEscolaModelo.Gravar;
-var
-  VEscolaDao: TEscolaDAO;
+procedure TEscolaModelo.GravarEscolaClientDS;
 begin
-  VEscolaDao := TEscolaDAO.Create;
-  try
-    VEscolaDao.Gravar(Self);
-  finally
-    FreeAndNil(VEscolaDao);
-  end;
+  FEscolaDAO.GravarEscolaClientDS;
+end;
+
+procedure TEscolaModelo.LimparCampos;
+begin
+  Nome := '';
+  Cep := '';
+  Rua := '';
+  Numero := '';
+  Complemento := '';
+  Bairro := '';
+  Cidade := '';
+end;
+
+function TEscolaModelo.ObterDadosParaClientDS: Boolean;
+begin
+  Result := FEscolaDAO.ObterDadosParaClientDS(Self);
+end;
+
+procedure TEscolaModelo.NovoCadastroClientDS;
+begin
+  FEscolaDAO.NovoCadastroClientDS;
+end;
+
+function TEscolaModelo.ObterClientDS: TClientDataSet;
+begin
+  Result := FEscolaDAO.ClientDS;
 end;
 
 function TEscolaModelo.GetNumero: string;

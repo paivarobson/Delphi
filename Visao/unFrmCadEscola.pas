@@ -63,6 +63,7 @@ type
 
     procedure CarregarComponentesCadEscola;
     procedure CarregarClientDS;
+    procedure LimparCampos;
     procedure HabilitarComponentesDados;
     procedure AfterConstruction; override;
 
@@ -128,7 +129,7 @@ begin
   ControladorEscola := TCadEscolaController.Create; //Instãncia da Classe Controller
 //  ControladorEscola.CarregarEscola(1);
   CarregarComponentesCadEscola;
-//  HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados;
+  HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados;
 end;
 //(BOTÃO PESQUISAR) Evento para abrir o Form PESQUISA ESCOLA 
 procedure TfrmCadEscola.btnEscolaPesquisarClick(Sender: TObject);
@@ -141,9 +142,9 @@ end;
 //(Botão NOVO CADASTRO) Evento para habilitar campos para a inclusão
 procedure TfrmCadEscola.btnEscolaNovoCadastroClick(Sender: TObject);
 begin
-  ControladorEscola.NovoCadastroEscola;
+  ControladorEscola.NovoCadastroClientDS;
   HabilitarComponentesDados; //Habilita os componentes necessários para NOVO CADASTRO
-  ControladorEscola.LimparFieldsCDS; //Limpa os campos necessários para NOVO CADASTRO caso possuam algum dado
+  LimparCampos; //Limpa os campos necessários para NOVO CADASTRO caso possuam algum dado
   ControladorEscola.EscolaModelo.Codigo := ControladorEscola.DevolverUltimoCodigo + 1; //Aplica o CÓDIGO IDENTIFICADOR
   edtEscolaCodigo.Text := IntToStr(ControladorEscola.EscolaModelo.Codigo);
   btnEscolaPesquisar.Enabled := False;
@@ -155,18 +156,17 @@ end;
 procedure TfrmCadEscola.btnEscolaGravarClick(Sender: TObject);
 begin
   CarregarClientDS;
-  ControladorEscola.Gravar;
+  ControladorEscola.ObterDadosParaClientDS;
   try
     if ControladorEscola.EscolaModelo.ValidarCampos then
       if MessageDlg('Tem certeza que deseja gravar este registro?', mtConfirmation,
         mbYesNo, 0) = mrYes then
       begin
-//        ControladorEscola.Gravar;
+        ControladorEscola.EscolaModelo.GravarEscolaClientDS;
         DesabilitarComponentesDados;
         btnEscolaCancelar.Enabled := False;
         btnEscolaPesquisar.Enabled := True;
-//        HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados;
-        fmdados.Gravar;
+        HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados;
         ShowMessage('Registro gravado com sucesso!');
       end
   except
@@ -187,7 +187,9 @@ procedure TfrmCadEscola.btnEscolaLimparClick(Sender: TObject);
 begin
   if MessageDlg('Tem certeza que deseja limpar os campos?', mtConfirmation,
     mbYesNo, 0) = mrYes then
-    ControladorEscola.LimparFieldsCDS
+  begin
+    LimparCampos;
+  end;
 end;
 //(BOTÃO CANCELAR) Evento para Habilitar/Desabilitar componentes de acordo com as verificações
 procedure TfrmCadEscola.btnEscolaCancelarClick(Sender: TObject);
@@ -196,18 +198,20 @@ begin
     mbYesNo, 0) = mrYes then
   begin
     HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados;
-    ControladorEscola.CancelarEdicaoEscola;
+    ControladorEscola.CancelarEdicaoClientDS;
+    LimparCampos;
     DesabilitarComponentesDados;
     btnEscolaPesquisar.Enabled := True;
   end;
 end;
-//(BOTÃO EXCLUIR) 
+//(BOTÃO EXCLUIR)
 procedure TfrmCadEscola.btnEscolaExcluirClick(Sender: TObject);
 begin
   if MessageDlg('Tem certeza que deseja excluir este registro?', mtConfirmation,
     mbYesNo, 0) = mrYes then
   begin
-    ControladorEscola.ExcluirEscola;
+    ControladorEscola.ExcluirClientDS;
+    LimparCampos;
     HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados;
     DesabilitarComponentesDados;
     btnEscolaPesquisar.Enabled := True;
@@ -249,9 +253,21 @@ end;
 //Métódo verifica as ocasiões que os BOTÕES ALTERAR e EXCLUIR devem serem habilitados ou não
 function TfrmCadEscola.HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados: Boolean;
 begin
-  if ControladorEscola.DadosCDS.Active then
+
+
+
+    //Realizar validaçãos do BOTÃO FECHAR para desabilitar/habilitar conforme dados nos EDIT's
+
+
+
+
+
+
+
+  if ControladorEscola.EscolaModelo.ObterClientDS.Active then
   begin
-    if ControladorEscola.EscolaModelo.Codigo = (ControladorEscola.DevolverUltimoCodigo + 1) then
+    if ControladorEscola.EscolaModelo.ObterClientDS.State in [dsInsert] then
+//    if ControladorEscola.EscolaModelo.Codigo = (ControladorEscola.DevolverUltimoCodigo + 1) then
     begin
       btnEscolaAlterar.Enabled := False;
       btnEscolaExcluir.Enabled := False;
@@ -272,6 +288,13 @@ begin
     Result := False;
   end;
 end;
+
+procedure TfrmCadEscola.LimparCampos;
+begin
+  ControladorEscola.LimparCampos;
+  CarregarComponentesCadEscola;
+end;
+
 procedure TfrmCadEscola.SetControlador(const Value: TCadEscolaController);
 begin
   FControlador := Value;
