@@ -3,7 +3,7 @@ unit unCadEscolaController;
 interface
 
 uses
-  DB, DBClient, SqlExpr, Windows, Dialogs, SysUtils, DateUtils, StdCtrls,
+  Windows, Dialogs, SysUtils, DateUtils, StdCtrls,
   Messages, unEscolaModelo;
 
 type
@@ -17,13 +17,14 @@ type
     destructor Destroy; override;
 
     function DevolverUltimoCodigo: Integer;
-    function DadosCDS: TClientDataSet;
-    function DadosFieldCodigo: TIntegerField;
-    function DadosFieldData: TSQLTimeStampField;
-    function ObterDadosParaClientDS: Boolean;
+    function CarregarDadosParaClientDS: Boolean;
+    function ValidarCampos: Boolean;
+    function Gravar: Boolean;
 
     procedure LimparCampos;
+    procedure LimparDadosClient;
     procedure NovoCadastroClientDS;
+    procedure AlterarClientDS;
     procedure ExcluirClientDS;
     procedure CancelarEdicaoClientDS;
     procedure CarregarEscola(ACodigoEscola: Integer);
@@ -67,10 +68,15 @@ begin
   FEscolaModelo := Value;
 end;
 
-//Método GRAVAR
-function TCadEscolaController.ObterDadosParaClientDS: Boolean;
+function TCadEscolaController.ValidarCampos: Boolean;
 begin
-  Result := EscolaModelo.ObterDadosParaClientDS;
+  Result := EscolaModelo.ValidarCampos;
+end;
+
+//Método GRAVAR
+function TCadEscolaController.CarregarDadosParaClientDS: Boolean;
+begin
+  Result := EscolaModelo.CarregarDadosParaClientDS;
 end;
 
 //Método CANCELAR
@@ -79,26 +85,28 @@ procedure TCadEscolaController.ExcluirClientDS;
 begin
   EscolaModelo.ExcluirClientDS;
 end;
+
+function TCadEscolaController.Gravar: Boolean;
+begin
+  Result := FEscolaModelo.Gravar;
+end;
+
+procedure TCadEscolaController.AlterarClientDS;
+begin
+  EscolaModelo.AlterarClientDS;
+end;
 //Método para o uso do ClientDataSet externamente
-function TCadEscolaController.DadosCDS: TClientDataSet;
-begin
-  Result := EscolaModelo.ObterClientDS;
-end;
 
-function TCadEscolaController.DadosFieldCodigo: TIntegerField;
-begin
-//  Result := fmdados.cdsEscolaESCCOD;
-end;
-
-function TCadEscolaController.DadosFieldData: TSQLTimeStampField;
-begin
-//  Result := fmdados.cdsEscolaESCDATACAD;
-end;
 //Método para limpar os dados direto no ClientDataSet
 procedure TCadEscolaController.LimparCampos;
 begin
   EscolaModelo.LimparCampos;
 end;
+procedure TCadEscolaController.LimparDadosClient;
+begin
+  EscolaModelo.LimparDadosClient;
+end;
+
 //Método verificador do último CÓDIGO registrado no BD 
 function TCadEscolaController.DevolverUltimoCodigo: Integer;
 begin

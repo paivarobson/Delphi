@@ -1,0 +1,16 @@
+unit unPesquisaEscolaController;
+
+interface
+
+uses DB, DBClient;  
+
+type
+    TPesquisaEscolaController = class
+  public
+    function DadosCDS: TClientDataSet;
+  end;
+
+implementation
+
+
+end.

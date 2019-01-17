@@ -8,7 +8,7 @@ uses
 type
   TEscolaModelo = class
   private
-    FEscolaModelo: TEscolaModelo;
+
     FCodigo: Integer;
     FNome: string;
     FDataCadastro: TDateTime;
@@ -19,8 +19,6 @@ type
     FBairro: string;
     FCidade: string;
     FAcao: TAcao;
-
-
     procedure SetCodigo(const Valor: Integer);
     procedure SetNome(const Valor: string);
     procedure SetDataCadastro(const Valor: TDateTime);
@@ -42,6 +40,8 @@ type
     function GetBairro: string;
     function GetCidade: string;
 
+
+
   public
     constructor Create;
     destructor Destroy; override;
@@ -49,14 +49,16 @@ type
     procedure Carregar(ACodigo: Integer);
     procedure NovoCadastroClientDS;
     procedure CancelarEdicaoClientDS;
+    procedure AlterarClientDS;
     procedure ExcluirClientDS;
     procedure GravarEscolaClientDS;
     procedure LimparCampos;
+    procedure LimparDadosClient;
 
-    function ValidarCampos: Boolean;
     function ObterClientDS: TClientDataSet;
     function DevolverUltimoCodigo: Integer;
-    function ObterDadosParaClientDS: Boolean;
+    function CarregarDadosParaClientDS: Boolean;
+    function ValidarCampos: Boolean;
 
     property Codigo: Integer read GetCodigo write SetCodigo;
     property Nome: string read GetNome write SetNome;
@@ -68,56 +70,31 @@ type
     property Bairro: string read GetBairro write SetBairro;
     property Cidade: string read GetCidade write SetCidade;
     property Acao: TAcao read FAcao write SetAcao;
+
+    function Gravar: Boolean;
   end;
+
 
 implementation
 
 uses
   unEscolaDAO;
-
 var
-  FEscolaDAO: TEscolaDAO;
+  FEscolaDao: TEscolaDAO = nil;
+
+procedure TEscolaModelo.AlterarClientDS;
+begin
+  FEscolaDao.AlterarEscolaClientDS;
+end;
 
 procedure TEscolaModelo.CancelarEdicaoClientDS;
 begin
-  FEscolaDAO.CancelarEdicaoClientDS;
+  FEscolaDao.CancelarEdicaoClientDS;
 end;
 
 procedure TEscolaModelo.Carregar(ACodigo: Integer);
-var
-  VEscolaDao: TEscolaDAO;
 begin
-  VEscolaDao := TEscolaDAO.Create;
-  try
-    VEscolaDao.Carregar(Self, ACodigo);
-  finally
-    FreeAndNil(VEscolaDao);
-  end;
-end;
-
-function TEscolaModelo.ValidarCampos: Boolean;
-var
-  i: Integer;
-  Campos: TStrings;
-begin
-  Campos := TStringList.Create;
-  try
-    for i := 0 to FEscolaDAO.ClientDS.Fields.Count - 1 do
-    begin
-      if (FEscolaDAO.ClientDS.Fields[i].Tag = 1) and
-        (FEscolaDAO.ClientDS.Fields.Fields[i].AsString = EmptyStr) then
-        Campos.Add('- ' + FEscolaDAO.ClientDS.Fields.Fields[i].DisplayName) //Armazena o NOME DO CAMPO dentro de uma LISTA
-    end;
-    if (Campos.Count > 0) then //Verifica se há algum campo obrigatório vazio
-    begin
-      Result := False;
-      ShowMessage('EscolaModelo - Preencha os campos obrigatórios:' + #13 + #13 + Campos.Text); //Exibe os CAMPOS por NOME
-    end
-    else
-      Result := True;
-  finally
-    Campos.Free; //Libera a lista da memória
-  end;
+  FEscolaDao.Carregar(Self, ACodigo);
 end;
 
 constructor TEscolaModelo.Create;
@@ -127,19 +104,18 @@ end;
 
 destructor TEscolaModelo.Destroy;
 begin
-  FreeAndNil(FEscolaDAO);
-  FreeAndNil(FEscolaModelo);
+  FreeAndNil(FEscolaDao);
   inherited;
 end;
 
 function TEscolaModelo.DevolverUltimoCodigo: Integer;
 begin
-  Result := FEscolaDAO.DevolverUltimoCodigo;
+  Result := FEscolaDao.DevolverUltimoCodigo;
 end;
 
 procedure TEscolaModelo.ExcluirClientDS;
 begin
-  FEscolaDAO.ExcluirClientDS;
+  FEscolaDao.ExcluirClientDS;
 end;
 
 procedure TEscolaModelo.SetCodigo(const Valor: Integer);
@@ -161,9 +137,15 @@ procedure TEscolaModelo.SetDataCadastro(const Valor: TDateTime);
 begin
   FDataCadastro := Valor;
 end;
+
 procedure TEscolaModelo.SetRua(const Valor: string);
 begin
   FRua := Valor;
+end;
+
+function TEscolaModelo.ValidarCampos: Boolean;
+begin
+  Result := FEscolaDao.ValidarCampos;
 end;
 
 procedure TEscolaModelo.SetNumero(const Valor: string);
@@ -213,7 +195,12 @@ end;
 
 procedure TEscolaModelo.GravarEscolaClientDS;
 begin
-  FEscolaDAO.GravarEscolaClientDS;
+  FEscolaDao.GravarEscolaClientDS;
+end;
+
+function TEscolaModelo.Gravar: Boolean;
+begin
+  Result := FEscolaDao.Gravar(Self);
 end;
 
 procedure TEscolaModelo.LimparCampos;
@@ -227,19 +214,24 @@ begin
   Cidade := '';
 end;
 
-function TEscolaModelo.ObterDadosParaClientDS: Boolean;
+procedure TEscolaModelo.LimparDadosClient;
 begin
-  Result := FEscolaDAO.ObterDadosParaClientDS(Self);
+  FEscolaDao.LimparDadosClient;
+end;
+
+function TEscolaModelo.CarregarDadosParaClientDS: Boolean;
+begin
+  Result := FEscolaDao.Gravar(Self);
 end;
 
 procedure TEscolaModelo.NovoCadastroClientDS;
 begin
-  FEscolaDAO.NovoCadastroClientDS;
+  FEscolaDao.NovoCadastroClientDS;
 end;
 
 function TEscolaModelo.ObterClientDS: TClientDataSet;
 begin
-  Result := FEscolaDAO.ClientDS;
+  Result := FEscolaDao.ClientDS;
 end;
 
 function TEscolaModelo.GetNumero: string;

@@ -37,17 +37,18 @@ type
     cdsAluno: TClientDataSet;
 
   private
-    function GetTbEscola: TSQLQuery;
-    { Private declarations }
-  public
-    { Public declarations }
-    property ComponenteQuery: TSQLQuery read GetTbEscola write tbEscola;
+    function GetQueryEscola: TSQLQuery;
 
-    function DataModuleQuery: TSQLQuery;
+  public
+    property ComponenteQuery: TSQLQuery read GetQueryEscola;
+    property ClientDSEscola: TClientDataSet read cdsEscola;
+
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure NovoCadastroClientDS;
-    procedure GravarClientDS;
+    procedure AlterarClientDS;
+    function GravarDB(AClientDataSet: TClientDataSet): Boolean;
+    procedure LimparDadosClient;
     procedure CancelarEdicaoClientDS;
     procedure ExcluirClientDS;
 
@@ -62,7 +63,8 @@ uses
   unFrmCadEscola;
 
 {$R *.dfm}
-function Tfmdados.GetTbEscola: TSQLQuery;
+
+function Tfmdados.GetQueryEscola: TSQLQuery;
 begin
   Result := tbEscola;
 end;
@@ -77,36 +79,41 @@ begin
   FConexaoBDEscola.Connected := False;
   FreeAndNil(FConexaoBDEscola);
 end;
-
-function Tfmdados.DataModuleQuery: TSQLQuery;
-begin
-  Result := tbEscola;
-end;
-
 //Método NOVO CADASTRO
 procedure Tfmdados.NovoCadastroClientDS;
 begin
-  cdsEscola.Open;
-  cdsEscola.Append;
+  ClientDSEscola.Open;
+  ClientDSEscola.Append;
 end;
 //Método GRAVAR
-procedure Tfmdados.GravarClientDS;
+function Tfmdados.GravarDB(AClientDataSet: TClientDataset):Boolean;
 begin
-  cdsEscola.Post;
-  cdsEscola.ApplyUpdates(0);
+  AClientDataSet.Post;
+  
+  Result := AClientDataSet.ApplyUpdates(0) = 0;
 end;
+procedure Tfmdados.LimparDadosClient;
+begin
+  ClientDSEscola.ClearFields;
+end;
+
 //Método CANCELAR EDIÇÃO
+procedure Tfmdados.AlterarClientDS;
+begin
+  ClientDSEscola.Edit;
+end;
+
 procedure Tfmdados.CancelarEdicaoClientDS;
 begin
-  cdsEscola.Cancel;
+  ClientDSEscola.Cancel;
 end;
 //Método EXCLUIR
 procedure Tfmdados.ExcluirClientDS;
 begin
-  cdsEscola.Delete;
-  cdsEscola.ApplyUpdates(0);
-  cdsEscola.Refresh;
-  cdsEscola.Close;
+  ClientDSEscola.Delete;
+  ClientDSEscola.ApplyUpdates(0);
+  ClientDSEscola.Refresh;
+  ClientDSEscola.Close;
 end;
 
 end.

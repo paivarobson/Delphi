@@ -7,7 +7,7 @@ uses
   Dialogs, WideStrings, FMTBcd, cxGraphics, cxControls, cxLookAndFeels,
   cxLookAndFeelPainters, cxContainer, cxEdit, cxDBEdit, cxTextEdit, cxMaskEdit,
   cxSpinEdit, StdCtrls, DB, SqlExpr, Grids, DBGrids, Provider, DBClient,
-  ExtCtrls, DBCtrls, unCadEscolaController, ADODB, ComCtrls, Mask,
+  ExtCtrls, DBCtrls, unCadEscolaController, ADODB, ComCtrls, Mask,              
   JvExMask, JvToolEdit, JvDBControls, cxDropDownEdit, cxCalendar,
   dxCore, cxDateUtils;
 
@@ -62,12 +62,12 @@ type
     destructor Destroy; override;
 
     procedure CarregarComponentesCadEscola;
-    procedure CarregarClientDS;
+    procedure CarregarEntidadeEscola;
     procedure LimparCampos;
     procedure HabilitarComponentesDados;
     procedure AfterConstruction; override;
 
-    function CamposValidados: Boolean;
+    function ValidaCampos: Boolean;
     
     property ControladorEscola: TCadEscolaController read FControlador write SetControlador;
 
@@ -82,7 +82,7 @@ uses
   unRelEscola, unFrmPesquisaEscola, unFrmPrincipal, unDados;
 
 {$R *.dfm}
-procedure TfrmCadEscola.CarregarClientDS;
+procedure TfrmCadEscola.CarregarEntidadeEscola;
 begin
   ControladorEscola.EscolaModelo.Codigo := StrToInt(edtEscolaCodigo.Text);
   ControladorEscola.EscolaModelo.Nome := edtEscolaNome.Text;
@@ -112,24 +112,16 @@ end;
 procedure TfrmCadEscola.AfterConstruction;
 begin
   inherited;
-//  StatusBar1.Panels[0].Text :=
-//    IntToStr(Controlador.EscolaModelo.Codigo) + #13 + ' - ' +
-//    Controlador.EscolaModelo.Nome + #13 + ' - ' +
-//    DateToStr(Controlador.EscolaModelo.DataCadastro) + #13 + ' - ' +
-//    Controlador.EscolaModelo.Cep + #13 + ' - ' +
-//    Controlador.EscolaModelo.Rua + #13 + ' - ' +
-//    Controlador.EscolaModelo.Numero + #13 + ' - ' +
-//    Controlador.EscolaModelo.Complemento + #13 + ' - ' +
-//    Controlador.EscolaModelo.Bairro + #13 + ' - ' +
-//    Controlador.EscolaModelo.Cidade;
+  ControladorEscola := TCadEscolaController.Create; //Instãncia da Classe Controller
+  CarregarComponentesCadEscola;
+  edtEscolaCodigo.Text := '';
+  cxDateEditEscolaDataCadastro.Text := '';
+  HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados;
 end;
 
 procedure TfrmCadEscola.FormShow(Sender: TObject);
 begin
-  ControladorEscola := TCadEscolaController.Create; //Instãncia da Classe Controller
 //  ControladorEscola.CarregarEscola(1);
-  CarregarComponentesCadEscola;
-  HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados;
 end;
 //(BOTÃO PESQUISAR) Evento para abrir o Form PESQUISA ESCOLA 
 procedure TfrmCadEscola.btnEscolaPesquisarClick(Sender: TObject);
@@ -150,24 +142,30 @@ begin
   btnEscolaPesquisar.Enabled := False;
   btnEscolaAlterar.Enabled := False;
   btnEscolaExcluir.Enabled := False;
+  btnEscolaFechar.Enabled := False;
   cxDateEditEscolaDataCadastro.Text := FormatDateTime('DD/MM/YYYY', Now); //Atribui DATA ATUAL do SO
 end;
 //(BOTÃO GRAVAR)
 procedure TfrmCadEscola.btnEscolaGravarClick(Sender: TObject);
 begin
-  CarregarClientDS;
-  ControladorEscola.ObterDadosParaClientDS;
+  CarregarEntidadeEscola;
   try
-    if ControladorEscola.EscolaModelo.ValidarCampos then
+    if Self.ValidaCampos then
       if MessageDlg('Tem certeza que deseja gravar este registro?', mtConfirmation,
         mbYesNo, 0) = mrYes then
       begin
-        ControladorEscola.EscolaModelo.GravarEscolaClientDS;
-        DesabilitarComponentesDados;
-        btnEscolaCancelar.Enabled := False;
-        btnEscolaPesquisar.Enabled := True;
-        HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados;
-        ShowMessage('Registro gravado com sucesso!');
+//        ControladorEscola.EscolaModelo.GravarEscolaClientDS;
+        if ControladorEscola.Gravar then
+        begin
+          DesabilitarComponentesDados;
+          btnEscolaCancelar.Enabled := False;
+          btnEscolaPesquisar.Enabled := True;
+          btnEscolaFechar.Enabled := True;
+          HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados;
+          ShowMessage('Registro gravado com sucesso!');
+        end
+        else
+          raise ExceptClass.Create('');
       end
   except
     Application.MessageBox('Não se preocupe, apenas clique em OK e tente novamente.',
@@ -177,10 +175,11 @@ end;
 //(BOTÃO ALTERAR) Evento para habilitar campos para a edição
 procedure TfrmCadEscola.btnEscolaAlterarClick(Sender: TObject);
 begin  
-  ControladorEscola.DadosCDS.Edit;
+  ControladorEscola.EscolaModelo.AlterarClientDS;
   HabilitarComponentesDados; //Habilita os componentes necessários para EDIÇÃO
   HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados;
   btnEscolaPesquisar.Enabled := False;
+  btnEscolaFechar.Enabled := False;
 end;
 //(BOTÃO LIMPAR)
 procedure TfrmCadEscola.btnEscolaLimparClick(Sender: TObject);
@@ -202,6 +201,7 @@ begin
     LimparCampos;
     DesabilitarComponentesDados;
     btnEscolaPesquisar.Enabled := True;
+    btnEscolaFechar.Enabled := True;
   end;
 end;
 //(BOTÃO EXCLUIR)
@@ -215,33 +215,9 @@ begin
     HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados;
     DesabilitarComponentesDados;
     btnEscolaPesquisar.Enabled := True;
+    btnEscolaFechar.Enabled := True;
     ShowMessage('Registro excluído com sucesso!');
   end
-end;
-//Validação de campos obrigatórios se estão vazios
-function TfrmCadEscola.CamposValidados: Boolean;
-var
-  i: Integer;
-  Campos: TStrings;
-begin
-  Campos := TStringList.Create;
-  try
-    for i := 0 to ControladorEscola.DadosCDS.Fields.Count - 1 do
-    begin
-      if (ControladorEscola.DadosCDS.Fields[i].Tag = 1) and
-        (ControladorEscola.DadosCDS.Fields[i].AsString = EmptyStr) then
-        Campos.Add('- ' + ControladorEscola.DadosCDS.Fields[i].DisplayName) //Armazena o NOME DO CAMPO dentro de uma LISTA
-    end;
-    if (Campos.Count > 0) then //Verifica se há algum campo obrigatório vazio
-    begin
-      Result := False;
-      ShowMessage('unFrmCadEscola - Preencha os campos obrigatórios:' + #13 + #13 + Campos.Text); //Exibe os CAMPOS por NOME
-    end
-    else
-      Result := True;
-  finally
-    Campos.Free; //Libera a lista da memória
-  end;
 end;
 
 procedure TfrmCadEscola.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -253,25 +229,13 @@ end;
 //Métódo verifica as ocasiões que os BOTÕES ALTERAR e EXCLUIR devem serem habilitados ou não
 function TfrmCadEscola.HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados: Boolean;
 begin
-
-
-
-    //Realizar validaçãos do BOTÃO FECHAR para desabilitar/habilitar conforme dados nos EDIT's
-
-
-
-
-
-
-
   if ControladorEscola.EscolaModelo.ObterClientDS.Active then
   begin
     if ControladorEscola.EscolaModelo.ObterClientDS.State in [dsInsert] then
-//    if ControladorEscola.EscolaModelo.Codigo = (ControladorEscola.DevolverUltimoCodigo + 1) then
     begin
       btnEscolaAlterar.Enabled := False;
       btnEscolaExcluir.Enabled := False;
-      ControladorEscola.DadosCDS.Close;
+      ControladorEscola.EscolaModelo.ObterClientDS.Close;
       Result := False;
     end
     else
@@ -299,6 +263,37 @@ procedure TfrmCadEscola.SetControlador(const Value: TCadEscolaController);
 begin
   FControlador := Value;
 end;
+function TfrmCadEscola.ValidaCampos: Boolean;
+var
+  i: Integer;
+  Campos: TStrings;
+begin
+  Campos := TStringList.Create;
+
+  //Analisar todo o método ValidaCampos para um melhoramento, 
+  //começando pelo nome apresentado ao usuário no momento que informa qual campos está vazio 
+
+
+  
+  try
+    for i := 0 to Self.ComponentCount - 1 do
+    begin
+      if (Self.Components[i] is TEdit) and
+        (Self.Components[i].Tag = 1) and
+        ((Self.Components[i] as TEdit).Text = EmptyStr) then
+        Campos.Add('- ' + Self.Components[i].Name) //Armazena o NOME DO CAMPO dentro de uma LISTA
+    end;
+    if (Campos.Count > 0) then //Verifica se há algum campo obrigatório vazio
+    begin
+      Result := False;
+      ShowMessage('Preencha os campos obrigatórios:' + #13 + #13 + Campos.Text); //Exibe os CAMPOS por NOME
+    end
+    else
+      Result := True;
+  finally
+    Campos.Free; //Libera a lista da memória
+  end;
+end;
 
 //Método para permitir escrita de somente números
 procedure TfrmCadEscola.edtEscolaEndNumeroKeyPress(Sender: TObject;
@@ -307,7 +302,7 @@ begin
   if not (Key in ['0'..'9', #8, #13, #27]) then
   begin
     Key := #0;
-    Application.MessageBox('Somente números.','Caractere inválido', MB_ICONWARNING)
+    Application.MessageBox('Somente números.', 'Caractere inválido', MB_ICONWARNING)
   end
   else
     AvancarCampo(Sender, Key) //Avançar e recuar campo com a tecla ENTER e ESC respectivamente

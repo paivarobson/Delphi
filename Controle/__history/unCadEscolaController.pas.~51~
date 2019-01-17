@@ -1,0 +1,97 @@
+unit unCadEscolaController;
+
+interface
+
+uses
+  Windows, Dialogs, SysUtils, DateUtils, StdCtrls,
+  Messages, unEscolaModelo;
+
+type
+    TCadEscolaController = class
+  private
+    FEscolaModelo: TEscolaModelo;
+    procedure SetEscolaModelo(const Value: TEscolaModelo);
+
+  public
+    constructor Create;
+    destructor Destroy; override;
+
+    function DevolverUltimoCodigo: Integer;
+    function ObterDadosParaClientDS: Boolean;
+
+    procedure LimparCampos;
+    procedure NovoCadastroClientDS;
+    procedure AlterarClientDS;
+    procedure ExcluirClientDS;
+    procedure CancelarEdicaoClientDS;
+    procedure CarregarEscola(ACodigoEscola: Integer);
+    
+    property EscolaModelo: TEscolaModelo read FEscolaModelo write SetEscolaModelo;
+  end;
+
+implementation
+
+uses
+  unSistemaControle;
+
+constructor TCadEscolaController.Create;
+begin
+  EscolaModelo := TEscolaModelo.Create;
+end;
+
+destructor TCadEscolaController.Destroy;
+begin
+  FreeAndNil(FEscolaModelo);
+  inherited;
+end;
+
+procedure TCadEscolaController.CancelarEdicaoClientDS;
+begin
+  EscolaModelo.CancelarEdicaoClientDS;
+end;
+
+procedure TCadEscolaController.CarregarEscola(ACodigoEscola: Integer);
+begin
+  EscolaModelo.Carregar(ACodigoEscola);
+end;
+
+procedure TCadEscolaController.NovoCadastroClientDS;
+begin
+  EscolaModelo.NovoCadastroClientDS;
+end;
+
+procedure TCadEscolaController.SetEscolaModelo(const Value: TEscolaModelo);
+begin
+  FEscolaModelo := Value;
+end;
+
+//Método GRAVAR
+function TCadEscolaController.ObterDadosParaClientDS: Boolean;
+begin
+  Result := EscolaModelo.CarregarDadosParaClientDS;
+end;
+
+//Método CANCELAR
+//Método EXCLUIR
+procedure TCadEscolaController.ExcluirClientDS;
+begin
+  EscolaModelo.ExcluirClientDS;
+end;
+
+procedure TCadEscolaController.AlterarClientDS;
+begin
+  EscolaModelo.AlterarClientDS;
+end;
+//Método para o uso do ClientDataSet externamente
+
+//Método para limpar os dados direto no ClientDataSet
+procedure TCadEscolaController.LimparCampos;
+begin
+  EscolaModelo.LimparCampos;
+end;
+//Método verificador do último CÓDIGO registrado no BD 
+function TCadEscolaController.DevolverUltimoCodigo: Integer;
+begin
+  Result := EscolaModelo.DevolverUltimoCodigo;
+end;
+end.

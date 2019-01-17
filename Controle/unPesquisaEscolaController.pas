@@ -17,7 +17,7 @@ uses
 
 function TPesquisaEscolaController.DadosCDS: TClientDataSet;
 begin
-  Result := fmdados.cdsEscola;
+  Result := fmdados.ClientDSEscola;
 end;
 
 end.
