@@ -3,7 +3,7 @@ unit unEscolaDAO;
 interface
 
 uses
-  unDados, SqlExpr, SysUtils, DBClient, unEscolaModelo, Classes, Dialogs;
+  unDados, SqlExpr, SysUtils, DBClient, unEscolaModelo, Classes, Dialogs, StdCtrls;
 
 type
   TEscolaDAO = class
@@ -15,7 +15,9 @@ type
     procedure CarregarDadosParaClientDS(AEscolaModelo: TEscolaModelo);
   public
     destructor Destroy; override;
-    function DevolverUltimoCodigo: Integer;
+
+    procedure AbrirConexaoClientDS;
+    procedure FecharConexaoClientDS;
     procedure Carregar(AEscolaModelo: TEscolaModelo; ACodigo: Integer);
     procedure GravarEscolaClientDS;
     procedure NovoCadastroClientDS;
@@ -23,9 +25,15 @@ type
     procedure CancelarEdicaoClientDS;
     procedure ExcluirClientDS;
     procedure LimparDadosClient;
+    procedure DesabilitarFilteredClientDS;
+    procedure HabilitarFilteredClientDS;
+    procedure CarregarTodosRegistrosClientDS;
+    procedure ConsultaOrdenada(AIndiceComboBox: Integer);
 
+    function DevolverUltimoCodigo: Integer;
     function Gravar(AEscola: TEscolaModelo): Boolean;
     function ValidarCampos: Boolean;
+    function CarregarConsultaClientDS(ACampoTabelaFiltrado: string; ADado: string): Boolean;
 
     property ClientDS: TClientDataSet read GetClientDS write SetClientDS;
 //    property EscolaDAO: TEscolaDAO read FEscolaDAO write SetEscolaDAO;
@@ -55,6 +63,16 @@ end;
 procedure TEscolaDAO.ExcluirClientDS;
 begin
   fmdados.ExcluirClientDS;
+end;
+
+procedure TEscolaDAO.AbrirConexaoClientDS;
+begin
+  fmdados.AbrirConexaoClientDS;
+end;
+
+procedure TEscolaDAO.FecharConexaoClientDS;
+begin
+  fmdados.FecharConexaoClientDS;
 end;
 
 procedure TEscolaDAO.AlterarEscolaClientDS;
@@ -136,9 +154,30 @@ begin
   ClientDS.FieldByName('ESCENDCIDADE').AsString := AEscolaModelo.Cidade;
 end;
 
+function TEscolaDAO.CarregarConsultaClientDS(ACampoTabelaFiltrado: string;
+  ADado: string): Boolean;
+begin
+  Result := ClientDS.Locate(ACampoTabelaFiltrado, ADado, [])
+end;
+
+procedure TEscolaDAO.HabilitarFilteredClientDS;
+begin
+  fmdados.HabilitarFilteredClientDS;
+end;
+
+procedure TEscolaDAO.CarregarTodosRegistrosClientDS;
+begin
+  fmdados.CarregarTodosRegistrosClientDS;
+end;
+
 procedure TEscolaDAO.LimparDadosClient;
 begin
   fmdados.LimparDadosClient;
+end;
+
+procedure TEscolaDAO.DesabilitarFilteredClientDS;
+begin
+  fmdados.DesabilitarFilteredClientDS;
 end;
 
 procedure TEscolaDAO.NovoCadastroClientDS;
@@ -176,5 +215,15 @@ begin
   end;
 end;
 
+//############# PESQUISA ESCOLA ################
+//Método para ordenação da lista de consulta por CÓDIGO, DESCRIÇÃO ou DATA DE CADASTRO
+procedure TEscolaDAO.ConsultaOrdenada(AIndiceComboBox: Integer);
+begin
+  case AIndiceComboBox of
+    0: ClientDS.IndexFieldNames := 'ESCCOD'; //Ordena por CÓDIGO
+    1: ClientDS.IndexFieldNames := 'ESCNOME'; //Ordena por DESCRIÇÃO
+    2: ClientDS.IndexFieldNames := 'ESCDATACAD'; //Ordena por DATA DE CADASTRO
+  end;
+end;
 
 end.

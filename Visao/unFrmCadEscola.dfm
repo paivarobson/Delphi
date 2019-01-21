@@ -17,6 +17,7 @@ object frmCadEscola: TfrmCadEscola
   OldCreateOrder = False
   ParentBiDiMode = False
   Position = poScreenCenter
+  Visible = True
   WindowState = wsMaximized
   OnClose = FormClose
   OnShow = FormShow
@@ -98,13 +99,128 @@ object frmCadEscola: TfrmCadEscola
     Font.Style = []
     ParentFont = False
   end
+  object edtEscolaNome: TEdit
+    Tag = 1
+    Left = 159
+    Top = 105
+    Width = 381
+    Height = 21
+    Hint = 'ESCOLA'
+    CharCase = ecUpperCase
+    Enabled = False
+    TabOrder = 2
+    Text = 'EDTESCOLANOME'
+    OnKeyPress = AvancarCampo
+  end
+  object edtEscolaCodigo: TEdit
+    Tag = 1
+    Left = 96
+    Top = 105
+    Width = 57
+    Height = 21
+    Hint = 'C'#211'DIGO'
+    CharCase = ecUpperCase
+    Enabled = False
+    TabOrder = 1
+    Text = 'EDTESCOLACODIGO'
+    OnKeyPress = AvancarCampo
+  end
+  object cxDateEditEscolaDataCadastro: TcxDateEdit
+    Tag = 1
+    Left = 546
+    Top = 105
+    Hint = 'DATA'
+    Enabled = False
+    TabOrder = 3
+    OnKeyPress = AvancarCampo
+    Width = 121
+  end
+  object maskEditEscolaEndCEP: TMaskEdit
+    Tag = 1
+    Left = 96
+    Top = 150
+    Width = 68
+    Height = 21
+    Hint = 'CEP'
+    CharCase = ecUpperCase
+    Enabled = False
+    EditMask = '00000\-999;1;_'
+    MaxLength = 9
+    TabOrder = 4
+    Text = '     -   '
+    OnKeyPress = edtEscolaEndNumeroKeyPress
+  end
+  object edtEscolaEndRua: TEdit
+    Tag = 1
+    Left = 171
+    Top = 150
+    Width = 425
+    Height = 21
+    Hint = 'RUA'
+    CharCase = ecUpperCase
+    Enabled = False
+    TabOrder = 5
+    Text = 'EDTESCOLAENDRUA'
+    OnKeyPress = AvancarCampo
+  end
+  object edtEscolaEndNumero: TEdit
+    Tag = 1
+    Left = 602
+    Top = 150
+    Width = 65
+    Height = 21
+    Hint = 'N'#218'MERO'
+    CharCase = ecUpperCase
+    Enabled = False
+    TabOrder = 6
+    Text = 'EDTESCOLACODIGO'
+    OnKeyPress = edtEscolaEndNumeroKeyPress
+  end
+  object edtEscolaEndComplemento: TEdit
+    Left = 96
+    Top = 193
+    Width = 225
+    Height = 21
+    Hint = 'COMPLEMENTO'
+    CharCase = ecUpperCase
+    Enabled = False
+    TabOrder = 7
+    Text = 'EDTESCOLAENDCOMPLEMENTO'
+    OnKeyPress = AvancarCampo
+  end
+  object edtEscolaEndBairro: TEdit
+    Tag = 1
+    Left = 327
+    Top = 193
+    Width = 187
+    Height = 21
+    Hint = 'BAIRRO'
+    CharCase = ecUpperCase
+    Enabled = False
+    TabOrder = 8
+    Text = 'EDTESCOLAENDBAIRRO'
+    OnKeyPress = AvancarCampo
+  end
+  object edtEscolaEndCidade: TEdit
+    Tag = 1
+    Left = 520
+    Top = 193
+    Width = 147
+    Height = 21
+    Hint = 'CIDADE'
+    CharCase = ecUpperCase
+    Enabled = False
+    TabOrder = 9
+    Text = 'EDTESCOLAENDCIDADE'
+    OnKeyPress = AvancarCampo
+  end
   object btnEscolaNovoCadastro: TButton
     Left = 228
     Top = 234
     Width = 83
     Height = 25
     Caption = 'Novo cadastro'
-    TabOrder = 9
+    TabOrder = 10
     OnClick = btnEscolaNovoCadastroClick
     OnKeyPress = AvancarCampo
   end
@@ -115,7 +231,7 @@ object frmCadEscola: TfrmCadEscola
     Height = 25
     Caption = 'Gravar'
     Enabled = False
-    TabOrder = 10
+    TabOrder = 11
     OnClick = btnEscolaGravarClick
     OnKeyPress = AvancarCampo
   end
@@ -125,7 +241,7 @@ object frmCadEscola: TfrmCadEscola
     Width = 54
     Height = 25
     Caption = 'Alterar'
-    TabOrder = 11
+    TabOrder = 12
     OnClick = btnEscolaAlterarClick
     OnKeyPress = AvancarCampo
   end
@@ -135,7 +251,7 @@ object frmCadEscola: TfrmCadEscola
     Width = 50
     Height = 25
     Caption = 'Excluir'
-    TabOrder = 14
+    TabOrder = 15
     OnClick = btnEscolaExcluirClick
     OnKeyPress = AvancarCampo
   end
@@ -146,7 +262,7 @@ object frmCadEscola: TfrmCadEscola
     Height = 25
     Caption = 'Cancelar'
     Enabled = False
-    TabOrder = 13
+    TabOrder = 14
     OnClick = btnEscolaCancelarClick
     OnKeyPress = AvancarCampo
   end
@@ -157,7 +273,7 @@ object frmCadEscola: TfrmCadEscola
     Height = 25
     Caption = 'Limpar'
     Enabled = False
-    TabOrder = 12
+    TabOrder = 13
     OnClick = btnEscolaLimparClick
     OnKeyPress = AvancarCampo
   end
@@ -177,113 +293,7 @@ object frmCadEscola: TfrmCadEscola
     Width = 67
     Height = 25
     Caption = 'Fechar'
-    TabOrder = 15
-    OnClick = btnEscolaFecharClick
-  end
-  object edtEscolaCodigo: TEdit
-    Tag = 1
-    Left = 96
-    Top = 105
-    Width = 57
-    Height = 21
-    CharCase = ecUpperCase
-    Enabled = False
-    TabOrder = 1
-    Text = 'EDTESCOLACODIGO'
-    OnKeyPress = AvancarCampo
-  end
-  object maskEditEscolaEndCEP: TMaskEdit
-    Tag = 1
-    Left = 96
-    Top = 150
-    Width = 68
-    Height = 21
-    CharCase = ecUpperCase
-    Enabled = False
-    EditMask = '00000\-999;1;_'
-    MaxLength = 9
-    TabOrder = 3
-    Text = '     -   '
-    OnKeyPress = edtEscolaEndNumeroKeyPress
-  end
-  object edtEscolaNome: TEdit
-    Tag = 1
-    Left = 159
-    Top = 105
-    Width = 381
-    Height = 21
-    CharCase = ecUpperCase
-    Enabled = False
-    TabOrder = 2
-    Text = 'EDTESCOLANOME'
-    OnKeyPress = AvancarCampo
-  end
-  object edtEscolaEndRua: TEdit
-    Tag = 1
-    Left = 171
-    Top = 150
-    Width = 425
-    Height = 21
-    CharCase = ecUpperCase
-    Enabled = False
-    TabOrder = 4
-    Text = 'EDTESCOLAENDRUA'
-    OnKeyPress = AvancarCampo
-  end
-  object edtEscolaEndNumero: TEdit
-    Tag = 1
-    Left = 602
-    Top = 150
-    Width = 65
-    Height = 21
-    CharCase = ecUpperCase
-    Enabled = False
-    TabOrder = 5
-    Text = 'EDTESCOLACODIGO'
-    OnKeyPress = edtEscolaEndNumeroKeyPress
-  end
-  object edtEscolaEndComplemento: TEdit
-    Left = 96
-    Top = 193
-    Width = 225
-    Height = 21
-    CharCase = ecUpperCase
-    Enabled = False
-    TabOrder = 6
-    Text = 'EDTESCOLAENDCOMPLEMENTO'
-    OnKeyPress = AvancarCampo
-  end
-  object edtEscolaEndBairro: TEdit
-    Tag = 1
-    Left = 327
-    Top = 193
-    Width = 187
-    Height = 21
-    CharCase = ecUpperCase
-    Enabled = False
-    TabOrder = 7
-    Text = 'EDTESCOLAENDBAIRRO'
-    OnKeyPress = AvancarCampo
-  end
-  object edtEscolaEndCidade: TEdit
-    Tag = 1
-    Left = 520
-    Top = 193
-    Width = 147
-    Height = 21
-    CharCase = ecUpperCase
-    Enabled = False
-    TabOrder = 8
-    Text = 'EDTESCOLAENDCIDADE'
-    OnKeyPress = AvancarCampo
-  end
-  object cxDateEditEscolaDataCadastro: TcxDateEdit
-    Tag = 1
-    Left = 546
-    Top = 105
-    Enabled = False
     TabOrder = 16
-    OnKeyPress = AvancarCampo
-    Width = 121
+    OnClick = btnEscolaFecharClick
   end
 end

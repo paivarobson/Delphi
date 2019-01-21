@@ -45,12 +45,18 @@ type
 
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
+    procedure AbrirConexaoClientDS;
+    procedure FecharConexaoClientDS;
     procedure NovoCadastroClientDS;
     procedure AlterarClientDS;
-    function GravarDB(AClientDataSet: TClientDataSet): Boolean;
     procedure LimparDadosClient;
     procedure CancelarEdicaoClientDS;
     procedure ExcluirClientDS;
+    procedure DesabilitarFilteredClientDS;
+    procedure HabilitarFilteredClientDS;
+    procedure CarregarTodosRegistrosClientDS;
+
+    function GravarDB(AClientDataSet: TClientDataSet): Boolean;
 
   end;
 
@@ -97,7 +103,17 @@ begin
   ClientDSEscola.ClearFields;
 end;
 
+procedure Tfmdados.DesabilitarFilteredClientDS;
+begin
+  ClientDSEscola.Filtered := False;
+end;
+
 //Método CANCELAR EDIÇÃO
+procedure Tfmdados.AbrirConexaoClientDS;
+begin
+  ClientDSEscola.Open;
+end;
+
 procedure Tfmdados.AlterarClientDS;
 begin
   ClientDSEscola.Edit;
@@ -107,12 +123,27 @@ procedure Tfmdados.CancelarEdicaoClientDS;
 begin
   ClientDSEscola.Cancel;
 end;
+procedure Tfmdados.HabilitarFilteredClientDS;
+begin
+  ClientDSEscola.Filtered := True;
+end;
+
+procedure Tfmdados.CarregarTodosRegistrosClientDS;
+begin
+  ClientDSEscola.Filter := '1 = 1';
+end;
+
 //Método EXCLUIR
 procedure Tfmdados.ExcluirClientDS;
 begin
   ClientDSEscola.Delete;
   ClientDSEscola.ApplyUpdates(0);
   ClientDSEscola.Refresh;
+  ClientDSEscola.Close;
+end;
+
+procedure Tfmdados.FecharConexaoClientDS;
+begin
   ClientDSEscola.Close;
 end;
 

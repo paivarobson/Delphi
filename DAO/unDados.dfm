@@ -37,8 +37,8 @@ object fmdados: Tfmdados
     DisableStringTrim = True
     Params = <>
     ProviderName = 'dspEscola'
-    Left = 72
-    Top = 167
+    Left = 40
+    Top = 175
     object cdsEscolaESCCOD: TIntegerField
       DisplayLabel = 'C'#243'digo'
       FieldName = 'ESCCOD'

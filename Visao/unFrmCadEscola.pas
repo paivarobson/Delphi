@@ -9,7 +9,7 @@ uses
   cxSpinEdit, StdCtrls, DB, SqlExpr, Grids, DBGrids, Provider, DBClient,
   ExtCtrls, DBCtrls, unCadEscolaController, ADODB, ComCtrls, Mask,              
   JvExMask, JvToolEdit, JvDBControls, cxDropDownEdit, cxCalendar,
-  dxCore, cxDateUtils;
+  dxCore, cxDateUtils, StrUtils;
 
 type
   TfrmCadEscola = class(TForm)
@@ -269,24 +269,30 @@ var
   Campos: TStrings;
 begin
   Campos := TStringList.Create;
-
-  //Analisar todo o método ValidaCampos para um melhoramento, 
-  //começando pelo nome apresentado ao usuário no momento que informa qual campos está vazio 
-
-
-  
   try
-    for i := 0 to Self.ComponentCount - 1 do
+    for i := 0 to ComponentCount - 1 do
     begin
-      if (Self.Components[i] is TEdit) and
-        (Self.Components[i].Tag = 1) and
-        ((Self.Components[i] as TEdit).Text = EmptyStr) then
-        Campos.Add('- ' + Self.Components[i].Name) //Armazena o NOME DO CAMPO dentro de uma LISTA
+      if (Components[i].ClassType = TEdit) or 
+        (Components[i].ClassType = TcxDateEdit) or
+        (Components[i].ClassType = TMaskEdit) then
+      begin
+        if (Components[i].Tag = 1) and 
+          (TEdit(Components[i]).Text = EmptyStr) or
+          (TcxDateEdit(Components[i]).Text = EmptyStr) or
+          (TMaskEdit(Components[i]).Text = '     -   ') then
+        begin  
+          Campos.Add('- ' + (TWinControl(Components[i]).Hint)); //Armazena o NOME DO CAMPO dentro de uma LISTA
+        end;
+      end;
     end;
     if (Campos.Count > 0) then //Verifica se há algum campo obrigatório vazio
     begin
       Result := False;
       ShowMessage('Preencha os campos obrigatórios:' + #13 + #13 + Campos.Text); //Exibe os CAMPOS por NOME
+//      TEdit(Components[0]).CanFocus;
+//      TEdit(Components[0]).SetFocus;
+//      TcxDateEdit(Components[0]).SetFocus;
+//      TMaskEdit(Components[0]).SetFocus;
     end
     else
       Result := True;
