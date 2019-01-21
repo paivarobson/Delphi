@@ -45,18 +45,21 @@ type
 
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
-    procedure AbrirConexaoClientDS;
-    procedure FecharConexaoClientDS;
-    procedure NovoCadastroClientDS;
-    procedure AlterarClientDS;
-    procedure LimparDadosClient;
-    procedure CancelarEdicaoClientDS;
-    procedure ExcluirClientDS;
-    procedure DesabilitarFilteredClientDS;
-    procedure HabilitarFilteredClientDS;
-    procedure CarregarTodosRegistrosClientDS;
+    procedure AbrirConexaoClientDS(AClientDataSet: TClientDataset);
+    procedure FecharConexaoClientDS(AClientDataSet: TClientDataset);
+    procedure NovoCadastroClientDS(AClientDataSet: TClientDataset);
+    procedure AlterarClientDS(AClientDataSet: TClientDataset);
+    procedure LimparDadosClientDS(AClientDataSet: TClientDataset);
+    procedure CancelarEdicaoClientDS(AClientDataSet: TClientDataset);
+    procedure ExcluirClientDS(AClientDataSet: TClientDataset);
+    procedure DesabilitarFilteredClientDS(AClientDataSet: TClientDataset);
+    procedure HabilitarFilteredClientDS(AClientDataSet: TClientDataset);
+    procedure CarregarTodosRegistrosClientDS(AClientDataSet: TClientDataset);
+
 
     function GravarDB(AClientDataSet: TClientDataSet): Boolean;
+    function StatusInsertClientDS(AClientDataSet: TClientDataset): Boolean;
+    function VerificaClientDSSeEstaAtivo(AClientDataSet: TClientDataset): Boolean; 
 
   end;
 
@@ -86,10 +89,18 @@ begin
   FreeAndNil(FConexaoBDEscola);
 end;
 //Método NOVO CADASTRO
-procedure Tfmdados.NovoCadastroClientDS;
+procedure Tfmdados.NovoCadastroClientDS(AClientDataSet: TClientDataset);
 begin
-  ClientDSEscola.Open;
-  ClientDSEscola.Append;
+  AClientDataSet.Open;
+  AClientDataSet.Append;
+end;
+
+function Tfmdados.StatusInsertClientDS(AClientDataSet: TClientDataset): Boolean;
+begin
+  if AClientDataSet.State in [dsInsert] then
+    Result := True
+  else
+    Result := False;
 end;
 //Método GRAVAR
 function Tfmdados.GravarDB(AClientDataSet: TClientDataset):Boolean;
@@ -98,53 +109,61 @@ begin
   
   Result := AClientDataSet.ApplyUpdates(0) = 0;
 end;
-procedure Tfmdados.LimparDadosClient;
+procedure Tfmdados.LimparDadosClientDS(AClientDataSet: TClientDataset);
 begin
-  ClientDSEscola.ClearFields;
+  AClientDataSet.ClearFields;
 end;
 
-procedure Tfmdados.DesabilitarFilteredClientDS;
+procedure Tfmdados.DesabilitarFilteredClientDS(AClientDataSet: TClientDataset);
 begin
-  ClientDSEscola.Filtered := False;
+  AClientDataSet.Filtered := False;
 end;
 
 //Método CANCELAR EDIÇÃO
-procedure Tfmdados.AbrirConexaoClientDS;
+procedure Tfmdados.AbrirConexaoClientDS(AClientDataSet: TClientDataset);
 begin
-  ClientDSEscola.Open;
+  AClientDataSet.Open;
 end;
 
-procedure Tfmdados.AlterarClientDS;
+procedure Tfmdados.AlterarClientDS(AClientDataSet: TClientDataset);
 begin
-  ClientDSEscola.Edit;
+  AClientDataSet.Edit;
 end;
 
-procedure Tfmdados.CancelarEdicaoClientDS;
+function Tfmdados.VerificaClientDSSeEstaAtivo(AClientDataSet: TClientDataset): Boolean;
 begin
-  ClientDSEscola.Cancel;
-end;
-procedure Tfmdados.HabilitarFilteredClientDS;
-begin
-  ClientDSEscola.Filtered := True;
+  if AClientDataSet.Active then
+    Result := True
+  else
+    Result := False;  
 end;
 
-procedure Tfmdados.CarregarTodosRegistrosClientDS;
+procedure Tfmdados.CancelarEdicaoClientDS(AClientDataSet: TClientDataset);
 begin
-  ClientDSEscola.Filter := '1 = 1';
+  AClientDataSet.Cancel;
+end;
+procedure Tfmdados.HabilitarFilteredClientDS(AClientDataSet: TClientDataset);
+begin
+  AClientDataSet.Filtered := True;
+end;
+
+procedure Tfmdados.CarregarTodosRegistrosClientDS(AClientDataSet: TClientDataset);
+begin
+  AClientDataSet.Filter := '1 = 1';
 end;
 
 //Método EXCLUIR
-procedure Tfmdados.ExcluirClientDS;
+procedure Tfmdados.ExcluirClientDS(AClientDataSet: TClientDataset);
 begin
-  ClientDSEscola.Delete;
-  ClientDSEscola.ApplyUpdates(0);
-  ClientDSEscola.Refresh;
-  ClientDSEscola.Close;
+  AClientDataSet.Delete;
+  AClientDataSet.ApplyUpdates(0);
+  AClientDataSet.Refresh;
+  AClientDataSet.Close;
 end;
 
-procedure Tfmdados.FecharConexaoClientDS;
+procedure Tfmdados.FecharConexaoClientDS(AClientDataSet: TClientDataset);
 begin
-  ClientDSEscola.Close;
+  AClientDataSet.Close;
 end;
 
 end.
