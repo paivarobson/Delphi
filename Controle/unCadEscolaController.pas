@@ -20,7 +20,7 @@ type
     function CarregarDadosParaClientDS: Boolean;
     function ValidarCampos: Boolean;
     function Gravar: Boolean;
-    function StatusInsertClientDS: Boolean;
+    function StatusInsertEditClientDS: Boolean;
     function VerificaClientDSSeEstaAtivo: Boolean;
 
     procedure LimparCampos;
@@ -29,6 +29,7 @@ type
     procedure AlterarClientDS;
     procedure ExcluirClientDS;
     procedure CancelarEdicaoClientDS;
+    procedure ConsultarEscolaPorCodigo;
     procedure CarregarEscola;
     procedure FecharConexaoClientDS;
     
@@ -66,6 +67,11 @@ begin
   EscolaModelo.CarregarEscola;
 end;
 
+procedure TCadEscolaController.ConsultarEscolaPorCodigo;
+begin
+  EscolaModelo.ConsultarEscolaPorCodigo
+end;
+
 procedure TCadEscolaController.NovoCadastroClientDS;
 begin
   EscolaModelo.NovoCadastroClientDS;
@@ -76,9 +82,9 @@ begin
   FEscolaModelo := Value;
 end;
 
-function TCadEscolaController.StatusInsertClientDS: Boolean;
+function TCadEscolaController.StatusInsertEditClientDS: Boolean;
 begin
-  Result := EscolaModelo.StatusInsertClientDS;
+  Result := EscolaModelo.StatusInsertEditClientDS;
 end;
 
 function TCadEscolaController.ValidarCampos: Boolean;
@@ -125,10 +131,10 @@ procedure TCadEscolaController.LimparDadosClientDS;
 begin
   EscolaModelo.LimparDadosClientDS;
 end;
-
 //Método verificador do último CÓDIGO registrado no BD 
 function TCadEscolaController.DevolverUltimoCodigo: Integer;
 begin
   Result := EscolaModelo.DevolverUltimoCodigo;
 end;
+
 end.

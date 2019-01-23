@@ -49,7 +49,6 @@ object frmPesquisaEscola: TfrmPesquisaEscola
     Width = 778
     Height = 316
     Align = alBottom
-    DataSource = fmdados.dsEscola
     ReadOnly = True
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET

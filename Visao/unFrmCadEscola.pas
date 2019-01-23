@@ -67,6 +67,7 @@ type
     procedure HabilitarComponentesDados;
     procedure AfterConstruction; override;
     procedure CarregarEscola;
+    procedure ConsultarEscolaPorCodigo;
 
     function ValidaCampos: Boolean;
     
@@ -99,6 +100,13 @@ end;
 procedure TfrmCadEscola.CarregarEscola;
 begin
   ControladorEscola.CarregarEscola;
+  CarregarComponentesCadEscola;
+end;
+
+procedure TfrmCadEscola.ConsultarEscolaPorCodigo;
+begin
+//  CarregarEscola;
+  ControladorEscola.ConsultarEscolaPorCodigo;
   CarregarComponentesCadEscola;
 end;
 
@@ -205,7 +213,7 @@ begin
   begin
     HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados;
     ControladorEscola.CancelarEdicaoClientDS;
-    CarregarEscola;
+//    CarregarEscola;
     DesabilitarComponentesDados;
     btnEscolaPesquisar.Enabled := True;
     btnEscolaFechar.Enabled := True;
@@ -220,6 +228,7 @@ begin
     ControladorEscola.ExcluirClientDS;
     LimparCampos;
     edtEscolaCodigo.Text := '';
+    cxDateEditEscolaDataCadastro.Text := '';
     HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados;
     DesabilitarComponentesDados;
     btnEscolaPesquisar.Enabled := True;
@@ -239,7 +248,7 @@ function TfrmCadEscola.HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados: 
 begin
   if ControladorEscola.VerificaClientDSSeEstaAtivo then
   begin
-    if ControladorEscola.StatusInsertClientDS then
+    if ControladorEscola.StatusInsertEditClientDS then
     begin
       btnEscolaAlterar.Enabled := False;
       btnEscolaExcluir.Enabled := False;

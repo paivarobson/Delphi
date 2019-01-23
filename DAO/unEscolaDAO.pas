@@ -19,7 +19,7 @@ type
 
     procedure AbrirConexaoClientDS;
     procedure FecharConexaoClientDS;
-    procedure Carregar(AEscolaModelo: TEscolaModelo; ACodigo: Integer);
+    procedure ConsultarEscolaPorCodigo(AEscolaModelo: TEscolaModelo; ACodigo: Integer);
     procedure CarregarEscola(AEscolaModelo: TEscolaModelo);
     procedure GravarEscolaClientDS;
     procedure NovoCadastroClientDS;
@@ -36,7 +36,7 @@ type
     function Gravar(AEscola: TEscolaModelo): Boolean;
     function ValidarCampos: Boolean;
     function CarregarConsultaClientDS(ACampoTabelaFiltrado: string; ADado: string): Boolean;
-    function StatusInsertClientDS: Boolean;
+    function StatusInsertEditClientDS: Boolean;
     function VerificaClientDSSeEstaAtivo: Boolean;
 
     property ClientDS: TClientDataSet read GetClientDS write SetClientDS;
@@ -107,7 +107,7 @@ begin
   AEscolaModelo.Cidade       := ClientDS.Fields[8].AsString;
 end;
 
-procedure TEscolaDAO.Carregar(AEscolaModelo: TEscolaModelo; ACodigo: Integer);
+procedure TEscolaDAO.ConsultarEscolaPorCodigo(AEscolaModelo: TEscolaModelo; ACodigo: Integer);
 var
   VQuery: TSQLQuery;
 begin
@@ -128,7 +128,6 @@ begin
                'WHERE ESCCOD = %d',
                [ACodigo]);
     ClientDS.Open;
-    try
       AEscolaModelo.Codigo       := ClientDS.Fields[0].AsInteger;
       AEscolaModelo.Nome         := ClientDS.Fields[1].AsString;
       AEscolaModelo.DataCadastro := ClientDS.Fields[2].AsDateTime;
@@ -138,9 +137,6 @@ begin
       AEscolaModelo.Complemento  := ClientDS.Fields[6].AsString;
       AEscolaModelo.Bairro       := ClientDS.Fields[7].AsString;
       AEscolaModelo.Cidade       := ClientDS.Fields[8].AsString;
-    finally
-      ClientDS.Close;
-    end;
   finally
     FreeAndNil(FClientDS);
   end;
@@ -220,9 +216,9 @@ begin
   FClientDS := Value;
 end;
 
-function TEscolaDAO.StatusInsertClientDS: Boolean;
+function TEscolaDAO.StatusInsertEditClientDS: Boolean;
 begin
-  Result := fmdados.StatusInsertClientDS(ClientDS);
+  Result := fmdados.StatusInsertEditClientDS(ClientDS);
 end;
 
 //Verificação de campos obrigatórios se estão vazios
