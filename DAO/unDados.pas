@@ -56,10 +56,10 @@ type
     procedure HabilitarFilteredClientDS(AClientDataSet: TClientDataset);
     procedure CarregarTodosRegistrosClientDS(AClientDataSet: TClientDataset);
 
-
     function GravarDB(AClientDataSet: TClientDataSet): Boolean;
     function StatusInsertEditClientDS(AClientDataSet: TClientDataset): Boolean;
-    function VerificaClientDSSeEstaAtivo(AClientDataSet: TClientDataset): Boolean; 
+    function VerificaClientDSSeEstaAtivo(AClientDataSet: TClientDataset): Boolean;
+    function EstadoClientDS(AClientDataSet: TClientDataSet): TDataSetState;  
 
   end;
 
@@ -97,10 +97,7 @@ end;
 
 function Tfmdados.StatusInsertEditClientDS(AClientDataSet: TClientDataset): Boolean;
 begin
-  if AClientDataSet.State in [dsInsert, dsEdit] then
-    Result := True
-  else
-    Result := False;
+    Result := AClientDataSet.State in [dsInsert, dsEdit];
 end;
 //Método GRAVAR
 function Tfmdados.GravarDB(AClientDataSet: TClientDataset):Boolean;
@@ -132,10 +129,7 @@ end;
 
 function Tfmdados.VerificaClientDSSeEstaAtivo(AClientDataSet: TClientDataset): Boolean;
 begin
-  if AClientDataSet.Active then
-    Result := True
-  else
-    Result := False;  
+    Result := AClientDataSet.Active
 end;
 
 procedure Tfmdados.CancelarEdicaoClientDS(AClientDataSet: TClientDataset);
@@ -153,6 +147,11 @@ begin
 end;
 
 //Método EXCLUIR
+function Tfmdados.EstadoClientDS(AClientDataSet: TClientDataSet): TDataSetState;
+begin
+  Result :=  AClientDataSet.State;
+end;
+
 procedure Tfmdados.ExcluirClientDS(AClientDataSet: TClientDataset);
 begin
   AClientDataSet.Delete;

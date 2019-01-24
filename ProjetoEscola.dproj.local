@@ -47,5 +47,6 @@
     <Transaction>2019/01/11 10:26:31.915.pas,C:\DESENVOLVIMENTO\PROJETOS\escola\Visao\unFrmAluno.pas=C:\DESENVOLVIMENTO\PROJETOS\escola\Visao\unFrmCadAluno.pas</Transaction>
     <Transaction>2019/01/11 10:26:31.915.dfm,C:\DESENVOLVIMENTO\PROJETOS\escola\Visao\unFrmAluno.dfm=C:\DESENVOLVIMENTO\PROJETOS\escola\Visao\unFrmCadAluno.dfm</Transaction>
     <Transaction>2019/01/14 13:37:58.421.pas,C:\DESENVOLVIMENTO\PROJETOS\escola\Controle\unCadastroEscolaController.pas=C:\DESENVOLVIMENTO\PROJETOS\escola\Controle\unCadEscolaController.pas</Transaction>
+    <Transaction>2019/01/24 14:45:08.548.pas,C:\DESENVOLVIMENTO\PROJETOS\escola\Modelo\unEnumerado.pas=</Transaction>
   </Transactions>
 </BorlandProject>

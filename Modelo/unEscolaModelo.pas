@@ -3,7 +3,7 @@ unit unEscolaModelo;
 interface
 
 uses
-  SysUtils, unEnumerado, Classes, Dialogs, DBClient, StdCtrls;
+  SysUtils, Classes, Dialogs, DBClient, StdCtrls, DB;
 
 type
   TEscolaModelo = class
@@ -18,7 +18,6 @@ type
     FComplemento: string;
     FBairro: string;
     FCidade: string;
-    FAcao: TAcao;
     procedure SetCodigo(const Valor: Integer);
     procedure SetNome(const Valor: string);
     procedure SetDataCadastro(const Valor: TDateTime);
@@ -28,8 +27,6 @@ type
     procedure SetComplemento(const Valor: string);
     procedure SetBairro(const Valor: string);
     procedure SetCidade(const Valor: string);
-    procedure SetAcao(const Value: TAcao);
-
     function GetCodigo: Integer;
     function GetNome: string;
     function GetDataCadastro: TDateTime;
@@ -39,9 +36,7 @@ type
     function GetComplemento: string;
     function GetBairro: string;
     function GetCidade: string;
-
-
-
+    function GetEstadoClientDS: TDataSetState;
   public
     constructor Create;
     destructor Destroy; override;
@@ -78,7 +73,8 @@ type
     property Complemento: string read GetComplemento write SetComplemento;
     property Bairro: string read GetBairro write SetBairro;
     property Cidade: string read GetCidade write SetCidade;
-    property Acao: TAcao read FAcao write SetAcao;
+
+    property EstadoClientDS: TDataSetState read GetEstadoClientDS;
 
     function Gravar: Boolean;
   end;
@@ -187,10 +183,6 @@ begin
   FComplemento := Valor;
 end;
 
-procedure TEscolaModelo.SetAcao(const Value: TAcao);
-begin
-  FAcao := Value;
-end;
 
 procedure TEscolaModelo.SetBairro(const Valor: string);
 begin
@@ -215,6 +207,11 @@ end;
 function TEscolaModelo.GetDataCadastro: TDateTime;
 begin
   Result := FDataCadastro;
+end;
+
+function TEscolaModelo.GetEstadoClientDS: TDataSetState;
+begin
+  Result := FEscolaDao.EstadoClientDS;
 end;
 
 function TEscolaModelo.GetRua: string;

@@ -137,8 +137,9 @@ begin
   if not Assigned(frmCadEscola) then //Verifica se o Form CADASTRO ESCOLA está FECHADO para ser CRIADO
     frmCadEscola := TfrmCadEscola.Create(frmPrincipal);
   Close;
-  frmCadEscola.Show;
   frmCadEscola.CarregarEscola;
+  frmCadEscola.Show;
+
   ControladorEscola.AbrirConexaoClientDS; //Certifica se manter a conexão aberta para que o dado clicado seja consultado
 end;
 //Evento para click do ENTER no campo de consulta por DATA DE CADASTRO

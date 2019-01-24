@@ -13,7 +13,6 @@ uses
   unEscolaDAO in 'DAO\unEscolaDAO.pas',
   unSistemaControle in 'Controle\unSistemaControle.pas',
   unConexao in 'DAO\unConexao.pas',
-  unEnumerado in 'Modelo\unEnumerado.pas',
   unAlunoModelo in 'Modelo\unAlunoModelo.pas',
   unFrmCadAluno in 'Visao\unFrmCadAluno.pas' {frmCadAluno},
   unAlunoDAO in 'DAO\unAlunoDAO.pas',

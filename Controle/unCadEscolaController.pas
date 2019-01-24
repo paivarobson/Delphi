@@ -4,14 +4,14 @@ interface
 
 uses
   Windows, Dialogs, SysUtils, DateUtils, StdCtrls,
-  Messages, unEscolaModelo;
+  Messages, unEscolaModelo, DB;
 
 type
     TCadEscolaController = class
   private
     FEscolaModelo: TEscolaModelo;
     procedure SetEscolaModelo(const Value: TEscolaModelo);
-
+    function GetEstadoClientDS: TDataSetState;
   public
     constructor Create;
     destructor Destroy; override;
@@ -30,8 +30,10 @@ type
     procedure ExcluirClientDS;
     procedure CancelarEdicaoClientDS;
     procedure CarregarEscola;
+    procedure AbrirConexaoClientDS;
     procedure FecharConexaoClientDS;
-    
+
+    property EstadoClientDS: TDataSetState read GetEstadoClientDS;
     property EscolaModelo: TEscolaModelo read FEscolaModelo write SetEscolaModelo;
   end;
 
@@ -104,9 +106,19 @@ begin
   EscolaModelo.FecharConexaoClientDS;
 end;
 
+function TCadEscolaController.GetEstadoClientDS: TDataSetState;
+begin
+  Result := EscolaModelo.EstadoClientDS;
+end;
+
 function TCadEscolaController.Gravar: Boolean;
 begin
   Result := FEscolaModelo.Gravar;
+end;
+
+procedure TCadEscolaController.AbrirConexaoClientDS;
+begin
+  EscolaModelo.AbrirConexaoClientDS;
 end;
 
 procedure TCadEscolaController.AlterarClientDS;
