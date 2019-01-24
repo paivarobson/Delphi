@@ -102,7 +102,7 @@ begin
   //Carregar Escola no ClientDataSet capturando o codigo da Escola pra carregar dentro do método
 
   ControladorEscola.AbrirConexaoClientDS;
-  ControladorEscola.ConsultarEscolaPorCodigo;
+  ControladorEscola.CarregarEscola;
   ControladorEscola.DesabilitarFilteredClientDS; //Desabilita filtro
   if rgEscolaPesquisar.ItemIndex = 0 then //Verifica se RadioButton selecionado para consulta é o CÓDIGO
   begin
