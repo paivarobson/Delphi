@@ -100,10 +100,6 @@ end;
 procedure TfrmPesquisaEscola.btnEscolaBuscarClick(Sender: TObject);
 begin
   ControladorEscola.AbrirConexaoClientDS;
-<<<<<<< HEAD
-  ControladorEscola.CarregarEscola;
-=======
->>>>>>> parent of 2bbf68c... Ajustes diversos
   ControladorEscola.DesabilitarFilteredClientDS; //Desabilita filtro
   if rgEscolaPesquisar.ItemIndex = 0 then //Verifica se RadioButton selecionado para consulta é o CÓDIGO
   begin
