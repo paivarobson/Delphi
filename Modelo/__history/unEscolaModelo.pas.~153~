@@ -67,7 +67,6 @@ type
     function ValidarCampos: Boolean;
     function CarregarConsultaClientDS(ACampoTabelaFiltrado: string; ADado: string): Boolean;
     function StatusInsertClientDS: Boolean;
-    function VerificaClientDSSeEstaAtivo: Boolean;
 
     property Codigo: Integer read GetCodigo write SetCodigo;
     property Nome: string read GetNome write SetNome;
@@ -99,11 +98,6 @@ end;
 procedure TEscolaModelo.AlterarClientDS;
 begin
   FEscolaDao.AlterarEscolaClientDS;
-end;
-
-function TEscolaModelo.VerificaClientDSSeEstaAtivo: Boolean;
-begin
-  Result := FEscolaDao.VerificaClientDSSeEstaAtivo;
 end;
 
 procedure TEscolaModelo.CancelarEdicaoClientDS;

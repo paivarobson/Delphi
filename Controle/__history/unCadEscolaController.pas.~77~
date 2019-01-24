@@ -21,7 +21,7 @@ type
     function ValidarCampos: Boolean;
     function Gravar: Boolean;
     function StatusInsertClientDS: Boolean;
-    function VerificaClientDSSeEstaAtivo: Boolean;
+    function AtivoInativoClientDS: Boolean;
 
     procedure LimparCampos;
     procedure LimparDadosClientDS;
@@ -30,7 +30,6 @@ type
     procedure ExcluirClientDS;
     procedure CancelarEdicaoClientDS;
     procedure CarregarEscola;
-    procedure FecharConexaoClientDS;
     
     property EscolaModelo: TEscolaModelo read FEscolaModelo write SetEscolaModelo;
   end;
@@ -49,11 +48,6 @@ destructor TCadEscolaController.Destroy;
 begin
   FreeAndNil(FEscolaModelo);
   inherited;
-end;
-
-function TCadEscolaController.VerificaClientDSSeEstaAtivo: Boolean;
-begin
-  Result := EscolaModelo.VerificaClientDSSeEstaAtivo;
 end;
 
 procedure TCadEscolaController.CancelarEdicaoClientDS;
@@ -97,11 +91,6 @@ end;
 procedure TCadEscolaController.ExcluirClientDS;
 begin
   EscolaModelo.ExcluirClientDS;
-end;
-
-procedure TCadEscolaController.FecharConexaoClientDS;
-begin
-  EscolaModelo.FecharConexaoClientDS;
 end;
 
 function TCadEscolaController.Gravar: Boolean;

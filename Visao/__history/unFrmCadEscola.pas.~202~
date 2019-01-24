@@ -219,7 +219,8 @@ begin
   begin
     ControladorEscola.ExcluirClientDS;
     LimparCampos;
-    edtEscolaCodigo.Text := '';
+    CarregarEntidadeEscola;
+    CarregarComponentesCadEscola;
     HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados;
     DesabilitarComponentesDados;
     btnEscolaPesquisar.Enabled := True;
@@ -237,13 +238,13 @@ end;
 //Métódo verifica as ocasiões que os BOTÕES ALTERAR e EXCLUIR devem serem habilitados ou não
 function TfrmCadEscola.HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados: Boolean;
 begin
-  if ControladorEscola.VerificaClientDSSeEstaAtivo then
+  if ControladorEscola.EscolaModelo.ObterClientDS.Active then
   begin
     if ControladorEscola.StatusInsertClientDS then
     begin
       btnEscolaAlterar.Enabled := False;
       btnEscolaExcluir.Enabled := False;
-      ControladorEscola.FecharConexaoClientDS;
+      ControladorEscola.EscolaModelo.ObterClientDS.Close;
       Result := False;
     end
     else

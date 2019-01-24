@@ -14,13 +14,12 @@ type
     procedure AbrirConexaoClientDS;
     procedure FecharConexaoClientDS;
     procedure ConsultaOrdenada(AIndiceComboBox: Integer);
-    procedure DesabilitarFilteredClientDS;
+    procedure LimparFiltroClientDS;
     procedure CarregarTodosRegistrosClientDS;
     procedure HabilitarFilteredClientDS;
 
     function DadosCDS: TClientDataSet;
     function CarregarConsultaClientDS(ACampoTabelaFiltrado: string; ADado: string): Boolean;
-    function VerificaClientDSSeEstaAtivo: Boolean;
 
     property EscolaModelo: TEscolaModelo read FEscolaModelo write SetEscolaModelo;
   end;
@@ -41,16 +40,16 @@ begin
   EscolaModelo.FecharConexaoClientDS;
 end;
 
-procedure TPesquisaEscolaController.DesabilitarFilteredClientDS;
+procedure TPesquisaEscolaController.LimparFiltroClientDS;
 begin
-  EscolaModelo.DesabilitarFilteredClientDS;
+  EscolaModelo.LimparFiltroClientDS;
 end;
 
 procedure TPesquisaEscolaController.SetEscolaModelo(const Value: TEscolaModelo);
 begin
   FEscolaModelo := Value;
 end;
-//Método para ordenação da lista de consulta por CÓDIGO, DESCRIÇÃO ou DATA DE CADASTRO
+//MÃ©todo para ordenaÃ§Ã£o da lista de consulta por CÃ“DIGO, DESCRIÃ‡ÃƒO ou DATA DE CADASTRO
 procedure TPesquisaEscolaController.AbrirConexaoClientDS;
 begin
   EscolaModelo.AbrirConexaoClientDS;
@@ -58,12 +57,7 @@ end;
 
 procedure TPesquisaEscolaController.HabilitarFilteredClientDS;
 begin
-  EscolaModelo.HabilitarFilteredClientDS;
-end;
-
-function TPesquisaEscolaController.VerificaClientDSSeEstaAtivo: Boolean;
-begin
-  Result := EscolaModelo.VerificaClientDSSeEstaAtivo;
+  EscolaModelo.CarregarFiltroClientDS;
 end;
 
 function TPesquisaEscolaController.CarregarConsultaClientDS(

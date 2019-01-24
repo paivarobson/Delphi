@@ -99,11 +99,10 @@ end;
 //(BOTÃO PESQUISAR)
 procedure TfrmPesquisaEscola.btnEscolaBuscarClick(Sender: TObject);
 begin
+  //Carregar Escola no ClientDataSet capturando o codigo da Escola pra carregar dentro do método
+
   ControladorEscola.AbrirConexaoClientDS;
-<<<<<<< HEAD
-  ControladorEscola.CarregarEscola;
-=======
->>>>>>> parent of 2bbf68c... Ajustes diversos
+  ControladorEscola.ConsultarEscolaPorCodigo;
   ControladorEscola.DesabilitarFilteredClientDS; //Desabilita filtro
   if rgEscolaPesquisar.ItemIndex = 0 then //Verifica se RadioButton selecionado para consulta é o CÓDIGO
   begin
@@ -142,7 +141,7 @@ begin
     frmCadEscola := TfrmCadEscola.Create(frmPrincipal);
   Close;
   frmCadEscola.Show;
-  frmCadEscola.CarregarEscola;
+  frmCadEscola.ConsultarEscolaPorCodigo;
   ControladorEscola.AbrirConexaoClientDS; //Certifica se manter a conexão aberta para que o dado clicado seja consultado
 end;
 //Evento para click do ENTER no campo de consulta por DATA DE CADASTRO

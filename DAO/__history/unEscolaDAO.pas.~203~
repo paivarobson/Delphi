@@ -26,18 +26,18 @@ type
     procedure AlterarEscolaClientDS;
     procedure CancelarEdicaoClientDS;
     procedure ExcluirClientDS;
-    procedure LimparDadosClientDS;
+    procedure LimparDadosClient;
     procedure DesabilitarFilteredClientDS;
     procedure HabilitarFilteredClientDS;
     procedure CarregarTodosRegistrosClientDS;
     procedure ConsultaOrdenada(AIndiceComboBox: Integer);
+    procedure FecharConexaoClientDS;
 
     function DevolverUltimoCodigo: Integer;
     function Gravar(AEscola: TEscolaModelo): Boolean;
     function ValidarCampos: Boolean;
     function CarregarConsultaClientDS(ACampoTabelaFiltrado: string; ADado: string): Boolean;
     function StatusInsertClientDS: Boolean;
-    function VerificaClientDSSeEstaAtivo: Boolean;
 
     property ClientDS: TClientDataSet read GetClientDS write SetClientDS;
 //    property EscolaDAO: TEscolaDAO read FEscolaDAO write SetEscolaDAO;
@@ -82,11 +82,6 @@ end;
 procedure TEscolaDAO.AlterarEscolaClientDS;
 begin
   fmdados.AlterarClientDS(ClientDS);
-end;
-
-function TEscolaDAO.VerificaClientDSSeEstaAtivo: Boolean;
-begin
-  Result := fmdados.VerificaClientDSSeEstaAtivo(ClientDS);
 end;
 
 procedure TEscolaDAO.CancelarEdicaoClientDS;
@@ -200,9 +195,9 @@ begin
   fmdados.CarregarTodosRegistrosClientDS(ClientDS);
 end;
 
-procedure TEscolaDAO.LimparDadosClientDS;
+procedure TEscolaDAO.LimparDadosClient;
 begin
-  fmdados.LimparDadosClientDS(ClientDS);
+  fmdados.LimparDadosClient(ClientDS);
 end;
 
 procedure TEscolaDAO.DesabilitarFilteredClientDS;

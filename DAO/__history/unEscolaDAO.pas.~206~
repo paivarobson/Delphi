@@ -37,7 +37,7 @@ type
     function ValidarCampos: Boolean;
     function CarregarConsultaClientDS(ACampoTabelaFiltrado: string; ADado: string): Boolean;
     function StatusInsertClientDS: Boolean;
-    function VerificaClientDSSeEstaAtivo: Boolean;
+    function AtivoInativoClientDS: Boolean;
 
     property ClientDS: TClientDataSet read GetClientDS write SetClientDS;
 //    property EscolaDAO: TEscolaDAO read FEscolaDAO write SetEscolaDAO;
@@ -84,9 +84,9 @@ begin
   fmdados.AlterarClientDS(ClientDS);
 end;
 
-function TEscolaDAO.VerificaClientDSSeEstaAtivo: Boolean;
+function TEscolaDAO.AtivoInativoClientDS: Boolean;
 begin
-  Result := fmdados.VerificaClientDSSeEstaAtivo(ClientDS);
+
 end;
 
 procedure TEscolaDAO.CancelarEdicaoClientDS;

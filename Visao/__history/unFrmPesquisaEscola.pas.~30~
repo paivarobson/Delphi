@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, Grids, DBGrids, StdCtrls, ComCtrls, ExtCtrls, unPesquisaEscolaController, unRelEscola;
+  Dialogs, Grids, DBGrids, StdCtrls, ComCtrls, DB, ExtCtrls, unPesquisaEscolaController, unRelEscola;
 
 type
   TfrmPesquisaEscola = class(TForm)
@@ -100,10 +100,6 @@ end;
 procedure TfrmPesquisaEscola.btnEscolaBuscarClick(Sender: TObject);
 begin
   ControladorEscola.AbrirConexaoClientDS;
-<<<<<<< HEAD
-  ControladorEscola.CarregarEscola;
-=======
->>>>>>> parent of 2bbf68c... Ajustes diversos
   ControladorEscola.DesabilitarFilteredClientDS; //Desabilita filtro
   if rgEscolaPesquisar.ItemIndex = 0 then //Verifica se RadioButton selecionado para consulta é o CÓDIGO
   begin
@@ -116,7 +112,13 @@ begin
     end
     else
     begin
-      if not ControladorEscola.CarregarConsultaClientDS('ESCCOD', edtEscolaBuscarCodigo.Text) then
+      if ControladorEscola.CarregarConsultaClientDS('ESCCOD', edtEscolaBuscarCodigo.Text) then
+      begin
+        ControladorEscola.LimparFiltroClientDS;
+        ControladorEscola.DadosCDS.Filter := 'ESCCOD = ' + QuotedStr(edtEscolaBuscarCodigo.Text); //Aplicação do filtro
+        ControladorEscola.HabilitarFilteredClientDS;
+      end
+      else
         ShowMessage('Registro não localizado. Verifique o código digitado e tente novamente.')
     end;
     edtEscolaBuscarCodigo.SetFocus; //Sempre será setado foco após a consulta por CÓDIGO
@@ -125,8 +127,14 @@ begin
   begin
     if not ControladorEscola.CarregarConsultaClientDS('ESCDATACAD',
       FormatDateTime('DD/MM/YYYY', dtpEscolaBuscarData.Date)) then
-      ShowMessage('Registro não localizado. Verifique a data consultada e tente novamente.');
-
+      ShowMessage('Registro não localizado. Verifique a data consultada e tente novamente.')
+    else
+    begin
+      ControladorEscola.LimparFiltroClientDS;
+      ControladorEscola.DadosCDS.Filter := 'ESCDATACAD = ' + QuotedStr(
+        FormatDateTime('DD/MM/YYYY', dtpEscolaBuscarData.Date)); //Aplicação do filtro
+      ControladorEscola.HabilitarFilteredClientDS;
+    end;
     dtpEscolaBuscarData.SetFocus; //Sempre será setado foco após a consulta por DATA
   end;
 end;
@@ -142,8 +150,7 @@ begin
     frmCadEscola := TfrmCadEscola.Create(frmPrincipal);
   Close;
   frmCadEscola.Show;
-  frmCadEscola.CarregarEscola;
-  ControladorEscola.AbrirConexaoClientDS; //Certifica se manter a conexão aberta para que o dado clicado seja consultado
+  ControladorEscola.DadosCDS.Open; //Certifica se manter a conexão aberta para que o dado clicado seja consultado
 end;
 //Evento para click do ENTER no campo de consulta por DATA DE CADASTRO
 procedure TfrmPesquisaEscola.dtpEscolaBuscarDataKeyPress(Sender: TObject;
@@ -156,7 +163,7 @@ end;
 procedure TfrmPesquisaEscola.edtEscolaBuscarCodigoChange(Sender: TObject);
 begin
   if (edtEscolaBuscarCodigo.Text = EmptyStr) then
-    ControladorEscola.DesabilitarFilteredClientDS;
+    ControladorEscola.LimparFiltroClientDS;
 end;
 //Evento para permitir somente números e click do ENTER no campo de consulta por CÓDIGO
 procedure TfrmPesquisaEscola.edtEscolaBuscarCodigoKeyPress(Sender: TObject;

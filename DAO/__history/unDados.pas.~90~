@@ -49,17 +49,15 @@ type
     procedure FecharConexaoClientDS(AClientDataSet: TClientDataset);
     procedure NovoCadastroClientDS(AClientDataSet: TClientDataset);
     procedure AlterarClientDS(AClientDataSet: TClientDataset);
-    procedure LimparDadosClientDS(AClientDataSet: TClientDataset);
+    procedure LimparDadosClient(AClientDataSet: TClientDataset);
     procedure CancelarEdicaoClientDS(AClientDataSet: TClientDataset);
     procedure ExcluirClientDS(AClientDataSet: TClientDataset);
     procedure DesabilitarFilteredClientDS(AClientDataSet: TClientDataset);
     procedure HabilitarFilteredClientDS(AClientDataSet: TClientDataset);
     procedure CarregarTodosRegistrosClientDS(AClientDataSet: TClientDataset);
 
-
     function GravarDB(AClientDataSet: TClientDataSet): Boolean;
-    function StatusInsertClientDS(AClientDataSet: TClientDataset): Boolean;
-    function VerificaClientDSSeEstaAtivo(AClientDataSet: TClientDataset): Boolean; 
+    function StatusInsertClientDS(AClientDataSet: TClientDataset): Boolean; 
 
   end;
 
@@ -89,7 +87,7 @@ begin
   FreeAndNil(FConexaoBDEscola);
 end;
 //Método NOVO CADASTRO
-procedure Tfmdados.NovoCadastroClientDS(AClientDataSet: TClientDataset);
+procedure Tfmdados.NovoCadastroClientDS;
 begin
   AClientDataSet.Open;
   AClientDataSet.Append;
@@ -102,6 +100,7 @@ begin
   else
     Result := False;
 end;
+
 //Método GRAVAR
 function Tfmdados.GravarDB(AClientDataSet: TClientDataset):Boolean;
 begin
@@ -109,7 +108,7 @@ begin
   
   Result := AClientDataSet.ApplyUpdates(0) = 0;
 end;
-procedure Tfmdados.LimparDadosClientDS(AClientDataSet: TClientDataset);
+procedure Tfmdados.LimparDadosClient(AClientDataSet: TClientDataset);
 begin
   AClientDataSet.ClearFields;
 end;
@@ -128,14 +127,6 @@ end;
 procedure Tfmdados.AlterarClientDS(AClientDataSet: TClientDataset);
 begin
   AClientDataSet.Edit;
-end;
-
-function Tfmdados.VerificaClientDSSeEstaAtivo(AClientDataSet: TClientDataset): Boolean;
-begin
-  if AClientDataSet.Active then
-    Result := True
-  else
-    Result := False;  
 end;
 
 procedure Tfmdados.CancelarEdicaoClientDS(AClientDataSet: TClientDataset);

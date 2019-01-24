@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, Grids, DBGrids, StdCtrls, ComCtrls, ExtCtrls, unPesquisaEscolaController, unRelEscola;
+  Dialogs, Grids, DBGrids, StdCtrls, ComCtrls, DB, ExtCtrls, unPesquisaEscolaController, unRelEscola;
 
 type
   TfrmPesquisaEscola = class(TForm)
@@ -55,13 +55,13 @@ uses
   unFrmPrincipal, unFrmCadEscola;
 
 {$R *.dfm}
-//MÈtodo executado logo depois do Construtor
+//M√©todo executado logo depois do Construtor
 procedure TfrmPesquisaEscola.AfterConstruction;
 begin
   inherited;
-  ControladorEscola := TPesquisaEscolaController.Create; //Inst„ncia da Classe Controller
+  ControladorEscola := TPesquisaEscolaController.Create; //Inst√£ncia da Classe Controller
 end;
-//(BOT√O IMPRIMIR)
+//(BOT√ÉO IMPRIMIR)
 procedure TfrmPesquisaEscola.btnEscolaImprimirClick(Sender: TObject);
 begin
   Application.CreateForm(TfrmRelEscola, frmRelEscola);
@@ -70,67 +70,75 @@ begin
   else
     frmRelEscola.RLReportEscola.Print
 end;
-//(BOT√O NOVO CADASTRO)
+//(BOT√ÉO NOVO CADASTRO)
 procedure TfrmPesquisaEscola.btnEscolaNovoCadastroClick(Sender: TObject);
 begin
-  if not Assigned(frmCadEscola) then //Verifica se o Form CADASTRO ESCOLA est· FECHADO para ser CRIADO
+  if not Assigned(frmCadEscola) then //Verifica se o Form CADASTRO ESCOLA est√° FECHADO para ser CRIADO
     frmCadEscola := TfrmCadEscola.Create(frmPrincipal);
   frmCadEscola.Show;
-  frmCadEscola.btnEscolaNovoCadastroClick(Sender); //Evento do bot„o NOVO CADASTRO do Form CADASTRO ESCOLA
+  frmCadEscola.btnEscolaNovoCadastroClick(Sender); //Evento do bot√£o NOVO CADASTRO do Form CADASTRO ESCOLA
   Close;
 end;
 
 procedure TfrmPesquisaEscola.FormShow(Sender: TObject);
 begin
-  rgEscolaPesquisar.SetFocus; //Inicia o Form setado a opÁ„o de CONSULTA POR C”DIGO
+  rgEscolaPesquisar.SetFocus; //Inicia o Form setado a op√ß√£o de CONSULTA POR C√ìDIGO
   dtpEscolaBuscarData.DateTime := StrToDateTime(FormatDateTime('DD/MM/YYYY', Now)); //Seta data atual do SO
 end;
 //(COMBOBOX 'ORDENAR POR')
 procedure TfrmPesquisaEscola.ComboBoxEscolaConsultaOrdenadaChange(
   Sender: TObject);
 begin
-  ConsultaOrdenada(ComboBoxEscolaConsultaOrdenada.ItemIndex); //MÈtodo ordenador conforme a seleÁ„o da COMBOBOX
+  ConsultaOrdenada(ComboBoxEscolaConsultaOrdenada.ItemIndex); //M√©todo ordenador conforme a sele√ß√£o da COMBOBOX
 end;
-//MÈtodo para ordenaÁ„o da lista de consulta por C”DIGO, DESCRI«√O ou DATA DE CADASTRO
+//M√©todo para ordena√ß√£o da lista de consulta por C√ìDIGO, DESCRI√á√ÉO ou DATA DE CADASTRO
 procedure TfrmPesquisaEscola.ConsultaOrdenada(AIndiceComboBox: Integer);
 begin
   ControladorEscola.ConsultaOrdenada(AIndiceComboBox);
 end;
-//(BOT√O PESQUISAR)
+//(BOT√ÉO PESQUISAR)
 procedure TfrmPesquisaEscola.btnEscolaBuscarClick(Sender: TObject);
 begin
   ControladorEscola.AbrirConexaoClientDS;
-<<<<<<< HEAD
-  ControladorEscola.CarregarEscola;
-=======
->>>>>>> parent of 2bbf68c... Ajustes diversos
-  ControladorEscola.DesabilitarFilteredClientDS; //Desabilita filtro
-  if rgEscolaPesquisar.ItemIndex = 0 then //Verifica se RadioButton selecionado para consulta È o C”DIGO
+  ControladorEscola.LimparFiltroClientDS; //Desabilita filtro
+  if rgEscolaPesquisar.ItemIndex = 0 then //Verifica se RadioButton selecionado para consulta √© o C√ìDIGO
   begin
-    edtEscolaBuscarCodigo.SelectAll; //Selecionar todo conte˙do uqe Edit CÛdigo possuir
+    edtEscolaBuscarCodigo.SelectAll; //Selecionar todo conte√∫do uqe Edit C√≥digo possuir
     if (edtEscolaBuscarCodigo.Text = '') then
     begin
-      ControladorEscola.DesabilitarFilteredClientDS;;
+      ControladorEscola.LimparFiltroClientDS;;
       ControladorEscola.CarregarTodosRegistrosClientDS; //Exibe todos os registros se a consulta for vazia
-      ControladorEscola.HabilitarFilteredClientDS; //Habilita filtro
+      ControladorEscola.CarregarFiltroClientDS; //Habilita filtro
     end
     else
     begin
-      if not ControladorEscola.CarregarConsultaClientDS('ESCCOD', edtEscolaBuscarCodigo.Text) then
-        ShowMessage('Registro n„o localizado. Verifique o cÛdigo digitado e tente novamente.')
+      if ControladorEscola.CarregarConsultaClientDS('ESCCOD', edtEscolaBuscarCodigo.Text) then
+      begin
+        ControladorEscola.LimparFiltroClientDS;
+        ControladorEscola.DadosCDS.Filter := 'ESCCOD = ' + QuotedStr(edtEscolaBuscarCodigo.Text); //Aplica√ß√£o do filtro
+        ControladorEscola.CarregarFiltroClientDS;
+      end
+      else
+        ShowMessage('Registro n√£o localizado. Verifique o c√≥digo digitado e tente novamente.')
     end;
-    edtEscolaBuscarCodigo.SetFocus; //Sempre ser· setado foco apÛs a consulta por C”DIGO
+    edtEscolaBuscarCodigo.SetFocus; //Sempre ser√° setado foco ap√≥s a consulta por C√ìDIGO
   end
   else
   begin
     if not ControladorEscola.CarregarConsultaClientDS('ESCDATACAD',
       FormatDateTime('DD/MM/YYYY', dtpEscolaBuscarData.Date)) then
-      ShowMessage('Registro n„o localizado. Verifique a data consultada e tente novamente.');
-
-    dtpEscolaBuscarData.SetFocus; //Sempre ser· setado foco apÛs a consulta por DATA
+      ShowMessage('Registro n√£o localizado. Verifique a data consultada e tente novamente.')
+    else
+    begin
+      ControladorEscola.LimparFiltroClientDS;
+      ControladorEscola.DadosCDS.Filter := 'ESCDATACAD = ' + QuotedStr(
+        FormatDateTime('DD/MM/YYYY', dtpEscolaBuscarData.Date)); //Aplica√ß√£o do filtro
+      ControladorEscola.CarregarFiltroClientDS;
+    end;
+    dtpEscolaBuscarData.SetFocus; //Sempre ser√° setado foco ap√≥s a consulta por DATA
   end;
 end;
-//(BOT√O TELA PRINCIPAL)
+//(BOT√ÉO TELA PRINCIPAL)
 procedure TfrmPesquisaEscola.btnEscolaConsultaFecharClick(Sender: TObject);
 begin
   Close;
@@ -138,12 +146,11 @@ end;
 //Evento Click do DBGRID. Fecha o Form atual para abrir o Form CADASTRO ESCOLA
 procedure TfrmPesquisaEscola.DBGridListaEscolaDblClick(Sender: TObject);
 begin
-  if not Assigned(frmCadEscola) then //Verifica se o Form CADASTRO ESCOLA est· FECHADO para ser CRIADO
+  if not Assigned(frmCadEscola) then //Verifica se o Form CADASTRO ESCOLA est√° FECHADO para ser CRIADO
     frmCadEscola := TfrmCadEscola.Create(frmPrincipal);
   Close;
   frmCadEscola.Show;
-  frmCadEscola.CarregarEscola;
-  ControladorEscola.AbrirConexaoClientDS; //Certifica se manter a conex„o aberta para que o dado clicado seja consultado
+  ControladorEscola.DadosCDS.Open; //Certifica se manter a conex√£o aberta para que o dado clicado seja consultado
 end;
 //Evento para click do ENTER no campo de consulta por DATA DE CADASTRO
 procedure TfrmPesquisaEscola.dtpEscolaBuscarDataKeyPress(Sender: TObject;
@@ -152,27 +159,27 @@ begin
   if Key = #13 then
     btnEscolaBuscarClick(Sender)
 end;
-//Evento para carregar todos os registros quando limpar conte˙do do Edit
+//Evento para carregar todos os registros quando limpar conte√∫do do Edit
 procedure TfrmPesquisaEscola.edtEscolaBuscarCodigoChange(Sender: TObject);
 begin
   if (edtEscolaBuscarCodigo.Text = EmptyStr) then
-    ControladorEscola.DesabilitarFilteredClientDS;
+    ControladorEscola.LimparFiltroClientDS;
 end;
-//Evento para permitir somente n˙meros e click do ENTER no campo de consulta por C”DIGO
+//Evento para permitir somente n√∫meros e click do ENTER no campo de consulta por C√ìDIGO
 procedure TfrmPesquisaEscola.edtEscolaBuscarCodigoKeyPress(Sender: TObject;
   var Key: Char);
 var
   keyAux: Char;
 begin
-  keyAux := Key; //Vari·vel auxiliar para fazer nova verificaÁ„o depois de ser limpado na primeira verificaÁ„o
+  keyAux := Key; //Vari√°vel auxiliar para fazer nova verifica√ß√£o depois de ser limpado na primeira verifica√ß√£o
   if not (Key in ['0'..'9', #8]) then
     Key := #0;
-  dtpEscolaBuscarDataKeyPress(Sender, KeyAux); //MÈtodo permite aÁ„o da tecla ENTER
+  dtpEscolaBuscarDataKeyPress(Sender, KeyAux); //M√©todo permite a√ß√£o da tecla ENTER
 end;
-//Habilitar campos de consulta C”DIGO ou DATA DE CADASTRO conforme seleÁ„o correspondente dos RadioButtons
+//Habilitar campos de consulta C√ìDIGO ou DATA DE CADASTRO conforme sele√ß√£o correspondente dos RadioButtons
 procedure TfrmPesquisaEscola.rgEscolaPesquisarClick(Sender: TObject);
 begin
-  if rgEscolaPesquisar.ItemIndex = 0 then //ItemIndex = 0 = CÛdigo
+  if rgEscolaPesquisar.ItemIndex = 0 then //ItemIndex = 0 = C√≥digo
   begin
     edtEscolaBuscarCodigo.Enabled := True;
     dtpEscolaBuscarData.Enabled := False;
@@ -193,7 +200,7 @@ procedure TfrmPesquisaEscola.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   Action := caFree;
-  Release; //Libera o Form da memÛria permitindo a execuÁ„o da fila antes que receba o Free
+  Release; //Libera o Form da mem√≥ria permitindo a execu√ß√£o da fila antes que receba o Free
   frmPesquisaEscola := nil;
 end;
 
