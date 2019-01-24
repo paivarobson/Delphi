@@ -36,7 +36,7 @@ type
     function Gravar(AEscola: TEscolaModelo): Boolean;
     function ValidarCampos: Boolean;
     function CarregarConsultaClientDS(ACampoTabelaFiltrado: string; ADado: string): Boolean;
-    function StatusInsertClientDS: Boolean;
+    function StatusInsertEditClientDS: Boolean;
     function VerificaClientDSSeEstaAtivo: Boolean;
 
     property ClientDS: TClientDataSet read GetClientDS write SetClientDS;
@@ -220,9 +220,9 @@ begin
   FClientDS := Value;
 end;
 
-function TEscolaDAO.StatusInsertClientDS: Boolean;
+function TEscolaDAO.StatusInsertEditClientDS: Boolean;
 begin
-  Result := fmdados.StatusInsertClientDS(ClientDS);
+  Result := fmdados.StatusInsertEditClientDS(ClientDS);
 end;
 
 //Verificação de campos obrigatórios se estão vazios

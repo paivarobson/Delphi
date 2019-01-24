@@ -58,7 +58,7 @@ type
 
 
     function GravarDB(AClientDataSet: TClientDataSet): Boolean;
-    function StatusInsertClientDS(AClientDataSet: TClientDataset): Boolean;
+    function StatusInsertEditClientDS(AClientDataSet: TClientDataset): Boolean;
     function VerificaClientDSSeEstaAtivo(AClientDataSet: TClientDataset): Boolean; 
 
   end;
@@ -95,9 +95,9 @@ begin
   AClientDataSet.Append;
 end;
 
-function Tfmdados.StatusInsertClientDS(AClientDataSet: TClientDataset): Boolean;
+function Tfmdados.StatusInsertEditClientDS(AClientDataSet: TClientDataset): Boolean;
 begin
-  if AClientDataSet.State in [dsInsert] then
+  if AClientDataSet.State in [dsInsert, dsEdit] then
     Result := True
   else
     Result := False;

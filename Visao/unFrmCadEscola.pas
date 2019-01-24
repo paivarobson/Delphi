@@ -239,7 +239,7 @@ function TfrmCadEscola.HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados: 
 begin
   if ControladorEscola.VerificaClientDSSeEstaAtivo then
   begin
-    if ControladorEscola.StatusInsertClientDS then
+    if ControladorEscola.StatusInsertEditClientDS then
     begin
       btnEscolaAlterar.Enabled := False;
       btnEscolaExcluir.Enabled := False;

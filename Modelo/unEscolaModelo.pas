@@ -66,7 +66,7 @@ type
     function CarregarDadosParaClientDS: Boolean;
     function ValidarCampos: Boolean;
     function CarregarConsultaClientDS(ACampoTabelaFiltrado: string; ADado: string): Boolean;
-    function StatusInsertClientDS: Boolean;
+    function StatusInsertEditClientDS: Boolean;
     function VerificaClientDSSeEstaAtivo: Boolean;
 
     property Codigo: Integer read GetCodigo write SetCodigo;
@@ -167,9 +167,9 @@ begin
   FRua := Valor;
 end;
 
-function TEscolaModelo.StatusInsertClientDS: Boolean;
+function TEscolaModelo.StatusInsertEditClientDS: Boolean;
 begin
-  Result := FEscolaDao.StatusInsertClientDS;
+  Result := FEscolaDao.StatusInsertEditClientDS;
 end;
 
 function TEscolaModelo.ValidarCampos: Boolean;

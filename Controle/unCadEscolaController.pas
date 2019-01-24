@@ -20,7 +20,7 @@ type
     function CarregarDadosParaClientDS: Boolean;
     function ValidarCampos: Boolean;
     function Gravar: Boolean;
-    function StatusInsertClientDS: Boolean;
+    function StatusInsertEditClientDS: Boolean;
     function VerificaClientDSSeEstaAtivo: Boolean;
 
     procedure LimparCampos;
@@ -76,9 +76,9 @@ begin
   FEscolaModelo := Value;
 end;
 
-function TCadEscolaController.StatusInsertClientDS: Boolean;
+function TCadEscolaController.StatusInsertEditClientDS: Boolean;
 begin
-  Result := EscolaModelo.StatusInsertClientDS;
+  Result := EscolaModelo.StatusInsertEditClientDS;
 end;
 
 function TCadEscolaController.ValidarCampos: Boolean;

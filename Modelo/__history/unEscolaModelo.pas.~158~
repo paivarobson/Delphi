@@ -48,16 +48,16 @@ type
 
     procedure AbrirConexaoClientDS;
     procedure FecharConexaoClientDS;
-    procedure Carregar(ACodigo: Integer);
+    procedure CarregarEscola;
     procedure NovoCadastroClientDS;
     procedure CancelarEdicaoClientDS;
     procedure AlterarClientDS;
     procedure ExcluirClientDS;
     procedure GravarEscolaClientDS;
     procedure LimparCampos;
-    procedure LimparDadosClient;
-    procedure LimparFiltroClientDS;
-    procedure CarregarFiltroClientDS;
+    procedure LimparDadosClientDS;
+    procedure DesabilitarFilteredClientDS;
+    procedure HabilitarFilteredClientDS;
     procedure CarregarTodosRegistrosClientDS;
     procedure ConsultaOrdenada(AIndiceComboBox: Integer);
 
@@ -66,6 +66,8 @@ type
     function CarregarDadosParaClientDS: Boolean;
     function ValidarCampos: Boolean;
     function CarregarConsultaClientDS(ACampoTabelaFiltrado: string; ADado: string): Boolean;
+    function StatusInsertClientDS: Boolean;
+    function VerificaClientDSSeEstaAtivo: Boolean;
 
     property Codigo: Integer read GetCodigo write SetCodigo;
     property Nome: string read GetNome write SetNome;
@@ -99,14 +101,19 @@ begin
   FEscolaDao.AlterarEscolaClientDS;
 end;
 
+function TEscolaModelo.VerificaClientDSSeEstaAtivo: Boolean;
+begin
+  Result := FEscolaDao.VerificaClientDSSeEstaAtivo;
+end;
+
 procedure TEscolaModelo.CancelarEdicaoClientDS;
 begin
   FEscolaDao.CancelarEdicaoClientDS;
 end;
 
-procedure TEscolaModelo.Carregar(ACodigo: Integer);
+procedure TEscolaModelo.CarregarEscola;
 begin
-  FEscolaDao.Carregar(Self, ACodigo);
+  FEscolaDao.CarregarEscola(Self);
 end;
 
 constructor TEscolaModelo.Create;
@@ -158,6 +165,11 @@ end;
 procedure TEscolaModelo.SetRua(const Valor: string);
 begin
   FRua := Valor;
+end;
+
+function TEscolaModelo.StatusInsertClientDS: Boolean;
+begin
+  Result := FEscolaDao.StatusInsertClientDS;
 end;
 
 function TEscolaModelo.ValidarCampos: Boolean;
@@ -231,14 +243,14 @@ begin
   Cidade := '';
 end;
 
-procedure TEscolaModelo.LimparDadosClient;
+procedure TEscolaModelo.LimparDadosClientDS;
 begin
-  FEscolaDao.LimparDadosClient;
+  FEscolaDao.LimparDadosClientDS;
 end;
 
-procedure TEscolaModelo.LimparFiltroClientDS;
+procedure TEscolaModelo.DesabilitarFilteredClientDS;
 begin
-  FEscolaDao.LimparFiltroClientDS;
+  FEscolaDao.DesabilitarFilteredClientDS;
 end;
 
 function TEscolaModelo.CarregarDadosParaClientDS: Boolean;
@@ -252,9 +264,9 @@ begin
   Result := FEscolaDAO.CarregarConsultaClientDS(ACampoTabelaFiltrado, ADado);
 end;
 
-procedure TEscolaModelo.CarregarFiltroClientDS;
+procedure TEscolaModelo.HabilitarFilteredClientDS;
 begin
-  FEscolaDao.CarregarFiltroClientDS;
+  FEscolaDao.HabilitarFilteredClientDS;
 end;
 
 procedure TEscolaModelo.CarregarTodosRegistrosClientDS;

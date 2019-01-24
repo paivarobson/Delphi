@@ -3,7 +3,8 @@ unit unEscolaDAO;
 interface
 
 uses
-  unDados, SqlExpr, SysUtils, DBClient, unEscolaModelo, Classes, Dialogs, StdCtrls;
+  unDados, SqlExpr, SysUtils, DBClient, unEscolaModelo, Classes, Dialogs, DB,
+  StdCtrls;
 
 type
   TEscolaDAO = class
@@ -19,14 +20,15 @@ type
     procedure AbrirConexaoClientDS;
     procedure FecharConexaoClientDS;
     procedure Carregar(AEscolaModelo: TEscolaModelo; ACodigo: Integer);
+    procedure CarregarEscola(AEscolaModelo: TEscolaModelo);
     procedure GravarEscolaClientDS;
     procedure NovoCadastroClientDS;
     procedure AlterarEscolaClientDS;
     procedure CancelarEdicaoClientDS;
     procedure ExcluirClientDS;
-    procedure LimparDadosClient;
-    procedure LimparFiltroClientDS;
-    procedure CarregarFiltroClientDS;
+    procedure LimparDadosClientDS;
+    procedure DesabilitarFilteredClientDS;
+    procedure HabilitarFilteredClientDS;
     procedure CarregarTodosRegistrosClientDS;
     procedure ConsultaOrdenada(AIndiceComboBox: Integer);
 
@@ -34,6 +36,8 @@ type
     function Gravar(AEscola: TEscolaModelo): Boolean;
     function ValidarCampos: Boolean;
     function CarregarConsultaClientDS(ACampoTabelaFiltrado: string; ADado: string): Boolean;
+    function StatusInsertClientDS: Boolean;
+    function VerificaClientDSSeEstaAtivo: Boolean;
 
     property ClientDS: TClientDataSet read GetClientDS write SetClientDS;
 //    property EscolaDAO: TEscolaDAO read FEscolaDAO write SetEscolaDAO;
@@ -62,27 +66,45 @@ end;
 
 procedure TEscolaDAO.ExcluirClientDS;
 begin
-  fmdados.ExcluirClientDS;
+  fmdados.ExcluirClientDS(ClientDS);
 end;
 
 procedure TEscolaDAO.AbrirConexaoClientDS;
 begin
-  fmdados.AbrirConexaoClientDS;
+  fmdados.AbrirConexaoClientDS(ClientDS);
 end;
 
 procedure TEscolaDAO.FecharConexaoClientDS;
 begin
-  fmdados.FecharConexaoClientDS;
+  fmdados.FecharConexaoClientDS(ClientDS);
 end;
 
 procedure TEscolaDAO.AlterarEscolaClientDS;
 begin
-  fmdados.AlterarClientDS;
+  fmdados.AlterarClientDS(ClientDS);
+end;
+
+function TEscolaDAO.VerificaClientDSSeEstaAtivo: Boolean;
+begin
+  Result := fmdados.VerificaClientDSSeEstaAtivo(ClientDS);
 end;
 
 procedure TEscolaDAO.CancelarEdicaoClientDS;
 begin
-  fmdados.CancelarEdicaoClientDS;
+  fmdados.CancelarEdicaoClientDS(ClientDS);
+end;
+
+procedure TEscolaDAO.CarregarEscola(AEscolaModelo: TEscolaModelo);
+begin
+  AEscolaModelo.Codigo       := ClientDS.Fields[0].AsInteger;
+  AEscolaModelo.Nome         := ClientDS.Fields[1].AsString;
+  AEscolaModelo.DataCadastro := ClientDS.Fields[2].AsDateTime;
+  AEscolaModelo.Cep          := ClientDS.Fields[3].AsString;
+  AEscolaModelo.Rua          := ClientDS.Fields[4].AsString;
+  AEscolaModelo.Numero       := ClientDS.Fields[5].AsString;
+  AEscolaModelo.Complemento  := ClientDS.Fields[6].AsString;
+  AEscolaModelo.Bairro       := ClientDS.Fields[7].AsString;
+  AEscolaModelo.Cidade       := ClientDS.Fields[8].AsString;
 end;
 
 procedure TEscolaDAO.Carregar(AEscolaModelo: TEscolaModelo; ACodigo: Integer);
@@ -157,39 +179,53 @@ end;
 function TEscolaDAO.CarregarConsultaClientDS(ACampoTabelaFiltrado: string;
   ADado: string): Boolean;
 begin
-  Result := ClientDS.Locate(ACampoTabelaFiltrado, ADado, [])
+  if ClientDS.Locate(ACampoTabelaFiltrado, ADado, []) then
+  begin
+    ClientDS.Filtered := False;
+    ClientDS.Filter := ACampoTabelaFiltrado + ' = ' + QuotedStr(ADado); //Aplicação do filtro
+    ClientDS.Filtered := True;
+    Result := True;
+  end
+  else
+    Result := False
 end;
 
-procedure TEscolaDAO.CarregarFiltroClientDS;
+procedure TEscolaDAO.HabilitarFilteredClientDS;
 begin
-  fmdados.CarregarFiltroClientDS;
+  fmdados.HabilitarFilteredClientDS(ClientDS);
 end;
 
 procedure TEscolaDAO.CarregarTodosRegistrosClientDS;
 begin
-  fmdados.CarregarTodosRegistrosClientDS;
+  fmdados.CarregarTodosRegistrosClientDS(ClientDS);
 end;
 
-procedure TEscolaDAO.LimparDadosClient;
+procedure TEscolaDAO.LimparDadosClientDS;
 begin
-  fmdados.LimparDadosClient;
+  fmdados.LimparDadosClientDS(ClientDS);
 end;
 
-procedure TEscolaDAO.LimparFiltroClientDS;
+procedure TEscolaDAO.DesabilitarFilteredClientDS;
 begin
-  fmdados.LimparFiltroClientDS;
+  fmdados.DesabilitarFilteredClientDS(ClientDS);
 end;
 
 procedure TEscolaDAO.NovoCadastroClientDS;
 begin
-  fmdados.NovoCadastroClientDS;
+  fmdados.NovoCadastroClientDS(ClientDS);
 end;
 
 procedure TEscolaDAO.SetClientDS(const Value: TClientDataSet);
 begin
   FClientDS := Value;
 end;
-//VerificaÃ§Ã£o de campos obrigatÃ³rios se estÃ£o vazios
+
+function TEscolaDAO.StatusInsertClientDS: Boolean;
+begin
+  Result := fmdados.StatusInsertClientDS(ClientDS);
+end;
+
+//Verificação de campos obrigatórios se estão vazios
 function TEscolaDAO.ValidarCampos: Boolean;
 var
   i: Integer;
@@ -203,25 +239,25 @@ begin
         (ClientDS.Fields.Fields[i].AsString = EmptyStr) then
         Campos.Add('- ' + ClientDS.Fields.Fields[i].DisplayName) //Armazena o NOME DO CAMPO dentro de uma LISTA
     end;
-    if (Campos.Count > 0) then //Verifica se hÃ¡ algum campo obrigatÃ³rio vazio
+    if (Campos.Count > 0) then //Verifica se há algum campo obrigatório vazio
     begin
       Result := False;
-      ShowMessage('Preencha os campos obrigatÃ³rios:' + #13 + #13 + Campos.Text); //Exibe os CAMPOS por NOME
+      ShowMessage('Preencha os campos obrigatórios:' + #13 + #13 + Campos.Text); //Exibe os CAMPOS por NOME
     end
     else
       Result := True;
   finally
-    Campos.Free; //Libera a lista da memÃ³ria
+    Campos.Free; //Libera a lista da memória
   end;
 end;
 
 //############# PESQUISA ESCOLA ################
-//MÃ©todo para ordenaÃ§Ã£o da lista de consulta por CÃ“DIGO, DESCRIÃ‡ÃƒO ou DATA DE CADASTRO
+//Método para ordenação da lista de consulta por CÓDIGO, DESCRIÇÃO ou DATA DE CADASTRO
 procedure TEscolaDAO.ConsultaOrdenada(AIndiceComboBox: Integer);
 begin
   case AIndiceComboBox of
-    0: ClientDS.IndexFieldNames := 'ESCCOD'; //Ordena por CÃ“DIGO
-    1: ClientDS.IndexFieldNames := 'ESCNOME'; //Ordena por DESCRIÃ‡ÃƒO
+    0: ClientDS.IndexFieldNames := 'ESCCOD'; //Ordena por CÓDIGO
+    1: ClientDS.IndexFieldNames := 'ESCNOME'; //Ordena por DESCRIÇÃO
     2: ClientDS.IndexFieldNames := 'ESCDATACAD'; //Ordena por DATA DE CADASTRO
   end;
 end;
