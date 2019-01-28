@@ -20,7 +20,6 @@ object frmCadPadrao: TfrmCadPadrao
     Height = 25
     Caption = 'Novo cadastro'
     TabOrder = 0
-    OnClick = btnEscolaNovoCadastroClick
   end
   object btnEscolaGravar: TButton
     Left = 381

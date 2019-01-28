@@ -1,0 +1,43 @@
+unit unFrmCadPadrao;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls;
+
+type
+  TfrmCadPadrao = class(TForm)
+    btnEscolaNovoCadastro: TButton;
+    btnEscolaGravar: TButton;
+    btnEscolaAlterar: TButton;
+    btnEscolaExcluir: TButton;
+    btnEscolaCancelar: TButton;
+    btnEscolaLimpar: TButton;
+    btnEscolaFechar: TButton;
+    procedure btnEscolaNovoCadastroClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmCadPadrao: TfrmCadPadrao;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmCadPadrao.btnEscolaNovoCadastroClick(Sender: TObject);
+begin
+  Controlador.NovoCadastroClientDS;
+  HabilitarDesabilitarComponentesDados; //Habilita os componentes necessários para NOVO CADASTRO
+  edtEscolaNome.SetFocus;
+  LimparCampos; //Limpa os campos necessários para NOVO CADASTRO caso possuam algum dado
+  ControladorEscola.EscolaModelo.Codigo := ControladorEscola.DevolverUltimoCodigo + 1; //Aplica o CÓDIGO IDENTIFICADOR
+  edtEscolaCodigo.Text := IntToStr(ControladorEscola.EscolaModelo.Codigo);
+  cxDateEditEscolaDataCadastro.Text := FormatDateTime('DD/MM/YYYY', Now); //Atribui DATA ATUAL do SO
+end;
+
+end.

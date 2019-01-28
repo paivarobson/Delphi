@@ -15,16 +15,15 @@ object frmCadPadrao: TfrmCadPadrao
   TextHeight = 13
   object btnEscolaNovoCadastro: TButton
     Left = 292
-    Top = 47
+    Top = 8
     Width = 83
     Height = 25
     Caption = 'Novo cadastro'
     TabOrder = 0
-    OnClick = btnEscolaNovoCadastroClick
   end
   object btnEscolaGravar: TButton
     Left = 381
-    Top = 47
+    Top = 8
     Width = 46
     Height = 25
     Caption = 'Gravar'
@@ -33,7 +32,7 @@ object frmCadPadrao: TfrmCadPadrao
   end
   object btnEscolaAlterar: TButton
     Left = 433
-    Top = 47
+    Top = 8
     Width = 54
     Height = 25
     Caption = 'Alterar'
@@ -41,7 +40,7 @@ object frmCadPadrao: TfrmCadPadrao
   end
   object btnEscolaExcluir: TButton
     Left = 608
-    Top = 47
+    Top = 8
     Width = 50
     Height = 25
     Caption = 'Excluir'
@@ -49,7 +48,7 @@ object frmCadPadrao: TfrmCadPadrao
   end
   object btnEscolaCancelar: TButton
     Left = 547
-    Top = 47
+    Top = 8
     Width = 55
     Height = 25
     Caption = 'Cancelar'
@@ -58,7 +57,7 @@ object frmCadPadrao: TfrmCadPadrao
   end
   object btnEscolaLimpar: TButton
     Left = 493
-    Top = 47
+    Top = 8
     Width = 48
     Height = 25
     Caption = 'Limpar'
@@ -67,7 +66,7 @@ object frmCadPadrao: TfrmCadPadrao
   end
   object btnEscolaFechar: TButton
     Left = 664
-    Top = 47
+    Top = 8
     Width = 67
     Height = 25
     Caption = 'Fechar'

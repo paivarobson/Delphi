@@ -6,7 +6,7 @@ object frmCadEscola: TfrmCadEscola
   BorderStyle = bsSingle
   Caption = 'Cadastro de Escola'
   ClientHeight = 500
-  ClientWidth = 800
+  ClientWidth = 681
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,68 +20,67 @@ object frmCadEscola: TfrmCadEscola
   Visible = True
   WindowState = wsMaximized
   OnClose = FormClose
-  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object lblEscolaCodigo: TLabel
-    Left = 96
-    Top = 89
+    Left = 88
+    Top = 81
     Width = 37
     Height = 13
     Caption = 'C'#243'digo:'
   end
   object lblEscolaNome: TLabel
-    Left = 159
-    Top = 89
+    Left = 151
+    Top = 81
     Width = 34
     Height = 13
     Caption = 'Escola:'
   end
   object lblEscolaDataCadastro: TLabel
-    Left = 546
-    Top = 89
+    Left = 538
+    Top = 81
     Width = 87
     Height = 13
     Caption = 'Data de cadastro:'
   end
   object lblEscolaEndRua: TLabel
-    Left = 171
-    Top = 134
+    Left = 163
+    Top = 126
     Width = 23
     Height = 13
     Caption = 'Rua:'
   end
   object lblEscolaEndNumero: TLabel
-    Left = 602
-    Top = 134
+    Left = 594
+    Top = 126
     Width = 41
     Height = 13
     Caption = 'N'#250'mero:'
   end
   object lblEscolaEndComplemento: TLabel
-    Left = 96
-    Top = 177
+    Left = 88
+    Top = 169
     Width = 69
     Height = 13
     Caption = 'Complemento:'
   end
   object lblEscolaEndBairro: TLabel
-    Left = 327
-    Top = 177
+    Left = 319
+    Top = 169
     Width = 32
     Height = 13
     Caption = 'Bairro:'
   end
   object lblEscolaEndCidade: TLabel
-    Left = 520
-    Top = 177
+    Left = 512
+    Top = 169
     Width = 37
     Height = 13
     Caption = 'Cidade:'
   end
   object lblEscolaendCep: TLabel
-    Left = 96
-    Top = 134
+    Left = 88
+    Top = 126
     Width = 23
     Height = 13
     Caption = 'CEP:'
@@ -101,8 +100,8 @@ object frmCadEscola: TfrmCadEscola
   end
   object edtEscolaNome: TEdit
     Tag = 1
-    Left = 159
-    Top = 105
+    Left = 151
+    Top = 97
     Width = 381
     Height = 21
     Hint = 'ESCOLA'
@@ -114,8 +113,8 @@ object frmCadEscola: TfrmCadEscola
   end
   object edtEscolaCodigo: TEdit
     Tag = 1
-    Left = 96
-    Top = 105
+    Left = 88
+    Top = 97
     Width = 57
     Height = 21
     Hint = 'C'#211'DIGO'
@@ -127,8 +126,8 @@ object frmCadEscola: TfrmCadEscola
   end
   object cxDateEditEscolaDataCadastro: TcxDateEdit
     Tag = 1
-    Left = 546
-    Top = 105
+    Left = 538
+    Top = 97
     Hint = 'DATA'
     Enabled = False
     TabOrder = 3
@@ -137,8 +136,8 @@ object frmCadEscola: TfrmCadEscola
   end
   object maskEditEscolaEndCEP: TMaskEdit
     Tag = 1
-    Left = 96
-    Top = 150
+    Left = 88
+    Top = 142
     Width = 68
     Height = 21
     Hint = 'CEP'
@@ -152,8 +151,8 @@ object frmCadEscola: TfrmCadEscola
   end
   object edtEscolaEndRua: TEdit
     Tag = 1
-    Left = 171
-    Top = 150
+    Left = 163
+    Top = 142
     Width = 425
     Height = 21
     Hint = 'RUA'
@@ -165,8 +164,8 @@ object frmCadEscola: TfrmCadEscola
   end
   object edtEscolaEndNumero: TEdit
     Tag = 1
-    Left = 602
-    Top = 150
+    Left = 594
+    Top = 142
     Width = 65
     Height = 21
     Hint = 'N'#218'MERO'
@@ -177,8 +176,8 @@ object frmCadEscola: TfrmCadEscola
     OnKeyPress = edtEscolaEndNumeroKeyPress
   end
   object edtEscolaEndComplemento: TEdit
-    Left = 96
-    Top = 193
+    Left = 88
+    Top = 185
     Width = 225
     Height = 21
     Hint = 'COMPLEMENTO'
@@ -190,8 +189,8 @@ object frmCadEscola: TfrmCadEscola
   end
   object edtEscolaEndBairro: TEdit
     Tag = 1
-    Left = 327
-    Top = 193
+    Left = 319
+    Top = 185
     Width = 187
     Height = 21
     Hint = 'BAIRRO'
@@ -203,8 +202,8 @@ object frmCadEscola: TfrmCadEscola
   end
   object edtEscolaEndCidade: TEdit
     Tag = 1
-    Left = 520
-    Top = 193
+    Left = 512
+    Top = 185
     Width = 147
     Height = 21
     Hint = 'CIDADE'
@@ -215,8 +214,8 @@ object frmCadEscola: TfrmCadEscola
     OnKeyPress = AvancarCampo
   end
   object btnEscolaNovoCadastro: TButton
-    Left = 228
-    Top = 234
+    Left = 220
+    Top = 226
     Width = 83
     Height = 25
     Caption = 'Novo cadastro'
@@ -225,8 +224,8 @@ object frmCadEscola: TfrmCadEscola
     OnKeyPress = AvancarCampo
   end
   object btnEscolaGravar: TButton
-    Left = 317
-    Top = 234
+    Left = 309
+    Top = 226
     Width = 46
     Height = 25
     Caption = 'Gravar'
@@ -236,8 +235,8 @@ object frmCadEscola: TfrmCadEscola
     OnKeyPress = AvancarCampo
   end
   object btnEscolaAlterar: TButton
-    Left = 369
-    Top = 234
+    Left = 361
+    Top = 226
     Width = 54
     Height = 25
     Caption = 'Alterar'
@@ -246,8 +245,8 @@ object frmCadEscola: TfrmCadEscola
     OnKeyPress = AvancarCampo
   end
   object btnEscolaExcluir: TButton
-    Left = 544
-    Top = 234
+    Left = 536
+    Top = 226
     Width = 50
     Height = 25
     Caption = 'Excluir'
@@ -256,8 +255,8 @@ object frmCadEscola: TfrmCadEscola
     OnKeyPress = AvancarCampo
   end
   object btnEscolaCancelar: TButton
-    Left = 483
-    Top = 234
+    Left = 475
+    Top = 226
     Width = 55
     Height = 25
     Caption = 'Cancelar'
@@ -267,8 +266,8 @@ object frmCadEscola: TfrmCadEscola
     OnKeyPress = AvancarCampo
   end
   object btnEscolaLimpar: TButton
-    Left = 429
-    Top = 234
+    Left = 421
+    Top = 226
     Width = 48
     Height = 25
     Caption = 'Limpar'
@@ -278,8 +277,8 @@ object frmCadEscola: TfrmCadEscola
     OnKeyPress = AvancarCampo
   end
   object btnEscolaPesquisar: TButton
-    Left = 96
-    Top = 58
+    Left = 88
+    Top = 50
     Width = 69
     Height = 25
     Caption = 'Pesquisar'
@@ -288,8 +287,8 @@ object frmCadEscola: TfrmCadEscola
     OnKeyPress = AvancarCampo
   end
   object btnEscolaFechar: TButton
-    Left = 600
-    Top = 234
+    Left = 592
+    Top = 226
     Width = 67
     Height = 25
     Caption = 'Fechar'

@@ -23,7 +23,6 @@ type
     procedure btnEscolaNovoCadastroClick(Sender: TObject);
   private
     FControladorPadrao: TCadPadraoController;
-    procedure SetControladorPadrao(const Value: TCadPadraoController);
   public
     property ControladorPadrao: TCadPadraoController read FControladorPadrao write SetControladorPadrao;
     
@@ -38,18 +37,13 @@ implementation
 
 procedure TfrmCadPadrao.btnEscolaNovoCadastroClick(Sender: TObject);
 begin
-  ControladorPadrao.NovoCadastroClientDS;
+  Controlador.NovoCadastroClientDS;
   HabilitarDesabilitarComponentesDados; //Habilita os componentes necessários para NOVO CADASTRO
-//  edtEscolaNome.SetFocus;
+  edtEscolaNome.SetFocus;
   LimparCampos; //Limpa os campos necessários para NOVO CADASTRO caso possuam algum dado
-//  ControladorPadrao.EscolaModelo.Codigo := ControladorEscola.DevolverUltimoCodigo + 1; //Aplica o CÓDIGO IDENTIFICADOR
-//  edtEscolaCodigo.Text := IntToStr(ControladorEscola.EscolaModelo.Codigo);
-//  cxDateEditEscolaDataCadastro.Text := FormatDateTime('DD/MM/YYYY', Now); //Atribui DATA ATUAL do SO
-end;
-
-procedure TfrmCadPadrao.SetControladorPadrao(const Value: TCadPadraoController);
-begin
-  FControladorPadrao := Value;
+  ControladorEscola.EscolaModelo.Codigo := ControladorEscola.DevolverUltimoCodigo + 1; //Aplica o CÓDIGO IDENTIFICADOR
+  edtEscolaCodigo.Text := IntToStr(ControladorEscola.EscolaModelo.Codigo);
+  cxDateEditEscolaDataCadastro.Text := FormatDateTime('DD/MM/YYYY', Now); //Atribui DATA ATUAL do SO
 end;
 
 end.

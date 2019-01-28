@@ -1,0 +1,16 @@
+unit unControladorPadrao;
+
+interface
+
+uses
+  Windows, Dialogs, SysUtils, DateUtils, StdCtrls,
+  Messages, unEscolaModelo, DB;
+
+type
+  TControladorPadrao = class
+
+  end;
+
+implementation
+
+end.

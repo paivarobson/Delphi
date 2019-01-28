@@ -17,7 +17,8 @@ uses
   unFrmCadAluno in 'Visao\unFrmCadAluno.pas' {frmCadAluno},
   unAlunoDAO in 'DAO\unAlunoDAO.pas',
   unAlunoControle in 'Controle\unAlunoControle.pas',
-  unFrmCadPadrao in 'Visao\unFrmCadPadrao.pas' {frmCadPadrao};
+  unFrmCadPadrao in 'Visao\unFrmCadPadrao.pas' {frmCadPadrao},
+  unControladorPadrao in 'Controle\unControladorPadrao.pas';
 
 {$R *.res}
 
