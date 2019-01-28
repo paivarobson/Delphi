@@ -2,7 +2,7 @@ unit unPesquisaEscolaController;
 
 interface
 
-uses DB, DBClient, StdCtrls, unEscolaModelo;
+uses DB, DBClient, StdCtrls, unEscolaModelo, SysUtils;
 
 type
     TPesquisaEscolaController = class
@@ -11,12 +11,16 @@ type
     procedure SetEscolaModelo(const Value: TEscolaModelo);
 
   public
+    constructor Create;
+    destructor Destroy; override;
+
     procedure AbrirConexaoClientDS;
     procedure FecharConexaoClientDS;
     procedure ConsultaOrdenada(AIndiceComboBox: Integer);
     procedure DesabilitarFilteredClientDS;
     procedure CarregarTodosRegistrosClientDS;
     procedure HabilitarFilteredClientDS;
+    procedure CarregarEscola;
 
     function DadosCDS: TClientDataSet;
     function CarregarConsultaClientDS(ACampoTabelaFiltrado: string; ADado: string): Boolean;
@@ -31,6 +35,17 @@ implementation
 uses
   unDados;
 
+constructor TPesquisaEscolaController.Create;
+begin
+  EscolaModelo := TEscolaModelo.Create;
+end;
+
+destructor TPesquisaEscolaController.Destroy;
+begin
+  FreeAndNil(FEscolaModelo);
+  inherited;
+end;
+  
 function TPesquisaEscolaController.DadosCDS: TClientDataSet;
 begin
   Result := fmdados.ClientDSEscola;
@@ -70,6 +85,11 @@ function TPesquisaEscolaController.CarregarConsultaClientDS(
   ACampoTabelaFiltrado: string; ADado: string): Boolean;
 begin
   Result := EscolaModelo.CarregarConsultaClientDS(ACampoTabelaFiltrado, ADado);
+end;
+
+procedure TPesquisaEscolaController.CarregarEscola;
+begin
+  EscolaModelo.CarregarEscola;
 end;
 
 procedure TPesquisaEscolaController.CarregarTodosRegistrosClientDS;

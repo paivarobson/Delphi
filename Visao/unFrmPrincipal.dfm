@@ -16,7 +16,6 @@ object frmPrincipal: TfrmPrincipal
   Menu = mmEscola
   OldCreateOrder = False
   Position = poMainFormCenter
-  OnCreate = FormCreate
   OnDestroy = FormDestroy
   PixelsPerInch = 96
   TextHeight = 13

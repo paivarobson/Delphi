@@ -30,7 +30,6 @@ type
     procedure menuArquivoSairClick(Sender: TObject);
     procedure btnCadastroEscolaClick(Sender: TObject);
     procedure btnConsultaEscolaClick(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure Action1Execute(Sender: TObject);
   private
@@ -69,18 +68,7 @@ begin
 end;
 //(Menu Arquivo>>Cadastro>>Escola) Evento para abrir o Form CADASTRO ESCOLA
 procedure TfrmPrincipal.btnCadastroEscolaClick(Sender: TObject);
-//var
-//  VConexao: TConexao;
 begin
-//  try
-//    VConexao := TConexao.Create;
-//    VConexao.GetConnection.Connected := True;
-//
-//    if VConexao.GetConnection.Connected then
-//      ShowMessage('Conectado!!! ');
-//  finally
-//    FreeAndNil(VConexao);
-//  end;
   menuArquivoCadastroEscolaClick(Sender);
 end;
 
@@ -89,28 +77,9 @@ begin
   menuVisualizarConsultarEscolaClick(Sender);
 end;
 
-procedure TfrmPrincipal.FormCreate(Sender: TObject);
-begin
-//  FController := TCadEscolaController.Create;
-//  FController.CarregarEscola(1);
-//
-//  StatusBar1.Panels[0].Text :=
-//    IntToStr(FController.EscolaModelo.Codigo) + #13 + ' - ' +
-//    FController.EscolaModelo.Nome + #13 + ' - ' +
-//    DateToStr(FController.EscolaModelo.DataCadastro) + #13 + ' - ' +
-//    FController.EscolaModelo.Cep + #13 + ' - ' +
-//    FController.EscolaModelo.Rua + #13 + ' - ' +
-//    FController.EscolaModelo.Numero + #13 + ' - ' +
-//    FController.EscolaModelo.Complemento + #13 + ' - ' +
-//    FController.EscolaModelo.Bairro + #13 + ' - ' +
-//    FController.EscolaModelo.Cidade;
-
-end;
-
 procedure TfrmPrincipal.FormDestroy(Sender: TObject);
 begin
   FreeAndNil(FControladorEscola);
-//  TSistemaControle.GetInstancia().Destroy;
 end;
 
 procedure TfrmPrincipal.menuArquivoCadastroEscolaClick(Sender: TObject);
@@ -138,5 +107,4 @@ end;
 
 initialization
   ReportMemoryLeaksOnShutdown := True;
-
 end.

@@ -16,7 +16,8 @@ uses
   unAlunoModelo in 'Modelo\unAlunoModelo.pas',
   unFrmCadAluno in 'Visao\unFrmCadAluno.pas' {frmCadAluno},
   unAlunoDAO in 'DAO\unAlunoDAO.pas',
-  unAlunoControle in 'Controle\unAlunoControle.pas';
+  unAlunoControle in 'Controle\unAlunoControle.pas',
+  unFrmCadPadrao in 'Visao\unFrmCadPadrao.pas' {frmCadPadrao};
 
 {$R *.res}
 
@@ -25,5 +26,6 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(Tfmdados, fmdados);
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
+  Application.CreateForm(TfrmCadPadrao, frmCadPadrao);
   Application.Run;
 end.

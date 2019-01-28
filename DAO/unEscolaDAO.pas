@@ -50,7 +50,6 @@ implementation
 
 destructor TEscolaDAO.Destroy;
 begin
-//  FreeAndNil(FEscolaDAO);
   FreeAndNil(FClientDS);
   inherited;
 end;
