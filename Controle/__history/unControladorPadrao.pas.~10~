@@ -11,7 +11,7 @@ type
 
   public
     procedure NovoCadastroClientDS; virtual; abstract;
-    function EstadoClientDS: TDataSetState; virtual; abstract;
+    function EstadoClientDS: TDataSetState; virtual
   end;
 
 implementation

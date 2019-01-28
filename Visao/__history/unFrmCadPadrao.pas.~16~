@@ -44,14 +44,8 @@ procedure TfrmCadPadrao.btnEscolaNovoCadastroClick(Sender: TObject);
 begin
   ControladorPadrao.NovoCadastroClientDS;
   HabilitarDesabilitarComponentesDados; //Habilita os componentes necessários para NOVO CADASTRO
-
-
-
-
+//  edtEscolaNome.SetFocus;
   LimparCampos; //Limpa os campos necessários para NOVO CADASTRO caso possuam algum dado
-
-
-
 //  ControladorPadrao.EscolaModelo.Codigo := ControladorEscola.DevolverUltimoCodigo + 1; //Aplica o CÓDIGO IDENTIFICADOR
 //  edtEscolaCodigo.Text := IntToStr(ControladorEscola.EscolaModelo.Codigo);
 //  cxDateEditEscolaDataCadastro.Text := FormatDateTime('DD/MM/YYYY', Now); //Atribui DATA ATUAL do SO

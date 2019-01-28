@@ -3,8 +3,8 @@ unit unFrmPrincipal;
 interface
 
 uses
-  Windows, Messages, SysUtils, Variants, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, Menus, dxGDIPlusClasses, ExtCtrls, unSistemaControle, unConexao,
+  Windows, Messages, SysUtils, Variants, Graphics, Controls, Forms, Dialogs,
+  StdCtrls, Menus, dxGDIPlusClasses, ExtCtrls, unSistemaControle, unConexao,
   ComCtrls, DB, Classes, ToolWin, ActnMan, ActnCtrls, ActnMenus, ActnList,
   XPStyleActnCtrls, unCadEscolaController;
 
@@ -36,7 +36,6 @@ type
     FControladorEscola: TCadEscolaController;
     procedure SetControladorEscola(const Value: TCadEscolaController);
   published
-
   public
     property ControladorEscola: TCadEscolaController read FControladorEscola write SetControladorEscola;
   end;
@@ -53,10 +52,10 @@ uses
 //(Menu Arquivo>>Sair) Fechar todo o sistema
 procedure TfrmPrincipal.menuArquivoSairClick(Sender: TObject);
 begin
-  if MessageDlg('O sistema será totalmente encerrado. Deseja continuar?', mtConfirmation,
-    mbYesNo, 0) = mrYes then
+  if MessageDlg('O sistema será totalmente encerrado. Deseja continuar?', mtConfirmation, mbYesNo, 0) = mrYes then
     Close
 end;
+
 procedure TfrmPrincipal.Action1Execute(Sender: TObject);
 begin
   Application.CreateForm(TfrmCadAluno, frmCadAluno);
@@ -67,6 +66,7 @@ begin
   end;
 end;
 //(Menu Arquivo>>Cadastro>>Escola) Evento para abrir o Form CADASTRO ESCOLA
+
 procedure TfrmPrincipal.btnCadastroEscolaClick(Sender: TObject);
 begin
   menuArquivoCadastroEscolaClick(Sender);
@@ -91,6 +91,7 @@ begin
     frmPesquisaEscola.Close;
 end;
 //(Menu Visualizar>>Consultar>>Escola) Evento para abrir o Form PESQUISA ESCOLA
+
 procedure TfrmPrincipal.menuVisualizarConsultarEscolaClick(Sender: TObject);
 begin
   if not Assigned(frmPesquisaEscola) then //Verifica se o Form PESQUISA ESCOLA está FECHADO para ser CRIADO
@@ -107,4 +108,6 @@ end;
 
 initialization
   ReportMemoryLeaksOnShutdown := True;
+
 end.
+
