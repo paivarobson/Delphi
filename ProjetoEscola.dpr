@@ -5,7 +5,7 @@ uses
   unDados in 'DAO\unDados.pas' {fmdados: TDataModule},
   unCadEscolaController in 'Controle\unCadEscolaController.pas',
   unFrmPrincipal in 'Visao\unFrmPrincipal.pas' {frmPrincipal},
-  unFrmCadEscola in 'Visao\unFrmCadEscola.pas' {frmCadEscola},
+  unFrmCadEscola_old in 'Visao\unFrmCadEscola_old.pas' {frmCadEscola_old},
   unFrmPesquisaEscola in 'Visao\unFrmPesquisaEscola.pas' {frmPesquisaEscola},
   unRelEscola in 'Visao\unRelEscola.pas' {frmRelEscola},
   unEscolaModelo in 'Modelo\unEscolaModelo.pas',
@@ -18,7 +18,10 @@ uses
   unAlunoDAO in 'DAO\unAlunoDAO.pas',
   unAlunoControle in 'Controle\unAlunoControle.pas',
   unFrmCadPadrao in 'Visao\unFrmCadPadrao.pas' {frmCadPadrao},
-  unControladorPadrao in 'Controle\unControladorPadrao.pas';
+  unCadPadraoController in 'Controle\unCadPadraoController.pas',
+  unFrmCadEscola in 'Visao\unFrmCadEscola.pas' {frmCadEscola},
+  unEntidadeModelo in 'Modelo\unEntidadeModelo.pas',
+  unEntidadeDAO in 'DAO\unEntidadeDAO.pas';
 
 {$R *.res}
 
@@ -27,6 +30,5 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(Tfmdados, fmdados);
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
-  Application.CreateForm(TfrmCadPadrao, frmCadPadrao);
   Application.Run;
 end.

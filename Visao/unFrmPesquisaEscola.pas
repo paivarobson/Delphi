@@ -76,7 +76,7 @@ begin
   if not Assigned(frmCadEscola) then //Verifica se o Form CADASTRO ESCOLA está FECHADO para ser CRIADO
     frmCadEscola := TfrmCadEscola.Create(frmPrincipal);
   frmCadEscola.Show;
-  frmCadEscola.btnEscolaNovoCadastroClick(Sender); //Evento do botão NOVO CADASTRO do Form CADASTRO ESCOLA
+  frmCadEscola.btnNovoCadastroClick(Sender); //Evento do botão NOVO CADASTRO do Form CADASTRO ESCOLA
   Close;
 end;
 

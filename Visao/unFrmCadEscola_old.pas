@@ -1,4 +1,4 @@
-unit unFrmCadEscola;
+unit unFrmCadEscola_old;
 
 interface
 
@@ -12,7 +12,7 @@ uses
   dxCore, cxDateUtils, StrUtils;
 
 type
-  TfrmCadEscola = class(TForm)
+  TfrmCadEscola_old = class(TForm)
     lblEscolaCodigo: TLabel;
     lblEscolaNome: TLabel;
     lblEscolaDataCadastro: TLabel;
@@ -51,9 +51,8 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure AvancarCampo(Sender: TObject; var Key: Char);
     procedure btnEscolaFecharClick(Sender: TObject);
-    procedure FormShow(Sender: TObject);
   private
-    FControlador: TCadEscolaController;
+    FControladorEscola: TCadEscolaController;
 //    function HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados: Boolean;
     procedure SetControlador(const Value: TCadEscolaController);
     { Private declarations }
@@ -63,27 +62,27 @@ type
     procedure CarregarComponentesCadEscola;
     procedure CarregarEntidadeEscola;
     procedure LimparCampos;
+    procedure LimparCamposForm;
     procedure HabilitarDesabilitarComponentesDados;
     procedure AfterConstruction; override;
     procedure CarregarEscola;
-    procedure LimparCamposForm;
 
     function ValidaCampos: Boolean;
     
-    property ControladorEscola: TCadEscolaController read FControlador write SetControlador;
+    property ControladorEscola: TCadEscolaController read FControladorEscola write SetControlador;
 
   end;
 
 var
-  frmCadEscola: TfrmCadEscola;
+  frmCadEscola_old: TfrmCadEscola_old;
 
 implementation
 
 uses
-  unRelEscola, unFrmPesquisaEscola, unFrmPrincipal, unDados;
+  unRelEscola, unFrmPesquisaEscola, unFrmPrincipal, unFrmCadEscola;
 
 {$R *.dfm}
-procedure TfrmCadEscola.CarregarEntidadeEscola;
+procedure TfrmCadEscola_old.CarregarEntidadeEscola;
 begin
   ControladorEscola.EscolaModelo.Codigo := StrToInt(edtEscolaCodigo.Text);
   ControladorEscola.EscolaModelo.Nome := edtEscolaNome.Text;
@@ -96,13 +95,13 @@ begin
   ControladorEscola.EscolaModelo.Cidade := edtEscolaEndCidade.Text;
 end;
 
-procedure TfrmCadEscola.CarregarEscola;
+procedure TfrmCadEscola_old.CarregarEscola;
 begin
   ControladorEscola.CarregarEscola;
   CarregarComponentesCadEscola;
 end;
 
-procedure TfrmCadEscola.CarregarComponentesCadEscola;
+procedure TfrmCadEscola_old.CarregarComponentesCadEscola;
 begin
   edtEscolaCodigo.Text := IntToStr(ControladorEscola.EscolaModelo.Codigo);
   edtEscolaNome.Text := ControladorEscola.EscolaModelo.Nome;
@@ -115,7 +114,7 @@ begin
   edtEscolaEndCidade.Text := ControladorEscola.EscolaModelo.Cidade;
 end;
 //Método executado logo depois do Construtor
-procedure TfrmCadEscola.AfterConstruction;
+procedure TfrmCadEscola_old.AfterConstruction;
 begin
   inherited;
   ControladorEscola := TCadEscolaController.Create; //Instãncia da Classe Controller
@@ -128,12 +127,12 @@ begin
   begin
     CarregarComponentesCadEscola;
     HabilitarDesabilitarComponentesDados;
-    edtEscolaCodigo.Text := '';
-    cxDateEditEscolaDataCadastro.Text := '';
+    edtEscolaCodigo.Text := EmptyStr;
+    cxDateEditEscolaDataCadastro.Text := EmptyStr;
   end;
 end;
 //(BOTÃO PESQUISAR) Evento para abrir o Form PESQUISA ESCOLA 
-procedure TfrmCadEscola.btnEscolaPesquisarClick(Sender: TObject);
+procedure TfrmCadEscola_old.btnEscolaPesquisarClick(Sender: TObject);
 begin
   if not Assigned(frmPesquisaEscola) then //Verifica se o Form PESQUISA ESCOLA está FECHADO para ser CRIADO
     frmPesquisaEscola := TfrmPesquisaEscola.Create(frmPrincipal);
@@ -141,7 +140,7 @@ begin
   Close;
 end;
 //(Botão NOVO CADASTRO) Evento para habilitar campos para a inclusão
-procedure TfrmCadEscola.btnEscolaNovoCadastroClick(Sender: TObject);
+procedure TfrmCadEscola_old.btnEscolaNovoCadastroClick(Sender: TObject);
 begin
   ControladorEscola.NovoCadastroClientDS;
   HabilitarDesabilitarComponentesDados; //Habilita os componentes necessários para NOVO CADASTRO
@@ -152,7 +151,7 @@ begin
   cxDateEditEscolaDataCadastro.Text := FormatDateTime('DD/MM/YYYY', Now); //Atribui DATA ATUAL do SO
 end;
 //(BOTÃO GRAVAR)
-procedure TfrmCadEscola.btnEscolaGravarClick(Sender: TObject);
+procedure TfrmCadEscola_old.btnEscolaGravarClick(Sender: TObject);
 begin
   CarregarEntidadeEscola;
   try
@@ -183,14 +182,14 @@ begin
   end;
 end;
 //(BOTÃO ALTERAR) Evento para habilitar campos para a edição
-procedure TfrmCadEscola.btnEscolaAlterarClick(Sender: TObject);
+procedure TfrmCadEscola_old.btnEscolaAlterarClick(Sender: TObject);
 begin  
   ControladorEscola.EscolaModelo.AlterarClientDS;
    ControladorEscola.EstadoClientDS;
   HabilitarDesabilitarComponentesDados; //Habilita os componentes necessários para EDIÇÃO
 end;
 //(BOTÃO LIMPAR)
-procedure TfrmCadEscola.btnEscolaLimparClick(Sender: TObject);
+procedure TfrmCadEscola_old.btnEscolaLimparClick(Sender: TObject);
 begin
   if MessageDlg('Tem certeza que deseja limpar os campos?', mtConfirmation,
     mbYesNo, 0) = mrYes then
@@ -199,7 +198,7 @@ begin
   end;
 end;
 //(BOTÃO CANCELAR) Evento para Habilitar/Desabilitar componentes de acordo com as verificações
-procedure TfrmCadEscola.btnEscolaCancelarClick(Sender: TObject);
+procedure TfrmCadEscola_old.btnEscolaCancelarClick(Sender: TObject);
 begin
   if MessageDlg('Tem certeza que deseja cancelar a edição deste registro?', mtConfirmation,
     mbYesNo, 0) = mrYes then
@@ -211,7 +210,7 @@ begin
   end;
 end;
 //(BOTÃO EXCLUIR)
-procedure TfrmCadEscola.btnEscolaExcluirClick(Sender: TObject);
+procedure TfrmCadEscola_old.btnEscolaExcluirClick(Sender: TObject);
 begin
   if MessageDlg('Tem certeza que deseja excluir este registro?', mtConfirmation,
     mbYesNo, 0) = mrYes then
@@ -224,51 +223,19 @@ begin
   end
 end;
 
-procedure TfrmCadEscola.FormClose(Sender: TObject; var Action: TCloseAction);
+procedure TfrmCadEscola_old.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   Action := caFree;
   Release; //Libera o Form da memória permitindo a execução da fila antes que receba o Free
   frmCadEscola := nil;
 end;
-procedure TfrmCadEscola.FormShow(Sender: TObject);
-begin
-
-end;
-
-//Métódo verifica as ocasiões que os BOTÕES ALTERAR e EXCLUIR devem serem habilitados ou não
-//function TfrmCadEscola.HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados: Boolean;
-//begin
-//  if ControladorEscola.VerificaClientDSSeEstaAtivo then
-//  begin
-//    if ControladorEscola.StatusInsertEditClientDS then
-//    begin
-//      btnEscolaAlterar.Enabled := False;
-//      btnEscolaExcluir.Enabled := False;
-//      ControladorEscola.FecharConexaoClientDS;
-//      Result := False;
-//    end
-//    else
-//    begin
-//      btnEscolaAlterar.Enabled := True;
-//      btnEscolaExcluir.Enabled := True;
-//      Result := True;
-//    end;
-//  end
-//  else
-//  begin
-//    btnEscolaAlterar.Enabled := False;
-//    btnEscolaExcluir.Enabled := False;
-//    Result := False;
-//  end;
-//end;
-
-procedure TfrmCadEscola.LimparCampos;
+procedure TfrmCadEscola_old.LimparCampos;
 begin
   ControladorEscola.LimparCampos;
   CarregarComponentesCadEscola;
 end;
 
-procedure TfrmCadEscola.LimparCamposForm;
+procedure TfrmCadEscola_old.LimparCamposForm;
 begin
   edtEscolaNome.Text := EmptyStr;
   maskEditEscolaEndCEP.Text := EmptyStr;
@@ -279,11 +246,11 @@ begin
   edtEscolaEndCidade.Text := EmptyStr;
 end;
 
-procedure TfrmCadEscola.SetControlador(const Value: TCadEscolaController);
+procedure TfrmCadEscola_old.SetControlador(const Value: TCadEscolaController);
 begin
-  FControlador := Value;
+  FControladorEscola := Value;
 end;
-function TfrmCadEscola.ValidaCampos: Boolean;
+function TfrmCadEscola_old.ValidaCampos: Boolean;
 var
   i: Integer;
   Campos: TStrings;
@@ -309,10 +276,6 @@ begin
     begin
       Result := False;
       ShowMessage('Preencha os campos obrigatórios:' + #13 + #13 + Campos.Text); //Exibe os CAMPOS por NOME
-//      TEdit(Components[0]).CanFocus;
-//      TEdit(Components[0]).SetFocus;
-//      TcxDateEdit(Components[0]).SetFocus;
-//      TMaskEdit(Components[0]).SetFocus;
     end
     else
       Result := True;
@@ -322,7 +285,7 @@ begin
 end;
 
 //Método para permitir escrita de somente números
-procedure TfrmCadEscola.edtEscolaEndNumeroKeyPress(Sender: TObject;
+procedure TfrmCadEscola_old.edtEscolaEndNumeroKeyPress(Sender: TObject;
   var Key: Char);
 begin
   if not (Key in ['0'..'9', #8, #13, #27]) then
@@ -334,7 +297,7 @@ begin
     AvancarCampo(Sender, Key) //Avançar e recuar campo com a tecla ENTER e ESC respectivamente
 end;
 //Método para avançar e recuar campo com a tecla ENTER e ESC respectivamente
-procedure TfrmCadEscola.AvancarCampo(Sender: TObject;
+procedure TfrmCadEscola_old.AvancarCampo(Sender: TObject;
   var Key: Char);
 begin
   if (Key = #13) then //Verifica se a tecla pressionada é ENTER
@@ -344,7 +307,7 @@ begin
       Perform(WM_nextdlgctl,1,0)
 end;
 //Método desabilitador da maioria dos componentes
-procedure TfrmCadEscola.HabilitarDesabilitarComponentesDados;
+procedure TfrmCadEscola_old.HabilitarDesabilitarComponentesDados;
 begin
   btnEscolaNovoCadastro.Enabled := (ControladorEscola.EstadoClientDS in [dsInactive, dsBrowse]);
   btnEscolaGravar.Enabled := (ControladorEscola.EstadoClientDS in [dsInsert, dsEdit]);
@@ -360,23 +323,10 @@ begin
   maskEditEscolaEndCEP.Enabled := (ControladorEscola.EstadoClientDS in [dsInsert, dsEdit]);
   edtEscolaEndBairro.Enabled := (ControladorEscola.EstadoClientDS in [dsInsert, dsEdit]);
 
-
-  //VERIFICAR O BOTÃO ALTERAR E EXCLUIR PARA VALIDAR HABILITAR/DESABILITAR QUANDO OCORRE O CLICK
-  //NO DBGRID NO FORM PESQUISA ESCOLA.
-
-
   if not (ControladorEscola.EscolaModelo.Codigo = ControladorEscola.DevolverUltimoCodigo + 1) then
   begin
-    if (ControladorEscola.EstadoClientDS in [dsBrowse]) then
-    begin
-      btnEscolaAlterar.Enabled := True;
-      btnEscolaExcluir.Enabled := True;
-    end
-    else
-    begin
-      btnEscolaAlterar.Enabled := False;
-      btnEscolaExcluir.Enabled := False;
-    end;
+    btnEscolaAlterar.Enabled := ControladorEscola.EstadoClientDS = dsBrowse;
+    btnEscolaExcluir.Enabled := ControladorEscola.EstadoClientDS = dsBrowse;
   end
   else
   begin
@@ -385,15 +335,15 @@ begin
   end;                                
 end;
 
-procedure TfrmCadEscola.btnEscolaFecharClick(Sender: TObject);
+procedure TfrmCadEscola_old.btnEscolaFecharClick(Sender: TObject);
 begin
   Close;
 end;
 
-destructor TfrmCadEscola.Destroy;
+destructor TfrmCadEscola_old.Destroy;
 begin
-  FreeAndNil(FControlador);
   inherited;
+  FreeAndNil(FControladorEscola);
 end;
 
 end.

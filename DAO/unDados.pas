@@ -40,9 +40,6 @@ type
     function GetQueryEscola: TSQLQuery;
 
   public
-    property ComponenteQuery: TSQLQuery read GetQueryEscola;
-    property ClientDSEscola: TClientDataSet read cdsEscola;
-
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure AbrirConexaoClientDS(AClientDataSet: TClientDataset);
@@ -56,11 +53,14 @@ type
     procedure HabilitarFilteredClientDS(AClientDataSet: TClientDataset);
     procedure CarregarTodosRegistrosClientDS(AClientDataSet: TClientDataset);
 
+    function DevolverUltimoCodigo(ACampoCodigo: string): Integer;
     function GravarDB(AClientDataSet: TClientDataSet): Boolean;
     function StatusInsertEditClientDS(AClientDataSet: TClientDataset): Boolean;
     function VerificaClientDSSeEstaAtivo(AClientDataSet: TClientDataset): Boolean;
-    function EstadoClientDS(AClientDataSet: TClientDataSet): TDataSetState;  
+    function EstadoClientDS(AClientDataSet: TClientDataSet): TDataSetState;
 
+    property ComponenteQuery: TSQLQuery read GetQueryEscola;
+    property ClientDSEscola: TClientDataSet read cdsEscola;
   end;
 
 var
@@ -116,6 +116,16 @@ begin
   AClientDataSet.Filtered := False;
 end;
 
+function Tfmdados.DevolverUltimoCodigo(ACampoCodigo: string): Integer;
+begin
+  fmdados.tbAux.Close;
+  fmdados.tbAux.SQL.Clear;
+  fmdados.tbAux.SQL.Text := 'SELECT MAX(' + QuotedStr(ACampoCodigo) + ') FROM ESCOLA';
+  fmdados.tbAux.Open;
+  
+  Result := fmdados.tbAux.Fields[0].AsInteger;
+end;
+
 //Método CANCELAR EDIÇÃO
 procedure Tfmdados.AbrirConexaoClientDS(AClientDataSet: TClientDataset);
 begin
@@ -146,12 +156,11 @@ begin
   AClientDataSet.Filter := '1 = 1';
 end;
 
-//Método EXCLUIR
 function Tfmdados.EstadoClientDS(AClientDataSet: TClientDataSet): TDataSetState;
 begin
   Result :=  AClientDataSet.State;
 end;
-
+//Método EXCLUIR
 procedure Tfmdados.ExcluirClientDS(AClientDataSet: TClientDataset);
 begin
   AClientDataSet.Delete;
