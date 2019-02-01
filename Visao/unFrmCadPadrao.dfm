@@ -1,34 +1,40 @@
 object frmCadPadrao: TfrmCadPadrao
   Left = 0
   Top = 0
+  BorderIcons = [biMinimize]
+  BorderStyle = bsSingle
   Caption = 'Cadastro Padr'#227'o'
-  ClientHeight = 227
-  ClientWidth = 625
+  ClientHeight = 283
+  ClientWidth = 800
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  FormStyle = fsMDIChild
   OldCreateOrder = False
+  Position = poScreenCenter
+  Visible = True
+  WindowState = wsMaximized
   PixelsPerInch = 96
   TextHeight = 13
   object lbCodigo: TLabel
-    Left = 32
-    Top = 78
+    Left = 88
+    Top = 102
     Width = 37
     Height = 13
     Caption = 'C'#243'digo:'
   end
   object lblDataCadastro: TLabel
-    Left = 482
-    Top = 78
+    Left = 538
+    Top = 102
     Width = 87
     Height = 13
     Caption = 'Data de cadastro:'
   end
   object lblFrmTitulo: TLabel
-    Left = 197
+    Left = 253
     Top = 0
     Width = 196
     Height = 33
@@ -41,66 +47,65 @@ object frmCadPadrao: TfrmCadPadrao
     ParentFont = False
   end
   object lbDescricao: TLabel
-    Left = 95
-    Top = 78
+    Left = 151
+    Top = 102
     Width = 46
     Height = 13
     Caption = 'Descri'#231#227'o'
   end
   object lblEndRua: TLabel
-    Left = 107
-    Top = 123
+    Left = 163
+    Top = 147
     Width = 23
     Height = 13
     Caption = 'Rua:'
   end
   object lbEndNumero: TLabel
-    Left = 538
-    Top = 123
+    Left = 594
+    Top = 147
     Width = 41
     Height = 13
     Caption = 'N'#250'mero:'
   end
   object lbEndComplemento: TLabel
-    Left = 32
-    Top = 166
+    Left = 88
+    Top = 190
     Width = 69
     Height = 13
     Caption = 'Complemento:'
   end
   object lblEndBairro: TLabel
-    Left = 263
-    Top = 166
+    Left = 319
+    Top = 190
     Width = 32
     Height = 13
     Caption = 'Bairro:'
   end
   object lblEndCidade: TLabel
-    Left = 456
-    Top = 166
+    Left = 512
+    Top = 190
     Width = 37
     Height = 13
     Caption = 'Cidade:'
   end
   object lblEndCep: TLabel
-    Left = 32
-    Top = 123
+    Left = 88
+    Top = 147
     Width = 23
     Height = 13
     Caption = 'CEP:'
   end
   object btnNovoCadastro: TButton
-    Left = 164
-    Top = 47
+    Left = 220
+    Top = 71
     Width = 83
     Height = 25
     Caption = 'Novo cadastro'
     TabOrder = 0
-    OnClick = btnNovoCadastroClick
   end
   object btnGravar: TButton
-    Left = 253
-    Top = 47
+    Left = 309
+    Top = 71
     Width = 46
     Height = 25
     Caption = 'Gravar'
@@ -108,24 +113,24 @@ object frmCadPadrao: TfrmCadPadrao
     TabOrder = 1
   end
   object btnAlterar: TButton
-    Left = 305
-    Top = 47
+    Left = 361
+    Top = 71
     Width = 54
     Height = 25
     Caption = 'Alterar'
     TabOrder = 2
   end
   object btnExcluir: TButton
-    Left = 480
-    Top = 47
+    Left = 536
+    Top = 71
     Width = 50
     Height = 25
     Caption = 'Excluir'
     TabOrder = 3
   end
   object btnCancelar: TButton
-    Left = 419
-    Top = 47
+    Left = 475
+    Top = 71
     Width = 55
     Height = 25
     Caption = 'Cancelar'
@@ -133,8 +138,8 @@ object frmCadPadrao: TfrmCadPadrao
     TabOrder = 4
   end
   object btnLimpar: TButton
-    Left = 365
-    Top = 47
+    Left = 421
+    Top = 71
     Width = 48
     Height = 25
     Caption = 'Limpar'
@@ -142,8 +147,8 @@ object frmCadPadrao: TfrmCadPadrao
     TabOrder = 5
   end
   object btnFechar: TButton
-    Left = 536
-    Top = 47
+    Left = 592
+    Top = 71
     Width = 67
     Height = 25
     Caption = 'Fechar'
@@ -151,8 +156,8 @@ object frmCadPadrao: TfrmCadPadrao
   end
   object edtCodigo: TEdit
     Tag = 1
-    Left = 32
-    Top = 94
+    Left = 88
+    Top = 118
     Width = 57
     Height = 21
     Hint = 'C'#211'DIGO'
@@ -163,8 +168,8 @@ object frmCadPadrao: TfrmCadPadrao
   end
   object cxDateEditDataCadastro: TcxDateEdit
     Tag = 1
-    Left = 482
-    Top = 94
+    Left = 538
+    Top = 118
     Hint = 'DATA'
     Enabled = False
     TabOrder = 8
@@ -172,8 +177,8 @@ object frmCadPadrao: TfrmCadPadrao
   end
   object edtNome: TEdit
     Tag = 1
-    Left = 95
-    Top = 94
+    Left = 151
+    Top = 118
     Width = 381
     Height = 21
     Hint = 'ESCOLA'
@@ -184,8 +189,8 @@ object frmCadPadrao: TfrmCadPadrao
   end
   object maskEditEndCEP: TMaskEdit
     Tag = 1
-    Left = 32
-    Top = 139
+    Left = 88
+    Top = 163
     Width = 68
     Height = 21
     Hint = 'CEP'
@@ -198,8 +203,8 @@ object frmCadPadrao: TfrmCadPadrao
   end
   object edtEndRua: TEdit
     Tag = 1
-    Left = 107
-    Top = 139
+    Left = 163
+    Top = 163
     Width = 425
     Height = 21
     Hint = 'RUA'
@@ -210,8 +215,8 @@ object frmCadPadrao: TfrmCadPadrao
   end
   object edtEndNumero: TEdit
     Tag = 1
-    Left = 538
-    Top = 139
+    Left = 594
+    Top = 163
     Width = 65
     Height = 21
     Hint = 'N'#218'MERO'
@@ -221,8 +226,8 @@ object frmCadPadrao: TfrmCadPadrao
     Text = 'EDTCODIGO'
   end
   object edtEndComplemento: TEdit
-    Left = 32
-    Top = 182
+    Left = 88
+    Top = 206
     Width = 225
     Height = 21
     Hint = 'COMPLEMENTO'
@@ -233,8 +238,8 @@ object frmCadPadrao: TfrmCadPadrao
   end
   object edtEndBairro: TEdit
     Tag = 1
-    Left = 263
-    Top = 182
+    Left = 319
+    Top = 206
     Width = 187
     Height = 21
     Hint = 'BAIRRO'
@@ -245,8 +250,8 @@ object frmCadPadrao: TfrmCadPadrao
   end
   object edtEndCidade: TEdit
     Tag = 1
-    Left = 456
-    Top = 182
+    Left = 512
+    Top = 206
     Width = 147
     Height = 21
     Hint = 'CIDADE'

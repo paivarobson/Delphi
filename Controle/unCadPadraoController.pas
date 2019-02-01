@@ -10,29 +10,29 @@ type
   TCadPadraoController = class
   private
     FEntidadeModelo: TEntidadeModelo;
-    procedure SetEntidadeModelo(const Value: TEntidadeModelo);
 
   public
-    procedure NovoCadastroClientDS; virtual; abstract;
-    procedure LimparCampos; virtual; abstract;
-    procedure CarregarEntidade; virtual;
+    function DevolverUltimoCodigo: Integer; virtual;
+    function CarregarDadosParaClientDS: Boolean; virtual;
+    function ValidarCampos: Boolean; virtual;
+    function Gravar: Boolean; virtual;
+    function StatusInsertEditClientDS: Boolean; virtual;
+    function VerificaClientDSSeEstaAtivo: Boolean; virtual;
 
-    function EstadoClientDS: TDataSetState; virtual; abstract;
+    procedure LimparCampos; virtual;
+    procedure LimparDadosClientDS; virtual;
+    procedure NovoCadastroClientDS; virtual;
+    procedure AlterarClientDS; virtual;
+    procedure ExcluirClientDS; virtual;
+    procedure CancelarEdicaoClientDS; virtual;
+    procedure CarregarEscola; virtual;
+    procedure AbrirConexaoClientDS; virtual;
+    procedure FecharConexaoClientDS; virtual;
 
-    property EntidadeModelo: TEntidadeModelo read FEntidadeModelo write SetEntidadeModelo;
+    function EstadoClientDS: TDataSetState; virtual;
 
   end;
 
 implementation
-
-procedure TCadPadraoController.CarregarEntidade;
-begin
-  EntidadeModelo.CarregarEntidadePadrao;
-end;
-
-procedure TCadPadraoController.SetEntidadeModelo(const Value: TEntidadeModelo);
-begin
-  FEntidadeModelo := Value;
-end;
 
 end.

@@ -1,17 +1,16 @@
 inherited frmCadEscola: TfrmCadEscola
   Caption = 'Cadastro de Escola'
-  ClientHeight = 238
-  ClientWidth = 616
-  FormStyle = fsMDIChild
-  Visible = True
-  ExplicitWidth = 632
-  ExplicitHeight = 277
+  ClientHeight = 269
+  ExplicitHeight = 298
   PixelsPerInch = 96
   TextHeight = 13
   inherited lblFrmTitulo: TLabel
     Width = 224
     Caption = 'Cadastro de Escola'
     ExplicitWidth = 224
+  end
+  inherited btnNovoCadastro: TButton
+    OnClick = btnNovoCadastroClick
   end
   inherited btnGravar: TButton
     Enabled = True
@@ -23,8 +22,8 @@ inherited frmCadEscola: TfrmCadEscola
     Enabled = True
   end
   object btnEscolaPesquisar: TButton [17]
-    Left = 32
-    Top = 47
+    Left = 88
+    Top = 71
     Width = 69
     Height = 25
     Caption = 'Pesquisar'

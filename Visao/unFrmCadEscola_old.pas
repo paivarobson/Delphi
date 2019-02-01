@@ -70,7 +70,6 @@ type
     function ValidaCampos: Boolean;
     
     property ControladorEscola: TCadEscolaController read FControladorEscola write SetControlador;
-
   end;
 
 var

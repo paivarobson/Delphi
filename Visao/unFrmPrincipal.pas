@@ -85,13 +85,12 @@ end;
 procedure TfrmPrincipal.menuArquivoCadastroEscolaClick(Sender: TObject);
 begin
   if not Assigned(frmCadEscola) then //Verifica se o Form CADASTRO ESCOLA está FECHADO para ser CRIADO
-    frmCadEscola := TfrmCadEscola.Create(Self);
+    frmCadEscola := TfrmCadEscola.Create(frmPrincipal);
   frmCadEscola.Show;
   if Assigned(frmPesquisaEscola) then //Verifica se o Form PESQUISA ESCOLA está ABERTO para que seja FECHADO
     frmPesquisaEscola.Close;
 end;
 //(Menu Visualizar>>Consultar>>Escola) Evento para abrir o Form PESQUISA ESCOLA
-
 procedure TfrmPrincipal.menuVisualizarConsultarEscolaClick(Sender: TObject);
 begin
   if not Assigned(frmPesquisaEscola) then //Verifica se o Form PESQUISA ESCOLA está FECHADO para ser CRIADO

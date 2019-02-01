@@ -6,7 +6,7 @@ object frmCadEscola_old: TfrmCadEscola_old
   BorderStyle = bsSingle
   Caption = 'Cadastro de Escola'
   ClientHeight = 500
-  ClientWidth = 681
+  ClientWidth = 800
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText

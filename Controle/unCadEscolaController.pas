@@ -4,37 +4,41 @@ interface
 
 uses
   Windows, Dialogs, SysUtils, DateUtils, StdCtrls,
-  Messages, unEscolaModelo, DB;
+  Messages, unEscolaModelo, DB, unCadPadraoController;
 
 type
-    TCadEscolaController = class
+    TCadEscolaController = class(TCadPadraoController)
   private
     FEscolaModelo: TEscolaModelo;
+    FControladorPadrao: TCadPadraoController;
     procedure SetEscolaModelo(const Value: TEscolaModelo);
-    function GetEstadoClientDS: TDataSetState;
+    procedure SetControladorPadrao(const Value: TCadPadraoController);
+//    function GetEstadoClientDS: TDataSetState;
   public
     constructor Create;
     destructor Destroy; override;
 
-    function DevolverUltimoCodigo: Integer;
-    function CarregarDadosParaClientDS: Boolean;
-    function ValidarCampos: Boolean;
-    function Gravar: Boolean;
-    function StatusInsertEditClientDS: Boolean;
-    function VerificaClientDSSeEstaAtivo: Boolean;
+    function DevolverUltimoCodigo: Integer; override;
+    function CarregarDadosParaClientDS: Boolean; override;
+    function ValidarCampos: Boolean; override;
+    function Gravar: Boolean; override;
+    function StatusInsertEditClientDS: Boolean; override;
+    function VerificaClientDSSeEstaAtivo: Boolean; override;
 
-    procedure LimparCampos;
-    procedure LimparDadosClientDS;
-    procedure NovoCadastroClientDS;
-    procedure AlterarClientDS;
-    procedure ExcluirClientDS;
-    procedure CancelarEdicaoClientDS;
-    procedure CarregarEscola;
-    procedure AbrirConexaoClientDS;
-    procedure FecharConexaoClientDS;
+    procedure LimparCampos; override;
+    procedure LimparDadosClientDS; override;
+    procedure NovoCadastroClientDS; override;
+    procedure AlterarClientDS; override;
+    procedure ExcluirClientDS; override;
+    procedure CancelarEdicaoClientDS; override;
+    procedure CarregarEscola; override;
+    procedure AbrirConexaoClientDS; override;
+    procedure FecharConexaoClientDS; override;
 
-    property EstadoClientDS: TDataSetState read GetEstadoClientDS;
+    function EstadoClientDS: TDataSetState; override;
+
     property EscolaModelo: TEscolaModelo read FEscolaModelo write SetEscolaModelo;
+    property ControladorPadrao: TCadPadraoController read FControladorPadrao write SetControladorPadrao;
   end;
 
 implementation
@@ -44,6 +48,7 @@ uses
 
 constructor TCadEscolaController.Create;
 begin
+  ControladorPadrao := TCadPadraoController.Create;
   EscolaModelo := TEscolaModelo.Create;
 end;
 
@@ -68,9 +73,15 @@ begin
   EscolaModelo.CarregarEscola;
 end;
 
-procedure TCadEscolaController.NovoCadastroClientDS;
+//procedure TCadEscolaController.NovoCadastroClientDS;
+//begin
+//  EscolaModelo.NovoCadastroClientDS;
+//end;
+
+procedure TCadEscolaController.SetControladorPadrao(
+  const Value: TCadPadraoController);
 begin
-  EscolaModelo.NovoCadastroClientDS;
+  FControladorPadrao := Value;
 end;
 
 procedure TCadEscolaController.SetEscolaModelo(const Value: TEscolaModelo);
@@ -106,7 +117,7 @@ begin
   EscolaModelo.FecharConexaoClientDS;
 end;
 
-function TCadEscolaController.GetEstadoClientDS: TDataSetState;
+function TCadEscolaController.EstadoClientDS: TDataSetState;
 begin
   Result := EscolaModelo.EstadoClientDS;
 end;
@@ -137,6 +148,13 @@ procedure TCadEscolaController.LimparDadosClientDS;
 begin
   EscolaModelo.LimparDadosClientDS;
 end;
+
+procedure TCadEscolaController.NovoCadastroClientDS;
+begin
+  inherited;
+  EscolaModelo.NovoCadastroClientDS;
+end;
+
 //Método verificador do último CÓDIGO registrado no BD 
 function TCadEscolaController.DevolverUltimoCodigo: Integer;
 begin

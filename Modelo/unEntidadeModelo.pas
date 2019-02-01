@@ -17,30 +17,31 @@ type
     FComplemento: string;
     FBairro: string;
     FCidade: string;
-    procedure SetCodigo(const Valor: Integer); virtual;
-    procedure SetNome(const Valor: string); virtual;
-    procedure SetDataCadastro(const Valor: TDateTime); virtual;
-    procedure SetCep(const Valor: string); virtual;
-    procedure SetRua(const Valor: string); virtual;
-    procedure SetNumero(const Valor: string); virtual;
-    procedure SetComplemento(const Valor: string); virtual;
-    procedure SetBairro(const Valor: string); virtual;
-    procedure SetCidade(const Valor: string); virtual;
-    function GetCodigo: Integer; virtual;
-    function GetNome: string; virtual;
-    function GetDataCadastro: TDateTime; virtual;
-    function GetCep: string; virtual;
-    function GetRua: string; virtual;
-    function GetNumero: string; virtual;
-    function GetComplemento: string; virtual;
-    function GetBairro: string; virtual;
-    function GetCidade: string; virtual;
+    procedure SetCodigo(const Valor: Integer);
+    procedure SetNome(const Valor: string);
+    procedure SetDataCadastro(const Valor: TDateTime);
+    procedure SetCep(const Valor: string);
+    procedure SetRua(const Valor: string);
+    procedure SetNumero(const Valor: string);
+    procedure SetComplemento(const Valor: string);
+    procedure SetBairro(const Valor: string);
+    procedure SetCidade(const Valor: string);
+    function GetCodigo: Integer;
+    function GetNome: string;
+    function GetDataCadastro: TDateTime;
+    function GetCep: string;
+    function GetRua: string;
+    function GetNumero: string;
+    function GetComplemento: string;
+    function GetBairro: string;
+    function GetCidade: string;
 //    function GetEstadoClientDS: TDataSetState; virtual;
   public
+    constructor Create;
 //    procedure AbrirConexaoClientDS;
 //    procedure FecharConexaoClientDS;
-    class procedure CarregarEntidadePadrao;
-//    procedure NovoCadastroClientDS;
+    procedure CarregarEntidadePadrao;
+    procedure NovoCadastroClientDS; virtual;
 //    procedure CancelarEdicaoClientDS;
 //    procedure AlterarClientDS;
 //    procedure ExcluirClientDS;
@@ -70,7 +71,7 @@ type
     property Bairro: string read GetBairro write SetBairro;
     property Cidade: string read GetCidade write SetCidade;
 
-//    property EstadoClientDS: TDataSetState read GetEstadoClientDS;
+    function EstadoClientDS: TDataSetState;
 //
 //    function Gravar: Boolean;
   end;
@@ -159,6 +160,11 @@ begin
   Result := FRua;
 end;
 
+procedure TEntidadeModelo.NovoCadastroClientDS;
+begin
+  FEntidadeDAO.NovoCadastroClientDS;
+end;
+
 function TEntidadeModelo.GetNumero: string;
 begin
   Result := FNumero;
@@ -169,9 +175,19 @@ begin
   Result := FComplemento;
 end;
 
-class procedure TEntidadeModelo.CarregarEntidadePadrao;
+procedure TEntidadeModelo.CarregarEntidadePadrao;
 begin
   FEntidadeDAO.CarregarEntidadePadrao(nil);
+end;
+
+constructor TEntidadeModelo.Create;
+begin
+  FEntidadeDAO := TEntidadeDAO.Create;
+end;
+
+function TEntidadeModelo.EstadoClientDS: TDataSetState;
+begin
+  Result := FEntidadeDAO.EstadoClientDS;
 end;
 
 function TEntidadeModelo.GetBairro: string;

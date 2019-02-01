@@ -39,7 +39,17 @@ type
     edtEndComplemento: TEdit;
     edtEndBairro: TEdit;
     edtEndCidade: TEdit;
-    procedure btnNovoCadastroClick(Sender: TObject);
+    procedure btnNovoCadastroClick(Sender: TObject); virtual;
+    procedure btnGravarClick(Sender: TObject); virtual;
+    procedure btnCancelarClick(Sender: TObject); virtual;
+    procedure btnLimparClick(Sender: TObject); virtual;
+    procedure btnExcluirClick(Sender: TObject); virtual;
+    procedure btnAlterarClick(Sender: TObject); virtual;
+    procedure btnPesquisarClick(Sender: TObject); virtual;
+    procedure edtEndNumeroKeyPress(Sender: TObject; var Key: Char); virtual;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction); virtual;
+    procedure AvancarCampo(Sender: TObject; var Key: Char); virtual;
+    procedure btnFecharClick(Sender: TObject); virtual;
   private
     FControladorPadrao: TCadPadraoController;
     procedure SetControladorPadrao(const Value: TCadPadraoController);
@@ -50,10 +60,17 @@ type
     procedure LimparCampos; virtual;
     procedure LimparCamposForm; virtual;
     procedure HabilitarDesabilitarComponentesDados; virtual;
-    procedure CarregarEntidade;
+    procedure CarregarEscola; virtual;
 
 
   public
+    constructor Create(AOwner: TComponent); override;
+    destructor Destroy; override;
+
+    procedure CarregarEntidadeEscola; virtual;
+
+    function ValidaCampos: Boolean; virtual;
+
     property ControladorPadrao: TCadPadraoController read FControladorPadrao write SetControladorPadrao;
 //    property EntidadeModelo
 
@@ -70,8 +87,8 @@ procedure TfrmCadPadrao.CarregarComponentesCadPadrao;
 begin
   edtCodigo.Text := IntToStr(ControladorPadrao.EntidadeModelo.Codigo);
   edtNome.Text := ControladorPadrao.EntidadeModelo.Nome;
-  cxDateEditDataCadastro.Date := ControladorPadrao.EntidadeModelo.DataCadastro;
-  maskEditEndCEP.Text := ControladorPadrao.EntidadeModelo.Cep;
+//  cxDateEditDataCadastro.Date := ControladorPadrao.EntidadeModelo.DataCadastro;
+//  maskEditEndCEP.Text := ControladorPadrao.EntidadeModelo.Cep;
   edtEndRua.Text := ControladorPadrao.EntidadeModelo.Rua;
   edtEndNumero.Text := ControladorPadrao.EntidadeModelo.Numero;
   edtEndComplemento.Text := ControladorPadrao.EntidadeModelo.Complemento;
@@ -98,15 +115,27 @@ begin
   ControladorPadrao.EntidadeModelo.Cidade := edtEndCidade.Text;
 end;
 
-procedure TfrmCadPadrao.btnNovoCadastroClick(Sender: TObject);
+constructor TfrmCadPadrao.Create(AOwner: TComponent);
 begin
-  ControladorPadrao.NovoCadastroClientDS;
-  HabilitarDesabilitarComponentesDados; //Habilita os componentes necessários para NOVO CADASTRO
-//  edtEscolaNome.SetFocus;
-  LimparCampos; //Limpa os campos necessários para NOVO CADASTRO caso possuam algum dado
-//  ControladorPadrao.EscolaModelo.Codigo := ControladorEscola.DevolverUltimoCodigo + 1; //Aplica o CÓDIGO IDENTIFICADOR
-//  edtEscolaCodigo.Text := IntToStr(ControladorEscola.EscolaModelo.Codigo);
-//  cxDateEditEscolaDataCadastro.Text := FormatDateTime('DD/MM/YYYY', Now); //Atribui DATA ATUAL do SO
+  ControladorPadrao := TCadPadraoController.Create; //Instãncia da Classe Controller
+  if ControladorPadrao.EstadoClientDS = dsBrowse then
+  begin
+    ControladorPadrao.CarregarEntidade;
+    CarregarComponentesCadPadrao;
+  end
+  else
+  begin
+    CarregarComponentesCadPadrao;
+    HabilitarDesabilitarComponentesDados;
+    edtCodigo.Text := EmptyStr;
+    cxDateEditDataCadastro.Text := EmptyStr;
+  end;
+end;
+
+destructor TfrmCadPadrao.Destroy;
+begin
+  inherited;
+  FreeAndNil(FControladorPadrao);
 end;
 
 procedure TfrmCadPadrao.HabilitarDesabilitarComponentesDados;
@@ -117,6 +146,13 @@ begin
   btnCancelar.Enabled := (ControladorPadrao.EstadoClientDS in [dsInsert, dsEdit]);
 //  btnEscolaPesquisar.Enabled := (ControladorPadrao.EstadoClientDS in [dsInactive, dsBrowse]);
   btnFechar.Enabled := (ControladorPadrao.EstadoClientDS in [dsInactive, dsBrowse]);
+  edtNome.Enabled := (ControladorPadrao.EstadoClientDS in [dsInsert, dsEdit]);
+  edtEndRua.Enabled := (ControladorPadrao.EstadoClientDS in [dsInsert, dsEdit]);
+  edtEndNumero.Enabled := (ControladorPadrao.EstadoClientDS in [dsInsert, dsEdit]);
+  edtEndComplemento.Enabled := (ControladorPadrao.EstadoClientDS in [dsInsert, dsEdit]);
+  edtEndCidade.Enabled := (ControladorPadrao.EstadoClientDS in [dsInsert, dsEdit]);
+  maskEditEndCEP.Enabled := (ControladorPadrao.EstadoClientDS in [dsInsert, dsEdit]);
+  edtEndBairro.Enabled := (ControladorPadrao.EstadoClientDS in [dsInsert, dsEdit]);
 end;
 
 procedure TfrmCadPadrao.LimparCampos;
