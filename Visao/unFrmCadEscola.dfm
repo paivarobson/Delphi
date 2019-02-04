@@ -1,6 +1,7 @@
 inherited frmCadEscola: TfrmCadEscola
   Caption = 'Cadastro de Escola'
   ClientHeight = 269
+  OnClose = FormClose
   ExplicitHeight = 298
   PixelsPerInch = 96
   TextHeight = 13
@@ -14,12 +15,21 @@ inherited frmCadEscola: TfrmCadEscola
   end
   inherited btnGravar: TButton
     Enabled = True
+    OnClick = btnGravarClick
+  end
+  inherited btnAlterar: TButton
+    OnClick = btnAlterarClick
   end
   inherited btnCancelar: TButton
     Enabled = True
+    OnClick = btnCancelarClick
   end
   inherited btnLimpar: TButton
     Enabled = True
+    OnClick = btnLimparClick
+  end
+  inherited btnFechar: TButton
+    OnClick = btnFecharClick
   end
   object btnEscolaPesquisar: TButton [17]
     Left = 88
@@ -28,6 +38,7 @@ inherited frmCadEscola: TfrmCadEscola
     Height = 25
     Caption = 'Pesquisar'
     TabOrder = 7
+    OnClick = btnEscolaPesquisarClick
   end
   inherited edtCodigo: TEdit
     TabOrder = 8
@@ -37,6 +48,7 @@ inherited frmCadEscola: TfrmCadEscola
   end
   inherited edtNome: TEdit
     TabOrder = 10
+    OnKeyPress = AvancarCampo
   end
   inherited maskEditEndCEP: TMaskEdit
     TabOrder = 11

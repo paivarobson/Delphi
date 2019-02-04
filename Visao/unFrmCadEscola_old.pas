@@ -183,8 +183,8 @@ end;
 //(BOTÃO ALTERAR) Evento para habilitar campos para a edição
 procedure TfrmCadEscola_old.btnEscolaAlterarClick(Sender: TObject);
 begin  
-  ControladorEscola.EscolaModelo.AlterarClientDS;
-   ControladorEscola.EstadoClientDS;
+  ControladorEscola.AlterarEscolaClientDS;
+  ControladorEscola.EstadoClientDS;
   HabilitarDesabilitarComponentesDados; //Habilita os componentes necessários para EDIÇÃO
 end;
 //(BOTÃO LIMPAR)
@@ -249,6 +249,7 @@ procedure TfrmCadEscola_old.SetControlador(const Value: TCadEscolaController);
 begin
   FControladorEscola := Value;
 end;
+
 function TfrmCadEscola_old.ValidaCampos: Boolean;
 var
   i: Integer;

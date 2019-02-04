@@ -24,7 +24,7 @@ type
 
     function DadosCDS: TClientDataSet;
     function CarregarConsultaClientDS(ACampoTabelaFiltrado: string; ADado: string): Boolean;
-    function VerificaClientDSSeEstaAtivo: Boolean;
+//    function VerificaClientDSSeEstaAtivo: Boolean;
 
     property EscolaModelo: TEscolaModelo read FEscolaModelo write SetEscolaModelo;
   end;
@@ -76,10 +76,10 @@ begin
   EscolaModelo.HabilitarFilteredClientDS;
 end;
 
-function TPesquisaEscolaController.VerificaClientDSSeEstaAtivo: Boolean;
-begin
-  Result := EscolaModelo.VerificaClientDSSeEstaAtivo;
-end;
+//function TPesquisaEscolaController.VerificaClientDSSeEstaAtivo: Boolean;
+//begin
+//  Result := EscolaModelo.VerificaClientDSSeEstaAtivo;
+//end;
 
 function TPesquisaEscolaController.CarregarConsultaClientDS(
   ACampoTabelaFiltrado: string; ADado: string): Boolean;

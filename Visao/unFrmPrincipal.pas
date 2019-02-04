@@ -35,7 +35,6 @@ type
   private
     FControladorEscola: TCadEscolaController;
     procedure SetControladorEscola(const Value: TCadEscolaController);
-  published
   public
     property ControladorEscola: TCadEscolaController read FControladorEscola write SetControladorEscola;
   end;

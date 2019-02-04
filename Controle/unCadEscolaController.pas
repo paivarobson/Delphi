@@ -23,12 +23,12 @@ type
     function ValidarCampos: Boolean; override;
     function Gravar: Boolean; override;
     function StatusInsertEditClientDS: Boolean; override;
-    function VerificaClientDSSeEstaAtivo: Boolean; override;
+//    function VerificaClientDSSeEstaAtivo: Boolean; override;
 
     procedure LimparCampos; override;
     procedure LimparDadosClientDS; override;
     procedure NovoCadastroClientDS; override;
-    procedure AlterarClientDS; override;
+    procedure AlterarEscolaClientDS; override;
     procedure ExcluirClientDS; override;
     procedure CancelarEdicaoClientDS; override;
     procedure CarregarEscola; override;
@@ -48,7 +48,6 @@ uses
 
 constructor TCadEscolaController.Create;
 begin
-  ControladorPadrao := TCadPadraoController.Create;
   EscolaModelo := TEscolaModelo.Create;
 end;
 
@@ -58,10 +57,10 @@ begin
   inherited;
 end;
 
-function TCadEscolaController.VerificaClientDSSeEstaAtivo: Boolean;
-begin
-  Result := EscolaModelo.VerificaClientDSSeEstaAtivo;
-end;
+//function TCadEscolaController.VerificaClientDSSeEstaAtivo: Boolean;
+//begin
+//  Result := EscolaModelo.VerificaClientDSSeEstaAtivo;
+//end;
 
 procedure TCadEscolaController.CancelarEdicaoClientDS;
 begin
@@ -132,10 +131,12 @@ begin
   EscolaModelo.AbrirConexaoClientDS;
 end;
 
-procedure TCadEscolaController.AlterarClientDS;
+procedure TCadEscolaController.AlterarEscolaClientDS;
 begin
-  EscolaModelo.AlterarClientDS;
+  inherited;
+  EscolaModelo.AlterarEscolaClientDS;
 end;
+
 //Método para o uso do ClientDataSet externamente
 
 //Método para limpar os dados direto no ClientDataSet

@@ -3,12 +3,11 @@ unit unEscolaModelo;
 interface
 
 uses
-  SysUtils, Classes, Dialogs, DBClient, StdCtrls, DB;
+  SysUtils, Classes, Dialogs, DBClient, StdCtrls, DB, unEntidadeModelo;
 
 type
-  TEscolaModelo = class
+  TEscolaModelo = class(TEntidadeModelo)
   private
-
     FCodigo: Integer;
     FNome: string;
     FDataCadastro: TDateTime;
@@ -36,33 +35,32 @@ type
     function GetComplemento: string;
     function GetBairro: string;
     function GetCidade: string;
-    function GetEstadoClientDS: TDataSetState;
   public
     constructor Create;
     destructor Destroy; override;
 
-    procedure AbrirConexaoClientDS;
-    procedure FecharConexaoClientDS;
-    procedure CarregarEscola;
-    procedure NovoCadastroClientDS;
-    procedure CancelarEdicaoClientDS;
-    procedure AlterarClientDS;
-    procedure ExcluirClientDS;
-    procedure GravarEscolaClientDS;
-    procedure LimparCampos;
-    procedure LimparDadosClientDS;
-    procedure DesabilitarFilteredClientDS;
-    procedure HabilitarFilteredClientDS;
-    procedure CarregarTodosRegistrosClientDS;
-    procedure ConsultaOrdenada(AIndiceComboBox: Integer);
+    procedure AbrirConexaoClientDS; override;
+    procedure FecharConexaoClientDS; override;
+    procedure CarregarEscola; override;
+    procedure NovoCadastroClientDS; override;
+    procedure CancelarEdicaoClientDS; override;
+    procedure AlterarEscolaClientDS; override;
+    procedure ExcluirClientDS; override;
+    procedure GravarEscolaClientDS; override;
+    procedure LimparCampos; override;
+    procedure LimparDadosClientDS; override;
+    procedure DesabilitarFilteredClientDS; override;
+    procedure HabilitarFilteredClientDS; override;
+    procedure CarregarTodosRegistrosClientDS; override;
+    procedure ConsultaOrdenada(AIndiceComboBox: Integer); override;
 
-    function ObterClientDS: TClientDataSet;
-    function DevolverUltimoCodigo: Integer;
-    function CarregarDadosParaClientDS: Boolean;
-    function ValidarCampos: Boolean;
-    function CarregarConsultaClientDS(ACampoTabelaFiltrado: string; ADado: string): Boolean;
-    function StatusInsertEditClientDS: Boolean;
-    function VerificaClientDSSeEstaAtivo: Boolean;
+//    function ObterClientDS: TClientDataSet;
+    function DevolverUltimoCodigo: Integer; override;
+    function CarregarDadosParaClientDS: Boolean; override;
+    function ValidarCampos: Boolean; override;
+    function CarregarConsultaClientDS(ACampoTabelaFiltrado: string; ADado: string): Boolean; override;
+    function StatusInsertEditClientDS: Boolean; override;
+//    function VerificaClientDSSeEstaAtivo: Boolean; override;
 
     property Codigo: Integer read GetCodigo write SetCodigo;
     property Nome: string read GetNome write SetNome;
@@ -74,7 +72,7 @@ type
     property Bairro: string read GetBairro write SetBairro;
     property Cidade: string read GetCidade write SetCidade;
 
-    property EstadoClientDS: TDataSetState read GetEstadoClientDS;
+    function EstadoClientDS: TDataSetState; override;
 
     function Gravar: Boolean;
   end;
@@ -84,6 +82,7 @@ implementation
 
 uses
   unEscolaDAO;
+  
 var
   FEscolaDao: TEscolaDAO = nil;
 
@@ -92,15 +91,15 @@ begin
   FEscolaDao.AbrirConexaoClientDS;
 end;
 
-procedure TEscolaModelo.AlterarClientDS;
+procedure TEscolaModelo.AlterarEscolaClientDS;
 begin
   FEscolaDao.AlterarEscolaClientDS;
 end;
 
-function TEscolaModelo.VerificaClientDSSeEstaAtivo: Boolean;
-begin
-  Result := FEscolaDao.VerificaClientDSSeEstaAtivo;
-end;
+//function TEscolaModelo.VerificaClientDSSeEstaAtivo: Boolean;
+//begin
+//  Result := FEscolaDao.VerificaClientDSSeEstaAtivo;
+//end;
 
 procedure TEscolaModelo.CancelarEdicaoClientDS;
 begin
@@ -114,18 +113,17 @@ end;
 
 constructor TEscolaModelo.Create;
 begin
-  FEscolaDAO := TEscolaDAO.Create;
-end;
-
-destructor TEscolaModelo.Destroy;
-begin
-  FreeAndNil(FEscolaDao);
-  inherited;
+  FEscolaDao := TEscolaDAO.Create;
 end;
 
 function TEscolaModelo.DevolverUltimoCodigo: Integer;
 begin
   Result := FEscolaDao.DevolverUltimoCodigo;
+end;
+
+function TEscolaModelo.EstadoClientDS: TDataSetState;
+begin
+  Result := FEscolaDao.EstadoClientDS;
 end;
 
 procedure TEscolaModelo.ExcluirClientDS;
@@ -209,11 +207,6 @@ begin
   Result := FDataCadastro;
 end;
 
-function TEscolaModelo.GetEstadoClientDS: TDataSetState;
-begin
-  Result := FEscolaDao.EstadoClientDS;
-end;
-
 function TEscolaModelo.GetRua: string;
 begin
   Result := FRua;
@@ -250,6 +243,12 @@ begin
   FEscolaDao.DesabilitarFilteredClientDS;
 end;
 
+destructor TEscolaModelo.Destroy;
+begin
+  FreeAndNil(FEscolaDao);
+  inherited;
+end;
+
 function TEscolaModelo.CarregarDadosParaClientDS: Boolean;
 begin
   Result := FEscolaDao.Gravar(Self);
@@ -275,11 +274,11 @@ procedure TEscolaModelo.NovoCadastroClientDS;
 begin
   FEscolaDao.NovoCadastroClientDS;
 end;
-
-function TEscolaModelo.ObterClientDS: TClientDataSet;
-begin
-  Result := FEscolaDao.ClientDS;
-end;
+//
+//function TEscolaModelo.ObterClientDS: TClientDataSet;
+//begin
+//  Result := FEscolaDao.ClientDS;
+//end;
 
 function TEscolaModelo.GetNumero: string;
 begin

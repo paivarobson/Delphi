@@ -37,28 +37,26 @@ type
     function GetCidade: string;
 //    function GetEstadoClientDS: TDataSetState; virtual;
   public
-    constructor Create;
-//    procedure AbrirConexaoClientDS;
-//    procedure FecharConexaoClientDS;
-    procedure CarregarEntidadePadrao;
-    procedure NovoCadastroClientDS; virtual;
-//    procedure CancelarEdicaoClientDS;
-//    procedure AlterarClientDS;
-//    procedure ExcluirClientDS;
-//    procedure GravarEscolaClientDS;
-//    procedure LimparCampos;
-//    procedure LimparDadosClientDS;
-//    procedure DesabilitarFilteredClientDS;
-//    procedure HabilitarFilteredClientDS;
-//    procedure CarregarTodosRegistrosClientDS;
-//    procedure ConsultaOrdenada(AIndiceComboBox: Integer);
+    procedure AbrirConexaoClientDS; virtual; abstract;
+    procedure FecharConexaoClientDS; virtual; abstract;
+    procedure CarregarEscola; virtual; abstract;
+    procedure NovoCadastroClientDS; virtual; abstract;
+    procedure CancelarEdicaoClientDS; virtual; abstract;
+    procedure AlterarEscolaClientDS; virtual; abstract;
+    procedure ExcluirClientDS; virtual; abstract;
+    procedure GravarEscolaClientDS; virtual; abstract;
+    procedure LimparCampos; virtual; abstract;
+    procedure LimparDadosClientDS; virtual; abstract;
+    procedure DesabilitarFilteredClientDS; virtual; abstract;
+    procedure HabilitarFilteredClientDS; virtual; abstract;
+    procedure CarregarTodosRegistrosClientDS; virtual; abstract;
+    procedure ConsultaOrdenada(AIndiceComboBox: Integer); virtual; abstract;
 
-//    function ObterClientDS: TClientDataSet;
-//    function DevolverUltimoCodigo: Integer;
-//    function CarregarDadosParaClientDS: Boolean;
-    function ValidarCampos: Boolean;
-//    function CarregarConsultaClientDS(ACampoTabelaFiltrado: string; ADado: string): Boolean;
-//    function StatusInsertEditClientDS: Boolean;
+    function DevolverUltimoCodigo: Integer; virtual; abstract;
+    function CarregarDadosParaClientDS: Boolean; virtual; abstract;
+    function ValidarCampos: Boolean; virtual; abstract;
+    function CarregarConsultaClientDS(ACampoTabelaFiltrado: string; ADado: string): Boolean; virtual; abstract;
+    function StatusInsertEditClientDS: Boolean; virtual; abstract;
 //    function VerificaClientDSSeEstaAtivo: Boolean;
 
     property Codigo: Integer read GetCodigo write SetCodigo;
@@ -71,7 +69,7 @@ type
     property Bairro: string read GetBairro write SetBairro;
     property Cidade: string read GetCidade write SetCidade;
 
-    function EstadoClientDS: TDataSetState;
+    function EstadoClientDS: TDataSetState; virtual; abstract;
 //
 //    function Gravar: Boolean;
   end;
@@ -112,11 +110,6 @@ end;
 procedure TEntidadeModelo.SetRua(const Valor: string);
 begin
   FRua := Valor;
-end;
-
-function TEntidadeModelo.ValidarCampos: Boolean;
-begin
-  Result := FEntidadeDAO.ValidarCampos;
 end;
 
 procedure TEntidadeModelo.SetNumero(const Valor: string);
@@ -160,11 +153,6 @@ begin
   Result := FRua;
 end;
 
-procedure TEntidadeModelo.NovoCadastroClientDS;
-begin
-  FEntidadeDAO.NovoCadastroClientDS;
-end;
-
 function TEntidadeModelo.GetNumero: string;
 begin
   Result := FNumero;
@@ -174,21 +162,11 @@ function TEntidadeModelo.GetComplemento: string;
 begin
   Result := FComplemento;
 end;
-
-procedure TEntidadeModelo.CarregarEntidadePadrao;
-begin
-  FEntidadeDAO.CarregarEntidadePadrao(nil);
-end;
-
-constructor TEntidadeModelo.Create;
-begin
-  FEntidadeDAO := TEntidadeDAO.Create;
-end;
-
-function TEntidadeModelo.EstadoClientDS: TDataSetState;
-begin
-  Result := FEntidadeDAO.EstadoClientDS;
-end;
+//
+//function TEntidadeModelo.EstadoClientDS: TDataSetState;
+//begin
+//  Result := FEntidadeDAO.EstadoClientDS;
+//end;
 
 function TEntidadeModelo.GetBairro: string;
 begin

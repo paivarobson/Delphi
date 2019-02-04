@@ -120,7 +120,7 @@ function Tfmdados.DevolverUltimoCodigo(ACampoCodigo: string): Integer;
 begin
   fmdados.tbAux.Close;
   fmdados.tbAux.SQL.Clear;
-  fmdados.tbAux.SQL.Text := 'SELECT MAX(' + QuotedStr(ACampoCodigo) + ') FROM ESCOLA';
+  fmdados.tbAux.SQL.Text := 'SELECT MAX(' + ACampoCodigo + ') FROM ESCOLA';
   fmdados.tbAux.Open;
   
   Result := fmdados.tbAux.Fields[0].AsInteger;

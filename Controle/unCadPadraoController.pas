@@ -9,27 +9,27 @@ uses
 type
   TCadPadraoController = class
   private
-    FEntidadeModelo: TEntidadeModelo;
+//    FEntidadeModelo: TEntidadeModelo;
 
   public
-    function DevolverUltimoCodigo: Integer; virtual;
-    function CarregarDadosParaClientDS: Boolean; virtual;
-    function ValidarCampos: Boolean; virtual;
-    function Gravar: Boolean; virtual;
-    function StatusInsertEditClientDS: Boolean; virtual;
-    function VerificaClientDSSeEstaAtivo: Boolean; virtual;
+    function DevolverUltimoCodigo: Integer; virtual; abstract;
+    function CarregarDadosParaClientDS: Boolean; virtual; abstract;
+    function ValidarCampos: Boolean; virtual; abstract;
+    function Gravar: Boolean; virtual; abstract;
+    function StatusInsertEditClientDS: Boolean; virtual; abstract;
+//    function VerificaClientDSSeEstaAtivo: Boolean; virtual; abstract;
 
-    procedure LimparCampos; virtual;
-    procedure LimparDadosClientDS; virtual;
-    procedure NovoCadastroClientDS; virtual;
-    procedure AlterarClientDS; virtual;
-    procedure ExcluirClientDS; virtual;
-    procedure CancelarEdicaoClientDS; virtual;
-    procedure CarregarEscola; virtual;
-    procedure AbrirConexaoClientDS; virtual;
-    procedure FecharConexaoClientDS; virtual;
+    procedure LimparCampos; virtual; abstract;
+    procedure LimparDadosClientDS; virtual; abstract;
+    procedure NovoCadastroClientDS; virtual; abstract;
+    procedure AlterarEscolaClientDS; virtual; abstract;
+    procedure ExcluirClientDS; virtual; abstract;
+    procedure CancelarEdicaoClientDS; virtual; abstract;
+    procedure CarregarEscola; virtual; abstract;
+    procedure AbrirConexaoClientDS; virtual; abstract;
+    procedure FecharConexaoClientDS; virtual; abstract;
 
-    function EstadoClientDS: TDataSetState; virtual;
+    function EstadoClientDS: TDataSetState; virtual; abstract;
 
   end;
 
