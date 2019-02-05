@@ -12,17 +12,21 @@ type
   TfrmCadEscola = class(TfrmCadPadrao)
     btnEscolaPesquisar: TButton;
     procedure btnNovoCadastroClick(Sender: TObject); override;
-    procedure btnGravarClick(Sender: TObject); override;
-    procedure btnCancelarClick(Sender: TObject); override;
-    procedure btnLimparClick(Sender: TObject); override;
-    procedure btnExcluirClick(Sender: TObject); override;
-    procedure btnAlterarClick(Sender: TObject); override;
-    procedure btnPesquisarClick(Sender: TObject); override;
-    procedure edtEndNumeroKeyPress(Sender: TObject; var Key: Char); override;
+    procedure btnGravarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+//    procedure btnLimparClick(Sender: TObject); override;
+    procedure btnExcluirClick(Sender: TObject);
+    procedure btnAlterarClick(Sender: TObject);
+    procedure btnPesquisarClick(Sender: TObject);
+//    procedure edtEndNumeroKeyPress(Sender: TObject; var Key: Char); override;
     procedure FormClose(Sender: TObject; var Action: TCloseAction); override;
 //    procedure AvancarCampo(Sender: TObject; var Key: Char); override;
-    procedure btnFecharClick(Sender: TObject); override;
+//    procedure btnFecharClick(Sender: TObject); override;
     procedure btnEscolaPesquisarClick(Sender: TObject);
+    procedure btnFecharClick(Sender: TObject);
+    procedure edtEndNumeroKeyPress(Sender: TObject; var Key: Char);
+    procedure btnLimparClick(Sender: TObject);
+    procedure edtNomeKeyPress(Sender: TObject; var Key: Char);
   private
     FControladorEscola: TCadEscolaController;
     procedure SetControladorEscola(const Value: TCadEscolaController);
@@ -31,15 +35,13 @@ type
 //    constructor Create;
     destructor Destroy; override;
 
-    procedure CarregarComponentesCadEscola; override;
-    procedure CarregarEntidadeEscola; override;
-    procedure LimparCampos; override;
-    procedure LimparCamposForm; override;
-    procedure HabilitarDesabilitarComponentesDados; override;
+    procedure CarregarComponentesCadEscola;
+    procedure CarregarEntidadeEscola;
+    procedure LimparCampos;
+//    procedure LimparCamposForm; override;
+    procedure HabilitarDesabilitarComponentesDados;
     procedure AfterConstruction; override;
-    procedure CarregarEscola; override;
-
-    function ValidaCampos: Boolean; override;
+    procedure CarregarEscola;
 
     property ControladorEscola: TCadEscolaController read FControladorEscola write SetControladorEscola;
   end;
@@ -83,7 +85,6 @@ end;
 
 procedure TfrmCadEscola.btnCancelarClick(Sender: TObject);
 begin
-  inherited;
   if MessageDlg('Tem certeza que deseja cancelar a edição deste registro?', mtConfirmation,
     mbYesNo, 0) = mrYes then
   begin
@@ -158,28 +159,23 @@ end;
 procedure TfrmCadEscola.btnLimparClick(Sender: TObject);
 begin
   inherited;
-  if MessageDlg('Tem certeza que deseja limpar os campos?', mtConfirmation,
-    mbYesNo, 0) = mrYes then
-  begin
-    LimparCamposForm;
-  end;
+  LimparCamposForm;
 end;
 
 procedure TfrmCadEscola.btnNovoCadastroClick(Sender: TObject);
 begin
-  inherited;
   ControladorEscola.NovoCadastroClientDS;
   HabilitarDesabilitarComponentesDados; //Habilita os componentes necessários para NOVO CADASTRO
-  edtNome.SetFocus;
+//  edtNome.SetFocus;
   LimparCampos; //Limpa os campos necessários para NOVO CADASTRO caso possuam algum dado
   ControladorEscola.EscolaModelo.Codigo := ControladorEscola.DevolverUltimoCodigo + 1; //Aplica o CÓDIGO IDENTIFICADOR
   edtCodigo.Text := IntToStr(ControladorEscola.EscolaModelo.Codigo);
-  cxDateEditDataCadastro.Text := FormatDateTime('DD/MM/YYYY', Now); //Atribui DATA ATUAL do SO
+//  cxDateEditDataCadastro.Text := FormatDateTime('DD/MM/YYYY', Now); //Atribui DATA ATUAL do SO
+  inherited;
 end;
 
 procedure TfrmCadEscola.btnPesquisarClick(Sender: TObject);
 begin
-  inherited;
   if not Assigned(frmPesquisaEscola) then //Verifica se o Form PESQUISA ESCOLA está FECHADO para ser CRIADO
     frmPesquisaEscola := TfrmPesquisaEscola.Create(frmPrincipal);
   frmPesquisaEscola.Show;
@@ -229,14 +225,26 @@ end;
 procedure TfrmCadEscola.edtEndNumeroKeyPress(Sender: TObject; var Key: Char);
 begin
   inherited;
-  if not (Key in ['0'..'9', #8, #13, #27]) then
-  begin
-    Key := #0;
-    Application.MessageBox('Somente números.', 'Caractere inválido', MB_ICONWARNING)
-  end
-  else
-    AvancarCampo(Sender, Key) //Avançar e recuar campo com a tecla ENTER e ESC respectivamente
+  PermitirSomenteNumeros(Sender, Key);
 end;
+
+procedure TfrmCadEscola.edtNomeKeyPress(Sender: TObject; var Key: Char);
+begin
+  inherited;
+  AvancarCampo(Sender, Key);
+end;
+
+//procedure TfrmCadEscola.edtEndNumeroKeyPress(Sender: TObject; var Key: Char);
+//begin
+//  inherited;
+////  if not (Key in ['0'..'9', #8, #13, #27]) then
+////  begin
+////    Key := #0;
+////    Application.MessageBox('Somente números.', 'Caractere inválido', MB_ICONWARNING)
+////  end
+////  else
+////    AvancarCampo(Sender, Key) //Avançar e recuar campo com a tecla ENTER e ESC respectivamente
+//end;
 
 procedure TfrmCadEscola.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
@@ -280,55 +288,9 @@ begin
   CarregarComponentesCadEscola;
 end;
 
-procedure TfrmCadEscola.LimparCamposForm;
-begin
-  inherited;
-  edtNome.Text := EmptyStr;
-  maskEditEndCEP.Text := EmptyStr;
-  edtEndRua.Text := EmptyStr;
-  edtEndNumero.Text := EmptyStr;
-  edtEndComplemento.Text := EmptyStr;
-  edtEndBairro.Text := EmptyStr;
-  edtEndCidade.Text := EmptyStr;
-end;
-
 procedure TfrmCadEscola.SetControladorEscola(const Value: TCadEscolaController);
 begin
   FControladorEscola := Value;
-end;
-
-function TfrmCadEscola.ValidaCampos: Boolean;
-var
-  i: Integer;
-  Campos: TStrings;
-begin
-  Campos := TStringList.Create;
-  try
-    for i := 0 to ComponentCount - 1 do
-    begin
-      if (Components[i].ClassType = TEdit) or 
-        (Components[i].ClassType = TcxDateEdit) or
-        (Components[i].ClassType = TMaskEdit) then
-      begin
-        if (Components[i].Tag = 1) and 
-          (TEdit(Components[i]).Text = EmptyStr) or
-          (TcxDateEdit(Components[i]).Text = EmptyStr) or
-          (TMaskEdit(Components[i]).Text = '     -   ') then
-        begin  
-          Campos.Add('- ' + (TWinControl(Components[i]).Hint)); //Armazena o NOME DO CAMPO dentro de uma LISTA
-        end;
-      end;
-    end;
-    if (Campos.Count > 0) then //Verifica se há algum campo obrigatório vazio
-    begin
-      Result := False;
-      ShowMessage('Preencha os campos obrigatórios:' + #13 + #13 + Campos.Text); //Exibe os CAMPOS por NOME
-    end
-    else
-      Result := True;
-  finally
-    Campos.Free; //Libera a lista da memória
-  end;
 end;
 
 end.

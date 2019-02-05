@@ -106,6 +106,22 @@
       
       
       
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
       <Excluded_Packages Name="$(BDS)\bin\dcloffice2k100.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
       <Excluded_Packages Name="$(BDS)\bin\dclofficexp100.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
     </Excluded_Packages><Source><Source Name="MainSource">ProjetoEscola.dpr</Source></Source></Delphi.Personality></BorlandProject></BorlandProject>
@@ -132,10 +148,10 @@
     <DCCReference Include="Modelo\unEntidadeModelo.pas" />
     <DCCReference Include="Modelo\unEscolaModelo.pas" />
     <DCCReference Include="Visao\unFrmCadAluno.pas">
-      <Form>frmCadPadrao1</Form>
+      <Form>frmCadAluno</Form>
     </DCCReference>
     <DCCReference Include="Visao\unFrmCadAluno_old.pas">
-      <Form>frmCadAluno</Form>
+      <Form>frmCadAluno_old</Form>
     </DCCReference>
     <DCCReference Include="Visao\unFrmCadEscola.pas">
       <Form>frmCadEscola</Form>

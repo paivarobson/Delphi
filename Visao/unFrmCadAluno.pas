@@ -9,7 +9,8 @@ uses
   Mask, cxTextEdit, cxMaskEdit, cxDropDownEdit, cxCalendar, StdCtrls;
 
 type
-  TfrmCadPadrao1 = class(TfrmCadPadrao)
+  TfrmCadAluno = class(TfrmCadPadrao)
+    procedure FormClose(Sender: TObject; var Action: TCloseAction); override;
   private
     { Private declarations }
   public
@@ -17,10 +18,16 @@ type
   end;
 
 var
-  frmCadPadrao1: TfrmCadPadrao1;
+  frmCadAluno: TfrmCadAluno;
 
 implementation
 
 {$R *.dfm}
+
+procedure TfrmCadAluno.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  frmCadAluno := nil;
+end;
 
 end.

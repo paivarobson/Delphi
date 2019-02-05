@@ -536,6 +536,10 @@ object frmPrincipal: TfrmPrincipal
             Caption = '&Escola'
             OnClick = menuArquivoCadastroEscolaClick
           end
+          object Aluno1: TMenuItem
+            Caption = 'Aluno'
+            OnClick = menuArquivoCadastroAlunoClick
+          end
         end
       end
       object menuArquivoSair: TMenuItem

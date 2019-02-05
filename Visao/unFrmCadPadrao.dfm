@@ -154,7 +154,6 @@ object frmCadPadrao: TfrmCadPadrao
     Height = 25
     Caption = 'Fechar'
     TabOrder = 6
-    OnClick = btnFecharClick
   end
   object edtCodigo: TEdit
     Tag = 1
@@ -167,7 +166,6 @@ object frmCadPadrao: TfrmCadPadrao
     Enabled = False
     TabOrder = 7
     Text = 'EDTCODIGO'
-    OnKeyPress = AvancarCampo
   end
   object cxDateEditDataCadastro: TcxDateEdit
     Tag = 1
@@ -203,7 +201,6 @@ object frmCadPadrao: TfrmCadPadrao
     MaxLength = 9
     TabOrder = 10
     Text = '     -   '
-    OnKeyPress = edtEndNumeroKeyPress
   end
   object edtEndRua: TEdit
     Tag = 1
@@ -216,7 +213,6 @@ object frmCadPadrao: TfrmCadPadrao
     Enabled = False
     TabOrder = 11
     Text = 'EDTENDRUA'
-    OnKeyPress = AvancarCampo
   end
   object edtEndNumero: TEdit
     Tag = 1
@@ -229,7 +225,6 @@ object frmCadPadrao: TfrmCadPadrao
     Enabled = False
     TabOrder = 12
     Text = 'EDTCODIGO'
-    OnKeyPress = edtEndNumeroKeyPress
   end
   object edtEndComplemento: TEdit
     Left = 88
@@ -241,7 +236,6 @@ object frmCadPadrao: TfrmCadPadrao
     Enabled = False
     TabOrder = 13
     Text = 'EDTENDCOMPLEMENTO'
-    OnKeyPress = AvancarCampo
   end
   object edtEndBairro: TEdit
     Tag = 1
@@ -254,7 +248,6 @@ object frmCadPadrao: TfrmCadPadrao
     Enabled = False
     TabOrder = 14
     Text = 'EDTENDBAIRRO'
-    OnKeyPress = AvancarCampo
   end
   object edtEndCidade: TEdit
     Tag = 1
@@ -267,6 +260,5 @@ object frmCadPadrao: TfrmCadPadrao
     Enabled = False
     TabOrder = 15
     Text = 'EDTENDCIDADE'
-    OnKeyPress = AvancarCampo
   end
 end

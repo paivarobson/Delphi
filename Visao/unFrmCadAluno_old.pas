@@ -8,7 +8,7 @@ uses
   DBClient, unDados, unFrmCadPadrao;
 
 type
-  TfrmCadAluno = class(TForm)
+  TfrmCadAluno_old = class(TForm)
     lblAlunoMatricula: TLabel;
     lblAlunoNome: TLabel;
     edtAlunoMatricula: TEdit;
@@ -25,7 +25,7 @@ type
   end;
 
 var
-  frmCadAluno: TfrmCadAluno;
+  frmCadAluno_old: TfrmCadAluno_old;
 
 implementation
 
@@ -36,7 +36,7 @@ uses
 
 { TfrmCadAluno }
 
-procedure TfrmCadAluno.CarregarAluno;
+procedure TfrmCadAluno_old.CarregarAluno;
 //var
 //  VAlunoControle: TAlunoControle;
 //  Provider: TDataSetProvider;
@@ -62,7 +62,7 @@ begin
 //  end;
 end;
 
-procedure TfrmCadAluno.FormShow(Sender: TObject);
+procedure TfrmCadAluno_old.FormShow(Sender: TObject);
 begin
   Self.CarregarAluno();
 end;

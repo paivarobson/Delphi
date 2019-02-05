@@ -1,4 +1,4 @@
-object frmCadAluno: TfrmCadAluno
+object frmCadAluno_old: TfrmCadAluno_old
   Left = 0
   Top = 0
   Caption = 'Cadastro de Alunos'

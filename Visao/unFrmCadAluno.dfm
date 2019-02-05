@@ -1,5 +1,5 @@
-inherited frmCadPadrao1: TfrmCadPadrao1
-  Caption = 'frmCadPadrao1'
+inherited frmCadAluno: TfrmCadAluno
+  Caption = 'Cadastro de Aluno'
   PixelsPerInch = 96
   TextHeight = 13
   inherited lblFrmTitulo: TLabel

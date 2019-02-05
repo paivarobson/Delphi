@@ -25,6 +25,7 @@ type
     imgLogo: TImage;
     ActionManager1: TActionManager;
     Action1: TAction;
+    Aluno1: TMenuItem;
     procedure menuArquivoCadastroEscolaClick(Sender: TObject);
     procedure menuVisualizarConsultarEscolaClick(Sender: TObject);
     procedure menuArquivoSairClick(Sender: TObject);
@@ -32,6 +33,7 @@ type
     procedure btnConsultaEscolaClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure Action1Execute(Sender: TObject);
+    procedure menuArquivoCadastroAlunoClick(Sender: TObject);
   private
     FControladorEscola: TCadEscolaController;
     procedure SetControladorEscola(const Value: TCadEscolaController);
@@ -65,6 +67,17 @@ begin
   end;
 end;
 //(Menu Arquivo>>Cadastro>>Escola) Evento para abrir o Form CADASTRO ESCOLA
+
+procedure TfrmPrincipal.menuArquivoCadastroAlunoClick(Sender: TObject);
+begin
+  if not Assigned(frmCadAluno) then //Verifica se o Form CADASTRO ESCOLA está FECHADO para ser CRIADO
+    frmCadAluno := TfrmCadAluno.Create(frmPrincipal);
+  frmCadAluno.Show;
+  if Assigned(frmPesquisaEscola) then //Verifica se o Form PESQUISA ESCOLA está ABERTO para que seja FECHADO
+    frmPesquisaEscola.Close;
+  if Assigned(frmCadEscola) then //Verifica se o Form PESQUISA ESCOLA está ABERTO para que seja FECHADO
+    frmCadEscola.Close;
+end;
 
 procedure TfrmPrincipal.btnCadastroEscolaClick(Sender: TObject);
 begin
