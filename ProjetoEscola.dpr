@@ -14,14 +14,15 @@ uses
   unSistemaControle in 'Controle\unSistemaControle.pas',
   unConexao in 'DAO\unConexao.pas',
   unAlunoModelo in 'Modelo\unAlunoModelo.pas',
-  unFrmCadAluno in 'Visao\unFrmCadAluno.pas' {frmCadAluno},
+  unFrmCadAluno_old in 'Visao\unFrmCadAluno_old.pas' {frmCadAluno},
   unAlunoDAO in 'DAO\unAlunoDAO.pas',
   unAlunoControle in 'Controle\unAlunoControle.pas',
   unFrmCadPadrao in 'Visao\unFrmCadPadrao.pas' {frmCadPadrao},
   unCadPadraoController in 'Controle\unCadPadraoController.pas',
   unFrmCadEscola in 'Visao\unFrmCadEscola.pas' {frmCadEscola},
   unEntidadeModelo in 'Modelo\unEntidadeModelo.pas',
-  unEntidadeDAO in 'DAO\unEntidadeDAO.pas';
+  unEntidadeDAO in 'DAO\unEntidadeDAO.pas',
+  unFrmCadAluno in 'Visao\unFrmCadAluno.pas' {frmCadPadrao1};
 
 {$R *.res}
 
@@ -30,5 +31,6 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(Tfmdados, fmdados);
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
+  Application.CreateForm(TfrmCadPadrao1, frmCadPadrao1);
   Application.Run;
 end.

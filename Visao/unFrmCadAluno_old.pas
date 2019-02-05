@@ -1,11 +1,11 @@
-unit unFrmCadAluno;
+unit unFrmCadAluno_old;
 
 interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, DB, DBTables, Grids, DBGrids, unAlunoControle, SqlExpr,
-  DBClient;
+  DBClient, unDados, unFrmCadPadrao;
 
 type
   TfrmCadAluno = class(TForm)
@@ -29,26 +29,37 @@ var
 
 implementation
 
+uses
+  Provider;
+
 {$R *.dfm}
 
 { TfrmCadAluno }
 
 procedure TfrmCadAluno.CarregarAluno;
-var
-  VAlunoControle: TAlunoControle;
+//var
+//  VAlunoControle: TAlunoControle;
+//  Provider: TDataSetProvider;
 begin
-  VAlunoControle := TAlunoControle.Create;
-  try
-    try
-      cdsAluno.SetProvider(VAlunoControle.ObterProvider);
-      cdsAluno.Open;
-    finally
-      cdsAluno.Close;
-      FreeAndNil(cdsAluno);
-    end;
-  finally
-    FreeAndNil(VAlunoControle);
-  end;
+//  VAlunoControle := TAlunoControle.Create;
+//  Provider := TDataSetProvider.Create(Self);
+//  try
+//    try
+////      Provider := VAlunoControle.ObterProvider;
+////      if Assigned(Provider) then
+////      begin
+////        cdsAluno.SetProvider(Provider);
+////        cdsAluno.CommandText := 'SELECT ALUMAT, ALUNOME FROM ALUNO';
+////        cdsAluno.Open;
+////      end;
+//
+//
+//    finally
+//
+//    end;
+//  finally
+//
+//  end;
 end;
 
 procedure TfrmCadAluno.FormShow(Sender: TObject);

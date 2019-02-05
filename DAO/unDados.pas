@@ -139,7 +139,7 @@ end;
 
 function Tfmdados.VerificaClientDSSeEstaAtivo(AClientDataSet: TClientDataset): Boolean;
 begin
-    Result := AClientDataSet.Active
+  Result := AClientDataSet.Active
 end;
 
 procedure Tfmdados.CancelarEdicaoClientDS(AClientDataSet: TClientDataset);

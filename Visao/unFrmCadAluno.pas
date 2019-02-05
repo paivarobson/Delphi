@@ -4,67 +4,23 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, DB, DBTables, Grids, DBGrids, unAlunoControle, SqlExpr,
-  DBClient, unDados;
+  Dialogs, unFrmCadPadrao, cxGraphics, cxControls, cxLookAndFeels,
+  cxLookAndFeelPainters, cxContainer, cxEdit, ComCtrls, dxCore, cxDateUtils,
+  Mask, cxTextEdit, cxMaskEdit, cxDropDownEdit, cxCalendar, StdCtrls;
 
 type
-  TfrmCadAluno = class(TForm)
-    lblAlunoMatricula: TLabel;
-    lblAlunoNome: TLabel;
-    edtAlunoMatricula: TEdit;
-    edtAlunoNome: TEdit;
-    tblAluno: TTable;
-    dsAluno: TDataSource;
-    dbgrdAluno: TDBGrid;
-    cdsAluno: TClientDataSet;
-    procedure FormShow(Sender: TObject);
+  TfrmCadPadrao1 = class(TfrmCadPadrao)
   private
-    procedure CarregarAluno;
+    { Private declarations }
   public
     { Public declarations }
   end;
 
 var
-  frmCadAluno: TfrmCadAluno;
+  frmCadPadrao1: TfrmCadPadrao1;
 
 implementation
 
-uses
-  Provider;
-
 {$R *.dfm}
-
-{ TfrmCadAluno }
-
-procedure TfrmCadAluno.CarregarAluno;
-//var
-//  VAlunoControle: TAlunoControle;
-//  Provider: TDataSetProvider;
-begin
-//  VAlunoControle := TAlunoControle.Create;
-//  Provider := TDataSetProvider.Create(Self);
-//  try
-//    try
-////      Provider := VAlunoControle.ObterProvider;
-////      if Assigned(Provider) then
-////      begin
-////        cdsAluno.SetProvider(Provider);
-////        cdsAluno.CommandText := 'SELECT ALUMAT, ALUNOME FROM ALUNO';
-////        cdsAluno.Open;
-////      end;
-//
-//
-//    finally
-//
-//    end;
-//  finally
-//
-//  end;
-end;
-
-procedure TfrmCadAluno.FormShow(Sender: TObject);
-begin
-  Self.CarregarAluno();
-end;
 
 end.

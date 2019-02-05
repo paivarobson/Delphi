@@ -12,6 +12,7 @@ object frmCadAluno: TfrmCadAluno
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object lblAlunoMatricula: TLabel
@@ -62,7 +63,15 @@ object frmCadAluno: TfrmCadAluno
     Top = 8
   end
   object dsAluno: TDataSource
+    DataSet = cdsAluno
     Left = 384
     Top = 16
+  end
+  object cdsAluno: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspAluno'
+    Left = 536
+    Top = 40
   end
 end

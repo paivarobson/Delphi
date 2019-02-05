@@ -1,7 +1,7 @@
 inherited frmCadEscola: TfrmCadEscola
   Caption = 'Cadastro de Escola'
   ClientHeight = 269
-  OnClose = FormClose
+  ExplicitWidth = 806
   ExplicitHeight = 298
   PixelsPerInch = 96
   TextHeight = 13
@@ -27,9 +27,6 @@ inherited frmCadEscola: TfrmCadEscola
   inherited btnLimpar: TButton
     Enabled = True
     OnClick = btnLimparClick
-  end
-  inherited btnFechar: TButton
-    OnClick = btnFecharClick
   end
   object btnEscolaPesquisar: TButton [17]
     Left = 88

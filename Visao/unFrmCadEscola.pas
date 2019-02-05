@@ -67,10 +67,10 @@ begin
   else
   begin
     CarregarComponentesCadEscola;
-    HabilitarDesabilitarComponentesDados;
     edtCodigo.Text := EmptyStr;
     cxDateEditDataCadastro.Text := EmptyStr;
   end;
+  HabilitarDesabilitarComponentesDados;
 end;
 
 procedure TfrmCadEscola.btnAlterarClick(Sender: TObject);

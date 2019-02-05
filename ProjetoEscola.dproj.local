@@ -19,5 +19,9 @@
     <Transaction>2019/01/29 13:26:59.980.pas,C:\DESENVOLVIMENTO\PROJETOS\escola\Unit1.pas=C:\DESENVOLVIMENTO\PROJETOS\escola\Modelo\unEntidadeModelo.pas</Transaction>
     <Transaction>2019/01/29 13:42:04.226.pas,C:\DESENVOLVIMENTO\PROJETOS\escola\Unit1.pas=C:\DESENVOLVIMENTO\PROJETOS\escola\DAO\unEntidadeDAO.pas</Transaction>
     <Transaction>2019/01/30 14:52:53.511.pas,C:\DESENVOLVIMENTO\PROJETOS\escola\Controle\unControladorPadrao.pas=C:\DESENVOLVIMENTO\PROJETOS\escola\Controle\unCadPadraoController.pas</Transaction>
+    <Transaction>2019/02/05 14:33:49.612.pas,C:\DESENVOLVIMENTO\PROJETOS\escola\Visao\unFrmCadAluno.pas=C:\DESENVOLVIMENTO\PROJETOS\escola\Visao\unFrmCadAluno_old.pas</Transaction>
+    <Transaction>2019/02/05 14:33:49.612.dfm,C:\DESENVOLVIMENTO\PROJETOS\escola\Visao\unFrmCadAluno.dfm=C:\DESENVOLVIMENTO\PROJETOS\escola\Visao\unFrmCadAluno_old.dfm</Transaction>
+    <Transaction>2019/02/05 14:34:51.076.pas,C:\DESENVOLVIMENTO\PROJETOS\escola\Unit1.pas=C:\DESENVOLVIMENTO\PROJETOS\escola\Visao\unFrmCadAluno.pas</Transaction>
+    <Transaction>2019/02/05 14:34:51.076.dfm,C:\DESENVOLVIMENTO\PROJETOS\escola\Unit1.dfm=C:\DESENVOLVIMENTO\PROJETOS\escola\Visao\unFrmCadAluno.dfm</Transaction>
   </Transactions>
 </BorlandProject>

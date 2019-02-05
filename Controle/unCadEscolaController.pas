@@ -90,17 +90,20 @@ end;
 
 function TCadEscolaController.StatusInsertEditClientDS: Boolean;
 begin
+  inherited;
   Result := EscolaModelo.StatusInsertEditClientDS;
 end;
 
 function TCadEscolaController.ValidarCampos: Boolean;
 begin
+  inherited;
   Result := EscolaModelo.ValidarCampos;
 end;
 
 //Método GRAVAR
 function TCadEscolaController.CarregarDadosParaClientDS: Boolean;
 begin
+  inherited;
   Result := EscolaModelo.CarregarDadosParaClientDS;
 end;
 
@@ -108,26 +111,31 @@ end;
 //Método EXCLUIR
 procedure TCadEscolaController.ExcluirClientDS;
 begin
+  inherited;
   EscolaModelo.ExcluirClientDS;
 end;
 
 procedure TCadEscolaController.FecharConexaoClientDS;
 begin
+  inherited;
   EscolaModelo.FecharConexaoClientDS;
 end;
 
 function TCadEscolaController.EstadoClientDS: TDataSetState;
 begin
+  inherited;
   Result := EscolaModelo.EstadoClientDS;
 end;
 
 function TCadEscolaController.Gravar: Boolean;
 begin
+  inherited;
   Result := FEscolaModelo.Gravar;
 end;
 
 procedure TCadEscolaController.AbrirConexaoClientDS;
 begin
+  inherited;
   EscolaModelo.AbrirConexaoClientDS;
 end;
 
@@ -142,11 +150,13 @@ end;
 //Método para limpar os dados direto no ClientDataSet
 procedure TCadEscolaController.LimparCampos;
 begin
+  inherited;
   EscolaModelo.LimparCampos;
 end;
 
 procedure TCadEscolaController.LimparDadosClientDS;
 begin
+  inherited;
   EscolaModelo.LimparDadosClientDS;
 end;
 

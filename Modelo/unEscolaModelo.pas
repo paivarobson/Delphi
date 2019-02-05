@@ -3,7 +3,7 @@ unit unEscolaModelo;
 interface
 
 uses
-  SysUtils, Classes, Dialogs, DBClient, StdCtrls, DB, unEntidadeModelo;
+  SysUtils, Forms, Classes, Dialogs, DBClient, StdCtrls, DB, unEntidadeModelo;
 
 type
   TEscolaModelo = class(TEntidadeModelo)
@@ -36,8 +36,9 @@ type
     function GetBairro: string;
     function GetCidade: string;
   public
-    constructor Create;
     destructor Destroy; override;
+
+    procedure AfterConstruction; override;
 
     procedure AbrirConexaoClientDS; override;
     procedure FecharConexaoClientDS; override;
@@ -88,11 +89,20 @@ var
 
 procedure TEscolaModelo.AbrirConexaoClientDS;
 begin
+// Problema que ocorre na ocasião de não criar a instãncia é por razão que ao clicar em Pesquisar
+// antes de qualuqer outra evento de botão, o Controller do Form Pesquisa não chama o Create   
+
   FEscolaDao.AbrirConexaoClientDS;
 end;
 
-procedure TEscolaModelo.AlterarEscolaClientDS;
+procedure TEscolaModelo.AfterConstruction;
 begin
+  inherited;
+  FEscolaDao := TEscolaDAO.Create;
+end;
+
+procedure TEscolaModelo.AlterarEscolaClientDS;
+begin 
   FEscolaDao.AlterarEscolaClientDS;
 end;
 
@@ -109,11 +119,6 @@ end;
 procedure TEscolaModelo.CarregarEscola;
 begin
   FEscolaDao.CarregarEscola(Self);
-end;
-
-constructor TEscolaModelo.Create;
-begin
-  FEscolaDao := TEscolaDAO.Create;
 end;
 
 function TEscolaModelo.DevolverUltimoCodigo: Integer;
@@ -243,12 +248,6 @@ begin
   FEscolaDao.DesabilitarFilteredClientDS;
 end;
 
-destructor TEscolaModelo.Destroy;
-begin
-  FreeAndNil(FEscolaDao);
-  inherited;
-end;
-
 function TEscolaModelo.CarregarDadosParaClientDS: Boolean;
 begin
   Result := FEscolaDao.Gravar(Self);
@@ -309,6 +308,12 @@ end;
 procedure TEscolaModelo.ConsultaOrdenada(AIndiceComboBox: Integer);
 begin
   FEscolaDao.ConsultaOrdenada(AIndiceComboBox);
+end;
+
+destructor TEscolaModelo.Destroy;
+begin
+//  FreeAndNil(FEscolaDao);
+  inherited;
 end;
 
 end.

@@ -33,17 +33,17 @@ type
     procedure btnEscolaConsultaFecharClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
-    FControladorEscola: TPesquisaEscolaController;
+    FControladorPesquisaEscola: TPesquisaEscolaController;
     procedure ConsultaOrdenada(AIndiceComboBox: Integer);
-    procedure SetControladorEscola(const Value: TPesquisaEscolaController);
+    procedure SetControladorPesquisaEscola(const Value: TPesquisaEscolaController);
 
   public
     FRelatorio: TfrmRelEscola;
 
-    procedure AfterConstruction; override;
+    constructor Create(AOwen: TComponent); override;
     destructor Destroy; override;
 
-    property ControladorEscola: TPesquisaEscolaController read FControladorEscola write SetControladorEscola;
+    property ControladorPesquisaEscola: TPesquisaEscolaController read FControladorPesquisaEscola write SetControladorPesquisaEscola;
   end;
 
 var
@@ -56,10 +56,10 @@ uses
 
 {$R *.dfm}
 //Método executado logo depois do Construtor
-procedure TfrmPesquisaEscola.AfterConstruction;
+constructor TfrmPesquisaEscola.Create(AOwen: TComponent);
 begin
   inherited;
-  ControladorEscola := TPesquisaEscolaController.Create; //Instãncia da Classe Controller
+  FControladorPesquisaEscola := TPesquisaEscolaController.Create; //Instãncia da Classe Controller
 end;
 //(BOTÃO IMPRIMIR)
 procedure TfrmPesquisaEscola.btnEscolaImprimirClick(Sender: TObject);
@@ -94,32 +94,33 @@ end;
 //Método para ordenação da lista de consulta por CÓDIGO, DESCRIÇÃO ou DATA DE CADASTRO
 procedure TfrmPesquisaEscola.ConsultaOrdenada(AIndiceComboBox: Integer);
 begin
-  ControladorEscola.ConsultaOrdenada(AIndiceComboBox);
+  FControladorPesquisaEscola.ConsultaOrdenada(AIndiceComboBox);
 end;
 //(BOTÃO PESQUISAR)
 procedure TfrmPesquisaEscola.btnEscolaBuscarClick(Sender: TObject);
 begin
-  ControladorEscola.AbrirConexaoClientDS;
-  ControladorEscola.DesabilitarFilteredClientDS; //Desabilita filtro
+  FControladorPesquisaEscola.Create;
+  FControladorPesquisaEscola.AbrirConexaoClientDS;
+  FControladorPesquisaEscola.DesabilitarFilteredClientDS; //Desabilita filtro
   if rgEscolaPesquisar.ItemIndex = 0 then //Verifica se RadioButton selecionado para consulta é o CÓDIGO
   begin
     edtEscolaBuscarCodigo.SelectAll; //Selecionar todo conteúdo uqe Edit Código possuir
     if (edtEscolaBuscarCodigo.Text = '') then
     begin
-      ControladorEscola.DesabilitarFilteredClientDS;;
-      ControladorEscola.CarregarTodosRegistrosClientDS; //Exibe todos os registros se a consulta for vazia
-      ControladorEscola.HabilitarFilteredClientDS; //Habilita filtro
+      FControladorPesquisaEscola.DesabilitarFilteredClientDS;;
+      FControladorPesquisaEscola.CarregarTodosRegistrosClientDS; //Exibe todos os registros se a consulta for vazia
+      FControladorPesquisaEscola.HabilitarFilteredClientDS; //Habilita filtro
     end
     else
     begin
-      if not ControladorEscola.CarregarConsultaClientDS('ESCCOD', edtEscolaBuscarCodigo.Text) then
+      if not FControladorPesquisaEscola.CarregarConsultaClientDS('ESCCOD', edtEscolaBuscarCodigo.Text) then
         ShowMessage('Registro não localizado. Verifique o código digitado e tente novamente.')
     end;
     edtEscolaBuscarCodigo.SetFocus; //Sempre será setado foco após a consulta por CÓDIGO
   end
   else
   begin
-    if not ControladorEscola.CarregarConsultaClientDS('ESCDATACAD',
+    if not FControladorPesquisaEscola.CarregarConsultaClientDS('ESCDATACAD',
       FormatDateTime('DD/MM/YYYY', dtpEscolaBuscarData.Date)) then
       ShowMessage('Registro não localizado. Verifique a data consultada e tente novamente.');
 
@@ -138,8 +139,14 @@ begin
     frmCadEscola := TfrmCadEscola.Create(frmPrincipal);
   Close;
   frmCadEscola.Show;
-  ControladorEscola.AbrirConexaoClientDS; //Certifica se manter a conexão aberta para que o dado clicado seja consultado
+  FControladorPesquisaEscola.AbrirConexaoClientDS; //Certifica se manter a conexão aberta para que o dado clicado seja consultado
 end;
+destructor TfrmPesquisaEscola.Destroy;
+begin
+  FreeAndNil(FControladorPesquisaEscola);
+  inherited;
+end;
+
 //Evento para click do ENTER no campo de consulta por DATA DE CADASTRO
 procedure TfrmPesquisaEscola.dtpEscolaBuscarDataKeyPress(Sender: TObject;
   var Key: Char);
@@ -151,7 +158,7 @@ end;
 procedure TfrmPesquisaEscola.edtEscolaBuscarCodigoChange(Sender: TObject);
 begin
   if (edtEscolaBuscarCodigo.Text = EmptyStr) then
-    ControladorEscola.DesabilitarFilteredClientDS;
+    FControladorPesquisaEscola.DesabilitarFilteredClientDS;
 end;
 //Evento para permitir somente números e click do ENTER no campo de consulta por CÓDIGO
 procedure TfrmPesquisaEscola.edtEscolaBuscarCodigoKeyPress(Sender: TObject;
@@ -179,9 +186,9 @@ begin
   end;
 end;
 
-procedure TfrmPesquisaEscola.SetControladorEscola(const Value: TPesquisaEscolaController);
+procedure TfrmPesquisaEscola.SetControladorPesquisaEscola(const Value: TPesquisaEscolaController);
 begin
-  FControladorEscola := Value;
+  FControladorPesquisaEscola := Value;
 end;
 
 procedure TfrmPesquisaEscola.FormClose(Sender: TObject;
@@ -192,9 +199,4 @@ begin
   frmPesquisaEscola := nil;
 end;
 
-destructor TfrmPesquisaEscola.Destroy;
-begin
-  inherited;
-  FreeAndNil(FControladorEscola);
-end;
 end.
