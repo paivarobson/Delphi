@@ -228,7 +228,7 @@ begin
         (Components[i].ClassType = TMaskEdit) then
       begin
         if (Components[i].Tag = 1) and 
-          (TEdit(Components[i]).Text = EmptyStr) or
+          (TEdit(Components[i]).Text = EmptyStr) and
           (TcxDateEdit(Components[i]).Text = EmptyStr) or
           (TMaskEdit(Components[i]).Text = '     -   ') then
         begin  
