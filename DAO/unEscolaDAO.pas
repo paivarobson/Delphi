@@ -4,7 +4,7 @@ interface
 
 uses
   unDados, SqlExpr, SysUtils, DBClient, unEscolaModelo, Classes, Dialogs, DB,
-  StdCtrls, unEntidadeDAO;
+  StdCtrls, unEntidadeDAO, unValidacoes;
 
 type
   TEscolaDAO = class(TEntidadeDAO)
@@ -12,19 +12,16 @@ type
   private
     FClientDS: TClientDataSet;
 
-//    function GetClientDS: TClientDataSet;
-
     procedure CarregarDadosParaClientDS(AEscolaModelo: TEscolaModelo);
   public
-//    destructor Destroy; override;
 
     procedure AbrirConexaoClientDS; override;
     procedure FecharConexaoClientDS; override;
     procedure Carregar(AEscolaModelo: TEscolaModelo; ACodigo: Integer);
-    procedure CarregarEscola(AEscolaModelo: TEscolaModelo);
-    procedure GravarEscolaClientDS; override;
+    procedure CarregarEntidade(AEscolaModelo: TEscolaModelo);
+    procedure GravarClientDS; override;
     procedure NovoCadastroClientDS; override;
-    procedure AlterarEscolaClientDS; override;
+    procedure AlterarClientDS; override;
     procedure CancelarEdicaoClientDS; override;
     procedure ExcluirClientDS; override;
     procedure LimparDadosClientDS; override;
@@ -50,7 +47,7 @@ implementation
 
 function TEscolaDAO.DevolverUltimoCodigo: Integer;
 begin
-  Result := fmdados.DevolverUltimoCodigo('ESCCOD');
+  Result := fmdados.DevolverUltimoCodigo('ESCCOD', 'ESCOLA');
 end;
 
 function TEscolaDAO.EstadoClientDS: TDataSetState;
@@ -73,34 +70,15 @@ begin
   fmdados.FecharConexaoClientDS(ClientDS);
 end;
 
-procedure TEscolaDAO.AlterarEscolaClientDS;
+procedure TEscolaDAO.AlterarClientDS;
 begin
+  inherited;
   fmdados.AlterarClientDS(ClientDS);
 end;
 
 function TEscolaDAO.ValidarCampos: Boolean;
-var
-  i: Integer;
-  Campos: TStrings;
 begin
-  Campos := TStringList.Create;
-  try
-    for i := 0 to ClientDS.Fields.Count - 1 do
-    begin
-      if (ClientDS.Fields[i].Tag = 1) and
-        (ClientDS.Fields.Fields[i].AsString = EmptyStr) then
-        Campos.Add('- ' + ClientDS.Fields.Fields[i].DisplayName) //Armazena o NOME DO CAMPO dentro de uma LISTA
-    end;
-    if (Campos.Count > 0) then //Verifica se há algum campo obrigatório vazio
-    begin
-      Result := False;
-      ShowMessage('Preencha os campos obrigatórios:' + #13 + #13 + Campos.Text); //Exibe os CAMPOS por NOME
-    end
-    else
-      Result := True;
-  finally
-    Campos.Free; //Libera a lista da memória
-  end;
+  Result := TValidacoes.ValidarCampos(ClientDS);
 end;
 
 function TEscolaDAO.VerificaClientDSSeEstaAtivo: Boolean;
@@ -113,7 +91,7 @@ begin
   fmdados.CancelarEdicaoClientDS(ClientDS);
 end;
 
-procedure TEscolaDAO.CarregarEscola(AEscolaModelo: TEscolaModelo);
+procedure TEscolaDAO.CarregarEntidade(AEscolaModelo: TEscolaModelo);
 begin
   AEscolaModelo.Codigo       := ClientDS.Fields[0].AsInteger;
   AEscolaModelo.Nome         := ClientDS.Fields[1].AsString;
@@ -165,17 +143,6 @@ begin
   end;
 end;
 
-//function TEscolaDAO.GetClientDS: TClientDataSet;
-//begin
-//  Result := fmdados.ClientDSEscola
-//end;
-
-//function TEscolaDAO.GetEstadoClientDS: TDataSetState;
-//begin
-//  Result := fmdados.EstadoClientDS(ClientDS);
-//end;
-
-
 function TEscolaDAO.Gravar(AEscola: TEscolaModelo): Boolean;
 begin
   CarregarDadosParaClientDS(AEscola);
@@ -183,16 +150,10 @@ begin
   Result := fmdados.GravarDB(ClientDS);
 end;
 
-procedure TEscolaDAO.GravarEscolaClientDS;
+procedure TEscolaDAO.GravarClientDS;
 begin
   fmdados.GravarDB(ClientDS);
 end;
-
-//
-//procedure TEscolaDAO.GravarEscolaClientDS;
-//begin
-//
-//end;
 
 procedure TEscolaDAO.CarregarDadosParaClientDS(AEscolaModelo: TEscolaModelo);
 begin

@@ -89,7 +89,7 @@ end;
 
 procedure TPesquisaEscolaController.CarregarEscola;
 begin
-  EscolaModelo.CarregarEscola;
+  EscolaModelo.CarregarEntidade;
 end;
 
 procedure TPesquisaEscolaController.CarregarTodosRegistrosClientDS;

@@ -4,7 +4,7 @@ interface
 
 uses
   unDados, SqlExpr, SysUtils, DBClient, Classes, Dialogs, DB,
-  StdCtrls, unEntidadeModelo;
+  StdCtrls;
 
 type
   TEntidadeDAO = class
@@ -21,9 +21,9 @@ type
     procedure FecharConexaoClientDS; virtual; abstract;
 //    procedure Carregar(AEscolaModelo: TEscolaModelo; ACodigo: Integer);
 //    procedure CarregarEntidade(AEntidadeModelo: TEntidadeModelo); virtual; abstract;
-    procedure GravarEscolaClientDS; virtual; abstract;
+    procedure GravarClientDS; virtual; abstract;
     procedure NovoCadastroClientDS; virtual; abstract;
-    procedure AlterarEscolaClientDS; virtual; abstract;
+    procedure AlterarClientDS; virtual; abstract;
     procedure CancelarEdicaoClientDS; virtual; abstract;
     procedure ExcluirClientDS; virtual; abstract;
     procedure LimparDadosClientDS; virtual; abstract;

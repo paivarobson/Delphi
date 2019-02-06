@@ -10,35 +10,31 @@ type
     TCadEscolaController = class(TCadPadraoController)
   private
     FEscolaModelo: TEscolaModelo;
-    FControladorPadrao: TCadPadraoController;
     procedure SetEscolaModelo(const Value: TEscolaModelo);
-    procedure SetControladorPadrao(const Value: TCadPadraoController);
-//    function GetEstadoClientDS: TDataSetState;
   public
     constructor Create;
     destructor Destroy; override;
 
     function DevolverUltimoCodigo: Integer; override;
-    function CarregarDadosParaClientDS: Boolean; override;
+//    function CarregarDadosParaClientDS: Boolean; override;
     function ValidarCampos: Boolean; override;
     function Gravar: Boolean; override;
     function StatusInsertEditClientDS: Boolean; override;
-//    function VerificaClientDSSeEstaAtivo: Boolean; override;
 
     procedure LimparCampos; override;
     procedure LimparDadosClientDS; override;
     procedure NovoCadastroClientDS; override;
-    procedure AlterarEscolaClientDS; override;
+    procedure AlterarClientDS; override;
     procedure ExcluirClientDS; override;
     procedure CancelarEdicaoClientDS; override;
-    procedure CarregarEscola; override;
+    procedure CarregarEntidade; override;
     procedure AbrirConexaoClientDS; override;
     procedure FecharConexaoClientDS; override;
 
     function EstadoClientDS: TDataSetState; override;
 
     property EscolaModelo: TEscolaModelo read FEscolaModelo write SetEscolaModelo;
-    property ControladorPadrao: TCadPadraoController read FControladorPadrao write SetControladorPadrao;
+    
   end;
 
 implementation
@@ -67,9 +63,10 @@ begin
   EscolaModelo.CancelarEdicaoClientDS;
 end;
 
-procedure TCadEscolaController.CarregarEscola;
+procedure TCadEscolaController.CarregarEntidade;
 begin
-  EscolaModelo.CarregarEscola;
+  inherited;
+  EscolaModelo.CarregarEntidade;
 end;
 
 //procedure TCadEscolaController.NovoCadastroClientDS;
@@ -77,11 +74,6 @@ end;
 //  EscolaModelo.NovoCadastroClientDS;
 //end;
 
-procedure TCadEscolaController.SetControladorPadrao(
-  const Value: TCadPadraoController);
-begin
-  FControladorPadrao := Value;
-end;
 
 procedure TCadEscolaController.SetEscolaModelo(const Value: TEscolaModelo);
 begin
@@ -101,10 +93,10 @@ begin
 end;
 
 //Método GRAVAR
-function TCadEscolaController.CarregarDadosParaClientDS: Boolean;
+function TCadEscolaController.Gravar: Boolean;
 begin
   inherited;
-  Result := EscolaModelo.CarregarDadosParaClientDS;
+  Result := EscolaModelo.Gravar;
 end;
 
 //Método CANCELAR
@@ -127,22 +119,16 @@ begin
   Result := EscolaModelo.EstadoClientDS;
 end;
 
-function TCadEscolaController.Gravar: Boolean;
-begin
-  inherited;
-  Result := FEscolaModelo.Gravar;
-end;
-
 procedure TCadEscolaController.AbrirConexaoClientDS;
 begin
   inherited;
   EscolaModelo.AbrirConexaoClientDS;
 end;
 
-procedure TCadEscolaController.AlterarEscolaClientDS;
+procedure TCadEscolaController.AlterarClientDS;
 begin
   inherited;
-  EscolaModelo.AlterarEscolaClientDS;
+  EscolaModelo.AlterarClientDS;
 end;
 
 //Método para o uso do ClientDataSet externamente

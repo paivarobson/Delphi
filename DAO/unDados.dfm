@@ -22,7 +22,7 @@ object fmdados: Tfmdados
       'OS Authentication=False'
       'Prepare SQL=False')
     VendorLib = 'oledb'
-    Left = 85
+    Left = 213
     Top = 5
   end
   object dspEscola: TDataSetProvider
@@ -30,7 +30,7 @@ object fmdados: Tfmdados
     Constraints = False
     UpdateMode = upWhereChanged
     Left = 80
-    Top = 104
+    Top = 144
   end
   object cdsEscola: TClientDataSet
     Aggregates = <>
@@ -38,7 +38,7 @@ object fmdados: Tfmdados
     Params = <>
     ProviderName = 'dspEscola'
     Left = 40
-    Top = 175
+    Top = 215
     object cdsEscolaESCCOD: TIntegerField
       DisplayLabel = 'C'#243'digo'
       FieldName = 'ESCCOD'
@@ -93,7 +93,7 @@ object fmdados: Tfmdados
   object dsEscola: TDataSource
     DataSet = cdsEscola
     Left = 72
-    Top = 240
+    Top = 280
   end
   object tbEscola: TSQLQuery
     MaxBlobSize = -1
@@ -102,7 +102,7 @@ object fmdados: Tfmdados
       'select * from escola')
     SQLConnection = FConexaoBDEscola
     Left = 40
-    Top = 56
+    Top = 96
     object tbEscolaESCCOD: TIntegerField
       FieldName = 'ESCCOD'
       Required = True
@@ -143,10 +143,8 @@ object fmdados: Tfmdados
     DataSource = dsEscola
     MaxBlobSize = -1
     Params = <>
-    SQL.Strings = (
-      'select * from ESCOLA')
     SQLConnection = FConexaoBDEscola
-    Left = 124
+    Left = 212
     Top = 57
   end
   object tbAluno: TSQLQuery
@@ -156,20 +154,26 @@ object fmdados: Tfmdados
       'select * from aluno')
     SQLConnection = FConexaoBDEscola
     Left = 292
-    Top = 81
+    Top = 97
   end
   object dspAluno: TDataSetProvider
     DataSet = tbAluno
     Constraints = False
     UpdateMode = upWhereChanged
-    Left = 336
-    Top = 80
+    Left = 352
+    Top = 145
   end
   object cdsAluno: TClientDataSet
     Aggregates = <>
+    DisableStringTrim = True
     Params = <>
     ProviderName = 'dspAluno'
-    Left = 312
-    Top = 136
+    Left = 352
+    Top = 217
+  end
+  object dsAluno: TDataSource
+    DataSet = cdsAluno
+    Left = 352
+    Top = 281
   end
 end

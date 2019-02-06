@@ -42,12 +42,12 @@ type
 
     procedure AbrirConexaoClientDS; override;
     procedure FecharConexaoClientDS; override;
-    procedure CarregarEscola; override;
+    procedure CarregarEntidade; override;
     procedure NovoCadastroClientDS; override;
     procedure CancelarEdicaoClientDS; override;
-    procedure AlterarEscolaClientDS; override;
+    procedure AlterarClientDS; override;
     procedure ExcluirClientDS; override;
-    procedure GravarEscolaClientDS; override;
+    procedure GravarClientDS; override;
     procedure LimparCampos; override;
     procedure LimparDadosClientDS; override;
     procedure DesabilitarFilteredClientDS; override;
@@ -55,13 +55,11 @@ type
     procedure CarregarTodosRegistrosClientDS; override;
     procedure ConsultaOrdenada(AIndiceComboBox: Integer); override;
 
-//    function ObterClientDS: TClientDataSet;
     function DevolverUltimoCodigo: Integer; override;
-    function CarregarDadosParaClientDS: Boolean; override;
+//    function CarregarDadosParaClientDS: Boolean; override;
     function ValidarCampos: Boolean; override;
     function CarregarConsultaClientDS(ACampoTabelaFiltrado: string; ADado: string): Boolean; override;
     function StatusInsertEditClientDS: Boolean; override;
-//    function VerificaClientDSSeEstaAtivo: Boolean; override;
 
     property Codigo: Integer read GetCodigo write SetCodigo;
     property Nome: string read GetNome write SetNome;
@@ -75,7 +73,7 @@ type
 
     function EstadoClientDS: TDataSetState; override;
 
-    function Gravar: Boolean;
+    function Gravar: Boolean; override;
   end;
 
 
@@ -85,25 +83,22 @@ uses
   unEscolaDAO;
   
 var
-  FEscolaDao: TEscolaDAO = nil;
+  FEscolaDAO: TEscolaDAO = nil;
 
 procedure TEscolaModelo.AbrirConexaoClientDS;
 begin
-// Problema que ocorre na ocasião de não criar a instãncia é por razão que ao clicar em Pesquisar
-// antes de qualuqer outra evento de botão, o Controller do Form Pesquisa não chama o Create   
-
-  FEscolaDao.AbrirConexaoClientDS;
+  FEscolaDAO.AbrirConexaoClientDS;
 end;
 
 procedure TEscolaModelo.AfterConstruction;
 begin
   inherited;
-  FEscolaDao := TEscolaDAO.Create;
+  FEscolaDAO := TEscolaDAO.Create;
 end;
 
-procedure TEscolaModelo.AlterarEscolaClientDS;
-begin 
-  FEscolaDao.AlterarEscolaClientDS;
+procedure TEscolaModelo.AlterarClientDS;
+begin
+  FEscolaDAO.AlterarClientDS;
 end;
 
 //function TEscolaModelo.VerificaClientDSSeEstaAtivo: Boolean;
@@ -113,32 +108,32 @@ end;
 
 procedure TEscolaModelo.CancelarEdicaoClientDS;
 begin
-  FEscolaDao.CancelarEdicaoClientDS;
+  FEscolaDAO.CancelarEdicaoClientDS;
 end;
 
-procedure TEscolaModelo.CarregarEscola;
+procedure TEscolaModelo.CarregarEntidade;
 begin
-  FEscolaDao.CarregarEscola(Self);
+  FEscolaDAO.CarregarEntidade(Self);
 end;
 
 function TEscolaModelo.DevolverUltimoCodigo: Integer;
 begin
-  Result := FEscolaDao.DevolverUltimoCodigo;
+  Result := FEscolaDAO.DevolverUltimoCodigo;
 end;
 
 function TEscolaModelo.EstadoClientDS: TDataSetState;
 begin
-  Result := FEscolaDao.EstadoClientDS;
+  Result := FEscolaDAO.EstadoClientDS;
 end;
 
 procedure TEscolaModelo.ExcluirClientDS;
 begin
-  FEscolaDao.ExcluirClientDS;
+  FEscolaDAO.ExcluirClientDS;
 end;
 
 procedure TEscolaModelo.FecharConexaoClientDS;
 begin
-  FEscolaDao.FecharConexaoClientDS;
+  FEscolaDAO.FecharConexaoClientDS;
 end;
 
 procedure TEscolaModelo.SetCodigo(const Valor: Integer);
@@ -168,12 +163,12 @@ end;
 
 function TEscolaModelo.StatusInsertEditClientDS: Boolean;
 begin
-  Result := FEscolaDao.StatusInsertEditClientDS;
+  Result := FEscolaDAO.StatusInsertEditClientDS;
 end;
 
 function TEscolaModelo.ValidarCampos: Boolean;
 begin
-  Result := FEscolaDao.ValidarCampos;
+  Result := FEscolaDAO.ValidarCampos;
 end;
 
 procedure TEscolaModelo.SetNumero(const Valor: string);
@@ -217,14 +212,14 @@ begin
   Result := FRua;
 end;
 
-procedure TEscolaModelo.GravarEscolaClientDS;
+procedure TEscolaModelo.GravarClientDS;
 begin
-  FEscolaDao.GravarEscolaClientDS;
+  FEscolaDAO.GravarClientDS;
 end;
 
 function TEscolaModelo.Gravar: Boolean;
 begin
-  Result := FEscolaDao.Gravar(Self);
+  Result := FEscolaDAO.Gravar(Self);
 end;
 
 procedure TEscolaModelo.LimparCampos;
@@ -240,18 +235,18 @@ end;
 
 procedure TEscolaModelo.LimparDadosClientDS;
 begin
-  FEscolaDao.LimparDadosClientDS;
+  FEscolaDAO.LimparDadosClientDS;
 end;
 
 procedure TEscolaModelo.DesabilitarFilteredClientDS;
 begin
-  FEscolaDao.DesabilitarFilteredClientDS;
+  FEscolaDAO.DesabilitarFilteredClientDS;
 end;
-
-function TEscolaModelo.CarregarDadosParaClientDS: Boolean;
-begin
-  Result := FEscolaDao.Gravar(Self);
-end;
+//
+//function TEscolaModelo.CarregarDadosParaClientDS: Boolean;
+//begin
+//  Result := FEscolaDAO.Gravar(Self);
+//end;
 
 function TEscolaModelo.CarregarConsultaClientDS(ACampoTabelaFiltrado: string;
   ADado: string): Boolean;
@@ -261,23 +256,18 @@ end;
 
 procedure TEscolaModelo.HabilitarFilteredClientDS;
 begin
-  FEscolaDao.HabilitarFilteredClientDS;
+  FEscolaDAO.HabilitarFilteredClientDS;
 end;
 
 procedure TEscolaModelo.CarregarTodosRegistrosClientDS;
 begin
-  FEscolaDao.CarregarTodosRegistrosClientDS;
+  FEscolaDAO.CarregarTodosRegistrosClientDS;
 end;
 
 procedure TEscolaModelo.NovoCadastroClientDS;
 begin
-  FEscolaDao.NovoCadastroClientDS;
+  FEscolaDAO.NovoCadastroClientDS;
 end;
-//
-//function TEscolaModelo.ObterClientDS: TClientDataSet;
-//begin
-//  Result := FEscolaDao.ClientDS;
-//end;
 
 function TEscolaModelo.GetNumero: string;
 begin
@@ -307,7 +297,7 @@ end;
 //############# PESQUISA ESCOLA ################
 procedure TEscolaModelo.ConsultaOrdenada(AIndiceComboBox: Integer);
 begin
-  FEscolaDao.ConsultaOrdenada(AIndiceComboBox);
+  FEscolaDAO.ConsultaOrdenada(AIndiceComboBox);
 end;
 
 destructor TEscolaModelo.Destroy;

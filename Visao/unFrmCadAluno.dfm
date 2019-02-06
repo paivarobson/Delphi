@@ -74,92 +74,126 @@ inherited frmCadAluno: TfrmCadAluno
     Height = 13
     Caption = 'Nome da pai:'
   end
-  inherited cxDateEditDataCadastro: TcxDateEdit
-    Left = 618
-    ExplicitLeft = 618
-  end
-  inherited edtNome: TEdit
-    Left = 263
-    Width = 349
-    ExplicitLeft = 263
-    ExplicitWidth = 349
-  end
-  inherited maskEditEndCEP: TMaskEdit
-    Top = 219
-    Width = 69
-    ExplicitTop = 219
-    ExplicitWidth = 69
-  end
-  inherited edtEndRua: TEdit
-    Top = 219
-    Width = 505
-    ExplicitTop = 219
-    ExplicitWidth = 505
-  end
-  inherited edtEndNumero: TEdit
-    Left = 674
-    Top = 219
-    ExplicitLeft = 674
-    ExplicitTop = 219
-  end
-  inherited edtEndComplemento: TEdit
-    Top = 262
-    ExplicitTop = 262
-  end
-  inherited edtEndBairro: TEdit
-    Top = 262
-    ExplicitTop = 262
-  end
-  inherited edtEndCidade: TEdit
-    Top = 262
-    ExplicitTop = 262
-  end
-  object Edit1: TEdit
+  object maskEditCPF: TMaskEdit [14]
     Tag = 1
     Left = 88
     Top = 166
-    Width = 81
+    Width = 90
     Height = 21
-    Hint = 'C'#211'DIGO'
+    Hint = 'CPF'
     CharCase = ecUpperCase
     Enabled = False
-    TabOrder = 16
-    Text = 'EDTCODIGO'
+    EditMask = '000\.000\.000\-00;1;_'
+    MaxLength = 14
+    TabOrder = 12
+    Text = '   .   .   -  '
   end
-  object Edit2: TEdit
+  inherited edtNome: TEdit [15]
+    Left = 263
+    Width = 349
+    Hint = 'NOME COMPLETO'
+    ExplicitLeft = 263
+    ExplicitWidth = 349
+  end
+  object edtMatricula: TEdit [16]
     Tag = 1
     Left = 151
     Top = 118
     Width = 106
     Height = 21
-    Hint = 'C'#211'DIGO'
+    Hint = 'MATR'#205'CULA'
     CharCase = ecUpperCase
     Enabled = False
-    TabOrder = 17
-    Text = 'EDTCODIGO'
+    TabOrder = 9
+    Text = 'EDTMATRICULA'
   end
-  object Edit5: TEdit
+  object edtNomeMae: TEdit [17]
     Tag = 1
-    Left = 175
+    Left = 184
     Top = 166
-    Width = 282
+    Width = 273
     Height = 21
-    Hint = 'ESCOLA'
+    Hint = 'NOME DA M'#195'E'
     CharCase = ecUpperCase
     Enabled = False
-    TabOrder = 18
-    Text = 'EDTDESCRICAO'
+    TabOrder = 13
+    Text = 'EDTNOMEMAE'
   end
-  object Edit4: TEdit
+  object edtNomePai: TEdit [18]
     Tag = 1
     Left = 463
     Top = 166
     Width = 276
     Height = 21
-    Hint = 'ESCOLA'
+    Hint = 'NOME DO PAI'
     CharCase = ecUpperCase
     Enabled = False
+    TabOrder = 14
+    Text = 'EDTNOMEPAI'
+  end
+  inherited btnNovoCadastro: TButton [19]
+  end
+  inherited btnGravar: TButton [20]
+    OnClick = btnGravarClick
+  end
+  inherited btnAlterar: TButton [21]
+  end
+  inherited btnExcluir: TButton [22]
+    TabOrder = 6
+  end
+  inherited btnCancelar: TButton [23]
+  end
+  inherited btnLimpar: TButton [24]
+    TabOrder = 4
+    OnClick = btnLimparClick
+  end
+  inherited btnFechar: TButton [25]
+  end
+  inherited btnConsultar: TButton [26]
+    OnClick = btnConsultarClick
+  end
+  inherited edtEndNumero: TEdit [27]
+    Left = 674
+    Top = 219
+    TabOrder = 17
+    Text = 'EDTNUMERO'
+    ExplicitLeft = 674
+    ExplicitTop = 219
+  end
+  inherited edtEndRua: TEdit [28]
+    Top = 219
+    Width = 505
+    TabOrder = 16
+    ExplicitTop = 219
+    ExplicitWidth = 505
+  end
+  inherited maskEditEndCEP: TMaskEdit [29]
+    Top = 219
+    Width = 69
+    TabOrder = 15
+    ExplicitTop = 219
+    ExplicitWidth = 69
+  end
+  inherited edtCodigo: TEdit [30]
+  end
+  inherited cxDateEditDataCadastro: TcxDateEdit [31]
+    Left = 618
+    TabOrder = 11
+    ExplicitLeft = 618
+  end
+  inherited edtEndComplemento: TEdit [32]
+    Top = 262
+    TabOrder = 18
+    ExplicitTop = 262
+  end
+  inherited edtEndBairro: TEdit [33]
+    Top = 262
     TabOrder = 19
-    Text = 'EDTDESCRICAO'
+    ExplicitTop = 262
+  end
+  inherited edtEndCidade: TEdit [34]
+    Top = 262
+    TabOrder = 20
+    ExplicitTop = 262
   end
 end

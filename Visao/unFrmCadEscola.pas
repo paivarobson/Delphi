@@ -10,18 +10,13 @@ uses
 
 type
   TfrmCadEscola = class(TfrmCadPadrao)
-    btnEscolaPesquisar: TButton;
     procedure btnNovoCadastroClick(Sender: TObject); override;
     procedure btnGravarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
-//    procedure btnLimparClick(Sender: TObject); override;
     procedure btnExcluirClick(Sender: TObject);
     procedure btnAlterarClick(Sender: TObject);
-    procedure btnPesquisarClick(Sender: TObject);
-//    procedure edtEndNumeroKeyPress(Sender: TObject; var Key: Char); override;
+    procedure btnConsultarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction); override;
-//    procedure AvancarCampo(Sender: TObject; var Key: Char); override;
-//    procedure btnFecharClick(Sender: TObject); override;
     procedure btnEscolaPesquisarClick(Sender: TObject);
     procedure btnFecharClick(Sender: TObject);
     procedure edtEndNumeroKeyPress(Sender: TObject; var Key: Char);
@@ -32,13 +27,11 @@ type
     procedure SetControladorEscola(const Value: TCadEscolaController);
 
   public
-//    constructor Create;
     destructor Destroy; override;
 
     procedure CarregarComponentesCadEscola;
     procedure CarregarEntidadeEscola;
     procedure LimparCampos;
-//    procedure LimparCamposForm; override;
     procedure HabilitarDesabilitarComponentesDados;
     procedure AfterConstruction; override;
     procedure CarregarEscola;
@@ -63,7 +56,7 @@ begin
   ControladorEscola := TCadEscolaController.Create; //Instãncia da Classe Controller
   if ControladorEscola.EstadoClientDS = dsBrowse then
   begin
-    ControladorEscola.CarregarEscola;
+    ControladorEscola.CarregarEntidade;
     CarregarComponentesCadEscola;
   end
   else
@@ -78,7 +71,7 @@ end;
 procedure TfrmCadEscola.btnAlterarClick(Sender: TObject);
 begin
   inherited;
-  ControladorEscola.AlterarEscolaClientDS;
+  ControladorEscola.AlterarClientDS;
   ControladorEscola.EstadoClientDS;
   HabilitarDesabilitarComponentesDados; //Habilita os componentes necessários para EDIÇÃO
 end;
@@ -95,9 +88,16 @@ begin
   end;
 end;
 
+procedure TfrmCadEscola.btnConsultarClick(Sender: TObject);
+begin
+  if not Assigned(frmPesquisaEscola) then //Verifica se o Form PESQUISA ESCOLA está FECHADO para ser CRIADO
+    frmPesquisaEscola := TfrmPesquisaEscola.Create(frmPrincipal);
+  frmPesquisaEscola.Show;
+  Close;
+end;
+
 procedure TfrmCadEscola.btnEscolaPesquisarClick(Sender: TObject);
 begin
-  inherited;
   if not Assigned(frmPesquisaEscola) then //Verifica se o Form PESQUISA ESCOLA está FECHADO para ser CRIADO
     frmPesquisaEscola := TfrmPesquisaEscola.Create(frmPrincipal);
   frmPesquisaEscola.Show;
@@ -133,18 +133,14 @@ begin
       if MessageDlg('Tem certeza que deseja gravar este registro?', mtConfirmation,
         mbYesNo, 0) = mrYes then
       begin
-//        ControladorEscola.EscolaModelo.GravarEscolaClientDS;
         if ControladorEscola.Gravar then
         begin
           HabilitarDesabilitarComponentesDados;
           btnCancelar.Enabled := False;
 
-
-          btnEscolaPesquisar.Enabled := True;
+          btnConsultar.Enabled := True;
           btnFechar.Enabled := True;
-          
 
-//          HabilitarDesabilitarBotoesAlterarExcluirCasoPossuaDados;
           ShowMessage('Registro gravado com sucesso!');
         end
         else
@@ -166,20 +162,10 @@ procedure TfrmCadEscola.btnNovoCadastroClick(Sender: TObject);
 begin
   ControladorEscola.NovoCadastroClientDS;
   HabilitarDesabilitarComponentesDados; //Habilita os componentes necessários para NOVO CADASTRO
-//  edtNome.SetFocus;
   LimparCampos; //Limpa os campos necessários para NOVO CADASTRO caso possuam algum dado
   ControladorEscola.EscolaModelo.Codigo := ControladorEscola.DevolverUltimoCodigo + 1; //Aplica o CÓDIGO IDENTIFICADOR
   edtCodigo.Text := IntToStr(ControladorEscola.EscolaModelo.Codigo);
-//  cxDateEditDataCadastro.Text := FormatDateTime('DD/MM/YYYY', Now); //Atribui DATA ATUAL do SO
   inherited;
-end;
-
-procedure TfrmCadEscola.btnPesquisarClick(Sender: TObject);
-begin
-  if not Assigned(frmPesquisaEscola) then //Verifica se o Form PESQUISA ESCOLA está FECHADO para ser CRIADO
-    frmPesquisaEscola := TfrmPesquisaEscola.Create(frmPrincipal);
-  frmPesquisaEscola.Show;
-  Close;
 end;
 
 procedure TfrmCadEscola.CarregarComponentesCadEscola;
@@ -212,7 +198,7 @@ end;
 procedure TfrmCadEscola.CarregarEscola;
 begin
   inherited;
-  ControladorEscola.CarregarEscola;
+  ControladorEscola.CarregarEntidade;
   CarregarComponentesCadEscola;
 end;
 
@@ -259,7 +245,7 @@ begin
   btnGravar.Enabled := (ControladorEscola.EstadoClientDS in [dsInsert, dsEdit]);
   btnLimpar.Enabled := (ControladorEscola.EstadoClientDS in [dsInsert, dsEdit]);
   btnCancelar.Enabled := (ControladorEscola.EstadoClientDS in [dsInsert, dsEdit]);
-  btnEscolaPesquisar.Enabled := (ControladorEscola.EstadoClientDS in [dsInactive, dsBrowse]);
+  btnConsultar.Enabled := (ControladorEscola.EstadoClientDS in [dsInactive, dsBrowse]);
   btnFechar.Enabled := (ControladorEscola.EstadoClientDS in [dsInactive, dsBrowse]);
   edtNome.Enabled := (ControladorEscola.EstadoClientDS in [dsInsert, dsEdit]);
   edtEndRua.Enabled := (ControladorEscola.EstadoClientDS in [dsInsert, dsEdit]);

@@ -102,7 +102,8 @@ object frmCadPadrao: TfrmCadPadrao
     Width = 83
     Height = 25
     Caption = 'Novo cadastro'
-    TabOrder = 0
+    TabOrder = 1
+    OnClick = btnNovoCadastroClick
   end
   object btnGravar: TButton
     Left = 309
@@ -111,7 +112,7 @@ object frmCadPadrao: TfrmCadPadrao
     Height = 25
     Caption = 'Gravar'
     Enabled = False
-    TabOrder = 1
+    TabOrder = 2
   end
   object btnAlterar: TButton
     Left = 361
@@ -119,7 +120,7 @@ object frmCadPadrao: TfrmCadPadrao
     Width = 54
     Height = 25
     Caption = 'Alterar'
-    TabOrder = 2
+    TabOrder = 3
   end
   object btnExcluir: TButton
     Left = 536
@@ -127,7 +128,7 @@ object frmCadPadrao: TfrmCadPadrao
     Width = 50
     Height = 25
     Caption = 'Excluir'
-    TabOrder = 3
+    TabOrder = 4
   end
   object btnCancelar: TButton
     Left = 475
@@ -136,7 +137,7 @@ object frmCadPadrao: TfrmCadPadrao
     Height = 25
     Caption = 'Cancelar'
     Enabled = False
-    TabOrder = 4
+    TabOrder = 5
   end
   object btnLimpar: TButton
     Left = 421
@@ -145,7 +146,7 @@ object frmCadPadrao: TfrmCadPadrao
     Height = 25
     Caption = 'Limpar'
     Enabled = False
-    TabOrder = 5
+    TabOrder = 6
   end
   object btnFechar: TButton
     Left = 592
@@ -153,7 +154,7 @@ object frmCadPadrao: TfrmCadPadrao
     Width = 67
     Height = 25
     Caption = 'Fechar'
-    TabOrder = 6
+    TabOrder = 7
   end
   object edtCodigo: TEdit
     Tag = 1
@@ -164,7 +165,7 @@ object frmCadPadrao: TfrmCadPadrao
     Hint = 'C'#211'DIGO'
     CharCase = ecUpperCase
     Enabled = False
-    TabOrder = 7
+    TabOrder = 8
     Text = 'EDTCODIGO'
   end
   object cxDateEditDataCadastro: TcxDateEdit
@@ -173,7 +174,7 @@ object frmCadPadrao: TfrmCadPadrao
     Top = 118
     Hint = 'DATA'
     Enabled = False
-    TabOrder = 8
+    TabOrder = 9
     Width = 121
   end
   object edtNome: TEdit
@@ -185,7 +186,7 @@ object frmCadPadrao: TfrmCadPadrao
     Hint = 'ESCOLA'
     CharCase = ecUpperCase
     Enabled = False
-    TabOrder = 9
+    TabOrder = 10
     Text = 'EDTDESCRICAO'
   end
   object maskEditEndCEP: TMaskEdit
@@ -199,7 +200,7 @@ object frmCadPadrao: TfrmCadPadrao
     Enabled = False
     EditMask = '00000\-999;1;_'
     MaxLength = 9
-    TabOrder = 10
+    TabOrder = 11
     Text = '     -   '
   end
   object edtEndRua: TEdit
@@ -211,7 +212,7 @@ object frmCadPadrao: TfrmCadPadrao
     Hint = 'RUA'
     CharCase = ecUpperCase
     Enabled = False
-    TabOrder = 11
+    TabOrder = 12
     Text = 'EDTENDRUA'
   end
   object edtEndNumero: TEdit
@@ -223,7 +224,7 @@ object frmCadPadrao: TfrmCadPadrao
     Hint = 'N'#218'MERO'
     CharCase = ecUpperCase
     Enabled = False
-    TabOrder = 12
+    TabOrder = 13
     Text = 'EDTCODIGO'
   end
   object edtEndComplemento: TEdit
@@ -234,7 +235,7 @@ object frmCadPadrao: TfrmCadPadrao
     Hint = 'COMPLEMENTO'
     CharCase = ecUpperCase
     Enabled = False
-    TabOrder = 13
+    TabOrder = 14
     Text = 'EDTENDCOMPLEMENTO'
   end
   object edtEndBairro: TEdit
@@ -246,7 +247,7 @@ object frmCadPadrao: TfrmCadPadrao
     Hint = 'BAIRRO'
     CharCase = ecUpperCase
     Enabled = False
-    TabOrder = 14
+    TabOrder = 15
     Text = 'EDTENDBAIRRO'
   end
   object edtEndCidade: TEdit
@@ -258,7 +259,15 @@ object frmCadPadrao: TfrmCadPadrao
     Hint = 'CIDADE'
     CharCase = ecUpperCase
     Enabled = False
-    TabOrder = 15
+    TabOrder = 16
     Text = 'EDTENDCIDADE'
+  end
+  object btnConsultar: TButton
+    Left = 88
+    Top = 71
+    Width = 83
+    Height = 25
+    Caption = 'Consultar'
+    TabOrder = 0
   end
 end

@@ -39,6 +39,7 @@ type
     edtEndComplemento: TEdit;
     edtEndBairro: TEdit;
     edtEndCidade: TEdit;
+    btnConsultar: TButton;
   private
     FControladorPadrao: TCadPadraoController;
     procedure SetControladorPadrao(const Value: TCadPadraoController);
@@ -176,6 +177,8 @@ begin
   if MessageDlg('Tem certeza que deseja limpar os campos?', mtConfirmation,
     mbYesNo, 0) = mrYes then
   begin
+
+
     edtNome.Text := EmptyStr;
     maskEditEndCEP.Text := EmptyStr;
     edtEndRua.Text := EmptyStr;
@@ -230,7 +233,8 @@ begin
         if (Components[i].Tag = 1) and 
           (TEdit(Components[i]).Text = EmptyStr) and
           (TcxDateEdit(Components[i]).Text = EmptyStr) or
-          (TMaskEdit(Components[i]).Text = '     -   ') then
+          (TMaskEdit(Components[i]).Text = '     -   ') or
+          (TMaskEdit(Components[i]).Text = '   .   .   -  ') then
         begin  
           Campos.Add('- ' + (TWinControl(Components[i]).Hint)); //Armazena o NOME DO CAMPO dentro de uma LISTA
         end;

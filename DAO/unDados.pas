@@ -35,6 +35,7 @@ type
     tbAluno: TSQLQuery;
     dspAluno: TDataSetProvider;
     cdsAluno: TClientDataSet;
+    dsAluno: TDataSource;
 
   private
     function GetQueryEscola: TSQLQuery;
@@ -53,7 +54,7 @@ type
     procedure HabilitarFilteredClientDS(AClientDataSet: TClientDataset);
     procedure CarregarTodosRegistrosClientDS(AClientDataSet: TClientDataset);
 
-    function DevolverUltimoCodigo(ACampoCodigo: string): Integer;
+    function DevolverUltimoCodigo(ACampoCodigo: string; ATabela: string): Integer;
     function GravarDB(AClientDataSet: TClientDataSet): Boolean;
     function StatusInsertEditClientDS(AClientDataSet: TClientDataset): Boolean;
     function VerificaClientDSSeEstaAtivo(AClientDataSet: TClientDataset): Boolean;
@@ -61,6 +62,7 @@ type
 
     property ComponenteQuery: TSQLQuery read GetQueryEscola;
     property ClientDSEscola: TClientDataSet read cdsEscola;
+    property ClientDSAluno: TClientDataSet read cdsAluno;
   end;
 
 var
@@ -116,11 +118,11 @@ begin
   AClientDataSet.Filtered := False;
 end;
 
-function Tfmdados.DevolverUltimoCodigo(ACampoCodigo: string): Integer;
+function Tfmdados.DevolverUltimoCodigo(ACampoCodigo: string; ATabela: string): Integer;
 begin
   fmdados.tbAux.Close;
   fmdados.tbAux.SQL.Clear;
-  fmdados.tbAux.SQL.Text := 'SELECT MAX(' + ACampoCodigo + ') FROM ESCOLA';
+  fmdados.tbAux.SQL.Text := 'SELECT MAX(' + ACampoCodigo + ') FROM ' + ATabela;
   fmdados.tbAux.Open;
   
   Result := fmdados.tbAux.Fields[0].AsInteger;

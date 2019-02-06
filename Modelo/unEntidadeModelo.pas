@@ -39,12 +39,12 @@ type
   public
     procedure AbrirConexaoClientDS; virtual; abstract;
     procedure FecharConexaoClientDS; virtual; abstract;
-    procedure CarregarEscola; virtual; abstract;
+    procedure CarregarEntidade; virtual; abstract;
     procedure NovoCadastroClientDS; virtual; abstract;
     procedure CancelarEdicaoClientDS; virtual; abstract;
-    procedure AlterarEscolaClientDS; virtual; abstract;
+    procedure AlterarClientDS; virtual; abstract;
     procedure ExcluirClientDS; virtual; abstract;
-    procedure GravarEscolaClientDS; virtual; abstract;
+    procedure GravarClientDS; virtual; abstract;
     procedure LimparCampos; virtual; abstract;
     procedure LimparDadosClientDS; virtual; abstract;
     procedure DesabilitarFilteredClientDS; virtual; abstract;
@@ -53,7 +53,7 @@ type
     procedure ConsultaOrdenada(AIndiceComboBox: Integer); virtual; abstract;
 
     function DevolverUltimoCodigo: Integer; virtual; abstract;
-    function CarregarDadosParaClientDS: Boolean; virtual; abstract;
+    function Gravar: Boolean; virtual; abstract;
     function ValidarCampos: Boolean; virtual; abstract;
     function CarregarConsultaClientDS(ACampoTabelaFiltrado: string; ADado: string): Boolean; virtual; abstract;
     function StatusInsertEditClientDS: Boolean; virtual; abstract;
