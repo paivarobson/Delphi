@@ -65,6 +65,7 @@ end;
 procedure TAlunoDAO.CarregarDadosParaClientDS(AAlunoModelo: TAlunoModelo);
 begin
   ClientDS.FieldByName('ALUCOD').AsInteger := AAlunoModelo.Codigo;
+  ClientDS.FieldByName('ALUMAT').AsString := AAlunoModelo.Matricula;
   ClientDS.FieldByName('ALUNOME').AsString := AAlunoModelo.Nome;
   ClientDS.FieldByName('ALUDATACAD').AsDateTime := AAlunoModelo.DataCadastro;
   ClientDS.FieldByName('ALUCPF').AsString := AAlunoModelo.Cpf;

@@ -20,7 +20,7 @@ type
     function Gravar: Boolean; override;
     function StatusInsertEditClientDS: Boolean; override;
 
-    procedure LimparCampos; override;
+    procedure LimparCamposModelo; override;
     procedure LimparDadosClientDS; override;
     procedure NovoCadastroClientDS; override;
     procedure AlterarClientDS; override;
@@ -100,10 +100,10 @@ begin
   Result := AlunoModelo.Gravar;
 end;
 
-procedure TCadAlunoController.LimparCampos;
+procedure TCadAlunoController.LimparCamposModelo;
 begin
   inherited;
-  AlunoModelo.LimparCampos;
+  AlunoModelo.LimparCamposModelo;
 end;
 
 procedure TCadAlunoController.LimparDadosClientDS;

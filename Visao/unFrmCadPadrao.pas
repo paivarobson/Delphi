@@ -160,7 +160,7 @@ begin
   if not (Key in ['0'..'9', #8, #13, #27]) then
   begin
     Key := #0;
-    Application.MessageBox('Somente números.', 'Caractere inválido', MB_ICONWARNING)
+    Application.MessageBox('Somente números', 'Caractere inválido', MB_ICONWARNING)
   end
   else
     AvancarCampo(Sender, Key) //Avançar e recuar campo com a tecla ENTER e ESC respectivamente
@@ -177,8 +177,6 @@ begin
   if MessageDlg('Tem certeza que deseja limpar os campos?', mtConfirmation,
     mbYesNo, 0) = mrYes then
   begin
-
-
     edtNome.Text := EmptyStr;
     maskEditEndCEP.Text := EmptyStr;
     edtEndRua.Text := EmptyStr;

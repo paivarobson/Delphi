@@ -21,7 +21,7 @@ type
     function Gravar: Boolean; override;
     function StatusInsertEditClientDS: Boolean; override;
 
-    procedure LimparCampos; override;
+    procedure LimparCamposModelo; override;
     procedure LimparDadosClientDS; override;
     procedure NovoCadastroClientDS; override;
     procedure AlterarClientDS; override;
@@ -134,10 +134,10 @@ end;
 //Método para o uso do ClientDataSet externamente
 
 //Método para limpar os dados direto no ClientDataSet
-procedure TCadEscolaController.LimparCampos;
+procedure TCadEscolaController.LimparCamposModelo;
 begin
   inherited;
-  EscolaModelo.LimparCampos;
+  EscolaModelo.LimparCamposModelo;
 end;
 
 procedure TCadEscolaController.LimparDadosClientDS;

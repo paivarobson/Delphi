@@ -45,7 +45,7 @@ type
     procedure AlterarClientDS; virtual; abstract;
     procedure ExcluirClientDS; virtual; abstract;
     procedure GravarClientDS; virtual; abstract;
-    procedure LimparCampos; virtual; abstract;
+    procedure LimparCamposModelo; virtual; abstract;
     procedure LimparDadosClientDS; virtual; abstract;
     procedure DesabilitarFilteredClientDS; virtual; abstract;
     procedure HabilitarFilteredClientDS; virtual; abstract;

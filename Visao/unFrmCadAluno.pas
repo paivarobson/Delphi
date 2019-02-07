@@ -25,6 +25,13 @@ type
     procedure btnNovoCadastroClick(Sender: TObject); override;
     procedure btnLimparClick(Sender: TObject);
     procedure btnGravarClick(Sender: TObject);
+    procedure maskEditCPFKeyPress(Sender: TObject; var Key: Char);
+    procedure maskEditEndCEPKeyPress(Sender: TObject; var Key: Char);
+    procedure edtEndNumeroKeyPress(Sender: TObject; var Key: Char);
+    procedure btnFecharClick(Sender: TObject);
+    procedure edtCodigoKeyPress(Sender: TObject; var Key: Char);
+    procedure edtNomeKeyPress(Sender: TObject; var Key: Char);
+    procedure btnCancelarClick(Sender: TObject);
     
   private
     FControladorAluno: TCadAlunoController;
@@ -36,7 +43,8 @@ type
 
     procedure CarregarComponentesCadEscola;
     procedure CarregarEntidadeAluno;
-    procedure LimparCampos;
+    procedure LimparCamposForm; override;
+    procedure LimparCamposModelo;
     procedure HabilitarDesabilitarComponentesDados;
     procedure AfterConstruction; override;
     procedure CarregarEscola;
@@ -70,11 +78,29 @@ begin
   HabilitarDesabilitarComponentesDados;
 end;
 
+procedure TfrmCadAluno.btnCancelarClick(Sender: TObject);
+begin
+  inherited;
+  if MessageDlg('Tem certeza que deseja cancelar a edição deste registro?', mtConfirmation,
+    mbYesNo, 0) = mrYes then
+  begin
+    ControladorAluno.CancelarEdicaoClientDS;
+    HabilitarDesabilitarComponentesDados;
+    CarregarComponentesCadEscola;
+  end;
+end;
+
 procedure TfrmCadAluno.btnConsultarClick(Sender: TObject);
 begin
   if not Assigned(frmCadAluno) then //Verifica se o Form PESQUISA ESCOLA está FECHADO para ser CRIADO
     frmCadAluno := TfrmCadAluno.Create(frmPrincipal);
   frmCadAluno.Show;
+  Close;
+end;
+
+procedure TfrmCadAluno.btnFecharClick(Sender: TObject);
+begin
+  inherited;
   Close;
 end;
 
@@ -108,7 +134,6 @@ end;
 
 procedure TfrmCadAluno.btnLimparClick(Sender: TObject);
 begin
-  inherited;
   LimparCamposForm;
 end;
 
@@ -116,10 +141,11 @@ procedure TfrmCadAluno.btnNovoCadastroClick(Sender: TObject);
 begin
   ControladorAluno.NovoCadastroClientDS;
   HabilitarDesabilitarComponentesDados; //Habilita os componentes necessários para NOVO CADASTRO
-  LimparCampos; //Limpa os campos necessários para NOVO CADASTRO caso possuam algum dado
+  LimparCamposModelo; //Limpa os campos necessários para NOVO CADASTRO caso possuam algum dado
   ControladorAluno.AlunoModelo.Codigo := ControladorAluno.DevolverUltimoCodigo + 1; //Aplica o CÓDIGO IDENTIFICADOR
   edtCodigo.Text := IntToStr(ControladorAluno.AlunoModelo.Codigo);
   inherited;
+  edtMatricula.SetFocus;
 end;
 
 procedure TfrmCadAluno.CarregarComponentesCadEscola;
@@ -172,6 +198,24 @@ begin
   inherited;
 end;
 
+procedure TfrmCadAluno.edtCodigoKeyPress(Sender: TObject; var Key: Char);
+begin
+  inherited;
+  PermitirSomenteNumeros(Sender, Key);
+end;
+
+procedure TfrmCadAluno.edtEndNumeroKeyPress(Sender: TObject; var Key: Char);
+begin
+  inherited;
+  PermitirSomenteNumeros(Sender, Key);
+end;
+
+procedure TfrmCadAluno.edtNomeKeyPress(Sender: TObject; var Key: Char);
+begin
+  inherited;
+  AvancarCampo(Sender, Key);
+end;
+
 procedure TfrmCadAluno.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
@@ -210,11 +254,32 @@ begin
   end;
 end;
 
-procedure TfrmCadAluno.LimparCampos;
+procedure TfrmCadAluno.LimparCamposForm;
 begin
   inherited;
-  ControladorAluno.LimparCampos;
+  edtMatricula.Text := EmptyStr;
+  maskEditCpf.Text := EmptyStr;
+  edtNomeMae.Text := EmptyStr;
+  edtNomePai.Text := EmptyStr;
+end;
+
+procedure TfrmCadAluno.LimparCamposModelo;
+begin
+  inherited;
+  ControladorAluno.LimparCamposModelo;
   CarregarComponentesCadEscola;
+end;
+
+procedure TfrmCadAluno.maskEditCPFKeyPress(Sender: TObject; var Key: Char);
+begin
+  inherited;
+  PermitirSomenteNumeros(Sender, Key);
+end;
+
+procedure TfrmCadAluno.maskEditEndCEPKeyPress(Sender: TObject; var Key: Char);
+begin
+  inherited;
+  PermitirSomenteNumeros(Sender, Key);
 end;
 
 procedure TfrmCadAluno.SetControladorAluno(const Value: TCadAlunoController);

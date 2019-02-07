@@ -48,7 +48,7 @@ type
     procedure AlterarClientDS; override;
     procedure ExcluirClientDS; override;
     procedure GravarClientDS; override;
-    procedure LimparCampos; override;
+    procedure LimparCamposModelo; override;
     procedure LimparDadosClientDS; override;
     procedure DesabilitarFilteredClientDS; override;
     procedure HabilitarFilteredClientDS; override;
@@ -110,7 +110,7 @@ end;
 procedure TAlunoModelo.CancelarEdicaoClientDS;
 begin
   inherited;
-
+  FAlunoDAO.CancelarEdicaoClientDS;
 end;
 
 function TAlunoModelo.CarregarConsultaClientDS(ACampoTabelaFiltrado,
@@ -188,7 +188,7 @@ begin
   FAlunoDAO.HabilitarFilteredClientDS;
 end;
 
-procedure TAlunoModelo.LimparCampos;
+procedure TAlunoModelo.LimparCamposModelo;
 begin
   inherited;
   Matricula := '';

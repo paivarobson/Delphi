@@ -18,7 +18,7 @@ type
     function Gravar: Boolean; virtual; abstract;
     function StatusInsertEditClientDS: Boolean; virtual; abstract;
 
-    procedure LimparCampos; virtual; abstract;
+    procedure LimparCamposModelo; virtual; abstract;
     procedure LimparDadosClientDS; virtual; abstract;
     procedure NovoCadastroClientDS; virtual; abstract;
     procedure AlterarClientDS; virtual; abstract;

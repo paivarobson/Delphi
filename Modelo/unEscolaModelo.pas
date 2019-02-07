@@ -48,7 +48,7 @@ type
     procedure AlterarClientDS; override;
     procedure ExcluirClientDS; override;
     procedure GravarClientDS; override;
-    procedure LimparCampos; override;
+    procedure LimparCamposModelo; override;
     procedure LimparDadosClientDS; override;
     procedure DesabilitarFilteredClientDS; override;
     procedure HabilitarFilteredClientDS; override;
@@ -222,7 +222,7 @@ begin
   Result := FEscolaDAO.Gravar(Self);
 end;
 
-procedure TEscolaModelo.LimparCampos;
+procedure TEscolaModelo.LimparCamposModelo;
 begin
   Nome := '';
   Cep := '';

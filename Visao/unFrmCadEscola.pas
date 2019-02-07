@@ -31,7 +31,7 @@ type
 
     procedure CarregarComponentesCadEscola;
     procedure CarregarEntidadeEscola;
-    procedure LimparCampos;
+    procedure LimparCamposModelo;
     procedure HabilitarDesabilitarComponentesDados;
     procedure AfterConstruction; override;
     procedure CarregarEscola;
@@ -111,7 +111,7 @@ begin
     mbYesNo, 0) = mrYes then
   begin
     ControladorEscola.ExcluirClientDS;
-    LimparCampos;
+    LimparCamposModelo;
     edtCodigo.Text := '';
     HabilitarDesabilitarComponentesDados;
     ShowMessage('Registro excluído com sucesso!');
@@ -162,7 +162,7 @@ procedure TfrmCadEscola.btnNovoCadastroClick(Sender: TObject);
 begin
   ControladorEscola.NovoCadastroClientDS;
   HabilitarDesabilitarComponentesDados; //Habilita os componentes necessários para NOVO CADASTRO
-  LimparCampos; //Limpa os campos necessários para NOVO CADASTRO caso possuam algum dado
+  LimparCamposModelo; //Limpa os campos necessários para NOVO CADASTRO caso possuam algum dado
   ControladorEscola.EscolaModelo.Codigo := ControladorEscola.DevolverUltimoCodigo + 1; //Aplica o CÓDIGO IDENTIFICADOR
   edtCodigo.Text := IntToStr(ControladorEscola.EscolaModelo.Codigo);
   inherited;
@@ -267,10 +267,10 @@ begin
   end;   
 end;
 
-procedure TfrmCadEscola.LimparCampos;
+procedure TfrmCadEscola.LimparCamposModelo;
 begin
   inherited;
-  ControladorEscola.LimparCampos;
+  ControladorEscola.LimparCamposModelo;
   CarregarComponentesCadEscola;
 end;
 

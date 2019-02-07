@@ -87,11 +87,13 @@ inherited frmCadAluno: TfrmCadAluno
     MaxLength = 14
     TabOrder = 12
     Text = '   .   .   -  '
+    OnKeyPress = maskEditCPFKeyPress
   end
   inherited edtNome: TEdit [15]
     Left = 263
     Width = 349
     Hint = 'NOME COMPLETO'
+    OnKeyPress = edtNomeKeyPress
     ExplicitLeft = 263
     ExplicitWidth = 349
   end
@@ -104,8 +106,10 @@ inherited frmCadAluno: TfrmCadAluno
     Hint = 'MATR'#205'CULA'
     CharCase = ecUpperCase
     Enabled = False
+    MaxLength = 50
     TabOrder = 9
     Text = 'EDTMATRICULA'
+    OnKeyPress = edtNomeKeyPress
   end
   object edtNomeMae: TEdit [17]
     Tag = 1
@@ -118,6 +122,7 @@ inherited frmCadAluno: TfrmCadAluno
     Enabled = False
     TabOrder = 13
     Text = 'EDTNOMEMAE'
+    OnKeyPress = edtNomeKeyPress
   end
   object edtNomePai: TEdit [18]
     Tag = 1
@@ -130,6 +135,7 @@ inherited frmCadAluno: TfrmCadAluno
     Enabled = False
     TabOrder = 14
     Text = 'EDTNOMEPAI'
+    OnKeyPress = edtNomeKeyPress
   end
   inherited btnNovoCadastro: TButton [19]
   end
@@ -142,12 +148,14 @@ inherited frmCadAluno: TfrmCadAluno
     TabOrder = 6
   end
   inherited btnCancelar: TButton [23]
+    OnClick = btnCancelarClick
   end
   inherited btnLimpar: TButton [24]
     TabOrder = 4
     OnClick = btnLimparClick
   end
   inherited btnFechar: TButton [25]
+    OnClick = btnFecharClick
   end
   inherited btnConsultar: TButton [26]
     OnClick = btnConsultarClick
@@ -157,6 +165,7 @@ inherited frmCadAluno: TfrmCadAluno
     Top = 219
     TabOrder = 17
     Text = 'EDTNUMERO'
+    OnKeyPress = edtEndNumeroKeyPress
     ExplicitLeft = 674
     ExplicitTop = 219
   end
@@ -164,6 +173,7 @@ inherited frmCadAluno: TfrmCadAluno
     Top = 219
     Width = 505
     TabOrder = 16
+    OnKeyPress = edtNomeKeyPress
     ExplicitTop = 219
     ExplicitWidth = 505
   end
@@ -171,29 +181,35 @@ inherited frmCadAluno: TfrmCadAluno
     Top = 219
     Width = 69
     TabOrder = 15
+    OnKeyPress = maskEditEndCEPKeyPress
     ExplicitTop = 219
     ExplicitWidth = 69
   end
   inherited edtCodigo: TEdit [30]
+    OnKeyPress = edtCodigoKeyPress
   end
   inherited cxDateEditDataCadastro: TcxDateEdit [31]
     Left = 618
     TabOrder = 11
+    OnKeyPress = edtNomeKeyPress
     ExplicitLeft = 618
   end
   inherited edtEndComplemento: TEdit [32]
     Top = 262
     TabOrder = 18
+    OnKeyPress = edtNomeKeyPress
     ExplicitTop = 262
   end
   inherited edtEndBairro: TEdit [33]
     Top = 262
     TabOrder = 19
+    OnKeyPress = edtNomeKeyPress
     ExplicitTop = 262
   end
   inherited edtEndCidade: TEdit [34]
     Top = 262
     TabOrder = 20
+    OnKeyPress = edtNomeKeyPress
     ExplicitTop = 262
   end
 end
