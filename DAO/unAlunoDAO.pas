@@ -11,8 +11,7 @@ type
   TAlunoDAO = class(TEntidadeDAO)
   private
     procedure CarregarDadosParaClientDS(AAlunoModelo: TAlunoModelo);
-
-  public
+  public               
     procedure AbrirConexaoClientDS; override;
     procedure FecharConexaoClientDS; override;
     procedure CarregarEntidade(AAlunoModelo: TAlunoModelo);
@@ -36,7 +35,6 @@ type
 
     function ClientDS: TClientDataSet; override;
     function EstadoClientDS: TDataSetState; override;
-
   end;
 
 implementation  

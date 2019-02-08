@@ -41,6 +41,8 @@ type
     edtEndCidade: TEdit;
     btnConsultar: TButton;
   private
+    FCampoTipo: TComponent;
+    FCampoFoco: TWinControl;
     FControladorPadrao: TCadPadraoController;
     procedure SetControladorPadrao(const Value: TCadPadraoController);
 
@@ -220,6 +222,7 @@ var
   i: Integer;
   Campos: TStrings;
 begin
+  FCampoFoco := nil;
   Campos := TStringList.Create;
   try
     for i := 0 to ComponentCount - 1 do
@@ -233,8 +236,13 @@ begin
           (TcxDateEdit(Components[i]).Text = EmptyStr) or
           (TMaskEdit(Components[i]).Text = '     -   ') or
           (TMaskEdit(Components[i]).Text = '   .   .   -  ') then
-        begin  
+        begin
           Campos.Add('- ' + (TWinControl(Components[i]).Hint)); //Armazena o NOME DO CAMPO dentro de uma LISTA
+          FCampoTipo := Components[i];
+          if FCampoFoco = nil then
+          begin
+            FCampoFoco := TWinControl(FCampoTipo);
+          end;
         end;
       end;
     end;
@@ -242,6 +250,7 @@ begin
     begin
       Result := False;
       ShowMessage('Preencha os campos obrigatórios:' + #13 + #13 + Campos.Text); //Exibe os CAMPOS por NOME
+      FCampoFoco.SetFocus;
     end
     else
       Result := True;

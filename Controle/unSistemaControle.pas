@@ -10,15 +10,10 @@ type
   private
     FConexao     : TConexao;
     FEscolaModelo: TEscolaModelo;
-
     class var FInstancia: TSistemaControle;
     class procedure LiberarInstancia();
-  public
-    constructor Create();
-    destructor Destroy; override;
-
+  public              
     class function GetInstancia: TSistemaControle;
-
     property Conexao: TConexao read FConexao write FConexao;
     property EscolaModelo: TEscolaModelo read FEscolaModelo write FEscolaModelo;
   end;
@@ -27,26 +22,12 @@ implementation
 
 { TSistemaControle }
 
-constructor TSistemaControle.Create;
-begin
-//  FConexao := TConexao.Create;
-//  FControlador := TCadEscolaController.Create; //Instanciar controlador de Cadastro Escola
-  FEscolaModelo := TEscolaModelo.Create;
-end;
-
-destructor TSistemaControle.Destroy;
-begin
-  FreeAndNil(FEscolaModelo);
-//  FreeAndNil(FControlador);
-  inherited;
-end;
-
 class function TSistemaControle.GetInstancia: TSistemaControle;
 begin
-  if not Assigned(Self.FInstancia) then
-    Self.FInstancia := TSistemaControle.Create();
+  if not Assigned(FInstancia) then
+    FInstancia := TSistemaControle.Create;
 
-  Result := Self.FInstancia;
+  Result := FInstancia;
 end;
 
 class procedure TSistemaControle.LiberarInstancia;

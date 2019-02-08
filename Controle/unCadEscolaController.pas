@@ -30,9 +30,9 @@ type
     procedure CarregarEntidade; override;
     procedure AbrirConexaoClientDS; override;
     procedure FecharConexaoClientDS; override;
-
+    
     function EstadoClientDS: TDataSetState; override;
-
+    
     property EscolaModelo: TEscolaModelo read FEscolaModelo write SetEscolaModelo;
     
   end;

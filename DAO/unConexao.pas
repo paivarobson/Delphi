@@ -13,6 +13,7 @@ type
 
     procedure ConfigurarConexao;
     procedure SetQuery(const Value: TSQLQuery);
+    class var FInstance: TConexao;
   public
     constructor Create;
     destructor Destroy; override;
@@ -21,6 +22,7 @@ type
     function CriarProvider: TDataSetProvider;
 
     function GetConnection: TSQLConnection;
+    class function GetInstance: TConexao;
     property Query: TSQLQuery read FQuery write SetQuery;
   end;
 
@@ -84,6 +86,13 @@ end;
 function TConexao.GetConnection: TSQLConnection;
 begin
   Result := FConnection;
+end;
+
+class function TConexao.GetInstance: TConexao;
+begin
+  if not Assigned(FInstance) then
+    FInstance := TConexao.Create;
+  Result := FInstance;
 end;
 
 procedure TConexao.SetQuery(const Value: TSQLQuery);
