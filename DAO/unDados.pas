@@ -59,6 +59,7 @@ type
     function StatusInsertEditClientDS(AClientDataSet: TClientDataset): Boolean;
     function VerificaClientDSSeEstaAtivo(AClientDataSet: TClientDataset): Boolean;
     function EstadoClientDS(AClientDataSet: TClientDataSet): TDataSetState;
+    function ClientDSPossuiDado(AClientDataSet: TClientDataSet): Boolean;
 
     property ComponenteQuery: TSQLQuery read GetQueryEscola;
     property ClientDSEscola: TClientDataSet read cdsEscola;
@@ -102,12 +103,13 @@ begin
     Result := AClientDataSet.State in [dsInsert, dsEdit];
 end;
 //Método GRAVAR
-function Tfmdados.GravarDB(AClientDataSet: TClientDataset):Boolean;
+function Tfmdados.GravarDB(AClientDataSet: TClientDataset): Boolean;
 begin
   AClientDataSet.Post;
   
   Result := AClientDataSet.ApplyUpdates(0) = 0;
 end;
+
 procedure Tfmdados.LimparDadosClientDS(AClientDataSet: TClientDataset);
 begin
   AClientDataSet.ClearFields;
@@ -148,6 +150,7 @@ procedure Tfmdados.CancelarEdicaoClientDS(AClientDataSet: TClientDataset);
 begin
   AClientDataSet.Cancel;
 end;
+
 procedure Tfmdados.HabilitarFilteredClientDS(AClientDataSet: TClientDataset);
 begin
   AClientDataSet.Filtered := True;
@@ -156,6 +159,11 @@ end;
 procedure Tfmdados.CarregarTodosRegistrosClientDS(AClientDataSet: TClientDataset);
 begin
   AClientDataSet.Filter := '1 = 1';
+end;
+
+function Tfmdados.ClientDSPossuiDado(AClientDataSet: TClientDataSet): Boolean;
+begin
+  Result := AClientDataSet.RecordCount > 0;
 end;
 
 function Tfmdados.EstadoClientDS(AClientDataSet: TClientDataSet): TDataSetState;

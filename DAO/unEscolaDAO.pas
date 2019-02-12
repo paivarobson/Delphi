@@ -10,15 +10,13 @@ type
   TEscolaDAO = class(TEntidadeDAO)
     FDataModule: Tfmdados;
   private
-    FClientDS: TClientDataSet;
 
     procedure CarregarDadosParaClientDS(AEscolaModelo: TEscolaModelo);
   public
 
     procedure AbrirConexaoClientDS; override;
     procedure FecharConexaoClientDS; override;
-    procedure Carregar(AEscolaModelo: TEscolaModelo; ACodigo: Integer);
-    procedure CarregarEntidade(AEscolaModelo: TEscolaModelo);
+    procedure CarregarEntidadeModeloDoClientDS(AEscolaModelo: TEscolaModelo);
     procedure GravarClientDS; override;
     procedure NovoCadastroClientDS; override;
     procedure AlterarClientDS; override;
@@ -34,8 +32,10 @@ type
     function Gravar(AEscola: TEscolaModelo): Boolean;
     function ValidarCampos: Boolean; override;
     function CarregarConsultaClientDS(ACampoTabelaFiltrado: string; ADado: string): Boolean; override;
+    function ConsultaEntidadePorCodigo(AEscolaModelo: TEscolaModelo; ACodigo: Integer): Boolean;
     function StatusInsertEditClientDS: Boolean; override;
     function VerificaClientDSSeEstaAtivo: Boolean; override;
+    function ClientDSPossuiDado: Boolean;
 
     function ClientDS: TClientDataSet; override;
     function EstadoClientDS: TDataSetState; override;
@@ -62,6 +62,7 @@ end;
 
 procedure TEscolaDAO.AbrirConexaoClientDS;
 begin
+  fmdados.tbEscola.SQL.Text := 'SELECT * FROM ESCOLA';
   fmdados.AbrirConexaoClientDS(ClientDS);
 end;
 
@@ -91,7 +92,7 @@ begin
   fmdados.CancelarEdicaoClientDS(ClientDS);
 end;
 
-procedure TEscolaDAO.CarregarEntidade(AEscolaModelo: TEscolaModelo);
+procedure TEscolaDAO.CarregarEntidadeModeloDoClientDS(AEscolaModelo: TEscolaModelo);
 begin
   AEscolaModelo.Codigo       := ClientDS.Fields[0].AsInteger;
   AEscolaModelo.Nome         := ClientDS.Fields[1].AsString;
@@ -104,43 +105,29 @@ begin
   AEscolaModelo.Cidade       := ClientDS.Fields[8].AsString;
 end;
 
-procedure TEscolaDAO.Carregar(AEscolaModelo: TEscolaModelo; ACodigo: Integer);
+function TEscolaDAO.ConsultaEntidadePorCodigo(AEscolaModelo: TEscolaModelo; ACodigo: Integer): Boolean;
 var
   VQuery: TSQLQuery;
 begin
-  VQuery := fmdados.ComponenteQuery;
-  try
-    VQuery.SQL.Text := Format('SELECT ' +
-                 'ESCCOD, ' +
-                 'ESCNOME, ' +
-                 'ESCDATACAD, ' +
-                 'ESCENDCEP, ' +
-                 'ESCENDRUA, ' +
-                 'ESCENDNUM, ' +
-                 'ESCENDCOMP, ' +
-                 'ESCENDBAIRRO, ' +
-                 'ESCENDCIDADE ' +
-               'FROM ' +
-                 'ESCOLA ' +
-               'WHERE ESCCOD = %d',
-               [ACodigo]);
-    ClientDS.Open;
-    try
-      AEscolaModelo.Codigo       := ClientDS.Fields[0].AsInteger;
-      AEscolaModelo.Nome         := ClientDS.Fields[1].AsString;
-      AEscolaModelo.DataCadastro := ClientDS.Fields[2].AsDateTime;
-      AEscolaModelo.Cep          := ClientDS.Fields[3].AsString;
-      AEscolaModelo.Rua          := ClientDS.Fields[4].AsString;
-      AEscolaModelo.Numero       := ClientDS.Fields[5].AsString;
-      AEscolaModelo.Complemento  := ClientDS.Fields[6].AsString;
-      AEscolaModelo.Bairro       := ClientDS.Fields[7].AsString;
-      AEscolaModelo.Cidade       := ClientDS.Fields[8].AsString;
-    finally
-      ClientDS.Close;
-    end;
-  finally
-    FreeAndNil(FClientDS);
-  end;
+  VQuery := fmdados.tbEscola;
+  FecharConexaoClientDS;
+  fmdados.tbEscola.SQL.Text := Format('SELECT ' +
+               'ESCCOD, ' +
+               'ESCNOME, ' +
+               'ESCDATACAD, ' +
+               'ESCENDCEP, ' +
+               'ESCENDRUA, ' +
+               'ESCENDNUM, ' +
+               'ESCENDCOMP, ' +
+               'ESCENDBAIRRO, ' +
+               'ESCENDCIDADE ' +
+             'FROM ' +
+               'ESCOLA ' +
+             'WHERE ESCCOD = %d',
+             [ACodigo]);
+  Result := fmdados.tbEscola.RecordCount > 0;
+  ClientDS.Open;
+  CarregarEntidadeModeloDoClientDS(AEscolaModelo);
 end;
 
 function TEscolaDAO.Gravar(AEscola: TEscolaModelo): Boolean;
@@ -197,6 +184,11 @@ begin
   Result := fmdados.ClientDSEscola;
 end;
 
+function TEscolaDAO.ClientDSPossuiDado: Boolean;
+begin
+  Result := fmdados.ClientDSPossuiDado(ClientDS);
+end;
+
 procedure TEscolaDAO.LimparDadosClientDS;
 begin
   fmdados.LimparDadosClientDS(ClientDS);
@@ -209,6 +201,7 @@ end;
 
 procedure TEscolaDAO.NovoCadastroClientDS;
 begin
+  fmdados.tbEscola.SQL.Text := 'SELECT * FROM ESCOLA';
   fmdados.NovoCadastroClientDS(ClientDS);
 end;
 

@@ -14,7 +14,7 @@ type
   public               
     procedure AbrirConexaoClientDS; override;
     procedure FecharConexaoClientDS; override;
-    procedure CarregarEntidade(AAlunoModelo: TAlunoModelo);
+    procedure CarregarEntidadeModeloDoClientDS(AAlunoModelo: TAlunoModelo);
     procedure GravarClientDS; override;
     procedure NovoCadastroClientDS; override;
     procedure AlterarClientDS; override;
@@ -102,20 +102,25 @@ begin
     Result := False
 end;
 
-procedure TAlunoDAO.CarregarEntidade(AAlunoModelo: TAlunoModelo);
+procedure TAlunoDAO.CarregarEntidadeModeloDoClientDS(AAlunoModelo: TAlunoModelo);
 begin
-  AAlunoModelo.Codigo := ClientDS.Fields[0].AsInteger;
-  AAlunoModelo.Nome := ClientDS.Fields[1].AsString;
-  AAlunoModelo.DataCadastro := ClientDS.Fields[2].AsDateTime;
-  AAlunoModelo.Cpf := ClientDS.Fields[3].AsString;
-  AAlunoModelo.NomeMae := ClientDS.Fields[4].AsString;
-  AAlunoModelo.NomePai := ClientDS.Fields[5].AsString;
-  AAlunoModelo.Cep := ClientDS.Fields[6].AsString;
-  AAlunoModelo.Rua := ClientDS.Fields[7].AsString;
-  AAlunoModelo.Numero := ClientDS.Fields[8].AsString;
-  AAlunoModelo.Complemento := ClientDS.Fields[9].AsString;
-  AAlunoModelo.Bairro := ClientDS.Fields[10].AsString;
-  AAlunoModelo.Cidade := ClientDS.Fields[11].AsString;
+  try
+    AAlunoModelo.Codigo := ClientDS.Fields[0].AsInteger;
+    AAlunoModelo.Matricula := ClientDS.Fields[1].AsString;
+    AAlunoModelo.Nome := ClientDS.Fields[2].AsString;
+    AAlunoModelo.DataCadastro := ClientDS.Fields[3].AsDateTime;
+    AAlunoModelo.Cpf := ClientDS.Fields[4].AsString;
+    AAlunoModelo.NomeMae := ClientDS.Fields[5].AsString;
+    AAlunoModelo.NomePai := ClientDS.Fields[6].AsString;
+    AAlunoModelo.Cep := ClientDS.Fields[7].AsString;
+    AAlunoModelo.Rua := ClientDS.Fields[8].AsString;
+    AAlunoModelo.Numero := ClientDS.Fields[9].AsString;
+    AAlunoModelo.Complemento := ClientDS.Fields[10].AsString;
+    AAlunoModelo.Bairro := ClientDS.Fields[11].AsString;
+    AAlunoModelo.Cidade := ClientDS.Fields[12].AsString;
+  except
+    raise Exception.Create('Não foi possível carregar as informações de aluno');
+  end;
 end;
 
 procedure TAlunoDAO.ConsultaOrdenada(AIndiceComboBox: Integer);

@@ -22,6 +22,7 @@ type
     procedure edtEndNumeroKeyPress(Sender: TObject; var Key: Char);
     procedure btnLimparClick(Sender: TObject);
     procedure edtNomeKeyPress(Sender: TObject; var Key: Char);
+    procedure FormShow(Sender: TObject);
   private
     FControladorEscola: TCadEscolaController;
     procedure SetControladorEscola(const Value: TCadEscolaController);
@@ -30,7 +31,7 @@ type
     destructor Destroy; override;
 
     procedure CarregarComponentesCadEscola;
-    procedure CarregarEntidadeEscola;
+    procedure CarregarEscolaModeloDosComponentesForm;
     procedure LimparCamposModelo;
     procedure HabilitarDesabilitarComponentesDados;
     procedure AfterConstruction; override;
@@ -52,25 +53,26 @@ uses unFrmPesquisaEscola;
 //(Botão NOVO CADASTRO) Evento para habilitar campos para a inclusão
 procedure TfrmCadEscola.AfterConstruction;
 begin
-  inherited;
-  ControladorEscola := TCadEscolaController.Create; //Instãncia da Classe Controller
-  if ControladorEscola.EstadoClientDS = dsBrowse then
-  begin
-    ControladorEscola.CarregarEntidade;
-    CarregarComponentesCadEscola;
-  end
-  else
-  begin
-    CarregarComponentesCadEscola;
-    edtCodigo.Text := EmptyStr;
-    cxDateEditDataCadastro.Text := EmptyStr;
-  end;
-  HabilitarDesabilitarComponentesDados;
+//  inherited;
+//  ControladorEscola := TCadEscolaController.Create; //Instãncia da Classe Controller
+//  if ControladorEscola.EstadoClientDS = dsBrowse then
+//  begin
+//    ControladorEscola.CarregarEntidade;
+//    CarregarComponentesCadEscola;
+//  end
+//  else
+//  begin
+//    CarregarComponentesCadEscola;
+//    edtCodigo.Text := EmptyStr;
+//    cxDateEditDataCadastro.Text := EmptyStr;
+//  end;
+//  HabilitarDesabilitarComponentesDados;
 end;
 
 procedure TfrmCadEscola.btnAlterarClick(Sender: TObject);
 begin
   inherited;
+  ControladorEscola := TCadEscolaController.Create;
   ControladorEscola.AlterarClientDS;
   ControladorEscola.EstadoClientDS;
   HabilitarDesabilitarComponentesDados; //Habilita os componentes necessários para EDIÇÃO
@@ -82,16 +84,23 @@ begin
     mbYesNo, 0) = mrYes then
   begin
     ControladorEscola.CancelarEdicaoClientDS;
-//    ControladorEscola.LimparCampos;
     HabilitarDesabilitarComponentesDados;
-    CarregarComponentesCadEscola;
+
+    //Fazer consulta do item pelo CÓDIGO desde que o código exista no BD
+    //Fazer isto para garantir a exibição dos dados ao cancelar edição caso aqueles campos tenham sido limpos
+    ControladorEscola.EscolaModelo.Codigo := StrToInt(edtCodigo.Text);
+    if ControladorEscola.ClientDSPossuiDado then
+      CarregarComponentesCadEscola;
   end;
 end;
 
 procedure TfrmCadEscola.btnConsultarClick(Sender: TObject);
 begin
   if not Assigned(frmPesquisaEscola) then //Verifica se o Form PESQUISA ESCOLA está FECHADO para ser CRIADO
+  begin
     frmPesquisaEscola := TfrmPesquisaEscola.Create(frmPrincipal);
+    ControladorEscola.FecharConexaoClientDS;
+  end;
   frmPesquisaEscola.Show;
   Close;
 end;
@@ -127,7 +136,7 @@ end;
 procedure TfrmCadEscola.btnGravarClick(Sender: TObject);
 begin
   inherited;
-  CarregarEntidadeEscola;
+  CarregarEscolaModeloDosComponentesForm;
   try
     if Self.ValidaCampos then
       if MessageDlg('Tem certeza que deseja gravar este registro?', mtConfirmation,
@@ -181,7 +190,7 @@ begin
   edtEndCidade.Text := ControladorEscola.EscolaModelo.Cidade;
 end;
 
-procedure TfrmCadEscola.CarregarEntidadeEscola;
+procedure TfrmCadEscola.CarregarEscolaModeloDosComponentesForm;
 begin
   inherited;
   ControladorEscola.EscolaModelo.Codigo := StrToInt(edtCodigo.Text);
@@ -198,7 +207,7 @@ end;
 procedure TfrmCadEscola.CarregarEscola;
 begin
   inherited;
-  ControladorEscola.CarregarEntidade;
+  ControladorEscola.CarregarEntidadeModeloDoClientDS;
   CarregarComponentesCadEscola;
 end;
 
@@ -236,6 +245,24 @@ procedure TfrmCadEscola.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
   frmCadEscola := nil;
+end;
+
+procedure TfrmCadEscola.FormShow(Sender: TObject);
+begin
+  inherited;
+  ControladorEscola := TCadEscolaController.Create; //Instãncia da Classe Controller
+  if ControladorEscola.EstadoClientDS = dsBrowse then
+  begin
+    ControladorEscola.CarregarEntidadeModeloDoClientDS;
+    CarregarComponentesCadEscola;
+  end
+  else
+  begin
+    CarregarComponentesCadEscola;
+    edtCodigo.Text := EmptyStr;
+    cxDateEditDataCadastro.Text := EmptyStr;
+  end;
+  HabilitarDesabilitarComponentesDados;
 end;
 
 procedure TfrmCadEscola.HabilitarDesabilitarComponentesDados;

@@ -1,6 +1,8 @@
 inherited frmCadEscola: TfrmCadEscola
   Caption = 'Cadastro de Escola'
   ClientHeight = 269
+  OnShow = FormShow
+  ExplicitWidth = 806
   ExplicitHeight = 298
   PixelsPerInch = 96
   TextHeight = 13

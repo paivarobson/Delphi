@@ -24,7 +24,7 @@ type
     procedure AlterarClientDS; virtual; abstract;
     procedure ExcluirClientDS; virtual; abstract;
     procedure CancelarEdicaoClientDS; virtual; abstract;
-    procedure CarregarEntidade; virtual; abstract;
+    procedure CarregarEntidadeModeloDoClientDS; virtual; abstract;
     procedure AbrirConexaoClientDS; virtual; abstract;
     procedure FecharConexaoClientDS; virtual; abstract;
 

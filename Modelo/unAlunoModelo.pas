@@ -42,7 +42,7 @@ type
 
     procedure AbrirConexaoClientDS; override;
     procedure FecharConexaoClientDS; override;
-    procedure CarregarEntidade; override;
+    procedure CarregarEntidadeModeloDoClientDS; override;
     procedure NovoCadastroClientDS; override;
     procedure CancelarEdicaoClientDS; override;
     procedure AlterarClientDS; override;
@@ -124,10 +124,10 @@ begin
   Result := FAlunoDAO.Gravar(Self);
 end;
 
-procedure TAlunoModelo.CarregarEntidade;
+procedure TAlunoModelo.CarregarEntidadeModeloDoClientDS;
 begin
   inherited;
-  FAlunoDAO.CarregarEntidade(Self);
+  FAlunoDAO.CarregarEntidadeModeloDoClientDS(Self);
 end;
 
 procedure TAlunoModelo.CarregarTodosRegistrosClientDS;
@@ -150,7 +150,7 @@ end;
 
 destructor TAlunoModelo.Destroy;
 begin
-//  FreeAndNil(FAlunoDAO);
+  FreeAndNil(FAlunoDAO);
   inherited;
 end;
 

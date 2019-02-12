@@ -27,11 +27,13 @@ type
     procedure AlterarClientDS; override;
     procedure ExcluirClientDS; override;
     procedure CancelarEdicaoClientDS; override;
-    procedure CarregarEntidade; override;
+    procedure CarregarEntidadeModeloDoClientDS; override;
+    function ConsultaEntidadePorCodigo: Boolean;
     procedure AbrirConexaoClientDS; override;
     procedure FecharConexaoClientDS; override;
     
     function EstadoClientDS: TDataSetState; override;
+    function ClientDSPossuiDado: Boolean;
     
     property EscolaModelo: TEscolaModelo read FEscolaModelo write SetEscolaModelo;
     
@@ -63,10 +65,21 @@ begin
   EscolaModelo.CancelarEdicaoClientDS;
 end;
 
-procedure TCadEscolaController.CarregarEntidade;
+procedure TCadEscolaController.CarregarEntidadeModeloDoClientDS;
 begin
   inherited;
-  EscolaModelo.CarregarEntidade;
+  EscolaModelo.CarregarEntidadeModeloDoClientDS;
+end;
+
+function TCadEscolaController.ClientDSPossuiDado: Boolean;
+begin
+  ConsultaEntidadePorCodigo;
+  Result := EscolaModelo.ClientDSPossuiDado;
+end;
+
+function TCadEscolaController.ConsultaEntidadePorCodigo: Boolean;
+begin
+  Result :=  EscolaModelo.ConsultaEntidadePorCodigo;
 end;
 
 //procedure TCadEscolaController.NovoCadastroClientDS;

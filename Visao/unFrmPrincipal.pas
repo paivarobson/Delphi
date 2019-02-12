@@ -73,10 +73,10 @@ begin
   if not Assigned(frmCadAluno) then //Verifica se o Form CADASTRO ESCOLA está FECHADO para ser CRIADO
     frmCadAluno := TfrmCadAluno.Create(frmPrincipal);
   frmCadAluno.Show;
-  if Assigned(frmPesquisaEscola) then //Verifica se o Form PESQUISA ESCOLA está ABERTO para que seja FECHADO
-    frmPesquisaEscola.Close;
-  if Assigned(frmCadEscola) then //Verifica se o Form PESQUISA ESCOLA está ABERTO para que seja FECHADO
-    frmCadEscola.Close;
+//  if Assigned(frmPesquisaEscola) then //Verifica se o Form PESQUISA ESCOLA está ABERTO para que seja FECHADO
+//    frmPesquisaEscola.Close;
+//  if Assigned(frmCadEscola) then //Verifica se o Form PESQUISA ESCOLA está ABERTO para que seja FECHADO
+//    frmCadEscola.Close;
 end;
 
 procedure TfrmPrincipal.btnCadastroEscolaClick(Sender: TObject);

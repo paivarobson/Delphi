@@ -20,7 +20,7 @@ type
     procedure DesabilitarFilteredClientDS;
     procedure CarregarTodosRegistrosClientDS;
     procedure HabilitarFilteredClientDS;
-    procedure CarregarEscola;
+    procedure CarregarEntidadeModeloDoClientDS;
 
     function DadosCDS: TClientDataSet;
     function CarregarConsultaClientDS(ACampoTabelaFiltrado: string; ADado: string): Boolean;
@@ -87,9 +87,9 @@ begin
   Result := EscolaModelo.CarregarConsultaClientDS(ACampoTabelaFiltrado, ADado);
 end;
 
-procedure TPesquisaEscolaController.CarregarEscola;
+procedure TPesquisaEscolaController.CarregarEntidadeModeloDoClientDS;
 begin
-  EscolaModelo.CarregarEntidade;
+  EscolaModelo.CarregarEntidadeModeloDoClientDS;
 end;
 
 procedure TPesquisaEscolaController.CarregarTodosRegistrosClientDS;

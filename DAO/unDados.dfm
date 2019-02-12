@@ -98,8 +98,6 @@ object fmdados: Tfmdados
   object tbEscola: TSQLQuery
     MaxBlobSize = -1
     Params = <>
-    SQL.Strings = (
-      'select * from escola')
     SQLConnection = FConexaoBDEscola
     Left = 40
     Top = 96

@@ -39,7 +39,7 @@ type
   public
     procedure AbrirConexaoClientDS; virtual; abstract;
     procedure FecharConexaoClientDS; virtual; abstract;
-    procedure CarregarEntidade; virtual; abstract;
+    procedure CarregarEntidadeModeloDoClientDS; virtual; abstract;
     procedure NovoCadastroClientDS; virtual; abstract;
     procedure CancelarEdicaoClientDS; virtual; abstract;
     procedure AlterarClientDS; virtual; abstract;

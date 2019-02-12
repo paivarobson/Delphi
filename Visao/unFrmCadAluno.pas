@@ -36,7 +36,6 @@ type
   private
     FControladorAluno: TCadAlunoController;
     procedure SetControladorAluno(const Value: TCadAlunoController);
-    procedure CarregarEntidadeEscola;
 
   public
     destructor Destroy; override;
@@ -66,7 +65,7 @@ begin
   ControladorAluno := TCadAlunoController.Create; //Instãncia da Classe Controller
   if ControladorAluno.EstadoClientDS = dsBrowse then
   begin
-    ControladorAluno.CarregarEntidade;
+    ControladorAluno.CarregarEntidadeModeloDoClientDS;
     CarregarComponentesCadEscola;
   end
   else
@@ -180,11 +179,6 @@ begin
   ControladorAluno.AlunoModelo.Complemento := edtEndComplemento.Text;
   ControladorAluno.AlunoModelo.Bairro := edtEndBairro.Text;
   ControladorAluno.AlunoModelo.Cidade := edtEndCidade.Text;
-end;
-
-procedure TfrmCadAluno.CarregarEntidadeEscola;
-begin
-
 end;
 
 procedure TfrmCadAluno.CarregarEscola;

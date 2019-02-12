@@ -26,7 +26,7 @@ type
     procedure AlterarClientDS; override;
     procedure ExcluirClientDS; override;
     procedure CancelarEdicaoClientDS; override;
-    procedure CarregarEntidade; override;
+    procedure CarregarEntidadeModeloDoClientDS; override;
     procedure AbrirConexaoClientDS; override;
     procedure FecharConexaoClientDS; override;
 
@@ -56,10 +56,10 @@ begin
   AlunoModelo.CancelarEdicaoClientDS;
 end;
 
-procedure TCadAlunoController.CarregarEntidade;
+procedure TCadAlunoController.CarregarEntidadeModeloDoClientDS;
 begin
   inherited;
-  AlunoModelo.CarregarEntidade;
+  AlunoModelo.CarregarEntidadeModeloDoClientDS;
 end;
 
 constructor TCadAlunoController.Create;

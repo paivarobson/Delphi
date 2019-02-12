@@ -36,13 +36,14 @@ type
     function GetBairro: string;
     function GetCidade: string;
   public
+    constructor Create;
     destructor Destroy; override;
 
     procedure AfterConstruction; override;
 
     procedure AbrirConexaoClientDS; override;
     procedure FecharConexaoClientDS; override;
-    procedure CarregarEntidade; override;
+    procedure CarregarEntidadeModeloDoClientDS; override;
     procedure NovoCadastroClientDS; override;
     procedure CancelarEdicaoClientDS; override;
     procedure AlterarClientDS; override;
@@ -59,7 +60,9 @@ type
 //    function CarregarDadosParaClientDS: Boolean; override;
     function ValidarCampos: Boolean; override;
     function CarregarConsultaClientDS(ACampoTabelaFiltrado: string; ADado: string): Boolean; override;
+    function ConsultaEntidadePorCodigo: Boolean;
     function StatusInsertEditClientDS: Boolean; override;
+    function ClientDSPossuiDado: Boolean;
 
     property Codigo: Integer read GetCodigo write SetCodigo;
     property Nome: string read GetNome write SetNome;
@@ -111,9 +114,9 @@ begin
   FEscolaDAO.CancelarEdicaoClientDS;
 end;
 
-procedure TEscolaModelo.CarregarEntidade;
+procedure TEscolaModelo.CarregarEntidadeModeloDoClientDS;
 begin
-  FEscolaDAO.CarregarEntidade(Self);
+  FEscolaDAO.CarregarEntidadeModeloDoClientDS(Self);
 end;
 
 function TEscolaModelo.DevolverUltimoCodigo: Integer;
@@ -264,6 +267,11 @@ begin
   FEscolaDAO.CarregarTodosRegistrosClientDS;
 end;
 
+function TEscolaModelo.ClientDSPossuiDado: Boolean;
+begin
+  Result := FEscolaDAO.ClientDSPossuiDado;
+end;
+
 procedure TEscolaModelo.NovoCadastroClientDS;
 begin
   FEscolaDAO.NovoCadastroClientDS;
@@ -294,15 +302,24 @@ begin
   Result := FCidade;
 end;
 
-//############# PESQUISA ESCOLA ################
+function TEscolaModelo.ConsultaEntidadePorCodigo: Boolean;
+begin
+  Result := FEscolaDAO.ConsultaEntidadePorCodigo(Self, Codigo);
+end;
+
 procedure TEscolaModelo.ConsultaOrdenada(AIndiceComboBox: Integer);
 begin
   FEscolaDAO.ConsultaOrdenada(AIndiceComboBox);
 end;
 
+constructor TEscolaModelo.Create;
+begin
+  FEscolaDAO := TEscolaDAO.Create;
+end;
+
 destructor TEscolaModelo.Destroy;
 begin
-//  FreeAndNil(FEscolaDao);
+  FreeAndNil(FEscolaDao);
   inherited;
 end;
 

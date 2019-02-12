@@ -137,6 +137,7 @@ procedure TfrmPesquisaEscola.DBGridListaEscolaDblClick(Sender: TObject);
 begin
   if not Assigned(frmCadEscola) then //Verifica se o Form CADASTRO ESCOLA está FECHADO para ser CRIADO
     frmCadEscola := TfrmCadEscola.Create(frmPrincipal);
+//  ControladorPesquisaEscola.AbrirConexaoClientDS;
   Close;
   frmCadEscola.Show;
   FControladorPesquisaEscola.AbrirConexaoClientDS; //Certifica se manter a conexão aberta para que o dado clicado seja consultado
