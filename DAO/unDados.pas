@@ -36,6 +36,19 @@ type
     dspAluno: TDataSetProvider;
     cdsAluno: TClientDataSet;
     dsAluno: TDataSource;
+    cdsAlunoALUCOD: TIntegerField;
+    cdsAlunoALUMAT: TStringField;
+    cdsAlunoALUNOME: TStringField;
+    cdsAlunoALUDATACAD: TSQLTimeStampField;
+    cdsAlunoALUCPF: TStringField;
+    cdsAlunoALUNOMEMAE: TStringField;
+    cdsAlunoALUNOMEPAI: TStringField;
+    cdsAlunoALUENDCEP: TStringField;
+    cdsAlunoALUENDRUA: TStringField;
+    cdsAlunoALUENDNUM: TStringField;
+    cdsAlunoALUENDCOMP: TStringField;
+    cdsAlunoALUENDBAIRRO: TStringField;
+    cdsAlunoALUENDCIDADE: TStringField;
 
   private
     function GetQueryEscola: TSQLQuery;

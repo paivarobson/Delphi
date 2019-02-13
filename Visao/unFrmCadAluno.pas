@@ -7,7 +7,7 @@ uses
   Dialogs, unFrmCadPadrao, cxGraphics, cxControls, cxLookAndFeels,
   cxLookAndFeelPainters, cxContainer, cxEdit, ComCtrls, dxCore, cxDateUtils,
   Mask, cxTextEdit, cxMaskEdit, cxDropDownEdit, cxCalendar, StdCtrls, unFrmPrincipal,
-  unCadAlunoController, DB;
+  unCadAlunoController, DB, unFrmPesquisaAluno;
 
 type
   TfrmCadAluno = class(TfrmCadPadrao)
@@ -93,10 +93,10 @@ procedure TfrmCadAluno.btnConsultarClick(Sender: TObject);
 begin
   if not Assigned(frmCadAluno) then //Verifica se o Form PESQUISA ESCOLA está FECHADO para ser CRIADO
   begin
-//    frmPesquisaAluno := TfrmPesquisaAluno.Create(frmPrincipal);
+    frmPesquisaAluno := TfrmPesquisaAluno.Create(frmPrincipal);
     ControladorAluno.FecharConexaoClientDS;
   end;
-//  frmPesquisaAluno.Show;
+  frmPesquisaAluno.Show;
   Close;
 end;
 

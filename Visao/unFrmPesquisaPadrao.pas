@@ -4,13 +4,12 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, ComCtrls, ExtCtrls, Grids, DBGrids;
+  Dialogs, Grids, DBGrids, StdCtrls, ComCtrls, ExtCtrls;
 
 type
   TfrmPesquisaPadrao = class(TForm)
     lblConsultaOrdenada: TLabel;
     lblTituloLista: TLabel;
-    DBGridLista: TDBGrid;
     ComboBoxConsultaOrdenada: TComboBox;
     rgPesquisar: TRadioGroup;
     dtpBuscarData: TDateTimePicker;
@@ -20,6 +19,7 @@ type
     btnImprimir: TButton;
     btnNovoCadastro: TButton;
     btnConsultaFechar: TButton;
+    DBGridListaEscola: TDBGrid;
   private
     { Private declarations }
   public
