@@ -92,8 +92,11 @@ end;
 procedure TfrmCadAluno.btnConsultarClick(Sender: TObject);
 begin
   if not Assigned(frmCadAluno) then //Verifica se o Form PESQUISA ESCOLA está FECHADO para ser CRIADO
-    frmCadAluno := TfrmCadAluno.Create(frmPrincipal);
-  frmCadAluno.Show;
+  begin
+//    frmPesquisaAluno := TfrmPesquisaAluno.Create(frmPrincipal);
+    ControladorAluno.FecharConexaoClientDS;
+  end;
+//  frmPesquisaAluno.Show;
   Close;
 end;
 

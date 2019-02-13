@@ -34,7 +34,6 @@ type
     procedure CarregarEscolaModeloDosComponentesForm;
     procedure LimparCamposModelo;
     procedure HabilitarDesabilitarComponentesDados;
-    procedure AfterConstruction; override;
     procedure CarregarEscola;
 
     property ControladorEscola: TCadEscolaController read FControladorEscola write SetControladorEscola;
@@ -48,26 +47,6 @@ implementation
 uses unFrmPesquisaEscola;
 
 {$R *.dfm}
-
-
-//(Botão NOVO CADASTRO) Evento para habilitar campos para a inclusão
-procedure TfrmCadEscola.AfterConstruction;
-begin
-//  inherited;
-//  ControladorEscola := TCadEscolaController.Create; //Instãncia da Classe Controller
-//  if ControladorEscola.EstadoClientDS = dsBrowse then
-//  begin
-//    ControladorEscola.CarregarEntidade;
-//    CarregarComponentesCadEscola;
-//  end
-//  else
-//  begin
-//    CarregarComponentesCadEscola;
-//    edtCodigo.Text := EmptyStr;
-//    cxDateEditDataCadastro.Text := EmptyStr;
-//  end;
-//  HabilitarDesabilitarComponentesDados;
-end;
 
 procedure TfrmCadEscola.btnAlterarClick(Sender: TObject);
 begin
@@ -85,9 +64,6 @@ begin
   begin
     ControladorEscola.CancelarEdicaoClientDS;
     HabilitarDesabilitarComponentesDados;
-
-    //Fazer consulta do item pelo CÓDIGO desde que o código exista no BD
-    //Fazer isto para garantir a exibição dos dados ao cancelar edição caso aqueles campos tenham sido limpos
     ControladorEscola.EscolaModelo.Codigo := StrToInt(edtCodigo.Text);
     if ControladorEscola.ClientDSPossuiDado then
       CarregarComponentesCadEscola;
@@ -166,7 +142,7 @@ begin
   inherited;
   LimparCamposForm;
 end;
-
+//(Botão NOVO CADASTRO) Evento para habilitar campos para a inclusão
 procedure TfrmCadEscola.btnNovoCadastroClick(Sender: TObject);
 begin
   ControladorEscola.NovoCadastroClientDS;

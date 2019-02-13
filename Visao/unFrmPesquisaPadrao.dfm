@@ -1,9 +1,9 @@
-object frmPesquisaEscola: TfrmPesquisaEscola
+object frmPesquisaPadrao: TfrmPesquisaPadrao
   Left = 0
   Top = 0
   BorderIcons = []
   BorderStyle = bsSingle
-  Caption = 'Pesquisar'
+  Caption = 'Pesquisar Padr'#227'o'
   ClientHeight = 500
   ClientWidth = 778
   Color = clBtnFace
@@ -17,23 +17,21 @@ object frmPesquisaEscola: TfrmPesquisaEscola
   Position = poScreenCenter
   Visible = True
   WindowState = wsMaximized
-  OnClose = FormClose
-  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object lblEscolaConsultaOrdenada: TLabel
+  object lblConsultaOrdenada: TLabel
     Left = 200
     Top = 138
     Width = 63
     Height = 13
     Caption = 'Ordenar por:'
   end
-  object lblEscolaTituloLista: TLabel
+  object lblTituloLista: TLabel
     Left = 251
     Top = 6
-    Width = 184
+    Width = 193
     Height = 33
-    Caption = 'Consulta Escola'
+    Caption = 'Consulta Padr'#227'o'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -27
@@ -43,7 +41,7 @@ object frmPesquisaEscola: TfrmPesquisaEscola
     ParentShowHint = False
     ShowHint = False
   end
-  object DBGridListaEscola: TDBGrid
+  object DBGridLista: TDBGrid
     Left = 0
     Top = 184
     Width = 778
@@ -57,7 +55,6 @@ object frmPesquisaEscola: TfrmPesquisaEscola
     TitleFont.Height = -11
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
-    OnDblClick = DBGridListaEscolaDblClick
     Columns = <
       item
         Expanded = False
@@ -115,22 +112,21 @@ object frmPesquisaEscola: TfrmPesquisaEscola
         Visible = True
       end>
   end
-  object ComboBoxEscolaConsultaOrdenada: TComboBox
+  object ComboBoxConsultaOrdenada: TComboBox
     Left = 200
     Top = 155
     Width = 110
     Height = 21
     ItemHeight = 13
     ItemIndex = 0
-    TabOrder = 5
+    TabOrder = 1
     Text = 'C'#243'digo'
-    OnChange = ComboBoxEscolaConsultaOrdenadaChange
     Items.Strings = (
       'C'#243'digo'
       'Escola'
       'Data de cadastro')
   end
-  object rgEscolaPesquisar: TRadioGroup
+  object rgPesquisar: TRadioGroup
     Left = 21
     Top = 61
     Width = 161
@@ -140,10 +136,9 @@ object frmPesquisaEscola: TfrmPesquisaEscola
     Items.Strings = (
       'C'#243'digo'
       'Data de Cadastro')
-    TabOrder = 1
-    OnClick = rgEscolaPesquisarClick
+    TabOrder = 2
   end
-  object dtpEscolaBuscarData: TDateTimePicker
+  object dtpBuscarData: TDateTimePicker
     Left = 77
     Top = 126
     Width = 105
@@ -152,27 +147,23 @@ object frmPesquisaEscola: TfrmPesquisaEscola
     Time = 43444.631400567130000000
     Enabled = False
     TabOrder = 3
-    OnKeyPress = dtpEscolaBuscarDataKeyPress
   end
-  object edtEscolaBuscarCodigo: TEdit
+  object edtBuscarCodigo: TEdit
     Left = 21
     Top = 126
     Width = 48
     Height = 21
     ParentShowHint = False
     ShowHint = True
-    TabOrder = 2
-    OnChange = edtEscolaBuscarCodigoChange
-    OnKeyPress = edtEscolaBuscarCodigoKeyPress
+    TabOrder = 4
   end
-  object btnEscolaBuscar: TButton
+  object btnBuscar: TButton
     Left = 21
     Top = 153
     Width = 161
     Height = 25
     Caption = 'Pesquisar'
-    TabOrder = 4
-    OnClick = btnEscolaBuscarClick
+    TabOrder = 5
   end
   object rgImpressao: TRadioGroup
     Left = 680
@@ -184,33 +175,30 @@ object frmPesquisaEscola: TfrmPesquisaEscola
     Items.Strings = (
       'Tela'
       'Impressora')
-    TabOrder = 7
+    TabOrder = 6
   end
-  object btnEscolaImprimir: TButton
+  object btnImprimir: TButton
     Left = 680
     Top = 153
     Width = 90
     Height = 25
     Caption = 'Imprimir'
-    TabOrder = 8
-    OnClick = btnEscolaImprimirClick
+    TabOrder = 7
   end
-  object btnEscolaNovoCadastro: TButton
+  object btnNovoCadastro: TButton
     Left = 335
     Top = 153
     Width = 83
     Height = 25
     Caption = 'Novo cadastro'
-    TabOrder = 6
-    OnClick = btnEscolaNovoCadastroClick
+    TabOrder = 8
   end
-  object btnEscolaConsultaFechar: TButton
+  object btnConsultaFechar: TButton
     Left = 688
     Top = 8
     Width = 82
     Height = 25
     Caption = 'Tela principal'
     TabOrder = 9
-    OnClick = btnEscolaConsultaFecharClick
   end
 end

@@ -106,10 +106,7 @@ begin
 end;
 
 function TEscolaDAO.ConsultaEntidadePorCodigo(AEscolaModelo: TEscolaModelo; ACodigo: Integer): Boolean;
-var
-  VQuery: TSQLQuery;
 begin
-  VQuery := fmdados.tbEscola;
   FecharConexaoClientDS;
   fmdados.tbEscola.SQL.Text := Format('SELECT ' +
                'ESCCOD, ' +
