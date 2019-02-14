@@ -22,6 +22,7 @@ object fmdados: Tfmdados
       'OS Authentication=False'
       'Prepare SQL=False')
     VendorLib = 'oledb'
+    Connected = True
     Left = 213
     Top = 5
   end
@@ -168,6 +169,57 @@ object fmdados: Tfmdados
     ProviderName = 'dspAluno'
     Left = 352
     Top = 217
+    object cdsAlunoALUCOD: TIntegerField
+      FieldName = 'ALUCOD'
+      Required = True
+    end
+    object cdsAlunoALUMAT: TStringField
+      FieldName = 'ALUMAT'
+      Size = 50
+    end
+    object cdsAlunoALUNOME: TStringField
+      FieldName = 'ALUNOME'
+      Size = 100
+    end
+    object cdsAlunoALUDATACAD: TSQLTimeStampField
+      FieldName = 'ALUDATACAD'
+    end
+    object cdsAlunoALUCPF: TStringField
+      FieldName = 'ALUCPF'
+      Size = 14
+    end
+    object cdsAlunoALUNOMEMAE: TStringField
+      FieldName = 'ALUNOMEMAE'
+      Size = 100
+    end
+    object cdsAlunoALUNOMEPAI: TStringField
+      FieldName = 'ALUNOMEPAI'
+      Size = 100
+    end
+    object cdsAlunoALUENDCEP: TStringField
+      FieldName = 'ALUENDCEP'
+      Size = 9
+    end
+    object cdsAlunoALUENDRUA: TStringField
+      FieldName = 'ALUENDRUA'
+      Size = 100
+    end
+    object cdsAlunoALUENDNUM: TStringField
+      FieldName = 'ALUENDNUM'
+      Size = 10
+    end
+    object cdsAlunoALUENDCOMP: TStringField
+      FieldName = 'ALUENDCOMP'
+      Size = 30
+    end
+    object cdsAlunoALUENDBAIRRO: TStringField
+      FieldName = 'ALUENDBAIRRO'
+      Size = 50
+    end
+    object cdsAlunoALUENDCIDADE: TStringField
+      FieldName = 'ALUENDCIDADE'
+      Size = 50
+    end
   end
   object dsAluno: TDataSource
     DataSet = cdsAluno

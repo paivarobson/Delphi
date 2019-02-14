@@ -3,7 +3,7 @@ object frmPesquisaEscola: TfrmPesquisaEscola
   Top = 0
   BorderIcons = []
   BorderStyle = bsSingle
-  Caption = 'Pesquisar'
+  Caption = 'Pesquisar Escola'
   ClientHeight = 500
   ClientWidth = 778
   Color = clBtnFace

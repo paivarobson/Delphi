@@ -41,77 +41,6 @@ object frmPesquisaPadrao: TfrmPesquisaPadrao
     ParentShowHint = False
     ShowHint = False
   end
-  object DBGridLista: TDBGrid
-    Left = 0
-    Top = 184
-    Width = 778
-    Height = 316
-    Align = alBottom
-    DataSource = fmdados.dsEscola
-    ReadOnly = True
-    TabOrder = 0
-    TitleFont.Charset = DEFAULT_CHARSET
-    TitleFont.Color = clWindowText
-    TitleFont.Height = -11
-    TitleFont.Name = 'Tahoma'
-    TitleFont.Style = []
-    Columns = <
-      item
-        Expanded = False
-        FieldName = 'ESCCOD'
-        Width = 40
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'ESCNOME'
-        Title.Caption = 'Descri'#231#227'o'
-        Width = 131
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'ESCDATACAD'
-        Width = 92
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'ESCENDRUA'
-        Width = 80
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'ESCENDNUM'
-        Width = 47
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'ESCENDCOMP'
-        Width = 81
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'ESCENDBAIRRO'
-        Width = 114
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'ESCENDCIDADE'
-        Width = 85
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'ESCENDCEP'
-        Width = 61
-        Visible = True
-      end>
-  end
   object ComboBoxConsultaOrdenada: TComboBox
     Left = 200
     Top = 155
@@ -119,7 +48,7 @@ object frmPesquisaPadrao: TfrmPesquisaPadrao
     Height = 21
     ItemHeight = 13
     ItemIndex = 0
-    TabOrder = 1
+    TabOrder = 0
     Text = 'C'#243'digo'
     Items.Strings = (
       'C'#243'digo'
@@ -136,7 +65,7 @@ object frmPesquisaPadrao: TfrmPesquisaPadrao
     Items.Strings = (
       'C'#243'digo'
       'Data de Cadastro')
-    TabOrder = 2
+    TabOrder = 1
   end
   object dtpBuscarData: TDateTimePicker
     Left = 77
@@ -146,7 +75,7 @@ object frmPesquisaPadrao: TfrmPesquisaPadrao
     Date = 43444.631400567130000000
     Time = 43444.631400567130000000
     Enabled = False
-    TabOrder = 3
+    TabOrder = 2
   end
   object edtBuscarCodigo: TEdit
     Left = 21
@@ -155,7 +84,7 @@ object frmPesquisaPadrao: TfrmPesquisaPadrao
     Height = 21
     ParentShowHint = False
     ShowHint = True
-    TabOrder = 4
+    TabOrder = 3
   end
   object btnBuscar: TButton
     Left = 21
@@ -163,7 +92,7 @@ object frmPesquisaPadrao: TfrmPesquisaPadrao
     Width = 161
     Height = 25
     Caption = 'Pesquisar'
-    TabOrder = 5
+    TabOrder = 4
   end
   object rgImpressao: TRadioGroup
     Left = 680
@@ -175,7 +104,7 @@ object frmPesquisaPadrao: TfrmPesquisaPadrao
     Items.Strings = (
       'Tela'
       'Impressora')
-    TabOrder = 6
+    TabOrder = 5
   end
   object btnImprimir: TButton
     Left = 680
@@ -183,7 +112,7 @@ object frmPesquisaPadrao: TfrmPesquisaPadrao
     Width = 90
     Height = 25
     Caption = 'Imprimir'
-    TabOrder = 7
+    TabOrder = 6
   end
   object btnNovoCadastro: TButton
     Left = 335
@@ -191,7 +120,7 @@ object frmPesquisaPadrao: TfrmPesquisaPadrao
     Width = 83
     Height = 25
     Caption = 'Novo cadastro'
-    TabOrder = 8
+    TabOrder = 7
   end
   object btnConsultaFechar: TButton
     Left = 688
@@ -199,6 +128,20 @@ object frmPesquisaPadrao: TfrmPesquisaPadrao
     Width = 82
     Height = 25
     Caption = 'Tela principal'
+    TabOrder = 8
+  end
+  object DBGridLista: TDBGrid
+    Left = 0
+    Top = 184
+    Width = 778
+    Height = 316
+    Align = alBottom
+    ReadOnly = True
     TabOrder = 9
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
   end
 end

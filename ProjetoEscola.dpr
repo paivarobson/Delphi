@@ -21,7 +21,9 @@ uses
   unEntidadeModelo in 'Modelo\unEntidadeModelo.pas',
   unEntidadeDAO in 'DAO\unEntidadeDAO.pas',
   unFrmCadAluno in 'Visao\unFrmCadAluno.pas' {frmCadAluno},
-  unValidacoes in 'DAO\unValidacoes.pas';
+  unValidacoes in 'DAO\unValidacoes.pas',
+  unFrmPesquisaPadrao in 'Visao\unFrmPesquisaPadrao.pas' {frmPesquisaPadrao},
+  unFrmPesquisaAluno in 'Visao\unFrmPesquisaAluno.pas';
 
 {$R *.res}
 

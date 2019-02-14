@@ -19,7 +19,7 @@ type
     btnImprimir: TButton;
     btnNovoCadastro: TButton;
     btnConsultaFechar: TButton;
-    DBGridListaEscola: TDBGrid;
+    DBGridLista: TDBGrid;
   private
     { Private declarations }
   public
